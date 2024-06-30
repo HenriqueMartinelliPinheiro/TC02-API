@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User{
+  userId Int @id @default(autoincrement())
+  userName String
+  userEmail String
+  userPassword String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  systemStatus Boolean @default(true)
+}
+
+model Event {
+  eventId Int @id @default(autoincrement())
+  title String @db.VarChar(255)
+  eventStatus String @db.VarChar(25)
+  eventStartDate DateTime
+  eventEndDate DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  eventLocation EventLocation?
+  eventPeriods EventPeriod[]
+  eventCourses EventCourse[]
+}
+
+model EventLocation{
+  eventLocationId Int @id @default(autoincrement())
+  latitude Float
+  longitude Float
+  radius Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  event Event @relation(fields: [eventId], references: [eventId]) 
+  eventId Int @unique
+}
+
+model EventPeriod {
+  eventPeriodId Int @id @default(autoincrement())
+  periodStartDate DateTime
+  periodEndDate DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  event Event @relation(fields: [eventId], references: [eventId]) 
+  eventId Int
+  Attendaces Attendance[]
+}
+
+model EventCourse {
+  eventCourseId Int @id @default(autoincrement())
+  courseName String
+  event Event @relation(fields: [eventId], references: [eventId]) 
+  eventId Int
+  }
+
+model Attendance {
+  AttendanceId Int @id @default(autoincrement())
+  studentName String
+  studentRegistration String
+  eventPeriod EventPeriod @relation(fields: [eventPeriodId], references: [eventPeriodId])
+  eventPeriodId Int
+}
