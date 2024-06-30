@@ -1,39 +1,74 @@
-import { ExitStatus } from "typescript";
-
-interface EventoProps{
-    id?: number;
-    name: string;
-    status: number;
-}
-
-export class EventDomain {
-    private id?: number;
-    private name: string;
-    private status: number;
-
-    constructor(props: EventoProps){
-        this.id = props.id;
-        this.name = props.name;
-        this.status = props.status;
+interface EventProps {
+    eventId?: number;
+    title: string;
+    eventStatus: string;
+    eventStartDate: Date;
+    eventEndDate: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
+  }
+  
+  export class EventDomain {
+    private eventId?: number;
+    private title: string;
+    private eventStatus: string;
+    private eventStartDate: Date;
+    private eventEndDate: Date;
+    private createdAt: Date;
+    private updatedAt: Date;
+  
+    constructor(props: EventProps) {
+      this.eventId = props.eventId;
+      this.title = props.title;
+      this.eventStatus = props.eventStatus;
+      this.eventStartDate = props.eventStartDate;
+      this.eventEndDate = props.eventEndDate;
+      this.createdAt = props.createdAt || new Date();
+      this.updatedAt = props.updatedAt || new Date();
     }
-
-    getId(){
-        return this.id;
+  
+    getEventId() {
+      return this.eventId;
     }
-
-    getName(){
-        return this.name;
+  
+    getTitle() {
+      return this.title;
     }
-
-    getStatus(){
-        return this.status;
+  
+    getEventStatus() {
+      return this.eventStatus;
     }
-
-    setNome(name: string){
-        this.name = name;
+  
+    getEventStartDate() {
+      return this.eventStartDate;
     }
-
-    setStatus(status: number){
-        this.status = status;
+  
+    getEventEndDate() {
+      return this.eventEndDate;
     }
-}
+  
+    getCreatedAt() {
+      return this.createdAt;
+    }
+  
+    getUpdatedAt() {
+      return this.updatedAt;
+    }
+  
+    setTitle(title: string) {
+      this.title = title;
+    }
+  
+    setEventStatus(eventStatus: string) {
+      this.eventStatus = eventStatus;
+    }
+  
+    setEventStartDate(eventStartDate: Date) {
+      this.eventStartDate = eventStartDate;
+    }
+  
+    setEventEndDate(eventEndDate: Date) {
+      this.eventEndDate = eventEndDate;
+    }
+  }
+  

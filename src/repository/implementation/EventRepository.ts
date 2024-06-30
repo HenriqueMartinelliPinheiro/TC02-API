@@ -13,15 +13,19 @@ export class EventRepository implements IEventRepository {
         try {
             const createdEvent = await this.prismaClient.event.create({
                 data: {
-                    name: event.getName(),
-                    status: event.getStatus()
+                    title: event.getTitle(),
+                    eventStatus: event.getEventStatus(),
+                    eventStartDate: event.getEventStartDate(),
+                    eventEndDate: event.getEventEndDate()
                 }
             });
             
             return new EventDomain({
-                id: createdEvent.id,
-                name: createdEvent.name,
-                status: createdEvent.status
+                eventId: createdEvent.eventId,
+                title: createdEvent.title,
+                eventStatus: createdEvent.eventStatus,
+                eventStartDate: createdEvent.eventStartDate,
+                eventEndDate: createdEvent.eventEndDate,
             });
 
         } catch (error) {
@@ -35,9 +39,11 @@ export class EventRepository implements IEventRepository {
             const returnedEvents = await this.prismaClient.event.findMany();
             const eventList : EventDomain [] = returnedEvents.map((event)=>{
                 return new EventDomain({
-                    id: event.id,
-                    name: event.name,
-                    status: event.status
+                    eventId: event.eventId,
+                    title: event.title,
+                    eventStatus: event.eventStatus,
+                    eventStartDate: event.eventStartDate,
+                    eventEndDate: event.eventEndDate,
                 });
            });
            return eventList;
