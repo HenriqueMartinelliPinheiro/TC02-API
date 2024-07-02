@@ -7,7 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User{
   userId Int @id @default(autoincrement())
   userName String
@@ -66,4 +65,5 @@ model Attendance {
   studentRegistration String
   eventPeriod EventPeriod @relation(fields: [eventPeriodId], references: [eventPeriodId])
   eventPeriodId Int
+  studentEntryYear Int
 }

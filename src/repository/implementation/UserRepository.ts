@@ -2,19 +2,18 @@ import { IUserRepository } from "../interfaces/IUserRepository";
 import { PrismaClient } from "@prisma/client";
 import { UserDomain } from "../../domain/UserDomain";
 import bcrypt from 'bcrypt';
-import { error } from "console";
 
-export class UserRepository implements IUserRepository{
+export class UserRepository implements IUserRepository {
     private prismaClient: PrismaClient;
 
-    constructor(prismaClient : PrismaClient){
-        this.prismaClient = prismaClient; 
+    constructor(prismaClient: PrismaClient) {
+        this.prismaClient = prismaClient;
     }
 
-    private createUserInDatabase = async (user : UserDomain) : Promise<UserDomain | undefined> => {
-        try{
+    private createUserInDatabase = async (user: UserDomain): Promise<UserDomain | undefined> => {
+        try {
             const userPassword = await this.generatePasswordHash(user.getUserPassword());
-            if (userPassword === undefined) {
+            if (!userPassword) {
                 console.error('Erro ao criar senha');
                 throw new Error('Erro ao criar senha');
             }
@@ -27,45 +26,35 @@ export class UserRepository implements IUserRepository{
                 }
             });
 
-                return new UserDomain({
-                    userId: createdUser.userId,
-                    userName: createdUser.userName,
-                    userEmail: createdUser.userEmail,
-                    systemStatus: createdUser.systemStatus,
-                    createdAt: createdUser.createdAt,
-                    updatedAt: createdUser.updatedAt,
+            return new UserDomain({
+                userId: createdUser.userId,
+                userName: createdUser.userName,
+                userEmail: createdUser.userEmail,
+                systemStatus: createdUser.systemStatus,
+                createdAt: createdUser.createdAt,
+                updatedAt: createdUser.updatedAt,
             });
 
-        } catch(err){
+        } catch (err) {
             console.error('Erro ao criar usuário:', err);
             return undefined;
         }
     }
 
-    private generatePasswordHash = async (password : string) : Promise<string|undefined> => {
+    private generatePasswordHash = async (password: string): Promise<string | undefined> => {
         try {
-            bcrypt.genSalt(11, (err, salt) => {
-                if (err) {
-                    console.error('Erro ao criar salt:', err);
-                    throw new Error(`Erro ao criar salt: ${err}`);
-                }
-                bcrypt.hash(password,salt, (err, hash) => {
-                    if(err){
-                        console.error('Erro ao criar hash:', err);
-                        throw new Error(`Erro ao criar hash: ${err}`);
-                    }
-                    return hash;
-                });
-            });
-        } catch(err){
-            console.error('Erro ao gerar hash:', err);        
+            const salt = await bcrypt.genSalt(11);
+            const hash = await bcrypt.hash(password, salt);
+            return hash;
+        } catch (err) {
+            console.error('Erro ao gerar hash:', err);
             return undefined;
         }
     }
 
-    createUser = async (user : UserDomain) : Promise<UserDomain | undefined> => {
-        try {                    
-            this.createUserInDatabase(user);
+    createUser = async (user: UserDomain): Promise<UserDomain | undefined> => {
+        try {
+            return await this.createUserInDatabase(user);
         } catch (error) {
             console.error('Erro ao criar usuário:', error);
             return undefined;
@@ -80,7 +69,7 @@ export class UserRepository implements IUserRepository{
                 }
             });
 
-            if(user){
+            if (user) {
                 return new UserDomain({
                     userId: user.userId,
                     userName: user.userName,
