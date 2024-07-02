@@ -20,7 +20,6 @@ export class GetAllEventsController {
         //    return res.status(400).json({
         //     "event": undefined,
         //     "msg": "Dados Inválidos",
-        //     "errorCode": 5
         //    })
         // }
 
@@ -39,7 +38,6 @@ export class GetAllEventsController {
                 "success": false,
                 "event": undefined,
                 "msg": "Evento não cadastrado",
-                "errorCode": 6
             })
         }
     }

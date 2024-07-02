@@ -17,14 +17,12 @@ export class GetAllEventsService {
                     success: true,
                     events: events,
                     msg: "Eventos Retornados com sucesso",
-                    errorCode: null
                 }
             } else{
                 return{
                     success: false,
                     events: null,
                     msg: "Erro ao consultar Eventos",
-                    errorCode: 3
                 }
             }
         } catch(error){
@@ -33,7 +31,6 @@ export class GetAllEventsService {
                 success: false,
                 event: null,
                 msg: "Erro ao consultar Eventos",
-                errorCode: 4
             }
         }   
     }

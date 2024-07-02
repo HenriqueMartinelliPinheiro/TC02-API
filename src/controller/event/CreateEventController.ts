@@ -20,7 +20,6 @@ export class CreateEventController {
             return res.status(400).json({
                 "event": undefined,
                 "msg": "Dados Inválidos",
-                "errorCode": 5
             });
         }
 
@@ -38,7 +37,6 @@ export class CreateEventController {
                 success: true,
                 event: createdEvent,
                 msg: "Evento criado com sucesso",
-                errorCode: null
             });
         } catch (error) {
             console.error("Erro ao executar CreateEventController", error);
@@ -46,7 +44,6 @@ export class CreateEventController {
                 success: false,
                 event: undefined,
                 msg: error.message || "Erro ao criar Evento",
-                errorCode: 6
             });
         }
     }
