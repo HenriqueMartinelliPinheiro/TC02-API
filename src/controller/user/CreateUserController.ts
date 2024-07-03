@@ -5,6 +5,7 @@ import { isValidPassword } from "../../services/validations/isValidPassword";
 import { createUserTypes } from "../../@types/user/createUserTypes";
 import { isValidRequest } from "../../services/validations/isValidRequest";
 import { generateErrorResponse } from "../../services/user/CreateUserGenerateErrorResponse";
+import { UserDomain } from "../../domain/UserDomain";
 
 export class CreateUserController {
     private createUserService: CreateUserService;
@@ -29,7 +30,11 @@ export class CreateUserController {
         }
 
         try {
-            const user = await this.createUserService.execute(req.body);
+            const user = await this.createUserService.execute(new UserDomain({
+                userName: req.body.userName,
+                userEmail: req.body.userEmail,
+                userPassword: req.body.userPassword,
+            }));
 
             return res.status(201).json({
                 user,

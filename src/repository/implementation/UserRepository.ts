@@ -2,26 +2,23 @@ import { IUserRepository } from "../interfaces/IUserRepository";
 import { PrismaClient } from "@prisma/client";
 import { UserDomain } from "../../domain/UserDomain";
 import bcrypt from 'bcrypt';
+import { userLogger } from "../../logs/user/userLogger";
 
 export class UserRepository implements IUserRepository {
     private prismaClient: PrismaClient;
+    private logger: userLogger;
 
     constructor(prismaClient: PrismaClient) {
         this.prismaClient = prismaClient;
+        this.logger = new userLogger("UserRepository");
     }
 
     private createUserInDatabase = async (user: UserDomain): Promise<UserDomain | undefined> => {
         try {
-            const userPassword = await this.generatePasswordHash(user.getUserPassword());
-            if (!userPassword) {
-                console.error('Erro ao criar senha');
-                throw new Error('Erro ao criar senha');
-            }
-
             const createdUser = await this.prismaClient.user.create({
                 data: {
                     userEmail: user.getUserEmail(),
-                    userPassword: userPassword,
+                    userPassword: user.getUserPassword(),
                     userName: user.getUserName(),
                 }
             });
@@ -36,18 +33,7 @@ export class UserRepository implements IUserRepository {
             });
 
         } catch (err) {
-            console.error('Erro ao criar usuário:', err);
-            return undefined;
-        }
-    }
-
-    private generatePasswordHash = async (password: string): Promise<string | undefined> => {
-        try {
-            const salt = await bcrypt.genSalt(11);
-            const hash = await bcrypt.hash(password, salt);
-            return hash;
-        } catch (err) {
-            console.error('Erro ao gerar hash:', err);
+            this.logger.error('Error when creating user', 0, err); // Passando o erro capturado para o logger
             return undefined;
         }
     }
@@ -55,8 +41,8 @@ export class UserRepository implements IUserRepository {
     createUser = async (user: UserDomain): Promise<UserDomain | undefined> => {
         try {
             return await this.createUserInDatabase(user);
-        } catch (error) {
-            console.error('Erro ao criar usuário:', error);
+        } catch (err) {
+            this.logger.error('Error when calling createUserInDatabase', 0, err); // Passando o erro capturado para o logger
             return undefined;
         }
     }
@@ -80,8 +66,8 @@ export class UserRepository implements IUserRepository {
                 });
             }
             return undefined;
-        } catch (error) {
-            console.error('Erro ao buscar usuário:', error);
+        } catch (err) {
+            this.logger.error('Error when searching user', 0, err); // Passando o erro capturado para o logger
             return undefined;
         }
     }
