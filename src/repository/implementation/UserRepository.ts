@@ -1,16 +1,13 @@
 import { IUserRepository } from "../interfaces/IUserRepository";
 import { PrismaClient } from "@prisma/client";
 import { UserDomain } from "../../domain/UserDomain";
-import { Logger } from "../../loggers/Logger";
-import { userLogPath } from "../../config/logPaths";
+import { RoleDomain } from "../../domain/RoleDomain";
 
 export class UserRepository implements IUserRepository {
     private prismaClient: PrismaClient;
-    private logger: Logger;
 
     constructor(prismaClient: PrismaClient) {
         this.prismaClient = prismaClient;
-        this.logger = new Logger("UserRepository", userLogPath);
     }
 
     private createUserInDatabase = async (user: UserDomain): Promise<UserDomain | undefined> => {
@@ -20,8 +17,11 @@ export class UserRepository implements IUserRepository {
                     userEmail: user.getUserEmail(),
                     userPassword: user.getUserPassword(),
                     userName: user.getUserName(),
-                    roleId: user.getRoleId(),
-                }
+                    roleId: user.getRole().getRoleId(),
+                },
+                 include: {
+                    role: true,
+                },
             });
 
             return new UserDomain({
@@ -31,21 +31,22 @@ export class UserRepository implements IUserRepository {
                 systemStatus: createdUser.systemStatus,
                 createdAt: createdUser.createdAt,
                 updatedAt: createdUser.updatedAt,
-                roleId : createdUser.roleId,
+                role: new RoleDomain({
+                    roleId: createdUser.role.roleId,
+                    roleTitle: createdUser.role.roleTitle,
+                }),
             });
 
-        } catch (err) {
-            this.logger.error('Error when creating user', 0, err); // Passando o erro capturado para o logger
-            return undefined;
+        } catch (error) {
+            throw error;
         }
     }
 
     createUser = async (user: UserDomain): Promise<UserDomain | undefined> => {
         try {
             return await this.createUserInDatabase(user);
-        } catch (err) {
-            this.logger.error('Error when calling createUserInDatabase', 0, err); // Passando o erro capturado para o logger
-            return undefined;
+        } catch (error) {
+            throw error;
         }
     }
 
@@ -65,13 +66,11 @@ export class UserRepository implements IUserRepository {
                     systemStatus: user.systemStatus,
                     createdAt: user.createdAt,
                     updatedAt: user.updatedAt,
-                    roleId: user.roleId,
                 });
             }
             return undefined;
-        } catch (err) {
-            this.logger.error('Error when searching user', 0, err); // Passando o erro capturado para o logger
-            return undefined;
+        } catch (error) {
+            throw error;
         }
     }
 }

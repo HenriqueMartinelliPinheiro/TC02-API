@@ -11,7 +11,6 @@ interface UserProps {
   createdAt?: Date;
   updatedAt?: Date;
   role?: RoleDomain;
-  roleId: number;
 }
 
 export class UserDomain {
@@ -23,7 +22,6 @@ export class UserDomain {
   private updatedAt: Date;
   private systemStatus: boolean;
   private role?: RoleDomain;
-  private roleId : number;
 
   constructor(props: UserProps) {
     this.userId = props.userId;
@@ -34,7 +32,6 @@ export class UserDomain {
     this.updatedAt = props.updatedAt || new Date();
     this.systemStatus = props.systemStatus !== undefined ? props.systemStatus : true;
     this.role = props.role;
-    this.roleId = props.roleId;
   }
 
   getUserId() {
@@ -87,14 +84,6 @@ export class UserDomain {
 
   setRole(role: RoleDomain) {
     this.role = role;
-  }
-
-  getRoleId() {
-    return this.userId;
-  }
-
-  setRoleId(roleId: number) {
-    this.roleId = roleId;
   }
 }
 

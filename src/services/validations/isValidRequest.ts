@@ -11,7 +11,6 @@ export const isValidRequest = (objectData: {}, schema : Joi.ObjectSchema): boole
     
         return true;
     } catch (error) {
-        console.error(error);
         return false;
     }
    

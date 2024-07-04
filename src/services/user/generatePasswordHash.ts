@@ -10,7 +10,7 @@ export const generatePasswordHash = async (password: string): Promise<string | u
         const hash = await bcrypt.hash(password, salt);
         return hash;
     } catch (err) {
-        logger.error('Error when generating hash', 0, err); // Passando o erro capturado para o logger
+        logger.error('Error when generating hash', err); 
         return undefined;
     }
 }

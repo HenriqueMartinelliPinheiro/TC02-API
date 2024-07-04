@@ -12,16 +12,8 @@ async function main() {
       },
     });
 
-    const privilegyAdmin = await prisma.privilegy.create({
-      data: {
-        privilegyType: 'All',
-      },
-    });
-
-    console.log('Role e Privilegy inseridos com sucesso.');
-
   } catch (error) {
-    console.error('Erro ao inserir Role e Privilegy:', error);
+    console.error('Erro ao inserir Role:', error);
   } finally {
     await prisma.$disconnect();
   }

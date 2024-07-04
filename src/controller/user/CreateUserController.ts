@@ -6,13 +6,14 @@ import { createUserTypes } from "../../@types/user/createUserTypes";
 import { isValidRequest } from "../../services/validations/isValidRequest";
 import { generateErrorResponse } from "../../services/user/CreateUserGenerateErrorResponse";
 import { UserDomain } from "../../domain/UserDomain";
+import { RoleDomain } from "../../domain/RoleDomain";
+import { Logger } from "../../loggers/Logger";
 
 export class CreateUserController {
-    private createUserService: CreateUserService;
-
+        private createUserService : CreateUserService;
+        private logger : Logger;
     constructor(createUserService: CreateUserService) {
         this.createUserService = createUserService;
-
         this.createUser = this.createUser.bind(this); // Vinculação explícita
     }
 
@@ -34,7 +35,10 @@ export class CreateUserController {
                 userName: req.body.userName,
                 userEmail: req.body.userEmail,
                 userPassword: req.body.userPassword,
-                roleId: req.body.userRoleId,
+                role: new RoleDomain({
+                    roleId: req.body.roleId,
+                    roleTitle: req.body.roleTitle,
+                })
             }));
 
             return res.status(201).json({
@@ -43,7 +47,7 @@ export class CreateUserController {
             });
         
         } catch (error) {
-            console.error(error, Date.now());
+            this.logger.error("Error when creating user", 0, error);
             return generateErrorResponse(res, "Erro interno do servidor", 500)
         }
     }
