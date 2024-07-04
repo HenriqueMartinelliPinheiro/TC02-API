@@ -1,7 +1,8 @@
-import { userLogger } from "../../logs/user/userLogger";
+import { userLogPath } from "../../config/logPaths";
+import { Logger } from "../../loggers/Logger";
 import bcrypt from 'bcrypt';
 
-const logger = new userLogger("generatePasswordHash")
+const logger = new Logger("generatePasswordHash", userLogPath);
 
 export const generatePasswordHash = async (password: string): Promise<string | undefined> => {
     try {

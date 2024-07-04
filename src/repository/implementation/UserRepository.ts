@@ -1,16 +1,16 @@
 import { IUserRepository } from "../interfaces/IUserRepository";
 import { PrismaClient } from "@prisma/client";
 import { UserDomain } from "../../domain/UserDomain";
-import bcrypt from 'bcrypt';
-import { userLogger } from "../../logs/user/userLogger";
+import { Logger } from "../../loggers/Logger";
+import { userLogPath } from "../../config/logPaths";
 
 export class UserRepository implements IUserRepository {
     private prismaClient: PrismaClient;
-    private logger: userLogger;
+    private logger: Logger;
 
     constructor(prismaClient: PrismaClient) {
         this.prismaClient = prismaClient;
-        this.logger = new userLogger("UserRepository");
+        this.logger = new Logger("UserRepository", userLogPath);
     }
 
     private createUserInDatabase = async (user: UserDomain): Promise<UserDomain | undefined> => {
@@ -20,6 +20,7 @@ export class UserRepository implements IUserRepository {
                     userEmail: user.getUserEmail(),
                     userPassword: user.getUserPassword(),
                     userName: user.getUserName(),
+                    roleId: user.getRoleId(),
                 }
             });
 
@@ -30,6 +31,7 @@ export class UserRepository implements IUserRepository {
                 systemStatus: createdUser.systemStatus,
                 createdAt: createdUser.createdAt,
                 updatedAt: createdUser.updatedAt,
+                roleId : createdUser.roleId,
             });
 
         } catch (err) {
@@ -63,6 +65,7 @@ export class UserRepository implements IUserRepository {
                     systemStatus: user.systemStatus,
                     createdAt: user.createdAt,
                     updatedAt: user.updatedAt,
+                    roleId: user.roleId,
                 });
             }
             return undefined;

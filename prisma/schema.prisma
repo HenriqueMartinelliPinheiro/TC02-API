@@ -15,6 +15,14 @@ model User{
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   systemStatus Boolean @default(true)
+  roleId Int
+  role Role @relation(fields: [roleId], references: [roleId])
+}
+
+model Role{
+  roleId Int @id @default(autoincrement())
+  roleTitle String @unique
+  users User[]
 }
 
 model Event {

@@ -34,6 +34,7 @@ export class CreateUserController {
                 userName: req.body.userName,
                 userEmail: req.body.userEmail,
                 userPassword: req.body.userPassword,
+                roleId: req.body.userRoleId,
             }));
 
             return res.status(201).json({

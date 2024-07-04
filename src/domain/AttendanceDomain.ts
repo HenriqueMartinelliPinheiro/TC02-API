@@ -1,45 +1,51 @@
+// AttendanceDomain.ts
+
+import { EventPeriodDomain } from './EventPeriodDomain';
+
 interface AttendanceProps {
-    AttendanceId?: number;
-    studentName: string;
-    studentRegistration: string;
-    eventPeriodId: number;
+  attendanceId?: number;
+  studentName: string;
+  studentRegistration: string;
+  eventPeriod?: EventPeriodDomain;
+  studentEntryYear: number;
+}
+
+export class AttendanceDomain {
+  private attendanceId?: number;
+  private studentName: string;
+  private studentRegistration: string;
+  private eventPeriod?: EventPeriodDomain;
+  private studentEntryYear: number;
+
+  constructor(props: AttendanceProps) {
+    this.attendanceId = props.attendanceId;
+    this.studentName = props.studentName;
+    this.studentRegistration = props.studentRegistration;
+    this.eventPeriod = props.eventPeriod;
+    this.studentEntryYear = props.studentEntryYear;
   }
-  
-  export class AttendanceDomain {
-    private AttendanceId?: number;
-    private studentName: string;
-    private studentRegistration: string;
-    private eventPeriodId: number;
-  
-    constructor(props: AttendanceProps) {
-      this.AttendanceId = props.AttendanceId;
-      this.studentName = props.studentName;
-      this.studentRegistration = props.studentRegistration;
-      this.eventPeriodId = props.eventPeriodId;
-    }
-  
-    getAttendanceId() {
-      return this.AttendanceId;
-    }
-  
-    getStudentName() {
-      return this.studentName;
-    }
-  
-    getStudentRegistration() {
-      return this.studentRegistration;
-    }
-  
-    getEventPeriodId() {
-      return this.eventPeriodId;
-    }
-  
-    setStudentName(studentName: string) {
-      this.studentName = studentName;
-    }
-  
-    setStudentRegistration(studentRegistration: string) {
-      this.studentRegistration = studentRegistration;
-    }
+
+  getAttendanceId() {
+    return this.attendanceId;
   }
-  
+
+  getStudentName() {
+    return this.studentName;
+  }
+
+  getStudentRegistration() {
+    return this.studentRegistration;
+  }
+
+  getEventPeriod() {
+    return this.eventPeriod;
+  }
+
+  getStudentEntryYear() {
+    return this.studentEntryYear;
+  }
+
+  setEventPeriod(eventPeriod: EventPeriodDomain) {
+    this.eventPeriod = eventPeriod;
+  }
+}
