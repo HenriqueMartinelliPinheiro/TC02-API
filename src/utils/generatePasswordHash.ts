@@ -1,5 +1,5 @@
-import { userLogPath } from "../../config/logPaths";
-import { Logger } from "../../loggers/Logger";
+import { userLogPath } from "../config/logPaths";
+import { Logger } from "../loggers/Logger";
 import bcrypt from 'bcrypt';
 
 const logger = new Logger("generatePasswordHash", userLogPath);

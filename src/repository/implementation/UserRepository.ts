@@ -15,12 +15,25 @@ export class UserRepository implements IUserRepository {
             const createdUser = await this.prismaClient.user.create({
                 data: {
                     userEmail: user.getUserEmail(),
-                    userPassword: user.getUserPassword(),
                     userName: user.getUserName(),
                     roleId: user.getRole().getRoleId(),
+
+                    login:{
+                        create: {
+                            userEmail: user.getUserEmail(),
+                            userPassword: user.getUserPassword(),
+                            createdAt: user.getCreatedAt(),
+                            updatedAt: user.getUpdatedAt(),
+                            accessToken: user.getAccessToken(),
+                            refreshToken: user.getRefreshToken(),
+                            tokenExpiration: user.getTokenExpiration(),
+                        }
+
+                    }
                 },
                  include: {
                     role: true,
+                    login: true,
                 },
             });
 
@@ -32,8 +45,8 @@ export class UserRepository implements IUserRepository {
                 createdAt: createdUser.createdAt,
                 updatedAt: createdUser.updatedAt,
                 role: new RoleDomain({
-                    roleId: createdUser.role.roleId,
                     roleTitle: createdUser.role.roleTitle,
+                    roleId: createdUser.role.roleId,
                 }),
             });
 
@@ -55,6 +68,12 @@ export class UserRepository implements IUserRepository {
             const user = await this.prismaClient.user.findFirst({
                 where: {
                     userEmail: email,
+                    login: {
+                        userPassword: password,
+                    }
+                },
+                include:{
+                    login: true
                 }
             });
 
@@ -66,6 +85,8 @@ export class UserRepository implements IUserRepository {
                     systemStatus: user.systemStatus,
                     createdAt: user.createdAt,
                     updatedAt: user.updatedAt,
+                    accessToken: user.login.accessToken,
+                    refreshToken: user.login.refreshToken,
                 });
             }
             return undefined;

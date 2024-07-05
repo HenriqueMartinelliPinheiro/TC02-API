@@ -1,1 +1,0 @@
-1719965273475: ERROR - Error when executing createUser, Error: TypeError: user.getUserPassword is not a function at CreateUserService by User: 1

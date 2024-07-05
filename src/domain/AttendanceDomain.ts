@@ -1,5 +1,3 @@
-// AttendanceDomain.ts
-
 import { EventPeriodDomain } from './EventPeriodDomain';
 
 interface AttendanceProps {
@@ -8,6 +6,8 @@ interface AttendanceProps {
   studentRegistration: string;
   eventPeriod?: EventPeriodDomain;
   studentEntryYear: number;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export class AttendanceDomain {
@@ -16,6 +16,8 @@ export class AttendanceDomain {
   private studentRegistration: string;
   private eventPeriod?: EventPeriodDomain;
   private studentEntryYear: number;
+  private createdAt: Date;
+  private updatedAt: Date;
 
   constructor(props: AttendanceProps) {
     this.attendanceId = props.attendanceId;
@@ -23,6 +25,8 @@ export class AttendanceDomain {
     this.studentRegistration = props.studentRegistration;
     this.eventPeriod = props.eventPeriod;
     this.studentEntryYear = props.studentEntryYear;
+    this.createdAt = props.createdAt || new Date();
+    this.updatedAt = props.updatedAt || new Date();
   }
 
   getAttendanceId() {
@@ -45,7 +49,23 @@ export class AttendanceDomain {
     return this.studentEntryYear;
   }
 
+  getCreatedAt() {
+    return this.createdAt;
+  }
+
+  getUpdatedAt() {
+    return this.updatedAt;
+  }
+
   setEventPeriod(eventPeriod: EventPeriodDomain) {
     this.eventPeriod = eventPeriod;
+  }
+
+  setCreatedAt(createdAt: Date) {
+    this.createdAt = createdAt;
+  }
+
+  setUpdatedAt(updatedAt: Date) {
+    this.updatedAt = updatedAt;
   }
 }

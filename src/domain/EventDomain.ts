@@ -1,5 +1,3 @@
-// event.domain.ts
-
 import { EventLocationDomain } from './EventLocationDomain';
 import { EventPeriodDomain } from './EventPeriodDomain';
 import { EventCourseDomain } from './EventCourseDomain';
@@ -92,5 +90,13 @@ export class EventDomain {
 
   addEventCourse(eventCourse: EventCourseDomain) {
     this.eventCourses.push(eventCourse);
+  }
+
+  setCreatedAt(createdAt: Date) {
+    this.createdAt = createdAt;
+  }
+
+  setUpdatedAt(updatedAt: Date) {
+    this.updatedAt = updatedAt;
   }
 }

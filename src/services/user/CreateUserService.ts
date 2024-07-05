@@ -1,6 +1,6 @@
 import { IUserRepository } from "../../repository/interfaces/IUserRepository";
 import { UserDomain } from "../../domain/UserDomain";
-import { generatePasswordHash } from "./generatePasswordHash";
+import { generatePasswordHash } from "../../utils/generatePasswordHash";
 import { userLogPath } from "../../config/logPaths";
 import { IRoleRepository } from "../../repository/interfaces/IRoleRepository";
 

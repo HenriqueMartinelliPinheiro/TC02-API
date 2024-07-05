@@ -1,18 +1,20 @@
 import { Request, Response } from "express";
 import { CreateUserService } from "../../services/user/CreateUserService";
-import { isValidEmail } from "../../services/validations/isValidEmail";
-import { isValidPassword } from "../../services/validations/isValidPassword";
+import { isValidEmail } from "../../utils/validations/isValidEmail";
+import { isValidPassword } from "../../utils/validations/isValidPassword";
 import { createUserTypes } from "../../@types/user/createUserTypes";
-import { isValidRequest } from "../../services/validations/isValidRequest";
+import { isValidRequest } from "../../utils/validations/isValidRequest";
 import { generateErrorResponse } from "../../services/user/CreateUserGenerateErrorResponse";
 import { UserDomain } from "../../domain/UserDomain";
 import { RoleDomain } from "../../domain/RoleDomain";
 import { Logger } from "../../loggers/Logger";
+import { userLogPath } from "../../config/logPaths";
 
 export class CreateUserController {
         private createUserService : CreateUserService;
         private logger : Logger;
     constructor(createUserService: CreateUserService) {
+        this.logger = new Logger("CreateUserController", userLogPath);
         this.createUserService = createUserService;
         this.createUser = this.createUser.bind(this); // Vinculação explícita
     }
@@ -47,7 +49,7 @@ export class CreateUserController {
             });
         
         } catch (error) {
-            this.logger.error("Error when creating user", 0, error);
+            this.logger.error("Error when creating user", req.body.requestUserId, error);
             return generateErrorResponse(res, "Erro interno do servidor", 500)
         }
     }

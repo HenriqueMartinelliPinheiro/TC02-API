@@ -1,5 +1,3 @@
-// EventPeriodDomain.ts
-
 import { EventDomain } from './EventDomain';
 import { AttendanceDomain } from './AttendanceDomain';
 
@@ -66,5 +64,13 @@ export class EventPeriodDomain {
 
   addAttendance(attendance: AttendanceDomain) {
     this.attendances.push(attendance);
+  }
+
+  setCreatedAt(createdAt: Date) {
+    this.createdAt = createdAt;
+  }
+
+  setUpdatedAt(updatedAt: Date) {
+    this.updatedAt = updatedAt;
   }
 }

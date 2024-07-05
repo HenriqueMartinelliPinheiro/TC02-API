@@ -1,0 +1,10 @@
+Fri Jul 05 2024 19:22:11 GMT-0300 (Brasilia Standard Time): ERROR - Error when creating user - Error: Cannot read properties of null (reading 'getRoleTitle') at CreateUserController by User: 1
+Fri Jul 05 2024 19:57:33 GMT-0300 (Brasilia Standard Time): ERROR - Error when creating user - Error: 
+Invalid `this.prismaClient.user.create()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/UserRepository.ts:15:62
+
+  12 
+  13 private createUserInDatabase = async (user: UserDomain): Promise<UserDomain | undefined> => {
+  14     try {
+→ 15         const createdUser = await this.prismaClient.user.create(
+Unique constraint failed on the fields: (`userEmail`) at CreateUserController by User: 1

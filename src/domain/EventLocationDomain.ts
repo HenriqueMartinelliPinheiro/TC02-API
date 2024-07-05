@@ -1,5 +1,3 @@
-// EventLocationDomain.ts
-
 import { EventDomain } from './EventDomain';
 
 interface EventLocationProps {
@@ -61,5 +59,13 @@ export class EventLocationDomain {
 
   setEvent(event: EventDomain) {
     this.event = event;
+  }
+
+  setCreatedAt(createdAt: Date) {
+    this.createdAt = createdAt;
+  }
+
+  setUpdatedAt(updatedAt: Date) {
+    this.updatedAt = updatedAt;
   }
 }

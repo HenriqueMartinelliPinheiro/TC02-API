@@ -11,18 +11,34 @@ model User{
   userId Int @id @default(autoincrement())
   userName String
   userEmail String @unique  
-  userPassword String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   systemStatus Boolean @default(true)
   roleId Int
   role Role @relation(fields: [roleId], references: [roleId])
+  login Login?
+}
+
+model Login{
+  userLoginId Int @id @default(autoincrement())
+  userEmail String @unique
+  userPassword String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  accessToken String?
+  refreshToken String?
+  tokenExpiration DateTime?
+  userId Int @unique
+  user User @relation(fields: [userId], references: [userId])
 }
 
 model Role{
   roleId Int @id @default(autoincrement())
   roleTitle String @unique
   users User[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  systemStatus Boolean @default(true)
 }
 
 model Event {
@@ -65,7 +81,9 @@ model EventCourse {
   courseName String
   event Event @relation(fields: [eventId], references: [eventId]) 
   eventId Int
-  }
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
 
 model Attendance {
   AttendanceId Int @id @default(autoincrement())
@@ -74,4 +92,6 @@ model Attendance {
   eventPeriod EventPeriod @relation(fields: [eventPeriodId], references: [eventPeriodId])
   eventPeriodId Int
   studentEntryYear Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
