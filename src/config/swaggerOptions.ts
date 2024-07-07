@@ -1,3 +1,5 @@
+import path from 'path';
+
 export const swaggerOptions = {
     swaggerDefinition: {
         openapi: '3.0.0',
@@ -13,5 +15,5 @@ export const swaggerOptions = {
             },
         ],
     },
-    apis: ['src/routes/*.ts'],
+    apis: [path.resolve(__dirname, '../docs/swagger.yaml')],
 };

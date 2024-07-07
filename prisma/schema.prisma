@@ -27,9 +27,10 @@ model Login{
   updatedAt DateTime @updatedAt
   accessToken String?
   refreshToken String?
-  tokenExpiration DateTime?
+  accessTokenExpiration DateTime?
   userId Int @unique
   user User @relation(fields: [userId], references: [userId])
+  refreshTokenExpiration DateTime?
 }
 
 model Role{

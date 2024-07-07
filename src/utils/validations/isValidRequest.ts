@@ -1,9 +1,8 @@
 import Joi from "joi";
-import { createUserTypes } from "../../@types/user/createUserTypes";
 
 export const isValidRequest = (objectData: {}, schema : Joi.ObjectSchema): boolean => {
     try {
-        const { error, value } = createUserTypes.validate(objectData);
+        const { error, value } = schema.validate(objectData);
 
         if (error) {
             return false;

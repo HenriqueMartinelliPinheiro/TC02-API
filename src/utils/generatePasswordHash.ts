@@ -9,8 +9,8 @@ export const generatePasswordHash = async (password: string): Promise<string | u
         const salt = await bcrypt.genSalt(11);
         const hash = await bcrypt.hash(password, salt);
         return hash;
-    } catch (err) {
-        logger.error('Error when generating hash', err); 
-        return undefined;
+    } catch (error) {
+        logger.error('Error when generating hash', error); 
+        throw error;
     }
 }

@@ -2,7 +2,7 @@ import { RoleDomain } from './RoleDomain';
 
 interface UserProps {
   userId?: number;
-  userName: string;
+  userName?: string;
   userEmail: string;
   userPassword?: string;
   systemStatus?: boolean;
@@ -11,7 +11,8 @@ interface UserProps {
   role?: RoleDomain;
   accessToken?: string;
   refreshToken?: string;
-  tokenExpiration?: Date;
+  accessTokenExpiration?: Date;
+  refreshTokenExpiration?: Date;
 }
 
 export class UserDomain {
@@ -25,7 +26,8 @@ export class UserDomain {
   private role?: RoleDomain;
   private accessToken?: string;
   private refreshToken?: string;
-  private tokenExpiration?: Date;
+  private accessTokenExpiration?: Date;
+  private refreshTokenExpiration?: Date;
 
   constructor(props: UserProps) {
     this.userId = props.userId;
@@ -38,7 +40,8 @@ export class UserDomain {
     this.role = props.role;
     this.accessToken = props.accessToken;
     this.refreshToken = props.refreshToken;
-    this.tokenExpiration = props.tokenExpiration;
+    this.accessTokenExpiration = props.accessTokenExpiration;
+    this.refreshTokenExpiration = props.refreshTokenExpiration;
   }
 
   getUserId() {
@@ -81,9 +84,14 @@ export class UserDomain {
     return this.refreshToken;
   }
 
-  getTokenExpiration() {
-    return this.tokenExpiration;
+  getAccessTokenExpiration() {
+    return this.accessTokenExpiration;
   }
+
+  getRefreshTokenExpiration() {
+    return this.refreshTokenExpiration;
+  }
+
 
   setUserName(userName: string) {
     this.userName = userName;
@@ -113,8 +121,12 @@ export class UserDomain {
     this.refreshToken = refreshToken;
   }
 
-  setTokenExpiration(tokenExpiration: Date) {
-    this.tokenExpiration = tokenExpiration;
+  setAccessTokenExpiration(tokenExpiration: Date) {
+    this.accessTokenExpiration = tokenExpiration;
+  }
+
+  setRefreshTokenExpiration(tokenExpiration: Date) {
+    this.refreshTokenExpiration = tokenExpiration;
   }
 
   setCreatedAt(createdAt: Date) {

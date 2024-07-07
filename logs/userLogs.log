@@ -8,3 +8,59 @@ Invalid `this.prismaClient.user.create()` invocation in
   14     try {
 → 15         const createdUser = await this.prismaClient.user.create(
 Unique constraint failed on the fields: (`userEmail`) at CreateUserController by User: 1
+1720359080799: INFO - User Id 4 created by 1 by User: undefined
+Sun Jul 07 2024 10:31:47 GMT-0300 (Brasilia Standard Time): ERROR - Error when creating user - Error: 
+Invalid `this.prismaClient.user.create()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/UserRepository.ts:15:62
+
+  12 
+  13 private createUserInDatabase = async (user: UserDomain): Promise<UserDomain | undefined> => {
+  14     try {
+→ 15         const createdUser = await this.prismaClient.user.create(
+Unique constraint failed on the fields: (`userEmail`) at CreateUserController by User: 1
+1720359110826: INFO - User Id 6 created by 1 by User: undefined
+Sun Jul 07 2024 10:33:41 GMT-0300 (Brasilia Standard Time): ERROR - Error when creating user - Error: 
+Invalid `this.prismaClient.user.create()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/UserRepository.ts:15:62
+
+  12 
+  13 private createUserInDatabase = async (user: UserDomain): Promise<UserDomain | undefined> => {
+  14     try {
+→ 15         const createdUser = await this.prismaClient.user.create(
+Unique constraint failed on the fields: (`userEmail`) at CreateUserController by User: 1
+1720359228225: INFO - User Id 8 created by 1 by User: undefined
+Sun Jul 07 2024 10:40:26 GMT-0300 (Brasilia Standard Time): ERROR - Error when creating user - Error: 
+Invalid `this.prismaClient.user.create()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/UserRepository.ts:15:62
+
+  12 
+  13 private createUserInDatabase = async (user: UserDomain): Promise<UserDomain | undefined> => {
+  14     try {
+→ 15         const createdUser = await this.prismaClient.user.create(
+Unique constraint failed on the fields: (`userEmail`) at CreateUserController by User: 1
+1720359631190: WARN - Invalid Data on Login by user email: henriquepinheiro@gmail.com at LoginUserController by User: undefined
+1720360215738: WARN - Invalid Data on Login by user email: henriqurddfddsfosa19@gmail.com at LoginUserController by User: undefined
+1720360240917: INFO - User Id 10 by User: 1
+1720360263851: WARN - Incorrect User/Password at LoginUserController by User: undefined
+1720360305760: INFO - User Id 11 by User: 1
+1720360324495: WARN - Incorrect User/Password at LoginUserController by User: undefined
+1720360446960: WARN - Incorrect User/Password at LoginUserController by User: undefined
+1720360471697: WARN - Incorrect User/Password at LoginUserController by User: undefined
+1720361306638: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1720370841506: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1720372355743: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+Sun Jul 07 2024 14:13:35 GMT-0300 (Brasilia Standard Time): ERROR - Access Token or Refresh Token missing at authMiddleware by User: undefined
+1720372916808: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1720373110680: WARN - Invalid Data on create by user email: henriquep877@gmail.com at CreateUserController by User: undefined
+1720373166031: INFO - User Id 12 by User: 1
+1720374933673: WARN - userId null in request at adminRoleMiddleware by User: undefined
+1720374966016: WARN - userId null in request at adminRoleMiddleware by User: undefined
+1720374998091: INFO - User Id 13 by User: 1

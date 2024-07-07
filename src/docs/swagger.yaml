@@ -1,0 +1,172 @@
+openapi: 3.0.0
+info:
+  title: API de Usuários e Eventos
+  description: API para gerenciamento de usuários e eventos
+  version: 1.0.0
+paths:
+  /createUser:
+    post:
+      summary: Cria um novo usuário
+      tags: [User]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userName:
+                  type: string
+                  description: Nome do usuário
+                userEmail:
+                  type: string
+                  format: email
+                  description: Email do usuário
+                userPassword:
+                  type: string
+                  description: Senha do usuário
+                roleId:
+                  type: integer
+                  description: ID da role do usuário
+                roleTitle:
+                  type: string
+                  description: Título da role do usuário
+              required:
+                - userName
+                - userEmail
+                - userPassword
+                - roleId
+                - roleTitle
+      parameters:
+        - in: header
+          name: x-access-token
+          schema:
+            type: string
+          required: true
+          description: Token de acesso do usuário
+        - in: header
+          name: x-refresh-token
+          schema:
+            type: string
+          required: true
+          description: Token de atualização do usuário
+      responses:
+        '201':
+          description: Usuário criado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      userName:
+                        type: string
+                        example: John Doe
+                      userEmail:
+                        type: string
+                        example: johndoe@example.com
+                      role:
+                        type: object
+                        properties:
+                          roleId:
+                            type: integer
+                            example: 1
+                          roleTitle:
+                            type: string
+                            example: Admin
+                  msg:
+                    type: string
+                    example: Usuário criado com sucesso
+        '400':
+          description: Dados inválidos
+        '500':
+          description: Erro interno do servidor
+
+  /loginUser:
+    post:
+      summary: Faz login de um usuário
+      tags: [User]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userEmail:
+                  type: string
+                  format: email
+                  description: Email do usuário
+                userPassword:
+                  type: string
+                  description: Senha do usuário
+              required:
+                - userEmail
+                - userPassword
+      responses:
+        '201':
+          description: Usuário logado com sucesso
+          headers:
+            authorization:
+              schema:
+                type: string
+              description: Token de acesso do usuário
+            x-refresh-token:
+              schema:
+                type: string
+              description: Token de atualização do usuário
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      userId:
+                        type: string
+                      userEmail:
+                        type: string
+                        format: email
+                      userName:
+                        type: string
+                    required:
+                      - userId
+                      - userEmail
+                      - userName
+                  msg:
+                    type: string
+                    example: Usuário logado com sucesso
+        '400':
+          description: Dados inválidos (Email ou senha incorretos)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: Dados inválidos
+        '401':
+          description: Email ou senha incorretos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: Email ou senha incorretos
+        '500':
+          description: Erro interno do servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: Erro interno do servidor
+  # Adicione aqui a documentação das outras rotas (eventRouter) conforme necessário

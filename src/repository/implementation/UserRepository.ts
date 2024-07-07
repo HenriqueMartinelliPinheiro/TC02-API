@@ -22,11 +22,6 @@ export class UserRepository implements IUserRepository {
                         create: {
                             userEmail: user.getUserEmail(),
                             userPassword: user.getUserPassword(),
-                            createdAt: user.getCreatedAt(),
-                            updatedAt: user.getUpdatedAt(),
-                            accessToken: user.getAccessToken(),
-                            refreshToken: user.getRefreshToken(),
-                            tokenExpiration: user.getTokenExpiration(),
                         }
 
                     }
@@ -55,7 +50,7 @@ export class UserRepository implements IUserRepository {
         }
     }
 
-    createUser = async (user: UserDomain): Promise<UserDomain | undefined> => {
+    createUser = async (user: UserDomain): Promise<UserDomain> => {
         try {
             return await this.createUserInDatabase(user);
         } catch (error) {
@@ -63,14 +58,11 @@ export class UserRepository implements IUserRepository {
         }
     }
 
-    loginUser = async (email: string, password: string): Promise<UserDomain | undefined> => {
+    loginUser = async (email: string, password: string): Promise<UserDomain> => {
         try {
             const user = await this.prismaClient.user.findFirst({
                 where: {
                     userEmail: email,
-                    login: {
-                        userPassword: password,
-                    }
                 },
                 include:{
                     login: true
@@ -85,12 +77,53 @@ export class UserRepository implements IUserRepository {
                     systemStatus: user.systemStatus,
                     createdAt: user.createdAt,
                     updatedAt: user.updatedAt,
-                    accessToken: user.login.accessToken,
-                    refreshToken: user.login.refreshToken,
+                    userPassword: user.login.userPassword,
                 });
             }
             return undefined;
         } catch (error) {
+            throw error;
+        }
+    }
+
+    updateAccessToken = async (user : UserDomain) : Promise<[string, Date]>=>{
+        try{
+            const updatedUser = await this.prismaClient.login.update({
+                where: {
+                    userId: user.getUserId(),
+                },
+                data: {
+                    accessToken: user.getAccessToken(),
+                    accessTokenExpiration: user.getAccessTokenExpiration(),
+                },
+                include: {
+                    user: true,
+                }
+            });
+
+           return [updatedUser.accessToken, updatedUser.accessTokenExpiration]
+        } catch(error){
+            throw error;
+        }
+    }
+
+    updateRefreshToken = async (user : UserDomain) :  Promise<[string, Date]>=>{
+        try{
+            const updatedUser = await this.prismaClient.login.update({
+                where: {
+                    userId: user.getUserId(),
+                },
+                data: {
+                    refreshToken: user.getRefreshToken(),
+                    refreshTokenExpiration: user.getRefreshTokenExpiration(),
+                },
+                include: {
+                    user: true,
+                }
+            });
+
+            return [updatedUser.refreshToken, updatedUser.refreshTokenExpiration]
+        } catch(error){
             throw error;
         }
     }

@@ -13,7 +13,7 @@ export class CreateUserService {
         this.roleRepository = roleRepositrory;
     }
 
-    async execute(user : UserDomain) : Promise<UserDomain | undefined> {
+    async execute(user : UserDomain) : Promise<UserDomain> {
         try {
             const userPassword = await generatePasswordHash(user.getUserPassword());
             user.setUserPassword(userPassword);
@@ -28,7 +28,6 @@ export class CreateUserService {
                 throw new Error(`Error when creatingUser`);
             }
             return createdUser;
-
         } catch (error) {
             throw error;
         }
