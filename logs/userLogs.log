@@ -64,3 +64,280 @@ Sun Jul 07 2024 14:13:35 GMT-0300 (Brasilia Standard Time): ERROR - Access Token
 1720374933673: WARN - userId null in request at adminRoleMiddleware by User: undefined
 1720374966016: WARN - userId null in request at adminRoleMiddleware by User: undefined
 1720374998091: INFO - User Id 13 by User: 1
+Thu Jul 11 2024 18:58:05 GMT-0300 (Brasilia Standard Time): ERROR - Refresh Token error at authMiddleware by User: TokenExpiredError: jwt expired
+1720735132620: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1720735179513: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1720735565774: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+Thu Jul 11 2024 19:06:29 GMT-0300 (Brasilia Standard Time): ERROR - Access Token or Refresh Token missing at authMiddleware by User: undefined
+Thu Jul 11 2024 19:06:39 GMT-0300 (Brasilia Standard Time): ERROR - Access Token or Refresh Token missing at authMiddleware by User: undefined
+Thu Jul 11 2024 19:06:53 GMT-0300 (Brasilia Standard Time): ERROR - Access Token or Refresh Token missing at authMiddleware by User: undefined
+Thu Jul 11 2024 19:07:18 GMT-0300 (Brasilia Standard Time): ERROR - Access Token or Refresh Token missing at authMiddleware by User: undefined
+Thu Jul 11 2024 19:07:28 GMT-0300 (Brasilia Standard Time): ERROR - Access Token or Refresh Token missing at authMiddleware by User: undefined
+1720735669529: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+Thu Jul 11 2024 19:07:52 GMT-0300 (Brasilia Standard Time): ERROR - Access Token or Refresh Token missing at authMiddleware by User: undefined
+Thu Jul 11 2024 19:08:28 GMT-0300 (Brasilia Standard Time): ERROR - Access Token or Refresh Token missing at authMiddleware by User: undefined
+1720735830808: INFO - User Id 14 by User: 1
+1720735874218: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1720735899871: INFO - User Id 15 by User: 1
+Thu Jul 11 2024 19:15:08 GMT-0300 (Brasilia Standard Time): ERROR - Access Token error at authMiddleware by User: SyntaxError: Bad control character in string literal in JSON at position 62
+Thu Jul 11 2024 19:15:15 GMT-0300 (Brasilia Standard Time): ERROR - Error when creating user - Error: 
+Invalid `this.prismaClient.user.create()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/UserRepository.ts:15:62
+
+  12 
+  13 private createUserInDatabase = async (user: UserDomain): Promise<UserDomain | undefined> => {
+  14     try {
+→ 15         const createdUser = await this.prismaClient.user.create(
+Unique constraint failed on the fields: (`userEmail`) at CreateUserController by User: 1
+Thu Jul 11 2024 19:15:17 GMT-0300 (Brasilia Standard Time): ERROR - Error when creating user - Error: 
+Invalid `this.prismaClient.user.create()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/UserRepository.ts:15:62
+
+  12 
+  13 private createUserInDatabase = async (user: UserDomain): Promise<UserDomain | undefined> => {
+  14     try {
+→ 15         const createdUser = await this.prismaClient.user.create(
+Unique constraint failed on the fields: (`userEmail`) at CreateUserController by User: 1
+1720736129596: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+Thu Jul 11 2024 19:16:01 GMT-0300 (Brasilia Standard Time): ERROR - Error when creating user - Error: 
+Invalid `this.prismaClient.user.create()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/UserRepository.ts:15:62
+
+  12 
+  13 private createUserInDatabase = async (user: UserDomain): Promise<UserDomain | undefined> => {
+  14     try {
+→ 15         const createdUser = await this.prismaClient.user.create(
+Unique constraint failed on the fields: (`userEmail`) at CreateUserController by User: 1
+1720736180712: INFO - User Id 19 by User: 1
+1720736195302: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1720736204397: INFO - User Id 20 by User: 1
+1720736303518: INFO - User Id 21 by User: 1
+1720736351171: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1720736380888: INFO - User Id 22 by User: 1
+1720736411853: INFO - User Id 23 by User: 1
+1720736768682: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1720736785652: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1720736795034: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1720736809022: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1720736850125: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1720736861150: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+Thu Jul 11 2024 19:27:52 GMT-0300 (Brasilia Standard Time): ERROR - Access Token error at authMiddleware by User: JsonWebTokenError: invalid signature
+1720736878309: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+Thu Jul 11 2024 19:28:18 GMT-0300 (Brasilia Standard Time): ERROR - Error when creating user - Error: 
+Invalid `this.prismaClient.user.create()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/UserRepository.ts:15:62
+
+  12 
+  13 private createUserInDatabase = async (user: UserDomain): Promise<UserDomain | undefined> => {
+  14     try {
+→ 15         const createdUser = await this.prismaClient.user.create(
+Unique constraint failed on the fields: (`userEmail`) at CreateUserController by User: 1
+1720736903906: INFO - User Id 25 by User: 1
+1720736908605: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1720736918407: INFO - User Id 26 by User: 1
+1720736923658: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1720736927667: INFO - User Id 27 by User: 1
+1720737038134: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1720737079131: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1720737111066: INFO - User Id 28 by User: 1
+1720737191185: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342734568: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342760155: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342761163: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342761463: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342761719: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342761884: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342762048: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342762213: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342762367: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342762521: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342762676: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342784312: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342794705: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342796311: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342798303: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342798468: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342798835: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342798972: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342812453: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342812591: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342830200: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342830396: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342876628: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342878384: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342897874: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342945165: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342945947: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342946183: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342946357: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342946518: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721342982276: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343009907: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343011572: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343012033: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343012176: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343012337: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343012472: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343012630: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343012765: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343020347: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343020957: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343021090: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343032030: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343046107: WARN - Invalid Password on Login by user email: henriquepinheiro18@gmail.com at LoginUserController by User: undefined
+1721343048179: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343050132: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343050578: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343050814: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343051501: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343066169: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343105042: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343145842: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343151135: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721343174946: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined

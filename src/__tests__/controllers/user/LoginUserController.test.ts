@@ -1,18 +1,17 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { Request, Response } from 'express';
-import { CreateUserController } from '../../../controllers/user/CreateUserController';
-import { CreateUserService } from '../../../services/user/CreateUserService';
+import { LoginUserController } from '../../../controllers/user/LoginUserController';
+import { LoginUserService } from '../../../services/user/LoginUserService';
 import { isValidEmail } from '../../../utils/validations/isValidEmail';
 import { isValidPassword } from '../../../utils/validations/isValidPassword';
 import { isValidRequest } from '../../../utils/validations/isValidRequest';
 import { generateErrorResponse } from '../../../utils/generateErrorResponse';
 import { UserDomain } from '../../../domain/UserDomain';
-import { RoleDomain } from '../../../domain/RoleDomain';
-import { createUserTypes } from '../../../@types/user/createUserTypes';
-import { UserRepository } from '../../../repository/implementation/UserRepository';
+import { loginUserTypes } from '../../../@types/user/loginUserTypes';
+import { Logger } from '../../../loggers/Logger';
 import { PrismaClient } from '@prisma/client';
-import { IRoleRepository } from '../../../repository/interfaces/IRoleRepository';
 import { IUserRepository } from '../../../repository/interfaces/IUserRepository';
+import { UserRepository } from '../../../repository/implementation/UserRepository';
 
 // Mock das funções e classes necessárias
 vi.mock('../../../utils/validations/isValidEmail');
@@ -31,49 +30,45 @@ vi.mock('../../../loggers/Logger', () => {
     };
 });
 
-describe('CreateUserController', () => {
-    let createUserController: CreateUserController;
+describe('LoginUserController', () => {
+    let loginUserController: LoginUserController;
     let req: Partial<Request>;
     let res: Partial<Response>;
-    let createUserService: CreateUserService;
+    let loginUserService: LoginUserService;
     let userRepository: IUserRepository;
     let prismaClient: PrismaClient;
-    let roleRepository: IRoleRepository;
 
     beforeEach(() => {
         // Mocks do repositório e logger
         prismaClient = new PrismaClient();
         userRepository = new UserRepository(prismaClient);
-        roleRepository = {} as IRoleRepository;  // Mock do RoleRepository
 
-        createUserService = new CreateUserService(userRepository, roleRepository);
-        createUserService.execute = vi.fn(); // Mock do método execute
+        loginUserService = new LoginUserService(userRepository);
+        loginUserService.execute = vi.fn(); // Mock do método execute
 
-        createUserController = new CreateUserController(createUserService);
+        loginUserController = new LoginUserController(loginUserService);
 
         req = {
             body: {
-                userName: 'Test User',
                 userEmail: 'test@example.com',
                 userPassword: 'Password123',
-                roleId: 1,
-                roleTitle: 'Admin',
-                requestUserId: '1',
+                requestUserEmail: 'test@example.com',
             },
         };
 
         res = {
             status: vi.fn().mockReturnThis(),
             json: vi.fn().mockReturnThis(),
+            setHeader: vi.fn(),
         };
     });
 
     it('should return 400 if request is invalid', async () => {
         (isValidRequest as any).mockReturnValue(false);
 
-        await createUserController.createUser(req as Request, res as Response);
+        await loginUserController.loginUser(req as Request, res as Response);
 
-        expect(isValidRequest).toHaveBeenCalledWith(req.body, createUserTypes);
+        expect(isValidRequest).toHaveBeenCalledWith(req.body, loginUserTypes);
         expect(generateErrorResponse).toHaveBeenCalledWith(res, 'Dados Inválidos', 400);
     });
 
@@ -81,7 +76,7 @@ describe('CreateUserController', () => {
         (isValidRequest as any).mockReturnValue(true);
         (isValidPassword as any).mockReturnValue(false);
 
-        await createUserController.createUser(req as Request, res as Response);
+        await loginUserController.loginUser(req as Request, res as Response);
 
         expect(isValidPassword).toHaveBeenCalledWith(req.body.userPassword);
         expect(generateErrorResponse).toHaveBeenCalledWith(res, 'Senha Inválida', 400);
@@ -92,36 +87,53 @@ describe('CreateUserController', () => {
         (isValidPassword as any).mockReturnValue(true);
         (isValidEmail as any).mockReturnValue(false);
 
-        await createUserController.createUser(req as Request, res as Response);
+        await loginUserController.loginUser(req as Request, res as Response);
 
         expect(isValidEmail).toHaveBeenCalledWith(req.body.userEmail);
         expect(generateErrorResponse).toHaveBeenCalledWith(res, 'Email Inválido', 400);
     });
 
-    it('should return 201 if user is created successfully', async () => {
+    it('should return 401 if email or password is incorrect', async () => {
+        (isValidRequest as any).mockReturnValue(true);
+        (isValidPassword as any).mockReturnValue(true);
+        (isValidEmail as any).mockReturnValue(true);
+
+        (loginUserService.execute as any).mockResolvedValue(undefined);
+
+        await loginUserController.loginUser(req as Request, res as Response);
+
+        expect(loginUserService.execute).toHaveBeenCalledWith(expect.any(UserDomain));
+        expect(res.status).toHaveBeenCalledWith(401);
+        expect(res.json).toHaveBeenCalledWith({
+            user: undefined,
+            msg: 'Email ou senha incorretos',
+        });
+    });
+
+    it('should return 201 if user is logged in successfully', async () => {
         (isValidRequest as any).mockReturnValue(true);
         (isValidPassword as any).mockReturnValue(true);
         (isValidEmail as any).mockReturnValue(true);
 
         const user = new UserDomain({
-            userName: 'Test User',
             userEmail: 'test@example.com',
             userPassword: 'Password123',
-            role: new RoleDomain({
-                roleId: 1,
-                roleTitle: 'Admin',
-            }),
         });
+        user.getAccessToken = vi.fn().mockReturnValue('access-token');
+        user.getRefreshToken = vi.fn().mockReturnValue('refresh-token');
+        user.getUserId = vi.fn().mockReturnValue(1);
 
-        (createUserService.execute as any).mockResolvedValue(user);
+        (loginUserService.execute as any).mockResolvedValue(user);
 
-        await createUserController.createUser(req as Request, res as Response);
+        await loginUserController.loginUser(req as Request, res as Response);
 
-        expect(createUserService.execute).toHaveBeenCalledWith(expect.any(UserDomain));
+        expect(loginUserService.execute).toHaveBeenCalledWith(expect.any(UserDomain));
+        expect(res.setHeader).toHaveBeenCalledWith('x-access-token', 'access-token');
+        expect(res.setHeader).toHaveBeenCalledWith('x-refresh-token', 'refresh-token');
         expect(res.status).toHaveBeenCalledWith(201);
         expect(res.json).toHaveBeenCalledWith({
             user,
-            msg: 'Usuário criado com sucesso',
+            msg: 'Usuário logado com sucesso',
         });
     });
 
@@ -131,11 +143,11 @@ describe('CreateUserController', () => {
         (isValidEmail as any).mockReturnValue(true);
 
         const error = new Error('Internal Server Error');
-        (createUserService.execute as any).mockRejectedValue(error);
+        (loginUserService.execute as any).mockRejectedValue(error);
 
-        await createUserController.createUser(req as Request, res as Response);
+        await loginUserController.loginUser(req as Request, res as Response);
 
-        expect(createUserService.execute).toHaveBeenCalledWith(expect.any(UserDomain));
+        expect(loginUserService.execute).toHaveBeenCalledWith(expect.any(UserDomain));
         expect(generateErrorResponse).toHaveBeenCalledWith(res, 'Erro interno do servidor', 500);
     });
 });

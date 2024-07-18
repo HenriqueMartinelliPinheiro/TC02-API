@@ -16,7 +16,7 @@ export class LoginUserService {
     async execute(user: UserDomain) : Promise<UserDomain>{
         try{
 
-            const loggedUser = await this.userRepository.loginUser(user.getUserEmail(), user.getUserPassword());
+            const loggedUser = await this.userRepository.loginUser(user.getUserEmail());
             if (!loggedUser) {
                 return null;
             }

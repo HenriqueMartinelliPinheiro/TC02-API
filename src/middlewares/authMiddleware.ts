@@ -14,13 +14,14 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
   const accessToken = req.headers['authorization']?.split(' ')[1];
   const refreshToken = req.headers['x-refresh-token'] as string;
 
+  console.log(accessToken);
   if (!accessToken || !refreshToken) {
     logger.error("Access Token or Refresh Token missing");
     return res.status(401).json({ message: 'Token de acesso e/ou token de atualização ausente(s)' });
   }
 
   try {
-    const decodedAccessToken = jwt.verify(accessToken, process.env.JWT_SECRET) as jwt.JwtPayload;
+    const decodedAccessToken = jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET) as jwt.JwtPayload;
     
     const now = Math.floor(Date.now() / 1000); 
     const expirationThreshold = 60 * 15;
@@ -30,6 +31,10 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
         where: { userId: decodedAccessToken.userId },
         include: { login: true } 
       });
+
+      console.log("User no Auth: ");
+      console.log(user);
+
 
       if (user) {
         const { token: newAccessToken, expiresAt: newAccessTokenExpiration } = tokenGenerator.generateAccessToken(new UserDomain({
@@ -48,13 +53,13 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
 
         res.setHeader('x-access-token', newAccessToken);
       }
+      next();
     }
-
-    next();
+    return res.status(201)
   } catch (error) {
     if (error.name === 'TokenExpiredError') {
       try {
-        const decodedRefreshToken = jwt.verify(refreshToken, process.env.JWT_SECRET) as jwt.JwtPayload;
+        const decodedRefreshToken = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET) as jwt.JwtPayload;
 
         const user = await prisma.user.findUnique({
           where: { userId: decodedRefreshToken.userId },

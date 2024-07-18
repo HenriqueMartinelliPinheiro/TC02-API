@@ -58,7 +58,7 @@ export class UserRepository implements IUserRepository {
         }
     }
 
-    loginUser = async (email: string, password: string): Promise<UserDomain> => {
+    loginUser = async (email: string): Promise<UserDomain> => {
         try {
             const user = await this.prismaClient.user.findFirst({
                 where: {
@@ -121,6 +121,9 @@ export class UserRepository implements IUserRepository {
                     user: true,
                 }
             });
+
+            console.log("Atualizando Token");
+            console.log(updatedUser);
 
             return [updatedUser.refreshToken, updatedUser.refreshTokenExpiration]
         } catch(error){

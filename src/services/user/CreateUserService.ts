@@ -19,7 +19,7 @@ export class CreateUserService {
             user.setUserPassword(userPassword);
 
             const role = await this.roleRepository.getRoleById(user.getRole().getRoleId());
-            if (!role && role.getRoleTitle()!=user.getRole().getRoleTitle()) {
+            if (!role || role.getRoleTitle()!=user.getRole().getRoleTitle()) {
                 throw new Error("Error on getRole");
             } 
 
