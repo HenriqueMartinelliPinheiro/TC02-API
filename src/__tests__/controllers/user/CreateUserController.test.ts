@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { Request, Response } from 'express';
-import { CreateUserController } from '../../../controllers/user/CreateUserController';
+import { CreateUserController } from '../../../docs/user/CreateUserController';
 import { CreateUserService } from '../../../services/user/CreateUserService';
 import { isValidEmail } from '../../../utils/validations/isValidEmail';
 import { isValidPassword } from '../../../utils/validations/isValidPassword';

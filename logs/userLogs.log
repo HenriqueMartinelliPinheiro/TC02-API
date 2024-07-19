@@ -341,3 +341,89 @@ Unique constraint failed on the fields: (`userEmail`) at CreateUserController by
 1721343174946: INFO - User Logged, User ID: function () {
         return this.userId;
     } by User: undefined
+1721426246321: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426263849: WARN - Incorrect Email/Password at LoginUserController by User: undefined
+1721426271362: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426272962: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426273106: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426273246: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426293371: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426304846: WARN - Invalid Data on Login by user email: henriquepinheiro18@gmail.com at LoginUserController by User: undefined
+1721426314312: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426316843: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426317283: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426333863: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426368583: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426561283: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426585714: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426652234: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426669191: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426670157: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426670320: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426670478: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426670629: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426670783: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426713718: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721426796490: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721427138216: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721427259153: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721427273029: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721427771077: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721427950728: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721428148704: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined

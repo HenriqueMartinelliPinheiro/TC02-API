@@ -122,8 +122,6 @@ export class UserRepository implements IUserRepository {
                 }
             });
 
-            console.log("Atualizando Token");
-            console.log(updatedUser);
 
             return [updatedUser.refreshToken, updatedUser.refreshTokenExpiration]
         } catch(error){
