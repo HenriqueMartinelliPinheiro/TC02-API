@@ -51,6 +51,8 @@ export class LoginUserController {
 
             res.setHeader('x-access-token', user.getAccessToken());
             res.setHeader('x-refresh-token', user.getRefreshToken());
+            res.setHeader('x-access-token-expiration', String(user.getAccessTokenExpiration()));
+            res.setHeader('x-refresh-token-expiration', String(user.getRefreshTokenExpiration()));
 
             return res.status(201).json({
                 user,

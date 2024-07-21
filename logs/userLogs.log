@@ -427,3 +427,33 @@ Unique constraint failed on the fields: (`userEmail`) at CreateUserController by
 1721428148704: INFO - User Logged, User ID: function () {
         return this.userId;
     } by User: undefined
+1721566847093: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721566860856: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721566918222: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721566957951: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721566961896: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721567199427: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721567332946: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721567450689: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721567503072: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721567651245: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
