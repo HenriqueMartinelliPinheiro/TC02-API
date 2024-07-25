@@ -1,17 +1,17 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { Request, Response } from 'express';
-import { LoginUserController } from '../../../docs/user/LoginUserController';
 import { LoginUserService } from '../../../services/user/LoginUserService';
 import { isValidEmail } from '../../../utils/validations/isValidEmail';
 import { isValidPassword } from '../../../utils/validations/isValidPassword';
 import { isValidRequest } from '../../../utils/validations/isValidRequest';
-import { generateErrorResponse } from '../../../utils/generateErrorResponse';
+import { generateErrorResponse } from '../../../utils/generateUserErrorResponse';
 import { UserDomain } from '../../../domain/UserDomain';
 import { loginUserTypes } from '../../../@types/user/loginUserTypes';
 import { Logger } from '../../../loggers/Logger';
 import { PrismaClient } from '@prisma/client';
 import { IUserRepository } from '../../../repository/interfaces/IUserRepository';
 import { UserRepository } from '../../../repository/implementation/UserRepository';
+import { LoginUserController } from '../../../controllers/user/LoginUserController';
 
 // Mock das funções e classes necessárias
 vi.mock('../../../utils/validations/isValidEmail');

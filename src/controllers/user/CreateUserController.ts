@@ -4,7 +4,7 @@ import { isValidEmail } from "../../utils/validations/isValidEmail";
 import { isValidPassword } from "../../utils/validations/isValidPassword";
 import { createUserTypes } from "../../@types/user/createUserTypes";
 import { isValidRequest } from "../../utils/validations/isValidRequest";
-import { generateErrorResponse } from "../../utils/generateErrorResponse";
+import { generateErrorResponse } from "../../utils/generateUserErrorResponse";
 import { UserDomain } from "../../domain/UserDomain";
 import { RoleDomain } from "../../domain/RoleDomain";
 import { Logger } from "../../loggers/Logger";
@@ -20,6 +20,8 @@ export class CreateUserController {
     }
 
     async createUser(req: Request, res: Response) {
+        console.log("aqui")
+
         if (!isValidRequest(req.body, createUserTypes)) {
             this.logger.warn(`Invalid Data on create by user email: ${req.body.userEmail}`);
             return  generateErrorResponse(res, "Dados Inválidos", 400);
@@ -34,7 +36,6 @@ export class CreateUserController {
             this.logger.warn(`Invalid Email on create user by user email: ${req.body.userEmail}`);
             return generateErrorResponse(res, "Email Inválido", 400);
         }
-
         try {
             const user = await this.createUserService.execute(new UserDomain({
                 userName: req.body.userName,
@@ -54,7 +55,8 @@ export class CreateUserController {
         
         } catch (error) {
             this.logger.error("Error when creating user", Number(req.body.requestUserId), error);
-            return generateErrorResponse(res, "Erro interno do servidor", 500)
+            console.log(error);
+            return generateErrorResponse(res, String(error), 500)
         }
     }
 }

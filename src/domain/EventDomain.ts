@@ -1,6 +1,4 @@
-import { EventLocationDomain } from './EventLocationDomain';
-import { EventPeriodDomain } from './EventPeriodDomain';
-import { EventCourseDomain } from './EventCourseDomain';
+import { CourseDomain } from './CourseDomain';
 
 interface EventProps {
   eventId?: number;
@@ -10,9 +8,7 @@ interface EventProps {
   eventEndDate: Date;
   createdAt?: Date;
   updatedAt?: Date;
-  eventLocation?: EventLocationDomain;
-  eventPeriods?: EventPeriodDomain[];
-  eventCourses?: EventCourseDomain[];
+  courses?: CourseDomain[];
 }
 
 export class EventDomain {
@@ -23,9 +19,7 @@ export class EventDomain {
   private eventEndDate: Date;
   private createdAt: Date;
   private updatedAt: Date;
-  private eventLocation?: EventLocationDomain;
-  private eventPeriods: EventPeriodDomain[];
-  private eventCourses: EventCourseDomain[];
+  private courses: CourseDomain[];
 
   constructor(props: EventProps) {
     this.eventId = props.eventId;
@@ -35,9 +29,7 @@ export class EventDomain {
     this.eventEndDate = props.eventEndDate;
     this.createdAt = props.createdAt || new Date();
     this.updatedAt = props.updatedAt || new Date();
-    this.eventLocation = props.eventLocation;
-    this.eventPeriods = props.eventPeriods || [];
-    this.eventCourses = props.eventCourses || [];
+    this.courses = props.courses || [];
   }
 
   getEventId() {
@@ -68,28 +60,24 @@ export class EventDomain {
     return this.updatedAt;
   }
 
-  getEventLocation() {
-    return this.eventLocation;
+  getCourses() {
+    return this.courses;
   }
 
-  getEventPeriods() {
-    return this.eventPeriods;
+  setTitle(title: string) {
+    this.title = title;
   }
 
-  getEventCourses() {
-    return this.eventCourses;
+  setEventStatus(eventStatus: string) {
+    this.eventStatus = eventStatus;
   }
 
-  setEventLocation(eventLocation: EventLocationDomain) {
-    this.eventLocation = eventLocation;
+  setEventStartDate(eventStartDate: Date) {
+    this.eventStartDate = eventStartDate;
   }
 
-  addEventPeriod(eventPeriod: EventPeriodDomain) {
-    this.eventPeriods.push(eventPeriod);
-  }
-
-  addEventCourse(eventCourse: EventCourseDomain) {
-    this.eventCourses.push(eventCourse);
+  setEventEndDate(eventEndDate: Date) {
+    this.eventEndDate = eventEndDate;
   }
 
   setCreatedAt(createdAt: Date) {
@@ -98,5 +86,13 @@ export class EventDomain {
 
   setUpdatedAt(updatedAt: Date) {
     this.updatedAt = updatedAt;
+  }
+
+  addCourse(course: CourseDomain) {
+    this.courses.push(course);
+  }
+
+  removeCourse(courseId: number) {
+    this.courses = this.courses.filter(course => course.getCourseId() !== courseId);
   }
 }

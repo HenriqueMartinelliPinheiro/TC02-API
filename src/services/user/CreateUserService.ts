@@ -21,7 +21,13 @@ export class CreateUserService {
             const role = await this.roleRepository.getRoleById(user.getRole().getRoleId());
             if (!role || role.getRoleTitle()!=user.getRole().getRoleTitle()) {
                 throw new Error("Error on getRole");
-            } 
+            }
+
+            const userExists = await this.userRepository.getUserByEmail(user.getUserEmail());
+            
+            if (userExists) {
+                throw new Error(`User with email ${user.getUserEmail()} already exists`);
+            }
 
             const createdUser : UserDomain = await this.userRepository.createUser(user);
             if (!createdUser) {

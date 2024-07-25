@@ -6,7 +6,6 @@ import { CreateUserService } from '../../../services/user/CreateUserService';
 import { generatePasswordHash } from '../../../utils/generatePasswordHash';
 import { RoleDomain } from '../../../domain/RoleDomain';
 
-// Mock das funções e classes necessárias
 vi.mock('../../../utils/generatePasswordHash');
 
 describe('CreateUserService', () => {
@@ -17,6 +16,7 @@ describe('CreateUserService', () => {
     beforeEach(() => {
         userRepository = {
             createUser: vi.fn(),
+            getUserByEmail: vi.fn(),
         } as unknown as IUserRepository;
 
         roleRepository = {
@@ -45,6 +45,8 @@ describe('CreateUserService', () => {
             roleTitle: 'Admin',
         });
         (roleRepository.getRoleById as any).mockResolvedValue(role);
+
+        (userRepository.getUserByEmail as any).mockResolvedValue(null);
 
         const createdUser = new UserDomain({
             userName: 'Test User',
@@ -121,6 +123,7 @@ describe('CreateUserService', () => {
 
         (generatePasswordHash as any).mockResolvedValue('hashedPassword123');
         (roleRepository.getRoleById as any).mockResolvedValue(role);
+        (userRepository.getUserByEmail as any).mockResolvedValue(null);
         (userRepository.createUser as any).mockResolvedValue(null);
 
         await expect(createUserService.execute(user)).rejects.toThrow('Error when creatingUser');

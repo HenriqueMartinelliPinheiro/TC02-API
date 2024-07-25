@@ -33,10 +33,10 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
 
       if (user) {
         const { token: newAccessToken, expiresAt: newAccessTokenExpiration } = tokenGenerator.generateAccessToken(new UserDomain({
-            userId: user.userId,
-            userName: user.userName,
-            userEmail: user.userEmail,
-          }));
+          userId: user.userId,
+          userName: user.userName,
+          userEmail: user.userEmail,
+        }));
 
         await prisma.login.update({
           where: { userId: user.userId },
@@ -48,9 +48,9 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
 
         res.setHeader('x-access-token', newAccessToken);
       }
-      next();
     }
-    return res.status(201)
+
+    next();
   } catch (error) {
     if (error.name === 'TokenExpiredError') {
       try {
@@ -61,7 +61,7 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
           include: { login: true }
         });
 
-        if (user && decodedRefreshToken.userId === decodedRefreshToken.userId) {
+        if (user && decodedRefreshToken.userId === user.userId) {
           const { token: newAccessToken, expiresAt: newAccessTokenExpiration } = tokenGenerator.generateAccessToken(new UserDomain({
             userId: user.userId,
             userName: user.userName,

@@ -457,3 +457,57 @@ Unique constraint failed on the fields: (`userEmail`) at CreateUserController by
 1721567651245: INFO - User Logged, User ID: function () {
         return this.userId;
     } by User: undefined
+1721684446400: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721685908177: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721685942914: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721686111882: WARN - Invalid Data on Login by user email: henriquepinheiro18@gmail.com at LoginUserController by User: undefined
+1721686117103: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721686215658: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721686255799: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721686501918: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721686893596: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721686910013: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721686925381: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721686954897: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721687057582: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721858631344: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+Thu Jul 25 2024 19:22:10 GMT-0300 (Brasilia Standard Time): ERROR - Refresh Token error at authMiddleware by User: JsonWebTokenError: jwt malformed
+1721946143160: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721946271086: INFO - User Logged, User ID: function () {
+        return this.userId;
+    } by User: undefined
+1721946804469: INFO - User Id 61 by User: 1
+Thu Jul 25 2024 19:36:13 GMT-0300 (Brasilia Standard Time): ERROR - Error when creating user - Error: User with email hgenRggff7@gfmail.com already exists at CreateUserController by User: 1
+1721946977577: INFO - User Id 62 by User: 1
+Thu Jul 25 2024 19:36:55 GMT-0300 (Brasilia Standard Time): ERROR - Error when creating user - Error: User with email hgenRggfvf7@gfmail.com already exists at CreateUserController by User: 1
+Thu Jul 25 2024 19:38:14 GMT-0300 (Brasilia Standard Time): ERROR - Error when creating user - Error: User with email hgenRggfvf7@gfmail.com already exists at CreateUserController by User: 1
+Thu Jul 25 2024 19:38:44 GMT-0300 (Brasilia Standard Time): ERROR - Error when creating user - Error: User with email hgenRggfvf7@gfmail.com already exists at CreateUserController by User: 1
+1721947133441: INFO - User Id 63 by User: 1

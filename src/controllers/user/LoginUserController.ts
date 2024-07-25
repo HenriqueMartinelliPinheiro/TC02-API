@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { isValidEmail } from "../../utils/validations/isValidEmail";
 import { isValidPassword } from "../../utils/validations/isValidPassword";
 import { isValidRequest } from "../../utils/validations/isValidRequest";
-import { generateErrorResponse } from "../../utils/generateErrorResponse";
+import { generateErrorResponse } from "../../utils/generateUserErrorResponse";
 import { UserDomain } from "../../domain/UserDomain";
 import { Logger } from "../../loggers/Logger";
 import { userLogPath } from "../../config/logPaths";

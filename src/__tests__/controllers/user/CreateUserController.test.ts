@@ -1,11 +1,10 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { Request, Response } from 'express';
-import { CreateUserController } from '../../../docs/user/CreateUserController';
 import { CreateUserService } from '../../../services/user/CreateUserService';
 import { isValidEmail } from '../../../utils/validations/isValidEmail';
 import { isValidPassword } from '../../../utils/validations/isValidPassword';
 import { isValidRequest } from '../../../utils/validations/isValidRequest';
-import { generateErrorResponse } from '../../../utils/generateErrorResponse';
+import { generateErrorResponse } from '../../../utils/generateUserErrorResponse';
 import { UserDomain } from '../../../domain/UserDomain';
 import { RoleDomain } from '../../../domain/RoleDomain';
 import { createUserTypes } from '../../../@types/user/createUserTypes';
@@ -13,12 +12,16 @@ import { UserRepository } from '../../../repository/implementation/UserRepositor
 import { PrismaClient } from '@prisma/client';
 import { IRoleRepository } from '../../../repository/interfaces/IRoleRepository';
 import { IUserRepository } from '../../../repository/interfaces/IUserRepository';
+import { CreateUserController } from '../../../controllers/user/CreateUserController';
 
-// Mock das funções e classes necessárias
 vi.mock('../../../utils/validations/isValidEmail');
 vi.mock('../../../utils/validations/isValidPassword');
 vi.mock('../../../utils/validations/isValidRequest');
-vi.mock('../../../utils/generateErrorResponse');
+vi.mock('../../../utils/generateUserErrorResponse', () => {
+    return {
+        generateErrorResponse: vi.fn(),
+    };
+});
 vi.mock('../../../loggers/Logger', () => {
     return {
         Logger: vi.fn().mockImplementation(() => {
@@ -41,7 +44,8 @@ describe('CreateUserController', () => {
     let roleRepository: IRoleRepository;
 
     beforeEach(() => {
-        // Mocks do repositório e logger
+        vi.clearAllMocks();
+
         prismaClient = new PrismaClient();
         userRepository = new UserRepository(prismaClient);
         roleRepository = {} as IRoleRepository;  // Mock do RoleRepository
@@ -136,6 +140,7 @@ describe('CreateUserController', () => {
         await createUserController.createUser(req as Request, res as Response);
 
         expect(createUserService.execute).toHaveBeenCalledWith(expect.any(UserDomain));
+        expect(generateErrorResponse).toHaveBeenCalledTimes(1);
         expect(generateErrorResponse).toHaveBeenCalledWith(res, 'Erro interno do servidor', 500);
     });
 });
