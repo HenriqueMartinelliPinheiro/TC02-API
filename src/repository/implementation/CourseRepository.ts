@@ -28,4 +28,26 @@ export class CourseRepository implements ICourseRepository {
             throw error;
         }
     }
+
+    fetchAllCourses = async (): Promise<CourseDomain[]|undefined> => {
+        try{
+            const courses = await this.prismaClient.course.findMany();
+
+            if(courses.length === 0) {
+                return undefined;
+            }
+
+            return courses.map((course) => {
+                return new CourseDomain({
+                    courseId: course.courseId,
+                    courseName: course.courseName,
+                    courseCoordinatorEmail: course.courseCoordinatorEmail,
+                });
+            });
+            
+        } catch (error) {
+            throw error;
+        }
+    }
+    
 }

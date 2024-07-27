@@ -6,5 +6,5 @@ export const createUserTypes = Joi.object({
     userPassword: Joi.string().required(),
     roleId: Joi.number().required(),
     roleTitle: Joi.string().required(),
-    requestUserId: Joi.number().required(),
+    requestEmail: Joi.string().required(),
 });

@@ -20,8 +20,8 @@ export class LoginUserService {
             if (!loggedUser) {
                 return null;
             }
-
-            if (comparePassword(user.getUserPassword(),loggedUser.getUserPassword())) {
+            const comparedPassword = await comparePassword(user.getUserPassword(),loggedUser.getUserPassword());
+            if (comparedPassword) {
                 loggedUser.setUserPassword("");
                 const { token: accessToken, expiresAt: accessTokenExpiration } = this.tokenGenerator.generateAccessToken(loggedUser);
                 loggedUser.setAccessToken(accessToken);

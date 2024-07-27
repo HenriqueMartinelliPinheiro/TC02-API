@@ -4,7 +4,7 @@ import { LoginUserService } from '../../../services/user/LoginUserService';
 import { isValidEmail } from '../../../utils/validations/isValidEmail';
 import { isValidPassword } from '../../../utils/validations/isValidPassword';
 import { isValidRequest } from '../../../utils/validations/isValidRequest';
-import { generateErrorResponse } from '../../../utils/generateUserErrorResponse';
+import { generateUserErrorResponse } from '../../../utils/generateUserErrorResponse';
 import { UserDomain } from '../../../domain/UserDomain';
 import { loginUserTypes } from '../../../@types/user/loginUserTypes';
 import { Logger } from '../../../loggers/Logger';
@@ -17,7 +17,11 @@ import { LoginUserController } from '../../../controllers/user/LoginUserControll
 vi.mock('../../../utils/validations/isValidEmail');
 vi.mock('../../../utils/validations/isValidPassword');
 vi.mock('../../../utils/validations/isValidRequest');
-vi.mock('../../../utils/generateErrorResponse');
+vi.mock('../../../utils/generateUserErrorResponse', ()=>{
+    return {
+        generateUserErrorResponse: vi.fn(),
+    };
+});
 vi.mock('../../../loggers/Logger', () => {
     return {
         Logger: vi.fn().mockImplementation(() => {
@@ -69,7 +73,7 @@ describe('LoginUserController', () => {
         await loginUserController.loginUser(req as Request, res as Response);
 
         expect(isValidRequest).toHaveBeenCalledWith(req.body, loginUserTypes);
-        expect(generateErrorResponse).toHaveBeenCalledWith(res, 'Dados Inválidos', 400);
+        expect(generateUserErrorResponse).toHaveBeenCalledWith(res, "Dados Inválidos", 400);
     });
 
     it('should return 400 if password is invalid', async () => {
@@ -79,7 +83,7 @@ describe('LoginUserController', () => {
         await loginUserController.loginUser(req as Request, res as Response);
 
         expect(isValidPassword).toHaveBeenCalledWith(req.body.userPassword);
-        expect(generateErrorResponse).toHaveBeenCalledWith(res, 'Senha Inválida', 400);
+        expect(generateUserErrorResponse).toHaveBeenCalledWith(res, "Senha Inválida", 400);
     });
 
     it('should return 400 if email is invalid', async () => {
@@ -90,7 +94,7 @@ describe('LoginUserController', () => {
         await loginUserController.loginUser(req as Request, res as Response);
 
         expect(isValidEmail).toHaveBeenCalledWith(req.body.userEmail);
-        expect(generateErrorResponse).toHaveBeenCalledWith(res, 'Email Inválido', 400);
+        expect(generateUserErrorResponse).toHaveBeenCalledWith(res, "Email Inválido", 400);
     });
 
     it('should return 401 if email or password is incorrect', async () => {
@@ -109,7 +113,7 @@ describe('LoginUserController', () => {
             msg: 'Email ou senha incorretos',
         });
     });
-
+    
     it('should return 201 if user is logged in successfully', async () => {
         (isValidRequest as any).mockReturnValue(true);
         (isValidPassword as any).mockReturnValue(true);
@@ -148,6 +152,6 @@ describe('LoginUserController', () => {
         await loginUserController.loginUser(req as Request, res as Response);
 
         expect(loginUserService.execute).toHaveBeenCalledWith(expect.any(UserDomain));
-        expect(generateErrorResponse).toHaveBeenCalledWith(res, 'Erro interno do servidor', 500);
+        expect(generateUserErrorResponse).toHaveBeenCalledWith(res, "Erro interno do servidor", 500);
     });
 });

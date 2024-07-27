@@ -8,12 +8,12 @@ const logger = new Logger("adminRoleMiddleware", userLogPath);
 
 export const adminRoleMiddleware = async (req: Request, res: Response, next: NextFunction)=>{
     try{
-        if ('requestUserId' in req.body) {
-            const userId = req.body.requestUserId;
+        if ('requestEmail' in req.body) {
+            const userEmail = req.body.requestEmail;
 
             const user = await prisma.user.findFirst({
                 where:{
-                    userId: userId,
+                    userEmail: userEmail,
                 }, 
                 include:{
                     role: true
@@ -30,9 +30,9 @@ export const adminRoleMiddleware = async (req: Request, res: Response, next: Nex
             return next();
 
         } else{
-            logger.warn("userId null in request", req.body.userId);
+            logger.warn("User Email on null in request");
             return res.status(400).json({
-                msg: "userId ausente na requisição",
+                msg: "UserEmail ausente na requisição",
               });
         }
     } catch(error){

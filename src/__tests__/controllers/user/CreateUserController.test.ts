@@ -4,7 +4,7 @@ import { CreateUserService } from '../../../services/user/CreateUserService';
 import { isValidEmail } from '../../../utils/validations/isValidEmail';
 import { isValidPassword } from '../../../utils/validations/isValidPassword';
 import { isValidRequest } from '../../../utils/validations/isValidRequest';
-import { generateErrorResponse } from '../../../utils/generateUserErrorResponse';
+import { generateUserErrorResponse } from '../../../utils/generateUserErrorResponse';
 import { UserDomain } from '../../../domain/UserDomain';
 import { RoleDomain } from '../../../domain/RoleDomain';
 import { createUserTypes } from '../../../@types/user/createUserTypes';
@@ -19,9 +19,10 @@ vi.mock('../../../utils/validations/isValidPassword');
 vi.mock('../../../utils/validations/isValidRequest');
 vi.mock('../../../utils/generateUserErrorResponse', () => {
     return {
-        generateErrorResponse: vi.fn(),
+        generateUserErrorResponse: vi.fn(),
     };
 });
+
 vi.mock('../../../loggers/Logger', () => {
     return {
         Logger: vi.fn().mockImplementation(() => {
@@ -78,7 +79,7 @@ describe('CreateUserController', () => {
         await createUserController.createUser(req as Request, res as Response);
 
         expect(isValidRequest).toHaveBeenCalledWith(req.body, createUserTypes);
-        expect(generateErrorResponse).toHaveBeenCalledWith(res, 'Dados Inválidos', 400);
+        expect(generateUserErrorResponse).toHaveBeenCalledWith(res, 'Dados Inválidos', 400);
     });
 
     it('should return 400 if password is invalid', async () => {
@@ -88,7 +89,7 @@ describe('CreateUserController', () => {
         await createUserController.createUser(req as Request, res as Response);
 
         expect(isValidPassword).toHaveBeenCalledWith(req.body.userPassword);
-        expect(generateErrorResponse).toHaveBeenCalledWith(res, 'Senha Inválida', 400);
+        expect(generateUserErrorResponse).toHaveBeenCalledWith(res, 'Senha Inválida', 400);
     });
 
     it('should return 400 if email is invalid', async () => {
@@ -99,7 +100,7 @@ describe('CreateUserController', () => {
         await createUserController.createUser(req as Request, res as Response);
 
         expect(isValidEmail).toHaveBeenCalledWith(req.body.userEmail);
-        expect(generateErrorResponse).toHaveBeenCalledWith(res, 'Email Inválido', 400);
+        expect(generateUserErrorResponse).toHaveBeenCalledWith(res, 'Email Inválido', 400);
     });
 
     it('should return 201 if user is created successfully', async () => {
@@ -133,14 +134,14 @@ describe('CreateUserController', () => {
         (isValidRequest as any).mockReturnValue(true);
         (isValidPassword as any).mockReturnValue(true);
         (isValidEmail as any).mockReturnValue(true);
-
-        const error = new Error('Internal Server Error');
+    
+        const error = new Error('Erro ao criar usuário');
         (createUserService.execute as any).mockRejectedValue(error);
-
+    
         await createUserController.createUser(req as Request, res as Response);
-
+    
         expect(createUserService.execute).toHaveBeenCalledWith(expect.any(UserDomain));
-        expect(generateErrorResponse).toHaveBeenCalledTimes(1);
-        expect(generateErrorResponse).toHaveBeenCalledWith(res, 'Erro interno do servidor', 500);
+        expect(generateUserErrorResponse).toHaveBeenCalledTimes(1);
+        expect(generateUserErrorResponse).toHaveBeenCalledWith(res, 'Erro ao criar usuário', 500);
     });
 });

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { isValidEmail } from "../../utils/validations/isValidEmail";
 import { isValidPassword } from "../../utils/validations/isValidPassword";
 import { isValidRequest } from "../../utils/validations/isValidRequest";
-import { generateErrorResponse } from "../../utils/generateUserErrorResponse";
+import { generateUserErrorResponse } from "../../utils/generateUserErrorResponse";
 import { UserDomain } from "../../domain/UserDomain";
 import { Logger } from "../../loggers/Logger";
 import { userLogPath } from "../../config/logPaths";
@@ -21,17 +21,17 @@ export class LoginUserController {
     async loginUser(req: Request, res: Response) {
         if (!isValidRequest(req.body, loginUserTypes)) {
             this.logger.warn(`Invalid Data on Login by user email: ${req.body.userEmail}`);
-            return generateErrorResponse(res, "Dados Inválidos", 400);
+            return generateUserErrorResponse(res, "Dados Inválidos", 400);
         }
 
         if (!isValidPassword(req.body.userPassword)) {
             this.logger.warn(`Invalid Password on Login by user email: ${req.body.userEmail}`);
-            return generateErrorResponse(res, "Senha Inválida", 400);
+            return generateUserErrorResponse(res, "Senha Inválida", 400);
         }
         
         if (!isValidEmail(req.body.userEmail)) {
             this.logger.warn(`Invalid Email on Login  by user email: ${req.body.userEmail}`);
-            return generateErrorResponse(res, "Email Inválido", 400);
+            return generateUserErrorResponse(res, "Email Inválido", 400);
         }
 
         try {
@@ -47,7 +47,8 @@ export class LoginUserController {
                     msg: "Email ou senha incorretos",
                 });
             }
-            this.logger.info(`User Logged, User ID: ${user.getUserId}`);
+
+            this.logger.info(`User Logged`, req.body.userEmail);
 
             res.setHeader('x-access-token', user.getAccessToken());
             res.setHeader('x-refresh-token', user.getRefreshToken());
@@ -60,8 +61,8 @@ export class LoginUserController {
             });
         
         } catch (error) {
-            this.logger.error("Error when logging user", req.body.requestUserEmail, error);
-            return generateErrorResponse(res, "Erro interno do servidor", 500)
+            this.logger.error("Error when logging user", req.body.userEmail, error);
+            return generateUserErrorResponse(res, "Erro interno do servidor", 500)
         }
-    }
+    }   
 }

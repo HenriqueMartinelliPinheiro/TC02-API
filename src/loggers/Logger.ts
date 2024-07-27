@@ -9,18 +9,18 @@ export class Logger {
         this.logPath = logPath;
     }
 
-    error = (msg: any, userId?: number, error?: any) => {
-        const errorMessage = error ? `${msg} - Error: ${error.message} at ${this.fileName} by User: ${userId}\n` : `${msg} at ${this.fileName} by User: ${userId}\n`;
+    error = (msg: any, userEmail?: string, error?: any) => {
+        const errorMessage = error ? `${msg} - Error: ${error.message} at ${this.fileName} by User: ${userEmail}\n` : `${msg} at ${this.fileName} by User: ${userEmail}\n`;
         fs.appendFileSync(this.logPath, `${new Date(Date.now())}: ERROR - ${errorMessage}`, 'utf8');
     }   
 
-    warn = (msg: any, userId?: number) => {
-        const warnMessage = `${Date.now()}: WARN - ${msg} at ${this.fileName} by User: ${userId}\n`;
+    warn = (msg: any, userEmail?: string) => {
+        const warnMessage = `${new Date(Date.now())}: WARN - ${msg} at ${this.fileName} by User: ${userEmail}\n`;
         fs.appendFileSync(this.logPath, warnMessage);
     }
 
-    info = (info: any, userId?: number) => {
-        const infoMessage = `${Date.now()}: INFO - ${info} by User: ${userId}\n`;
+    info = (info: any, userEmail?: string) => {
+        const infoMessage = `${new Date(Date.now())}: INFO - ${info} by User: ${userEmail}\n`;
         fs.appendFileSync(this.logPath, infoMessage);
     }
 }
