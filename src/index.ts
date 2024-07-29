@@ -5,6 +5,7 @@ import { userRouter } from "./routes/userRoutes";
 import { swaggerOptions } from "./config/swaggerOptions";
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import { courseRouter } from "./routes/courseRoutes";
 
 const app: Express = express();
 
@@ -30,6 +31,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use("/", eventRouter);
 app.use("/", userRouter);
+app.use("/", courseRouter);
 
 app.listen(4000, () => {
     console.log(`App is listening on port 4000`);

@@ -4,7 +4,7 @@ import { createCourseTypes } from "../../@types/course/createCourseTypes";
 import { CreateCourseService } from "../../services/course/CreateCourseService";
 import { CourseDomain } from "../../domain/CourseDomain";
 import { Logger } from "../../loggers/Logger";
-import { LOADIPHLPAPI } from "dns";
+import { courseLogPath } from "../../config/logPaths";
 
 export class CreateCourseController {
     private createCourseService : CreateCourseService;
@@ -12,7 +12,8 @@ export class CreateCourseController {
 
     constructor(createCourseService) {
         this.createCourseService = createCourseService;
-        this.logger = new Logger("CreateCourseController", 'courseLogs.log');
+        this.logger = new Logger("CreateCourseController", courseLogPath);
+        this.createCourse = this.createCourse.bind(this);
     }
     async createCourse(req, res) {
         try {
@@ -25,7 +26,7 @@ export class CreateCourseController {
                 });
             }
 
-            if (!isValidEmail(req.body.courseEmailCoordinator)) {
+            if (!isValidEmail(req.body.courseCoordinatorEmail)) {
                 this.logger.warn("Invalid coordinator Email on request", req.body.requestEmail);
                 return res.status(400).json({
                     course: undefined,
@@ -34,7 +35,7 @@ export class CreateCourseController {
             }
             const course = new CourseDomain({
                 courseName: req.body.courseName,
-                courseCoordinatorEmail: req.body.courseEmailCoordinator,
+                courseCoordinatorEmail: req.body.courseCoordinatorEmail,
             })
 
             const createdCourse = await this.createCourseService.execute(course);

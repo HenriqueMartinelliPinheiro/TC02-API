@@ -6,12 +6,10 @@ import { authMiddleware } from '../middlewares/authMiddleware';
 import { adminRoleMiddleware } from '../middlewares/adminRoleMiddleware';
 import { CourseRepository } from '../repository/implementation/CourseRepository';
 
-export const CourseRouter = Router();
-
-const prismaClient = new PrismaClient();
+export const courseRouter = Router();
 
 const courseRepository = new CourseRepository(new PrismaClient);
 const createCourseService = new CreateCourseService(courseRepository);
 const createCourseController = new CreateCourseController(createCourseService);
 
-CourseRouter.post("/createCourse",authMiddleware, adminRoleMiddleware, createCourseController.createCourse);
+courseRouter.post("/createCourse",authMiddleware, adminRoleMiddleware, createCourseController.createCourse);

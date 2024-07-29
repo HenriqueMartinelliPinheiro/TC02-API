@@ -11,9 +11,11 @@ const tokenGenerator = new TokenGenerator();
 
 export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   const logger = new Logger("authMiddleware", userLogPath);
-  const accessToken = req.headers['authorization']?.split(' ')[1];
+  let accessToken = req.headers['x-access-token'] as string;
   const refreshToken = req.headers['x-refresh-token'] as string;
 
+  console.log("AQUI"+accessToken);
+  console.log(refreshToken);
   if (!accessToken || !refreshToken) {
     logger.error("Access Token or Refresh Token missing");
     return res.status(401).json({ message: 'Token de acesso e/ou token de atualização ausente(s)' });
@@ -21,7 +23,7 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
 
   try {
     const decodedAccessToken = jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET) as jwt.JwtPayload;
-    
+
     const now = Math.floor(Date.now() / 1000); 
     const expirationThreshold = 60 * 15;
 
