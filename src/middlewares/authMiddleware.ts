@@ -87,7 +87,9 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
           });
 
           res.setHeader('x-access-token', newAccessToken);
+          res.setHeader('x-access-token-expiration', String(newAccessTokenExpiration));
           res.setHeader('x-refresh-token', newRefreshToken);
+          res.setHeader('x-refresh-token-expiration', String(newRefreshTokenExpiration));
 
           return next();
         } else {
