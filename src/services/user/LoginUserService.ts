@@ -26,13 +26,8 @@ export class LoginUserService {
                 const { token: accessToken, expiresAt: accessTokenExpiration } = this.tokenGenerator.generateAccessToken(loggedUser);
                 loggedUser.setAccessToken(accessToken);
                 loggedUser.setAccessTokenExpiration(accessTokenExpiration);
-        
-                const { token: refreshToken, expiresAt: refreshTokenExpiration } = this.tokenGenerator.generateRefreshToken(loggedUser);
-                loggedUser.setRefreshToken(refreshToken);
-                loggedUser.setRefreshTokenExpiration(refreshTokenExpiration);
-
+                    
                 this.userRepository.updateAccessToken(loggedUser);
-                this.userRepository.updateRefreshToken(loggedUser);
                 
                 return loggedUser;
             }

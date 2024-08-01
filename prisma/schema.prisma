@@ -26,11 +26,9 @@ model Login{
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   accessToken String?
-  refreshToken String?
   accessTokenExpiration DateTime?
   userId Int @unique
   user User @relation(fields: [userId], references: [userId])
-  refreshTokenExpiration DateTime?
 }
 
 model Role{

@@ -124,7 +124,6 @@ describe('LoginUserController', () => {
             userPassword: 'Password123',
         });
         user.getAccessToken = vi.fn().mockReturnValue('access-token');
-        user.getRefreshToken = vi.fn().mockReturnValue('refresh-token');
         user.getUserId = vi.fn().mockReturnValue(1);
 
         (loginUserService.execute as any).mockResolvedValue(user);
@@ -133,7 +132,6 @@ describe('LoginUserController', () => {
 
         expect(loginUserService.execute).toHaveBeenCalledWith(expect.any(UserDomain));
         expect(res.setHeader).toHaveBeenCalledWith('x-access-token', 'access-token');
-        expect(res.setHeader).toHaveBeenCalledWith('x-refresh-token', 'refresh-token');
         expect(res.status).toHaveBeenCalledWith(201);
         expect(res.json).toHaveBeenCalledWith({
             user,

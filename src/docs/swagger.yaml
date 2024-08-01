@@ -45,11 +45,6 @@ paths:
           required: true
           description: Token de acesso do usuário
         - in: header
-          name: x-refresh-token
-          schema:
-            type: string
-          required: true
-          description: Token de atualização do usuário
       responses:
         '201':
           description: Usuário criado com sucesso
@@ -113,10 +108,6 @@ paths:
               schema:
                 type: string
               description: Token de acesso do usuário
-            x-refresh-token:
-              schema:
-                type: string
-              description: Token de atualização do usuário
           content:
             application/json:
               schema:

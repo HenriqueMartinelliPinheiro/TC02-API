@@ -109,27 +109,6 @@ export class UserRepository implements IUserRepository {
         }
     }
 
-    updateRefreshToken = async (user: UserDomain): Promise<[string, Date]> => {
-        try {
-            const updatedUser = await this.prismaClient.login.update({
-                where: {
-                    userId: user.getUserId(),
-                },
-                data: {
-                    refreshToken: user.getRefreshToken(),
-                    refreshTokenExpiration: user.getRefreshTokenExpiration(),
-                },
-                include: {
-                    user: true,
-                }
-            });
-
-            return [updatedUser.refreshToken, updatedUser.refreshTokenExpiration];
-        } catch (error) {
-            throw error;
-        }
-    }
-
     getUserByEmail = async (userEmail: string): Promise<UserDomain> => {
         try {
             const user = await this.prismaClient.user.findFirst({

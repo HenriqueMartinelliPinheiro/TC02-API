@@ -1,108 +1,58 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, User } from "@prisma/client";
 import { TokenGenerator } from "../auth/TokenGenerator";
 import { userLogPath } from "../config/logPaths";
 import { Logger } from "../loggers/Logger";
-import { UserDomain } from "../domain/UserDomain";
 
 const prisma = new PrismaClient();
 const tokenGenerator = new TokenGenerator();
 
-export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
-  const logger = new Logger("authMiddleware", userLogPath);
-  let accessToken = req.headers['x-access-token'] as string;
-  const refreshToken = req.headers['x-refresh-token'] as string;
+export const authMiddleware = async (req: Request,res: Response,next: NextFunction) => {
+  try {
+    const logger = new Logger("authMiddleware", userLogPath);
+    let accessToken = req.headers["x-access-token"] as string;
+  
+    if (!accessToken) {
+      logger.error("Access Token missing");
+      return res.status(401).json({message: "Token de acesso e/ou token de atualização ausente(s)"});
+    }
+  
+    if(validateAccessToken(accessToken)){
+      next();
+    }
 
-  console.log("AQUI"+accessToken);
-  console.log(refreshToken);
-  if (!accessToken || !refreshToken) {
-    logger.error("Access Token or Refresh Token missing");
-    return res.status(401).json({ message: 'Token de acesso e/ou token de atualização ausente(s)' });
+  } catch (error) {
+    return res.status(401).json({
+      msg: "Usuário não autenticado",
+    });
   }
 
+};
+
+const validateAccessToken = async (accessToken: string) => {
   try {
-    const decodedAccessToken = jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET) as jwt.JwtPayload;
+    const decodedAccessToken = jwt.verify(
+      accessToken,
+      process.env.JWT_ACCESS_SECRET
+    ) as jwt.JwtPayload;
 
-    const now = Math.floor(Date.now() / 1000); 
-    const expirationThreshold = 60 * 15;
+    const now = Math.floor(Date.now() / 1000);
 
-    if (decodedAccessToken.exp && decodedAccessToken.exp - now < expirationThreshold) {
-      const user = await prisma.user.findUnique({
+    if (decodedAccessToken.exp > now) {
+      const user = await prisma.user.findUniqueOrThrow({
         where: { userId: decodedAccessToken.userId },
-        include: { login: true } 
+        include: { login: true },
       });
 
-      if (user) {
-        const { token: newAccessToken, expiresAt: newAccessTokenExpiration } = tokenGenerator.generateAccessToken(new UserDomain({
-          userId: user.userId,
-          userName: user.userName,
-          userEmail: user.userEmail,
-        }));
-
-        await prisma.login.update({
-          where: { userId: user.userId },
-          data: {
-            accessToken: newAccessToken,
-            accessTokenExpiration: newAccessTokenExpiration,
-          },
-        });
-
-        res.setHeader('x-access-token', newAccessToken);
+      if (decodedAccessToken.userId == user.userId) {
+        return true;
       }
     }
 
-    next();
-  } catch (error) {
-    if (error.name === 'TokenExpiredError') {
-      try {
-        const decodedRefreshToken = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET) as jwt.JwtPayload;
+    return false;
 
-        const user = await prisma.user.findUnique({
-          where: { userId: decodedRefreshToken.userId },
-          include: { login: true }
-        });
-
-        if (user && decodedRefreshToken.userId === user.userId) {
-          const { token: newAccessToken, expiresAt: newAccessTokenExpiration } = tokenGenerator.generateAccessToken(new UserDomain({
-            userId: user.userId,
-            userName: user.userName,
-            userEmail: user.userEmail,
-          }));
-
-          const { token: newRefreshToken, expiresAt: newRefreshTokenExpiration } = tokenGenerator.generateRefreshToken(new UserDomain({
-            userId: user.userId,
-            userName: user.userName,
-            userEmail: user.userEmail,
-          }));
-
-          await prisma.login.update({
-            where: { userId: user.userId },
-            data: {
-              accessToken: newAccessToken,
-              accessTokenExpiration: newAccessTokenExpiration,
-              refreshToken: newRefreshToken,
-              refreshTokenExpiration: newRefreshTokenExpiration,
-            },
-          });
-
-          res.setHeader('x-access-token', newAccessToken);
-          res.setHeader('x-access-token-expiration', String(newAccessTokenExpiration));
-          res.setHeader('x-refresh-token', newRefreshToken);
-          res.setHeader('x-refresh-token-expiration', String(newRefreshTokenExpiration));
-
-          return next();
-        } else {
-          logger.error("Invalid refresh token");
-          return res.status(401).json({ message: 'Token de atualização inválido' });
-        }
-      } catch (refreshError) {
-        logger.error("Refresh Token error", refreshError);
-        return res.status(401).json({ message: 'Token de atualização inválido' });
-      }
-    } else {
-      logger.error("Access Token error", error);
-      return res.status(401).json({ message: 'Token de acesso inválido' });
-    }
+  } catch(error){
+    throw error;
   }
-};
+}

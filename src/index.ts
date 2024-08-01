@@ -21,8 +21,8 @@ app.use(cors({
             callback(new Error('Not allowed by CORS'));
         }
     },
-    allowedHeaders: ['Content-Type', 'x-access-token', 'x-refresh-token', 'x-access-token-expiration', 'x-refresh-token-expiration'],
-    exposedHeaders: ['x-access-token', 'x-refresh-token', 'x-access-token-expiration', 'x-refresh-token-expiration'],
+    allowedHeaders: ['Content-Type', 'x-access-token', 'x-access-token-expiration'],
+    exposedHeaders: ['x-access-token','x-access-token-expiration'],
 }));
 
 const swaggerDocs = swaggerJsdoc(swaggerOptions);

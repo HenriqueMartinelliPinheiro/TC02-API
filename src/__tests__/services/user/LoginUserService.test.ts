@@ -18,12 +18,10 @@ describe('LoginUserService', () => {
         userRepository = {
             loginUser: vi.fn(),
             updateAccessToken: vi.fn(),
-            updateRefreshToken: vi.fn(),
         } as unknown as IUserRepository;
 
         tokenGenerator = {
             generateAccessToken: vi.fn(),
-            generateRefreshToken: vi.fn(),
         } as unknown as TokenGenerator;
 
         loginUserService = new LoginUserService(userRepository);
@@ -77,31 +75,24 @@ describe('LoginUserService', () => {
         });
 
         const accessToken = 'access-token';
-        const refreshToken = 'refresh-token';
         const accessTokenExpiration = new Date();
-        const refreshTokenExpiration = new Date();
 
         (userRepository.loginUser as any).mockResolvedValue(loggedUser);
         (comparePassword as any).mockReturnValue(true);
         (tokenGenerator.generateAccessToken as any).mockReturnValue({ token: accessToken, expiresAt: accessTokenExpiration });
-        (tokenGenerator.generateRefreshToken as any).mockReturnValue({ token: refreshToken, expiresAt: refreshTokenExpiration });
 
         const result = await loginUserService.execute(user);
 
         expect(userRepository.loginUser).toHaveBeenCalledWith('test@example.com');
         expect(comparePassword).toHaveBeenCalledWith('Password123', 'Password123');
         expect(tokenGenerator.generateAccessToken).toHaveBeenCalledWith(loggedUser);
-        expect(tokenGenerator.generateRefreshToken).toHaveBeenCalledWith(loggedUser);
         expect(userRepository.updateAccessToken).toHaveBeenCalledWith(loggedUser);
-        expect(userRepository.updateRefreshToken).toHaveBeenCalledWith(loggedUser);
 
         expect(result).toEqual({
             ...loggedUser,
             userPassword: '',
             accessToken,
             accessTokenExpiration,
-            refreshToken,
-            refreshTokenExpiration,
         });
     });
 

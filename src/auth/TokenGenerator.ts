@@ -20,22 +20,6 @@ export class TokenGenerator {
     return { token, expiresAt };
   }
 
-  generateRefreshToken(user: UserDomain): { token: string, expiresAt: Date } {
-    const payload = {
-      userId: user.getUserId(),
-      userName: user.getUserName(),
-      userEmail: user.getUserEmail(),
-    };
-
-    const token = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {
-      expiresIn: process.env.JWT_REFRESH_TOKEN_EXPIRES,
-    });
-
-    const expiresAt = this.getExpirationDate(process.env.JWT_REFRESH_TOKEN_EXPIRES);
-
-    return { token, expiresAt };
-  }
-
   private getExpirationDate(expiresIn: string | number): Date {
     const now = new Date();
     const expiresInMs = typeof expiresIn === 'string' ? this.parseExpiresIn(expiresIn) : expiresIn * 1000;
