@@ -32,14 +32,12 @@ export class CreateEventController {
                 eventEndDate: value.eventEndDate,
             }));
 
-            console.log("Evento criado com sucesso.");
             return res.status(201).json({
                 success: true,
                 event: createdEvent,
                 msg: "Evento criado com sucesso",
             });
         } catch (error) {
-            console.error("Erro ao executar CreateEventController", error);
             return res.status(500).json({
                 success: false,
                 event: undefined,

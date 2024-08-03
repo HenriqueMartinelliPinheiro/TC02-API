@@ -20,8 +20,6 @@ export class CreateUserController {
     }
 
     async createUser(req: Request, res: Response) {
-        console.log("aqui")
-
         if (!isValidRequest(req.body, createUserTypes)) {
             this.logger.warn(`Invalid Data on create user ${req.body.userEmail}`, req.body.requestEmail);
             return  generateUserErrorResponse(res, "Dados Inválidos", 400);

@@ -29,7 +29,6 @@ export class EventRepository implements IEventRepository {
             });
 
         } catch (error) {
-            console.error('Erro ao criar evento:', error);
             return undefined;
         }
     }
@@ -49,7 +48,6 @@ export class EventRepository implements IEventRepository {
            return eventList;
         }
         catch(err) {
-            console.error(err);
             return undefined;
         }
     }

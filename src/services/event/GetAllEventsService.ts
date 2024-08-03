@@ -26,7 +26,6 @@ export class GetAllEventsService {
                 }
             }
         } catch(error){
-            console.error("Erro ao executar GetAllEventsController:", error);
             return{
                 success: false,
                 event: null,

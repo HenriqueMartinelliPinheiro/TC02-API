@@ -1,66 +1,73 @@
-import { Request, Response } from "express";
-import { isValidEmail } from "../../utils/validations/isValidEmail";
-import { isValidPassword } from "../../utils/validations/isValidPassword";
-import { isValidRequest } from "../../utils/validations/isValidRequest";
-import { generateUserErrorResponse } from "../../utils/generateUserErrorResponse";
-import { UserDomain } from "../../domain/UserDomain";
-import { Logger } from "../../loggers/Logger";
-import { userLogPath } from "../../config/logPaths";
-import { LoginUserService } from "../../services/user/LoginUserService";
-import { loginUserTypes } from "../../@types/user/loginUserTypes";
+import { Request, Response } from 'express';
+import { isValidEmail } from '../../utils/validations/isValidEmail';
+import { isValidPassword } from '../../utils/validations/isValidPassword';
+import { isValidRequest } from '../../utils/validations/isValidRequest';
+import { generateUserErrorResponse } from '../../utils/generateUserErrorResponse';
+import { UserDomain } from '../../domain/UserDomain';
+import { Logger } from '../../loggers/Logger';
+import { userLogPath } from '../../config/logPaths';
+import { LoginUserService } from '../../services/user/LoginUserService';
+import { loginUserTypes } from '../../@types/user/loginUserTypes';
 
 export class LoginUserController {
-        private loginUserService : LoginUserService;
-        private logger : Logger;
-    constructor(loginUserService: LoginUserService) {
-        this.logger = new Logger("LoginUserController", userLogPath);
-        this.loginUserService = loginUserService;
-        this.loginUser = this.loginUser.bind(this);
-    }
+	private loginUserService: LoginUserService;
+	private logger: Logger;
 
-    async loginUser(req: Request, res: Response) {
-        if (!isValidRequest(req.body, loginUserTypes)) {
-            this.logger.warn(`Invalid Data on Login by user email: ${req.body.userEmail}`);
-            return generateUserErrorResponse(res, "Dados Inválidos", 400);
-        }
+	constructor(loginUserService: LoginUserService) {
+		this.logger = new Logger('LoginUserController', userLogPath);
+		this.loginUserService = loginUserService;
+		this.loginUser = this.loginUser.bind(this);
+	}
 
-        if (!isValidPassword(req.body.userPassword)) {
-            this.logger.warn(`Invalid Password on Login by user email: ${req.body.userEmail}`);
-            return generateUserErrorResponse(res, "Senha Inválida", 400);
-        }
-        
-        if (!isValidEmail(req.body.userEmail)) {
-            this.logger.warn(`Invalid Email on Login  by user email: ${req.body.userEmail}`);
-            return generateUserErrorResponse(res, "Email Inválido", 400);
-        }
+	async loginUser(req: Request, res: Response) {
+		if (!isValidRequest(req.body, loginUserTypes)) {
+			this.logger.warn(`Invalid Data on Login by user email: ${req.body.userEmail}`);
+			return generateUserErrorResponse(res, 'Dados Inválidos', 400);
+		}
 
-        try {
-            const user = await this.loginUserService.execute(new UserDomain({
-                userEmail: req.body.userEmail,
-                userPassword: req.body.userPassword,
-            }));
+		if (!isValidPassword(req.body.userPassword)) {
+			this.logger.warn(`Invalid Password on Login by user email: ${req.body.userEmail}`);
+			return generateUserErrorResponse(res, 'Senha Inválida', 400);
+		}
 
-            if (!user) {
-                this.logger.warn("Incorrect Email/Password");
-                return res.status(401).json({
-                    user: undefined,
-                    msg: "Email ou senha incorretos",
-                });
-            }
+		if (!isValidEmail(req.body.userEmail)) {
+			this.logger.warn(`Invalid Email on Login by user email: ${req.body.userEmail}`);
+			return generateUserErrorResponse(res, 'Email Inválido', 400);
+		}
 
-            this.logger.info(`User Logged`, req.body.userEmail);
+		try {
+			const user = await this.loginUserService.execute(
+				new UserDomain({
+					userEmail: req.body.userEmail,
+					userPassword: req.body.userPassword,
+				})
+			);
 
-            res.setHeader('x-access-token', user.getAccessToken());
-            res.setHeader('x-access-token-expiration', String(user.getAccessTokenExpiration()));
+			if (!user) {
+				this.logger.warn('Incorrect Email/Password');
+				return res.status(401).json({
+					user: undefined,
+					msg: 'Email ou senha incorretos',
+				});
+			}
 
-            return res.status(201).json({
-                user,
-                msg: "Usuário logado com sucesso",
-            });
-        
-        } catch (error) {
-            this.logger.error("Error when logging user", req.body.userEmail, error);
-            return generateUserErrorResponse(res, "Erro interno do servidor", 500)
-        }
-    }   
+			this.logger.info(`User Logged`, req.body.userEmail);
+			res.cookie('token', user.getAccessToken(), {
+				httpOnly: true,
+				secure: false, // Use false para desenvolvimento em HTTP
+				sameSite: 'lax', // Use 'lax' ou 'strict' dependendo das suas necessidades
+			});
+
+
+			return res.status(201).json({
+				user,
+				msg: 'Usuário logado com sucesso',
+				accessToken: user.getAccessToken(),
+				accessTokenExpiration: user.getAccessTokenExpiration(),
+			});
+		} catch (error) {
+			this.logger.error('Error when logging user', req.body.userEmail, error);
+			return generateUserErrorResponse(res, 'Erro interno do servidor', 500);
+		}
+	}
 }

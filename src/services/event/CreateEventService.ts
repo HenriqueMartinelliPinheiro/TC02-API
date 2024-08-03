@@ -16,7 +16,6 @@ export class CreateEventService {
             }
             return createdEvent;
         } catch (error) {
-            console.error("Erro ao executar CreateEvent:", error);
             throw error;
         }
     }
