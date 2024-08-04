@@ -7,6 +7,13 @@ import { Logger } from '../loggers/Logger';
 const prisma = new PrismaClient();
 const logger = new Logger('authMiddleware', userLogPath);
 
+// Adicionando a propriedade `userEmail` ao tipo Request
+declare module 'express-serve-static-core' {
+	interface Request {
+		requestEmail?: string;
+	}
+}
+
 export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const accessToken = req.cookies.token;
@@ -15,8 +22,9 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
 			return res.status(401).json({ message: 'Token de acesso ausente' });
 		}
 
-		const isValid = await validateAccessToken(accessToken);
-		if (isValid) {
+		const { isValid, userEmail } = await validateAccessToken(accessToken);
+		if (isValid && userEmail) {
+			req.requestEmail = userEmail;
 			return next();
 		} else {
 			logger.error('Invalid Access Token');
@@ -32,7 +40,7 @@ const validateAccessToken = async (accessToken: string) => {
 	try {
 		const decodedAccessToken = jwt.verify(
 			accessToken,
-			process.env.JWT_ACCESS_SECRET
+			process.env.JWT_ACCESS_SECRET!
 		) as jwt.JwtPayload;
 		const now = Math.floor(Date.now() / 1000);
 
@@ -43,11 +51,12 @@ const validateAccessToken = async (accessToken: string) => {
 			});
 
 			if (decodedAccessToken.userId === user.userId) {
-				return true;
+				const userEmail = user.userEmail;
+				return { isValid: true, userEmail };
 			}
 		}
 
-		return false;
+		return { isValid: false, userEmail: null };
 	} catch (error) {
 		throw error;
 	}
