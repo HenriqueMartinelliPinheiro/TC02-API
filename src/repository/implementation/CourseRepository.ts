@@ -9,7 +9,7 @@ export class CourseRepository implements ICourseRepository {
 		this.prismaClient = prismaClient;
 	}
 
-	createCourse = async (course: CourseDomain): Promise<CourseDomain> => {
+	createCourse = async (course: CourseDomain): Promise<Course | undefined> => {
 		try {
 			const createdCourse = await this.prismaClient.course.create({
 				data: {
@@ -18,11 +18,7 @@ export class CourseRepository implements ICourseRepository {
 				},
 			});
 
-			return new CourseDomain({
-				courseId: createdCourse.courseId,
-				courseName: createdCourse.courseName,
-				courseCoordinatorEmail: createdCourse.courseCoordinatorEmail,
-			});
+			return createdCourse;
 		} catch (error) {
 			throw error;
 		}
@@ -37,6 +33,20 @@ export class CourseRepository implements ICourseRepository {
 			}
 
 			return courses;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	getCourseById = async (courseId): Promise<Course | undefined> => {
+		try {
+			const course = await this.prismaClient.course.findFirst({
+				where: {
+					courseId: courseId,
+				},
+			});
+
+			return course;
 		} catch (error) {
 			throw error;
 		}
