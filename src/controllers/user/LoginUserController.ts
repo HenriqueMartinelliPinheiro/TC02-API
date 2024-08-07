@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { isValidEmail } from '../../utils/validations/isValidEmail';
 import { isValidPassword } from '../../utils/validations/isValidPassword';
 import { isValidRequest } from '../../utils/validations/isValidRequest';
 import { generateUserErrorResponse } from '../../utils/generateUserErrorResponse';
@@ -30,11 +29,6 @@ export class LoginUserController {
 			return generateUserErrorResponse(res, 'Senha Inválida', 400);
 		}
 
-		if (!isValidEmail(req.body.userEmail)) {
-			this.logger.warn(`Invalid Email on Login by user email: ${req.body.userEmail}`);
-			return generateUserErrorResponse(res, 'Email Inválido', 400);
-		}
-
 		try {
 			const user = await this.loginUserService.execute(
 				new UserDomain({
@@ -54,10 +48,9 @@ export class LoginUserController {
 			this.logger.info(`User Logged`, req.body.userEmail);
 			res.cookie('token', user.getAccessToken(), {
 				httpOnly: true,
-				secure: false, // Use false para desenvolvimento em HTTP
-				sameSite: 'lax', // Use 'lax' ou 'strict' dependendo das suas necessidades
+				secure: true,
+				sameSite: 'strict',
 			});
-
 
 			return res.status(201).json({
 				user,

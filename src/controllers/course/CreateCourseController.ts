@@ -1,4 +1,3 @@
-import { isValidEmail } from '../../utils/validations/isValidEmail';
 import { isValidRequest } from '../../utils/validations/isValidRequest';
 import { createCourseTypes } from '../../@types/course/createCourseTypes';
 import { CreateCourseService } from '../../services/course/CreateCourseService';
@@ -18,20 +17,13 @@ export class CreateCourseController {
 	async createCourse(req, res) {
 		try {
 			if (!isValidRequest(req.body, createCourseTypes)) {
-				this.logger.warn('Invalid data on request', req.body.requestEmail);
+				this.logger.warn('Invalid data on request', req.requestEmail);
 				return res.status(400).json({
 					course: undefined,
 					msg: 'Dados Inválidos',
 				});
 			}
 
-			if (!isValidEmail(req.body.courseCoordinatorEmail)) {
-				this.logger.warn('Invalid coordinator Email on request', req.body.requestEmail);
-				return res.status(400).json({
-					course: undefined,
-					msg: 'Email Inválido',
-				});
-			}
 			const course = new CourseDomain({
 				courseName: req.body.courseName,
 				courseCoordinatorEmail: req.body.courseCoordinatorEmail,
@@ -39,7 +31,7 @@ export class CreateCourseController {
 
 			const createdCourse = await this.createCourseService.execute(course);
 			if (createdCourse) {
-				this.logger.info(`Course Created ${createdCourse}`, req.body.requestEmail);
+				this.logger.info(`Course Created Id:${createdCourse.courseId}`, req.requestEmail);
 				return res.status(201).json({
 					course: createdCourse,
 					msg: 'Curso criado com sucesso',

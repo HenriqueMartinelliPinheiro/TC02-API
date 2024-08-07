@@ -14,8 +14,7 @@ export class FetchAllCoursesController {
 	async fetchAllCourses(req, res) {
 		try {
 			const courses = await this.fetchAllCoursesService.execute();
-			this.logger.info('Courses Fetched', req.body.requestEmail);
-			console.log(courses);
+			this.logger.info('Courses Fetched', req.requestEmail);
 			return res.status(201).json({
 				courses: courses,
 				msg: 'Cursos Retornados com Sucesso',

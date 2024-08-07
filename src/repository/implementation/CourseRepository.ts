@@ -38,7 +38,7 @@ export class CourseRepository implements ICourseRepository {
 		}
 	};
 
-	getCourseById = async (courseId): Promise<Course | undefined> => {
+	getCourseById = async (courseId: number): Promise<Course | undefined> => {
 		try {
 			const course = await this.prismaClient.course.findFirst({
 				where: {
@@ -47,6 +47,27 @@ export class CourseRepository implements ICourseRepository {
 			});
 
 			return course;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	editCourse = async (course: CourseDomain): Promise<Course | undefined> => {
+		try {
+			const editedCourse = this.prismaClient.course.update({
+				data: {
+					courseCoordinatorEmail: course.getCourseCoordinatorEmail(),
+					courseName: course.getCourseName(),
+				},
+				where: {
+					courseId: course.getCourseId(),
+				},
+			});
+
+			if (!editedCourse) {
+				throw new Error('Error on edit course' + course.getCourseId());
+			}
+			return editedCourse;
 		} catch (error) {
 			throw error;
 		}

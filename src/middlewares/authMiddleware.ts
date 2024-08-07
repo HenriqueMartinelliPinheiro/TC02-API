@@ -7,7 +7,6 @@ import { Logger } from '../loggers/Logger';
 const prisma = new PrismaClient();
 const logger = new Logger('authMiddleware', userLogPath);
 
-// Adicionando a propriedade `userEmail` ao tipo Request
 declare module 'express-serve-static-core' {
 	interface Request {
 		requestEmail?: string;
@@ -31,7 +30,7 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
 			return res.status(401).json({ message: 'Token de acesso inválido' });
 		}
 	} catch (error) {
-		logger.error('AuthMiddleware Error', req.body.requestEmail, error);
+		logger.error('AuthMiddleware Error', req.requestEmail, error);
 		return res.status(401).json({ msg: 'Usuário não autenticado' });
 	}
 };

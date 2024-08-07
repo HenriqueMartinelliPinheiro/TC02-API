@@ -1,7 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { Request, Response } from 'express';
 import { LoginUserService } from '../../../services/user/LoginUserService';
-import { isValidEmail } from '../../../utils/validations/isValidEmail';
 import { isValidPassword } from '../../../utils/validations/isValidPassword';
 import { isValidRequest } from '../../../utils/validations/isValidRequest';
 import { generateUserErrorResponse } from '../../../utils/generateUserErrorResponse';
@@ -14,7 +13,6 @@ import { UserRepository } from '../../../repository/implementation/UserRepositor
 import { LoginUserController } from '../../../controllers/user/LoginUserController';
 
 // Mock das funções e classes necessárias
-vi.mock('../../../utils/validations/isValidEmail');
 vi.mock('../../../utils/validations/isValidPassword');
 vi.mock('../../../utils/validations/isValidRequest');
 vi.mock('../../../utils/generateUserErrorResponse', () => {
@@ -86,22 +84,10 @@ describe('LoginUserController', () => {
 		expect(isValidPassword).toHaveBeenCalledWith(req.body.userPassword);
 		expect(generateUserErrorResponse).toHaveBeenCalledWith(res, 'Senha Inválida', 400);
 	});
-
-	it('should return 400 if email is invalid', async () => {
-		(isValidRequest as any).mockReturnValue(true);
-		(isValidPassword as any).mockReturnValue(true);
-		(isValidEmail as any).mockReturnValue(false);
-
-		await loginUserController.loginUser(req as Request, res as Response);
-
-		expect(isValidEmail).toHaveBeenCalledWith(req.body.userEmail);
-		expect(generateUserErrorResponse).toHaveBeenCalledWith(res, 'Email Inválido', 400);
-	});
-
+	
 	it('should return 401 if email or password is incorrect', async () => {
 		(isValidRequest as any).mockReturnValue(true);
 		(isValidPassword as any).mockReturnValue(true);
-		(isValidEmail as any).mockReturnValue(true);
 
 		(loginUserService.execute as any).mockResolvedValue(undefined);
 
@@ -118,7 +104,6 @@ describe('LoginUserController', () => {
 	it('should return 201 if user is logged in successfully', async () => {
 		(isValidRequest as any).mockReturnValue(true);
 		(isValidPassword as any).mockReturnValue(true);
-		(isValidEmail as any).mockReturnValue(true);
 
 		const user = new UserDomain({
 			userEmail: 'test@example.com',
@@ -145,7 +130,6 @@ describe('LoginUserController', () => {
 	it('should return 500 if there is an internal server error', async () => {
 		(isValidRequest as any).mockReturnValue(true);
 		(isValidPassword as any).mockReturnValue(true);
-		(isValidEmail as any).mockReturnValue(true);
 
 		const error = new Error('Internal Server Error');
 		(loginUserService.execute as any).mockRejectedValue(error);
