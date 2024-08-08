@@ -2,7 +2,6 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { Request, Response } from 'express';
 import { FetchAllCoursesService } from '../../../services/course/FetchAllCoursesService';
 import { FetchAllCoursesController } from '../../../controllers/course/FetchAllCoursesController';
-import { Logger } from '../../../loggers/Logger';
 import { PrismaClient } from '@prisma/client';
 import { CourseRepository } from '../../../repository/implementation/CourseRepository';
 import { ICourseRepository } from '../../../repository/interfaces/ICourseRepository';

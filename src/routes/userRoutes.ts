@@ -7,13 +7,14 @@ import { RoleRepository } from '../repository/implementation/RoleRepository';
 import { LoginUserService } from '../services/user/LoginUserService';
 import { LoginUserController } from '../controllers/user/LoginUserController';
 import { authMiddleware } from '../middlewares/authMiddleware';
-import { adminRoleMiddleware } from '../middlewares/adminRoleMiddleware';
+import { roleMiddleware } from '../middlewares/roleMiddleware';
+import { userRoles } from '../config/roles/user/userRoles';
 
 export const userRouter = Router();
 
 const prismaClient = new PrismaClient();
 
-const userRepository = new UserRepository(new PrismaClient);
+const userRepository = new UserRepository(new PrismaClient());
 
 const roleRepository = new RoleRepository(prismaClient);
 
@@ -23,7 +24,11 @@ const createUserController = new CreateUserController(createUserService);
 const loginUserService = new LoginUserService(userRepository);
 const loginUserController = new LoginUserController(loginUserService);
 
-userRouter.post("/createUser",authMiddleware, adminRoleMiddleware, createUserController.createUser);
+userRouter.post(
+	'/createUser',
+	authMiddleware,
+	roleMiddleware(userRoles.CREATE_USER_ROLES),
+	createUserController.createUser
+);
 
-
-userRouter.post("/loginUser", loginUserController.loginUser);
+userRouter.post('/loginUser', loginUserController.loginUser);

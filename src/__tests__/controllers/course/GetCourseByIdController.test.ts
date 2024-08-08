@@ -4,7 +4,6 @@ import { GetCourseByIdService } from '../../../services/course/GetCourseByIdServ
 import { isValidRequest } from '../../../utils/validations/isValidRequest';
 import { getCourseByIdTypes } from '../../../@types/course/getCourseByIdTypes';
 import { GetCourseByIdController } from '../../../controllers/course/GetCourseByIdController';
-import { Logger } from '../../../loggers/Logger';
 import { PrismaClient } from '@prisma/client';
 import { CourseRepository } from '../../../repository/implementation/CourseRepository';
 import { ICourseRepository } from '../../../repository/interfaces/ICourseRepository';

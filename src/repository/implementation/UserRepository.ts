@@ -71,6 +71,7 @@ export class UserRepository implements IUserRepository {
 				},
 				include: {
 					login: true,
+					role: true,
 				},
 			});
 
@@ -83,6 +84,10 @@ export class UserRepository implements IUserRepository {
 					createdAt: user.createdAt,
 					updatedAt: user.updatedAt,
 					userPassword: user.login.userPassword,
+					role: new RoleDomain({
+						roleTitle: user.role.roleTitle,
+						roleId: user.role.roleId,
+					}),
 				});
 			}
 			return undefined;

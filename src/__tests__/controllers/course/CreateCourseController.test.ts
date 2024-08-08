@@ -4,7 +4,6 @@ import { CreateCourseService } from '../../../services/course/CreateCourseServic
 import { isValidRequest } from '../../../utils/validations/isValidRequest';
 import { createCourseTypes } from '../../../@types/course/createCourseTypes';
 import { CreateCourseController } from '../../../controllers/course/CreateCourseController';
-import { Logger } from '../../../loggers/Logger';
 import { CourseDomain } from '../../../domain/CourseDomain';
 import { ICourseRepository } from '../../../repository/interfaces/ICourseRepository';
 import { PrismaClient } from '@prisma/client';

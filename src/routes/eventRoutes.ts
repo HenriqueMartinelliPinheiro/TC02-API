@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { CreateEventController } from '../controllers/event/CreateEventController';
 import { GetAllEventsController } from '../controllers/event/GetAllEventsController';
 
-export const eventRouter = Router();
+export const    eventRouter = Router();
 const createEventController = new CreateEventController();
 const getAllEventsController = new GetAllEventsController();
 

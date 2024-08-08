@@ -3,7 +3,7 @@ import { CreateCourseController } from '../controllers/course/CreateCourseContro
 import { CreateCourseService } from '../services/course/CreateCourseService';
 import { PrismaClient } from '@prisma/client';
 import { authMiddleware } from '../middlewares/authMiddleware';
-import { adminRoleMiddleware } from '../middlewares/adminRoleMiddleware';
+import { roleMiddleware } from '../middlewares/roleMiddleware';
 import { CourseRepository } from '../repository/implementation/CourseRepository';
 import { FetchAllCoursesController } from '../controllers/course/FetchAllCoursesController';
 import { FetchAllCoursesService } from '../services/course/FetchAllCoursesService';
@@ -11,6 +11,7 @@ import { EditCourseController } from '../controllers/course/EditCourseController
 import { EditCourseService } from '../services/course/EditCourseService';
 import { GetCourseByIdController } from '../controllers/course/GetCourseByIdController';
 import { GetCourseByIdService } from '../services/course/GetCourseByIdService';
+import { courseRoles } from '../config/roles/course/courseRoles';
 
 export const courseRouter = Router();
 
@@ -31,27 +32,27 @@ const getCourseByIdController = new GetCourseByIdController(getCourseByIdService
 courseRouter.post(
 	'/createCourse',
 	authMiddleware,
-	adminRoleMiddleware,
+	roleMiddleware(courseRoles.CREATE_COURSE_ROLES),
 	createCourseController.createCourse
 );
 
 courseRouter.get(
 	'/fetchAllCourses',
 	authMiddleware,
-	adminRoleMiddleware,
+	roleMiddleware(courseRoles.FETCH_ALL_COURSES_ROLES),
 	fetchAllCoursesController.fetchAllCourses
 );
 
 courseRouter.get(
 	'/getCourse/:courseId',
 	authMiddleware,
-	adminRoleMiddleware,
+	roleMiddleware(courseRoles.GET_COURSE_BY_ID),
 	getCourseByIdController.getCourseById
 );
 
 courseRouter.put(
 	'/editCourse/:courseId',
 	authMiddleware,
-	adminRoleMiddleware,
+	roleMiddleware(courseRoles.EDIT_COURSE_ROLES),
 	editCourseController.editCourse
 );
