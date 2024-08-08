@@ -47,10 +47,10 @@ describe('CreateUserController', () => {
 
 		prismaClient = new PrismaClient();
 		userRepository = new UserRepository(prismaClient);
-		roleRepository = {} as IRoleRepository; // Mock do RoleRepository
+		roleRepository = {} as IRoleRepository;
 
 		createUserService = new CreateUserService(userRepository, roleRepository);
-		createUserService.execute = vi.fn(); // Mock do método execute
+		createUserService.execute = vi.fn();
 
 		createUserController = new CreateUserController(createUserService);
 
