@@ -2,6 +2,7 @@ import { IUserRepository } from '../interfaces/IUserRepository';
 import { PrismaClient } from '@prisma/client';
 import { UserDomain } from '../../domain/UserDomain';
 import { RoleDomain } from '../../domain/RoleDomain';
+import { AppError } from '../../utils/errors/AppError';
 
 export class UserRepository implements IUserRepository {
 	private prismaClient: PrismaClient;
@@ -31,7 +32,7 @@ export class UserRepository implements IUserRepository {
 			});
 
 			if (!createdUser) {
-				throw new Error('Error on creating User');
+				throw new AppError(`Erro ao criar usuário ${user.getUserId()}`, 500);
 			}
 
 			return new UserDomain({
@@ -53,11 +54,7 @@ export class UserRepository implements IUserRepository {
 
 	createUser = async (user: UserDomain): Promise<UserDomain> => {
 		try {
-			const createdUser = await this.createUserInDatabase(user);
-			if (!createdUser) {
-				throw new Error('Error on create User');
-			}
-			return createdUser;
+			return await this.createUserInDatabase(user);
 		} catch (error) {
 			throw error;
 		}

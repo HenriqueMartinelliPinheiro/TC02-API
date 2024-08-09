@@ -4,6 +4,7 @@ import { CreateCourseService } from '../../services/course/CreateCourseService';
 import { CourseDomain } from '../../domain/CourseDomain';
 import { Logger } from '../../loggers/Logger';
 import { courseLogPath } from '../../config/logPaths';
+import { AppError } from '../../utils/errors/AppError';
 
 export class CreateCourseController {
 	private createCourseService: CreateCourseService;
@@ -38,8 +39,15 @@ export class CreateCourseController {
 				});
 			}
 		} catch (error) {
-			this.logger.error('Error on creating course', req.requestEmail, error);
-			return res.status(400).json({
+			if (error instanceof AppError) {
+				this.logger.error(error.message, req.requestEmail);
+				return res.status(error.statusCode, {
+					course: undefined,
+					msg: error.message,
+				});
+			}
+			this.logger.error(`Erro ao criar curso, ID: ${req.body.courseId}`, req.requestEmail, error);
+			return res.status(500).json({
 				course: undefined,
 				msg: 'Erro ao criar curso',
 			});

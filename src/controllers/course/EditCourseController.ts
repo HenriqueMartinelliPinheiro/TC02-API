@@ -4,6 +4,7 @@ import { EditCourseService } from '../../services/course/EditCourseService';
 import { CourseDomain } from '../../domain/CourseDomain';
 import { Logger } from '../../loggers/Logger';
 import { courseLogPath } from '../../config/logPaths';
+import { AppError } from '../../utils/errors/AppError';
 
 export class EditCourseController {
 	private editCourseService: EditCourseService;
@@ -39,7 +40,18 @@ export class EditCourseController {
 				});
 			}
 		} catch (error) {
-			this.logger.error('Error on editing course', req.requestEmail, error);
+			if (error instanceof AppError) {
+				this.logger.error(error.message, req.requestEmail);
+				return res.status(error.statusCode, {
+					course: undefined,
+					msg: error.message,
+				});
+			}
+			this.logger.error(
+				`Error ao editar curso, ID:${req.body.courseId}`,
+				req.requestEmail,
+				error
+			);
 			return res.status(400).json({
 				course: undefined,
 				msg: 'Erro ao editar curso',

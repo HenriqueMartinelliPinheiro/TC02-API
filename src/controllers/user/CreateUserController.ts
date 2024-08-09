@@ -8,6 +8,7 @@ import { UserDomain } from '../../domain/UserDomain';
 import { RoleDomain } from '../../domain/RoleDomain';
 import { Logger } from '../../loggers/Logger';
 import { userLogPath } from '../../config/logPaths';
+import { AppError } from '../../utils/errors/AppError';
 
 export class CreateUserController {
 	private createUserService: CreateUserService;
@@ -54,8 +55,18 @@ export class CreateUserController {
 				msg: 'Usuário criado com sucesso',
 			});
 		} catch (error) {
-			this.logger.error('Error when creating user', req.requestEmail, error);
-			return generateUserErrorResponse(res, 'Erro ao criar usuário', 500);
+			if (error instanceof AppError) {
+				this.logger.error(error.message, req.requestEmail);
+				return res.status(error.statusCode).json({
+					user: undefined,
+					msg: error.message,
+				});
+			}
+			this.logger.error('Erro ao criar usuário', req.requestEmail, error);
+			return res.status(500).json({
+				user: undefined,
+				msg: 'Erro ao criar usuário',
+			});
 		}
 	}
 }

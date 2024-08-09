@@ -7,6 +7,7 @@ import { Logger } from '../../loggers/Logger';
 import { userLogPath } from '../../config/logPaths';
 import { LoginUserService } from '../../services/user/LoginUserService';
 import { loginUserTypes } from '../../@types/user/loginUserTypes';
+import { AppError } from '../../utils/errors/AppError';
 
 export class LoginUserController {
 	private loginUserService: LoginUserService;
@@ -59,8 +60,18 @@ export class LoginUserController {
 				accessTokenExpiration: user.getAccessTokenExpiration(),
 			});
 		} catch (error) {
-			this.logger.error('Error when logging user', req.body.userEmail, error);
-			return generateUserErrorResponse(res, 'Erro interno do servidor', 500);
+			if (error instanceof AppError) {
+				this.logger.error(error.message, req.body.userEmail);
+				return res.status(error.statusCode).json({
+					user: undefined,
+					msg: error.message,
+				});
+			}
+			this.logger.error('Erro ao fazer login', req.body.userEmail, error);
+			return res.status(500).json({
+				user: undefined,
+				msg: 'Erro desconhecido ao fazer login',
+			});
 		}
 	}
 }

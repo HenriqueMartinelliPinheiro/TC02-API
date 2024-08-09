@@ -737,3 +737,5 @@ Wed Aug 07 2024 09:57:47 GMT-0300 (Brasilia Standard Time): INFO - User Logged b
 Thu Aug 08 2024 09:19:55 GMT-0300 (Brasilia Standard Time): INFO - User Logged by User: henriquepinheiro18@gmail.com
 Thu Aug 08 2024 10:16:20 GMT-0300 (Brasilia Standard Time): INFO - User Logged by User: henriquepinheiro18@gmail.com
 Thu Aug 08 2024 10:16:40 GMT-0300 (Brasilia Standard Time): INFO - User Logged by User: henriquepinheiro18@gmail.com
+Fri Aug 09 2024 10:48:20 GMT-0300 (Brasilia Standard Time): INFO - User Logged por User: henriquepinheiro18@gmail.com
+Fri Aug 09 2024 10:48:50 GMT-0300 (Brasilia Standard Time): WARN - Invalid Password on Login by user email: dsad@sdaaas.ca em LoginUserController por User: undefined

@@ -1,41 +1,41 @@
-import { IUserRepository } from "../../repository/interfaces/IUserRepository";
-import { UserDomain } from "../../domain/UserDomain";
-import { generatePasswordHash } from "../../utils/generatePasswordHash";
-import { userLogPath } from "../../config/logPaths";
-import { IRoleRepository } from "../../repository/interfaces/IRoleRepository";
+import { IUserRepository } from '../../repository/interfaces/IUserRepository';
+import { UserDomain } from '../../domain/UserDomain';
+import { generatePasswordHash } from '../../utils/generatePasswordHash';
+import { IRoleRepository } from '../../repository/interfaces/IRoleRepository';
+import { AppError } from '../../utils/errors/AppError';
 
 export class CreateUserService {
-    private userRepository : IUserRepository;
-    private roleRepository : IRoleRepository;
+	private userRepository: IUserRepository;
+	private roleRepository: IRoleRepository;
 
-    constructor(userRepository : IUserRepository, roleRepositrory: IRoleRepository){
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepositrory;
-    }
+	constructor(userRepository: IUserRepository, roleRepository: IRoleRepository) {
+		this.userRepository = userRepository;
+		this.roleRepository = roleRepository;
+	}
 
-    async execute(user : UserDomain) : Promise<UserDomain> {
-        try {
-            const userPassword = await generatePasswordHash(user.getUserPassword());
-            user.setUserPassword(userPassword);
+	async execute(user: UserDomain): Promise<UserDomain> {
+		try {
+			const userPassword = await generatePasswordHash(user.getUserPassword());
+			user.setUserPassword(userPassword);
 
-            const role = await this.roleRepository.getRoleById(user.getRole().getRoleId());
-            if (!role || role.getRoleTitle()!=user.getRole().getRoleTitle()) {
-                throw new Error("Error on getRole");
-            }
+			const role = await this.roleRepository.getRoleById(user.getRole().getRoleId());
+			if (!role || role.roleTitle != user.getRole().getRoleTitle()) {
+				throw new AppError('Cargo não encontrado ao criar usuário', 400);
+			}
 
-            const userExists = await this.userRepository.getUserByEmail(user.getUserEmail());
-            
-            if (userExists) {
-                throw new Error(`User with email ${user.getUserEmail()} already exists`);
-            }
+			const userExists = await this.userRepository.getUserByEmail(user.getUserEmail());
 
-            const createdUser : UserDomain = await this.userRepository.createUser(user);
-            if (!createdUser) {
-                throw new Error(`Error when creatingUser`);
-            }
-            return createdUser;
-        } catch (error) {
-            throw error;
-        }
-    }
+			if (userExists) {
+				throw new AppError(`O email ${user.getUserEmail()} já está registrado.`, 409);
+			}
+
+			const createdUser: UserDomain = await this.userRepository.createUser(user);
+			if (!createdUser) {
+				throw new AppError(`Erro ao criar usuário`, 500);
+			}
+			return createdUser;
+		} catch (error) {
+			throw error;
+		}
+	}
 }

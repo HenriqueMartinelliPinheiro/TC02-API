@@ -2,11 +2,11 @@ import { IRoleRepository } from '../../repository/interfaces/IRoleRepository';
 import { Role } from '@prisma/client';
 import { RoleDomain } from '../../domain/RoleDomain';
 
-export class CreateUserService {
+export class CreateRoleService {
 	private roleRepository: IRoleRepository;
 
-	constructor(roleRepositrory: IRoleRepository) {
-		this.roleRepository = roleRepositrory;
+	constructor(roleRepository: IRoleRepository) {
+		this.roleRepository = roleRepository;
 	}
 
 	async execute(role: RoleDomain): Promise<Role | undefined> {

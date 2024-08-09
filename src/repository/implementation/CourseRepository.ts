@@ -45,7 +45,9 @@ export class CourseRepository implements ICourseRepository {
 					courseId: courseId,
 				},
 			});
-
+			if (!course) {
+				return undefined;
+			}
 			return course;
 		} catch (error) {
 			throw error;
@@ -64,9 +66,6 @@ export class CourseRepository implements ICourseRepository {
 				},
 			});
 
-			if (!editedCourse) {
-				throw new Error('Error on edit course' + course.getCourseId());
-			}
 			return editedCourse;
 		} catch (error) {
 			throw error;

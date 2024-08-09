@@ -1050,3 +1050,6 @@ Thu Aug 08 2024 10:16:42 GMT-0300 (Brasilia Standard Time): INFO - Courses Fetch
 Thu Aug 08 2024 10:16:42 GMT-0300 (Brasilia Standard Time): INFO - Courses Fetched by User: henriquepinheiro18@gmail.com
 Thu Aug 08 2024 10:21:40 GMT-0300 (Brasilia Standard Time): INFO - Courses Fetched by User: henriquepinheiro18@gmail.com
 Thu Aug 08 2024 10:21:40 GMT-0300 (Brasilia Standard Time): INFO - Courses Fetched by User: henriquepinheiro18@gmail.com
+Fri Aug 09 2024 10:48:30 GMT-0300 (Brasilia Standard Time): WARN - Invalid data on request em CreateCourseController por User: henriquepinheiro18@gmail.com
+Fri Aug 09 2024 10:48:36 GMT-0300 (Brasilia Standard Time): INFO - Courses Fetched por User: henriquepinheiro18@gmail.com
+Fri Aug 09 2024 10:48:36 GMT-0300 (Brasilia Standard Time): INFO - Courses Fetched por User: henriquepinheiro18@gmail.com

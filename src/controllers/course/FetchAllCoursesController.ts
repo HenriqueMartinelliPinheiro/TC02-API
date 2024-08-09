@@ -1,6 +1,7 @@
 import { Logger } from '../../loggers/Logger';
 import { courseLogPath } from '../../config/logPaths';
 import { FetchAllCoursesService } from '../../services/course/FetchAllCoursesService';
+import { AppError } from '../../utils/errors/AppError';
 
 export class FetchAllCoursesController {
 	private fetchAllCoursesService: FetchAllCoursesService;
@@ -20,7 +21,14 @@ export class FetchAllCoursesController {
 				msg: 'Cursos Retornados com Sucesso',
 			});
 		} catch (error) {
-			this.logger.error('Error on FetchAllCourses', req.requestEmail, error);
+			if (error instanceof AppError) {
+				this.logger.error(error.message, req.requestEmail, error);
+				return res.status(error.statusCode).json({
+					courses: null,
+					msg: error.message,
+				});
+			}
+			this.logger.error('Erro ao Buscar Cursos', req.requestEmail, error);
 			return res.status(500).json({
 				courses: null,
 				msg: 'Erro ao Buscar Cursos',

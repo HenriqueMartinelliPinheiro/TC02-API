@@ -11,9 +11,7 @@ export class FetchAllCoursesService {
 	execute = async (): Promise<Course[] | undefined> => {
 		try {
 			const courses = await this.courseRepository.fetchAllCourses();
-			if (!courses) {
-				return undefined;
-			}
+
 			return courses;
 		} catch (error) {
 			throw error;

@@ -4,6 +4,7 @@ import { isValidRequest } from '../../utils/validations/isValidRequest';
 import { getCourseByIdTypes } from '../../@types/course/getCourseByIdTypes';
 import { Logger } from '../../loggers/Logger';
 import { courseLogPath } from '../../config/logPaths';
+import { AppError } from '../../utils/errors/AppError';
 
 export class GetCourseByIdController {
 	private getCourseByIdService: GetCourseByIdService;
@@ -28,22 +29,36 @@ export class GetCourseByIdController {
 
 			if (!course) {
 				this.logger.info('No Courses Found', req.requestEmail);
-				return res.status(200).json({
+				return res.status(404).json({
 					course: course,
 					msg: 'Curso não encontrado',
 				});
 			}
 
-			this.logger.info('Courses returned', req.requestEmail);
+			this.logger.info(
+				`Curso retornado com sucesso, ID ${req.params.courseId}`,
+				req.requestEmail
+			);
 
 			return res.status(200).json({
 				course: course,
-				msg: 'Curso Retornado com sucesso',
+				msg: 'Curso retornado com sucesso',
 			});
 		} catch (error) {
+			if (error instanceof AppError) {
+				this.logger.error(error.message, req.requestEmail);
+				res.status(error.statusCode).json({
+					course: undefined,
+					msg: 'Erro ao buscar curso',
+				});
+			}
+			this.logger.error(
+				`Erro ao retornar curso, ID: ${req.params.courseId}`,
+				req.requestEmail
+			);
 			res.status(401).json({
 				course: undefined,
-				msg: 'Error on getCourseById',
+				msg: 'Erro ao buscar curso',
 			});
 		}
 	}
