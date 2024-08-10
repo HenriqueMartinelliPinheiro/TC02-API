@@ -57,4 +57,17 @@ export class RoleRepository implements IRoleRepository {
 			throw error;
 		}
 	}
+
+	async fetchAllRoles(): Promise<Role[] | undefined> {
+		try {
+			const roles = this.prismaClient.role.findMany();
+
+			if ((await roles).length < 1) {
+				return undefined;
+			}
+			return roles;
+		} catch (error) {
+			throw error;
+		}
+	}
 }

@@ -18,7 +18,7 @@ export class EditCourseController {
 	async editCourse(req, res) {
 		try {
 			if (!isValidRequest(req.body, editCourseTypes)) {
-				this.logger.warn('Invalid data on request', req.requestEmail);
+				this.logger.warn('Dados inválidos na requisição', req.requestEmail);
 				return res.status(400).json({
 					course: undefined,
 					msg: 'Dados Inválidos',
@@ -33,7 +33,7 @@ export class EditCourseController {
 
 			const editedCourse = await this.editCourseService.execute(course);
 			if (editedCourse) {
-				this.logger.info(`Course Edited Id:${editedCourse.courseId}`, req.requestEmail);
+				this.logger.info(`Curso editado, Id:${editedCourse.courseId}`, req.requestEmail);
 				return res.status(201).json({
 					course: editedCourse,
 					msg: 'Curso editado com sucesso',

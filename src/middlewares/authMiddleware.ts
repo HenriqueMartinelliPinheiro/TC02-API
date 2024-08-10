@@ -23,6 +23,7 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
 
 		const { isValid, userEmail } = await validateAccessToken(accessToken);
 		if (isValid && userEmail) {
+			logger.info('Requisição Aceita', userEmail);
 			req.requestEmail = userEmail;
 			return next();
 		} else {

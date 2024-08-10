@@ -39,14 +39,14 @@ export class LoginUserController {
 			);
 
 			if (!user) {
-				this.logger.warn('Incorrect Email/Password');
+				this.logger.warn('Usuário ou senha incorretas');
 				return res.status(401).json({
 					user: undefined,
 					msg: 'Email ou senha incorretos',
 				});
 			}
 
-			this.logger.info(`User Logged`, req.body.userEmail);
+			this.logger.info(`Usuário logado`, req.body.userEmail);
 			res.cookie('token', user.getAccessToken(), {
 				httpOnly: true,
 				secure: true,

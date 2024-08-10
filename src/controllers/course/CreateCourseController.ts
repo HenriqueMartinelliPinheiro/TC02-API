@@ -18,7 +18,7 @@ export class CreateCourseController {
 	async createCourse(req, res) {
 		try {
 			if (!isValidRequest(req.body, createCourseTypes)) {
-				this.logger.warn('Invalid data on request', req.requestEmail);
+				this.logger.warn('Dados inválidos na requisição', req.requestEmail);
 				return res.status(400).json({
 					course: undefined,
 					msg: 'Dados Inválidos',
@@ -32,7 +32,7 @@ export class CreateCourseController {
 
 			const createdCourse = await this.createCourseService.execute(course);
 			if (createdCourse) {
-				this.logger.info(`Course Created Id:${createdCourse.courseId}`, req.requestEmail);
+				this.logger.info(`Curso criado Id:${createdCourse.courseId}`, req.requestEmail);
 				return res.status(201).json({
 					course: createdCourse,
 					msg: 'Curso criado com sucesso',
@@ -46,7 +46,11 @@ export class CreateCourseController {
 					msg: error.message,
 				});
 			}
-			this.logger.error(`Erro ao criar curso, ID: ${req.body.courseId}`, req.requestEmail, error);
+			this.logger.error(
+				`Erro ao criar curso, ID: ${req.body.courseId}`,
+				req.requestEmail,
+				error
+			);
 			return res.status(500).json({
 				course: undefined,
 				msg: 'Erro ao criar curso',

@@ -7,6 +7,7 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { courseRouter } from './routes/courseRoutes';
 import cookieParser from 'cookie-parser';
+import { roleRouter } from './routes/roleRoute';
 
 const app: Express = express();
 
@@ -25,7 +26,7 @@ app.use(
 			}
 		},
 		allowedHeaders: ['Content-Type'],
-		credentials: true, // necessário para permitir cookies
+		credentials: true,
 	})
 );
 
@@ -36,6 +37,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use('/', eventRouter);
 app.use('/', userRouter);
 app.use('/', courseRouter);
+app.use('/', roleRouter);
 
 app.listen(4000, () => {
 	console.log(`App is listening on port 4000`);

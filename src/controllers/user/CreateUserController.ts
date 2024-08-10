@@ -3,7 +3,6 @@ import { CreateUserService } from '../../services/user/CreateUserService';
 import { isValidPassword } from '../../utils/validations/isValidPassword';
 import { createUserTypes } from '../../@types/user/createUserTypes';
 import { isValidRequest } from '../../utils/validations/isValidRequest';
-import { generateUserErrorResponse } from '../../utils/generateUserErrorResponse';
 import { UserDomain } from '../../domain/UserDomain';
 import { RoleDomain } from '../../domain/RoleDomain';
 import { Logger } from '../../loggers/Logger';
@@ -22,18 +21,21 @@ export class CreateUserController {
 	async createUser(req: Request, res: Response) {
 		if (!isValidRequest(req.body, createUserTypes)) {
 			this.logger.warn(
-				`Invalid Data on create user ${req.body.userEmail}`,
+				`Dados inválidos ao criar usuário ${req.body.userEmail}`,
 				req.requestEmail
 			);
-			return generateUserErrorResponse(res, 'Dados Inválidos', 400);
+			return res.status(400).json({
+				msg: 'Dados inválidos',
+				user: undefined,
+			});
 		}
 
 		if (!isValidPassword(req.body.userPassword)) {
-			this.logger.warn(
-				`Invalid Password on create user ${req.body.userEmail}`,
-				req.requestEmail
-			);
-			return generateUserErrorResponse(res, 'Senha Inválida', 400);
+			this.logger.warn(`Senha inválida ao criar usuário`, req.requestEmail);
+			return res.status(400).json({
+				msg: 'Senha inválida',
+				user: undefined,
+			});
 		}
 
 		try {

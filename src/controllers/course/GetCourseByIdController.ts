@@ -18,7 +18,7 @@ export class GetCourseByIdController {
 	async getCourseById(req, res) {
 		try {
 			if (!isValidRequest(req.params, getCourseByIdTypes)) {
-				this.logger.warn('Invalid Data on request', req.requestEmail);
+				this.logger.warn('Dados inválidos na requisição', req.requestEmail);
 				return res.status(400).json({
 					course: undefined,
 					msg: 'Erro na requisição',
@@ -28,7 +28,7 @@ export class GetCourseByIdController {
 			const course = await this.getCourseByIdService.execute(req.params.courseId);
 
 			if (!course) {
-				this.logger.info('No Courses Found', req.requestEmail);
+				this.logger.info('Sem cursos encontrados', req.requestEmail);
 				return res.status(404).json({
 					course: course,
 					msg: 'Curso não encontrado',
