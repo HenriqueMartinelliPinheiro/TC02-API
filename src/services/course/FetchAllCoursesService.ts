@@ -8,11 +8,19 @@ export class FetchAllCoursesService {
 		this.courseRepository = repository;
 	}
 
-	execute = async (): Promise<Course[] | undefined> => {
+	execute = async (
+		skip: number,
+		take: number,
+		searchTerm
+	): Promise<{ courses: Course[] | undefined; total: number }> => {
 		try {
-			const courses = await this.courseRepository.fetchAllCourses();
+			const { courses, total } = await this.courseRepository.fetchAllCourses(
+				skip,
+				take,
+				searchTerm
+			);
 
-			return courses;
+			return { courses, total };
 		} catch (error) {
 			throw error;
 		}

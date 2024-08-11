@@ -1,6 +1,6 @@
 import { CourseDomain } from '../../domain/CourseDomain';
 import { ICourseRepository } from '../interfaces/ICourseRepository';
-import { Course, PrismaClient } from '@prisma/client';
+import { Course, Prisma, PrismaClient } from '@prisma/client';
 
 export class CourseRepository implements ICourseRepository {
 	private prismaClient: PrismaClient;
@@ -24,15 +24,46 @@ export class CourseRepository implements ICourseRepository {
 		}
 	};
 
-	fetchAllCourses = async (): Promise<Course[] | undefined> => {
+	fetchAllCourses = async (
+		skip: number,
+		take: number,
+		searchTerm: string
+	): Promise<{ courses: Course[] | undefined; total: number }> => {
 		try {
-			const courses = await this.prismaClient.course.findMany();
+			const whereClause: Prisma.CourseWhereInput = searchTerm
+				? {
+						OR: [
+							{
+								courseName: {
+									contains: searchTerm,
+									mode: Prisma.QueryMode.insensitive,
+								},
+							},
+							{
+								courseCoordinatorEmail: {
+									contains: searchTerm,
+									mode: Prisma.QueryMode.insensitive,
+								},
+							},
+						],
+				  }
+				: {};
 
-			if (courses.length === 0) {
-				return undefined;
-			}
+			const [courses, total] = await Promise.all([
+				this.prismaClient.course.findMany({
+					skip: skip,
+					take: take,
+					where: whereClause,
+					orderBy: {
+						courseName: 'asc',
+					},
+				}),
+				this.prismaClient.course.count({
+					where: whereClause,
+				}),
+			]);
 
-			return courses;
+			return { courses, total };
 		} catch (error) {
 			throw error;
 		}

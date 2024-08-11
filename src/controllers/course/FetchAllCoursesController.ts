@@ -14,9 +14,17 @@ export class FetchAllCoursesController {
 	}
 	async fetchAllCourses(req, res) {
 		try {
-			const courses = await this.fetchAllCoursesService.execute();
+			const { skip = 0, take = 0, searchTerm = '' } = req.query;
+
+			const { courses, total } = await this.fetchAllCoursesService.execute(
+				Number(skip),
+				Number(take),
+				searchTerm,
+			);
+
 			this.logger.info('Cursos retornados', req.requestEmail);
 			return res.status(201).json({
+				total: total,
 				courses: courses,
 				msg: 'Cursos Retornados com Sucesso',
 			});
@@ -24,6 +32,7 @@ export class FetchAllCoursesController {
 			if (error instanceof AppError) {
 				this.logger.error(error.message, req.requestEmail, error);
 				return res.status(error.statusCode).json({
+					total: 0,
 					courses: null,
 					msg: error.message,
 				});
@@ -31,6 +40,7 @@ export class FetchAllCoursesController {
 			this.logger.error('Erro ao Buscar Cursos', req.requestEmail, error);
 			return res.status(500).json({
 				courses: null,
+				total: 0,
 				msg: 'Erro ao Buscar Cursos',
 			});
 		}
