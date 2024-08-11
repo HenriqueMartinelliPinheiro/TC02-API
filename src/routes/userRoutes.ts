@@ -9,6 +9,8 @@ import { LoginUserController } from '../controllers/user/LoginUserController';
 import { authMiddleware } from '../middlewares/authMiddleware';
 import { roleMiddleware } from '../middlewares/roleMiddleware';
 import { userRoles } from '../config/roles/user/userRoles';
+import { FetchAllUsersService } from '../services/user/FetchAllUsersService';
+import { FetchAllUsersController } from '../controllers/user/FetchAllUsersController';
 
 export const userRouter = Router();
 
@@ -24,6 +26,9 @@ const createUserController = new CreateUserController(createUserService);
 const loginUserService = new LoginUserService(userRepository);
 const loginUserController = new LoginUserController(loginUserService);
 
+const fetchUsersService = new FetchAllUsersService(userRepository);
+const fetchUserController = new FetchAllUsersController(fetchUsersService);
+
 userRouter.post(
 	'/createUser',
 	authMiddleware,
@@ -32,3 +37,10 @@ userRouter.post(
 );
 
 userRouter.post('/loginUser', loginUserController.loginUser);
+
+userRouter.get(
+	'/fetchAllUsers',
+	authMiddleware,
+	roleMiddleware(userRoles.FETCH_ALL_USERS_ROLES),
+	fetchUserController.fetchAllUsers
+);

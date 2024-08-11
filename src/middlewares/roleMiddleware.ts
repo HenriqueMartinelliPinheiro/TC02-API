@@ -22,15 +22,15 @@ export const roleMiddleware = (requiredRoles: string[]) => {
 				});
 
 				if (!user || !user.role || !requiredRoles.includes(user.role.roleTitle)) {
-					logger.warn('Unauthorized access', req.body.userId);
+					logger.warn('Acesso não autorizado', req.body.userId);
 					return res.status(401).json({
 						msg: 'Não autorizado',
 					});
 				}
-
+				logger.info('Usuário autorizado', req.requestEmail);
 				return next();
 			} else {
-				logger.warn('User Email on null in request');
+				logger.warn('UserEmail ausente na requisição');
 				return res.status(400).json({
 					msg: 'UserEmail ausente na requisição',
 				});

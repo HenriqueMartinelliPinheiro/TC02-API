@@ -1,5 +1,5 @@
 import { IUserRepository } from '../interfaces/IUserRepository';
-import { PrismaClient } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 import { UserDomain } from '../../domain/UserDomain';
 import { RoleDomain } from '../../domain/RoleDomain';
 import { AppError } from '../../utils/errors/AppError';
@@ -133,6 +133,70 @@ export class UserRepository implements IUserRepository {
 				});
 			}
 			return undefined;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	fetchAllUsers = async (
+		skip: number,
+		take: number,
+		searchTerm: string
+	): Promise<{ users: UserDomain[]; total: number }> => {
+		try {
+			const whereClause: Prisma.UserWhereInput = searchTerm
+				? {
+						OR: [
+							{
+								userName: {
+									contains: searchTerm,
+									mode: Prisma.QueryMode.insensitive,
+								},
+							},
+							{
+								userEmail: {
+									contains: searchTerm,
+									mode: Prisma.QueryMode.insensitive,
+								},
+							},
+						],
+				  }
+				: {};
+
+			const [users, total] = await Promise.all([
+				this.prismaClient.user.findMany({
+					skip: skip,
+					take: take,
+					where: whereClause,
+					orderBy: {
+						userName: 'asc',
+					},
+					include: {
+						role: true,
+					},
+				}),
+				this.prismaClient.user.count({
+					where: whereClause,
+				}),
+			]);
+
+			const userDomains = users.map(
+				(user) =>
+					new UserDomain({
+						userId: user.userId,
+						userName: user.userName,
+						userEmail: user.userEmail,
+						systemStatus: user.systemStatus,
+						createdAt: user.createdAt,
+						updatedAt: user.updatedAt,
+						role: new RoleDomain({
+							roleId: user.role.roleId,
+							roleTitle: user.role.roleTitle,
+						}),
+					})
+			);
+
+			return { users: userDomains, total };
 		} catch (error) {
 			throw error;
 		}
