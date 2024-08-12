@@ -1139,3 +1139,52 @@ Sun Aug 11 2024 14:53:08 GMT-0300 (Brasilia Standard Time): INFO - Requisição 
 Sun Aug 11 2024 14:53:08 GMT-0300 (Brasilia Standard Time): INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
 Sun Aug 11 2024 14:53:12 GMT-0300 (Brasilia Standard Time): INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
 Sun Aug 11 2024 14:53:12 GMT-0300 (Brasilia Standard Time): INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 18:48:32 GMT-0300 (Brasilia Standard Time): INFO - Usuário logado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 18:48:34 GMT-0300 (Brasilia Standard Time): INFO - Usuário logado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 18:49:20 GMT-0300 (Brasilia Standard Time): INFO - Usuário logado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 18:51:48 GMT-0300 (Brasilia Standard Time): INFO - Usuário logado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 18:51:49 GMT-0300 (Brasilia Standard Time): ERROR - Usuário ou senha incorretos em LoginUserController por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 18:52:02 GMT-0300 (Brasilia Standard Time): ERROR - Usuário ou senha incorretos em LoginUserController por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 18:52:07 GMT-0300 (Brasilia Standard Time): INFO - Usuário logado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 18:53:02 GMT-0300 (Brasilia Standard Time): INFO - Usuário logado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 18:53:12 GMT-0300 (Brasilia Standard Time): INFO - Usuário logado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:00:36 GMT-0300 (Brasilia Standard Time): INFO - Usuário logado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:00:55 GMT-0300 (Brasilia Standard Time): INFO - Usuário logado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:16:21 GMT-0300 (Brasilia Standard Time): INFO - Usuário logado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:16:37 GMT-0300 (Brasilia Standard Time): INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:16:37 GMT-0300 (Brasilia Standard Time): INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:16:37 GMT-0300 (Brasilia Standard Time): INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:16:37 GMT-0300 (Brasilia Standard Time): INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:21:23 GMT-0300 (Brasilia Standard Time): INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:21:23 GMT-0300 (Brasilia Standard Time): INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:21:23 GMT-0300 (Brasilia Standard Time): INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:21:23 GMT-0300 (Brasilia Standard Time): INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:21:36 GMT-0300 (Brasilia Standard Time): INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:21:36 GMT-0300 (Brasilia Standard Time): INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:21:37 GMT-0300 (Brasilia Standard Time): ERROR - O email henriquepinheiro18@gmail.com já está registrado. em CreateUserController por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:21:42 GMT-0300 (Brasilia Standard Time): INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:21:42 GMT-0300 (Brasilia Standard Time): INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:21:42 GMT-0300 (Brasilia Standard Time): INFO - User Id 66 created por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:22:00 GMT-0300 (Brasilia Standard Time): INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:22:00 GMT-0300 (Brasilia Standard Time): INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:22:08 GMT-0300 (Brasilia Standard Time): INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:22:08 GMT-0300 (Brasilia Standard Time): INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:22:08 GMT-0300 (Brasilia Standard Time): INFO - Usuários retornados por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:22:08 GMT-0300 (Brasilia Standard Time): INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:22:08 GMT-0300 (Brasilia Standard Time): INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:22:08 GMT-0300 (Brasilia Standard Time): INFO - Usuários retornados por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:22:11 GMT-0300 (Brasilia Standard Time): INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:22:11 GMT-0300 (Brasilia Standard Time): INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:22:11 GMT-0300 (Brasilia Standard Time): INFO - Usuários retornados por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:22:11 GMT-0300 (Brasilia Standard Time): INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:22:11 GMT-0300 (Brasilia Standard Time): INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:22:11 GMT-0300 (Brasilia Standard Time): INFO - Usuários retornados por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:22:11 GMT-0300 (Brasilia Standard Time): INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:22:11 GMT-0300 (Brasilia Standard Time): INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:22:11 GMT-0300 (Brasilia Standard Time): INFO - Usuários retornados por User: henriquepinheiro18@gmail.com
+Mon Aug 12 2024 19:22:22 GMT-0300 (Brasilia Standard Time): INFO - Usuário logado por User: org@gmail.com
+Mon Aug 12 2024 19:22:45 GMT-0300 (Brasilia Standard Time): INFO - Usuário logado por User: org@gmail.com
+Mon Aug 12 2024 19:23:18 GMT-0300 (Brasilia Standard Time): INFO - Usuário logado por User: org@gmail.com
+Mon Aug 12 2024 19:25:04 GMT-0300 (Brasilia Standard Time): INFO - Usuário logado por User: org@gmail.com
+Mon Aug 12 2024 19:26:39 GMT-0300 (Brasilia Standard Time): WARN - Invalid Password on Login by user email: org@gmail.com em LoginUserController por User: undefined
+Mon Aug 12 2024 19:26:51 GMT-0300 (Brasilia Standard Time): INFO - Usuário logado por User: org@gmail.com
