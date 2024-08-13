@@ -8,6 +8,7 @@ import { CourseDomain } from '../../../domain/CourseDomain';
 import { ICourseRepository } from '../../../repository/interfaces/ICourseRepository';
 import { PrismaClient } from '@prisma/client';
 import { CourseRepository } from '../../../repository/implementation/CourseRepository';
+import { AppError } from '../../../utils/errors/AppError';
 
 vi.mock('../../../utils/validations/isValidRequest');
 vi.mock('../../../loggers/Logger', () => {
@@ -92,10 +93,26 @@ describe('CreateCourseController', () => {
 		});
 	});
 
-	it('should return 400 if there is an error during course creation', async () => {
+	it('should return 500 if there is an unexpected error during course creation', async () => {
 		(isValidRequest as any).mockReturnValue(true);
 
-		const error = new Error('Erro ao criar curso');
+		const error = new Error('Unexpected error');
+		(createCourseService.execute as any).mockRejectedValue(error);
+
+		await createCourseController.createCourse(req as Request, res as Response);
+
+		expect(createCourseService.execute).toHaveBeenCalledWith(expect.any(CourseDomain));
+		expect(res.status).toHaveBeenCalledWith(500);
+		expect(res.json).toHaveBeenCalledWith({
+			course: undefined,
+			msg: 'Erro ao criar curso',
+		});
+	});
+
+	it('should return the appropriate status code and message if an AppError is thrown', async () => {
+		(isValidRequest as any).mockReturnValue(true);
+
+		const error = new AppError('Erro específico', 400);
 		(createCourseService.execute as any).mockRejectedValue(error);
 
 		await createCourseController.createCourse(req as Request, res as Response);
@@ -104,7 +121,7 @@ describe('CreateCourseController', () => {
 		expect(res.status).toHaveBeenCalledWith(400);
 		expect(res.json).toHaveBeenCalledWith({
 			course: undefined,
-			msg: 'Erro ao criar curso',
+			msg: 'Erro específico',
 		});
 	});
 });

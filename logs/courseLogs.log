@@ -1212,3 +1212,5 @@ Sun Aug 11 2024 14:52:39 GMT-0300 (Brasilia Standard Time): INFO - Curso criado 
 Sun Aug 11 2024 14:52:55 GMT-0300 (Brasilia Standard Time): INFO - Curso criado Id:77 por User: henriquepinheiro18@gmail.com
 Sun Aug 11 2024 14:53:08 GMT-0300 (Brasilia Standard Time): WARN - Dados inválidos na requisição em CreateCourseController por User: henriquepinheiro18@gmail.com
 Sun Aug 11 2024 14:53:12 GMT-0300 (Brasilia Standard Time): WARN - Dados inválidos na requisição em CreateCourseController por User: henriquepinheiro18@gmail.com
+Tue Aug 13 2024 08:09:51 GMT-0300 (Brasilia Standard Time): INFO - Cursos retornados por User: org@gmail.com
+Tue Aug 13 2024 08:09:51 GMT-0300 (Brasilia Standard Time): INFO - Cursos retornados por User: org@gmail.com

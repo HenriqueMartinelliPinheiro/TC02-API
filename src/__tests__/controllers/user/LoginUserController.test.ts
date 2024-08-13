@@ -12,7 +12,6 @@ import { IUserRepository } from '../../../repository/interfaces/IUserRepository'
 import { UserRepository } from '../../../repository/implementation/UserRepository';
 import { LoginUserController } from '../../../controllers/user/LoginUserController';
 
-// Mock das funções e classes necessárias
 vi.mock('../../../utils/validations/isValidPassword');
 vi.mock('../../../utils/validations/isValidRequest');
 vi.mock('../../../utils/generateUserErrorResponse', () => {
@@ -41,12 +40,11 @@ describe('LoginUserController', () => {
 	let prismaClient: PrismaClient;
 
 	beforeEach(() => {
-		// Mocks do repositório e logger
 		prismaClient = new PrismaClient();
 		userRepository = new UserRepository(prismaClient);
 
 		loginUserService = new LoginUserService(userRepository);
-		loginUserService.execute = vi.fn(); // Mock do método execute
+		loginUserService.execute = vi.fn();
 
 		loginUserController = new LoginUserController(loginUserService);
 
@@ -54,7 +52,6 @@ describe('LoginUserController', () => {
 			body: {
 				userEmail: 'test@example.com',
 				userPassword: 'Password123',
-				requestUserEmail: 'test@example.com',
 			},
 		};
 
@@ -84,7 +81,7 @@ describe('LoginUserController', () => {
 		expect(isValidPassword).toHaveBeenCalledWith(req.body.userPassword);
 		expect(generateUserErrorResponse).toHaveBeenCalledWith(res, 'Senha Inválida', 400);
 	});
-	
+
 	it('should return 401 if email or password is incorrect', async () => {
 		(isValidRequest as any).mockReturnValue(true);
 		(isValidPassword as any).mockReturnValue(true);
@@ -119,6 +116,11 @@ describe('LoginUserController', () => {
 
 		expect(loginUserService.execute).toHaveBeenCalledWith(expect.any(UserDomain));
 		expect(res.status).toHaveBeenCalledWith(201);
+		expect(res.cookie).toHaveBeenCalledWith('token', 'access-token', {
+			httpOnly: true,
+			secure: true,
+			sameSite: 'strict',
+		});
 		expect(res.json).toHaveBeenCalledWith({
 			user,
 			msg: 'Usuário logado com sucesso',
@@ -137,10 +139,10 @@ describe('LoginUserController', () => {
 		await loginUserController.loginUser(req as Request, res as Response);
 
 		expect(loginUserService.execute).toHaveBeenCalledWith(expect.any(UserDomain));
-		expect(generateUserErrorResponse).toHaveBeenCalledWith(
-			res,
-			'Erro interno do servidor',
-			500
-		);
+		expect(res.status).toHaveBeenCalledWith(500);
+		expect(res.json).toHaveBeenCalledWith({
+			user: undefined,
+			msg: 'Erro desconhecido ao fazer login',
+		});
 	});
 });
