@@ -3,6 +3,7 @@ import { ICourseRepository } from '../../../repository/interfaces/ICourseReposit
 import { CourseDomain } from '../../../domain/CourseDomain';
 import { CreateCourseService } from '../../../services/course/CreateCourseService';
 import { Course } from '@prisma/client';
+import { AppError } from '../../../utils/errors/AppError';
 
 describe('CreateCourseService', () => {
 	let createCourseService: CreateCourseService;
@@ -36,7 +37,7 @@ describe('CreateCourseService', () => {
 		expect(result).toEqual(createdCourse);
 	});
 
-	it('should throw an error if course creation fails', async () => {
+	it('should throw an AppError if course creation fails', async () => {
 		const course = new CourseDomain({
 			courseName: 'Test Course',
 			courseCoordinatorEmail: 'coordinator@example.com',
@@ -45,7 +46,7 @@ describe('CreateCourseService', () => {
 		(courseRepository.createCourse as any).mockResolvedValue(null);
 
 		await expect(createCourseService.execute(course)).rejects.toThrow(
-			'Error on creating Course'
+			`Erro ao criar Curso, ID: ${course.getCourseId()}`
 		);
 		expect(courseRepository.createCourse).toHaveBeenCalledWith(course);
 	});

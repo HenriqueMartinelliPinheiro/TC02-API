@@ -12,6 +12,7 @@ import { PrismaClient } from '@prisma/client';
 import { IRoleRepository } from '../../../repository/interfaces/IRoleRepository';
 import { IUserRepository } from '../../../repository/interfaces/IUserRepository';
 import { CreateUserController } from '../../../controllers/user/CreateUserController';
+import { Logger } from '../../../loggers/Logger';
 
 vi.mock('../../../utils/validations/isValidPassword');
 vi.mock('../../../utils/validations/isValidRequest');
@@ -41,6 +42,7 @@ describe('CreateUserController', () => {
 	let userRepository: IUserRepository;
 	let prismaClient: PrismaClient;
 	let roleRepository: IRoleRepository;
+	let logger: Logger;
 
 	beforeEach(() => {
 		vi.clearAllMocks();
@@ -61,7 +63,7 @@ describe('CreateUserController', () => {
 				userPassword: 'Password123',
 				roleId: 1,
 				roleTitle: 'Admin',
-				requestUserId: '1',
+				requestUserEmail: 'teste@gmail.com',
 			},
 		};
 
@@ -77,7 +79,11 @@ describe('CreateUserController', () => {
 		await createUserController.createUser(req as Request, res as Response);
 
 		expect(isValidRequest).toHaveBeenCalledWith(req.body, createUserTypes);
-		expect(generateUserErrorResponse).toHaveBeenCalledWith(res, 'Dados Inválidos', 400);
+		expect(res.status).toHaveBeenCalledWith(400);
+		expect(res.json).toHaveBeenCalledWith({
+			msg: 'Dados inválidos',
+			user: undefined,
+		});
 	});
 
 	it('should return 400 if password is invalid', async () => {
@@ -87,7 +93,11 @@ describe('CreateUserController', () => {
 		await createUserController.createUser(req as Request, res as Response);
 
 		expect(isValidPassword).toHaveBeenCalledWith(req.body.userPassword);
-		expect(generateUserErrorResponse).toHaveBeenCalledWith(res, 'Senha Inválida', 400);
+		expect(res.status).toHaveBeenCalledWith(400);
+		expect(res.json).toHaveBeenCalledWith({
+			msg: 'Senha inválida',
+			user: undefined,
+		});
 	});
 
 	it('should return 201 if user is created successfully', async () => {
@@ -126,11 +136,10 @@ describe('CreateUserController', () => {
 		await createUserController.createUser(req as Request, res as Response);
 
 		expect(createUserService.execute).toHaveBeenCalledWith(expect.any(UserDomain));
-		expect(generateUserErrorResponse).toHaveBeenCalledTimes(1);
-		expect(generateUserErrorResponse).toHaveBeenCalledWith(
-			res,
-			'Erro ao criar usuário',
-			500
-		);
+		expect(res.status).toHaveBeenCalledWith(500);
+		expect(res.json).toHaveBeenCalledWith({
+			msg: 'Erro ao criar usuário',
+			user: undefined,
+		});
 	});
 });

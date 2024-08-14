@@ -19,7 +19,7 @@ export class FetchAllCoursesController {
 			const { courses, total } = await this.fetchAllCoursesService.execute(
 				Number(skip),
 				Number(take),
-				searchTerm,
+				searchTerm
 			);
 
 			this.logger.info('Cursos retornados', req.requestEmail);

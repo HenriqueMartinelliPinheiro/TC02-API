@@ -9,6 +9,7 @@ import { ICourseRepository } from '../../../repository/interfaces/ICourseReposit
 import { PrismaClient } from '@prisma/client';
 import { CourseRepository } from '../../../repository/implementation/CourseRepository';
 import { AppError } from '../../../utils/errors/AppError';
+import { Logger } from '../../../loggers/Logger';
 
 vi.mock('../../../utils/validations/isValidRequest');
 vi.mock('../../../loggers/Logger', () => {

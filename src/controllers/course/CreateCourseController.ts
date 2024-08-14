@@ -41,7 +41,7 @@ export class CreateCourseController {
 		} catch (error) {
 			if (error instanceof AppError) {
 				this.logger.error(error.message, req.requestEmail);
-				return res.status(error.statusCode, {
+				return res.status(error.statusCode).json({
 					course: undefined,
 					msg: error.message,
 				});

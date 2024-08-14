@@ -47,22 +47,23 @@ describe('EditCourseService', () => {
 		(courseRepository.editCourse as any).mockResolvedValue(null);
 
 		await expect(editCourseService.execute(course)).rejects.toThrow(
-			'Error on edit Course'
+			'Erro ao editar Curso, ID: 123'
 		);
 		expect(courseRepository.editCourse).toHaveBeenCalledWith(course);
 	});
 
-	it('should throw an error if an exception is thrown', async () => {
+	it('should throw an AppError if course editing fails', async () => {
 		const course = new CourseDomain({
+			courseId: 123,
 			courseName: 'Test Course',
 			courseCoordinatorEmail: 'coordinator@example.com',
-			courseId: 123,
 		});
 
-		const error = new Error('Unexpected error');
-		(courseRepository.editCourse as any).mockRejectedValue(error);
+		(courseRepository.editCourse as any).mockResolvedValue(null);
 
-		await expect(editCourseService.execute(course)).rejects.toThrow(error);
+		await expect(editCourseService.execute(course)).rejects.toThrow(
+			'Erro ao editar Curso, ID: 123'
+		);
 		expect(courseRepository.editCourse).toHaveBeenCalledWith(course);
 	});
 });

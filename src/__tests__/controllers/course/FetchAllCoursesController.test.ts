@@ -37,13 +37,18 @@ describe('FetchAllCoursesController', () => {
 		fetchAllCoursesController = new FetchAllCoursesController(fetchAllCoursesService);
 
 		req = {
+			query: {
+				skip: '0',
+				take: '10',
+				searchTerm: '',
+			},
 			requestEmail: 'requester@example.com',
 		};
 
 		res = {
 			status: vi.fn().mockReturnThis(),
 			json: vi.fn().mockReturnThis(),
-		};
+		} as unknown as Response;
 	});
 
 	it('should return 201 if courses are fetched successfully', async () => {
@@ -60,13 +65,16 @@ describe('FetchAllCoursesController', () => {
 			},
 		];
 
-		(fetchAllCoursesService.execute as any).mockResolvedValue(courses);
+		const total = courses.length;
+
+		(fetchAllCoursesService.execute as any).mockResolvedValue({ courses, total });
 
 		await fetchAllCoursesController.fetchAllCourses(req as Request, res as Response);
 
-		expect(fetchAllCoursesService.execute).toHaveBeenCalled();
+		expect(fetchAllCoursesService.execute).toHaveBeenCalledWith(0, 10, '');
 		expect(res.status).toHaveBeenCalledWith(201);
 		expect(res.json).toHaveBeenCalledWith({
+			total: total,
 			courses: courses,
 			msg: 'Cursos Retornados com Sucesso',
 		});
@@ -78,9 +86,10 @@ describe('FetchAllCoursesController', () => {
 
 		await fetchAllCoursesController.fetchAllCourses(req as Request, res as Response);
 
-		expect(fetchAllCoursesService.execute).toHaveBeenCalled();
+		expect(fetchAllCoursesService.execute).toHaveBeenCalledWith(0, 10, '');
 		expect(res.status).toHaveBeenCalledWith(500);
 		expect(res.json).toHaveBeenCalledWith({
+			total: 0,
 			courses: null,
 			msg: 'Erro ao Buscar Cursos',
 		});

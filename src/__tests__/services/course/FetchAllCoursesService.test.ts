@@ -29,28 +29,33 @@ describe('FetchAllCoursesService', () => {
 			},
 		] as Course[];
 
-		(courseRepository.fetchAllCourses as any).mockResolvedValue(courses);
+		const total = courses.length;
 
-		const result = await fetchAllCoursesService.execute();
+		(courseRepository.fetchAllCourses as any).mockResolvedValue({ courses, total });
 
-		expect(courseRepository.fetchAllCourses).toHaveBeenCalled();
-		expect(result).toEqual(courses);
+		const result = await fetchAllCoursesService.execute(0, 10, '');
+
+		expect(courseRepository.fetchAllCourses).toHaveBeenCalledWith(0, 10, '');
+		expect(result).toEqual({ courses, total });
 	});
 
-	it('should return undefined if no courses are found', async () => {
-		(courseRepository.fetchAllCourses as any).mockResolvedValue(undefined);
+	it('should return empty courses array and zero total if no courses are found', async () => {
+		(courseRepository.fetchAllCourses as any).mockResolvedValue({
+			courses: [],
+			total: 0,
+		});
 
-		const result = await fetchAllCoursesService.execute();
+		const result = await fetchAllCoursesService.execute(0, 10, '');
 
-		expect(courseRepository.fetchAllCourses).toHaveBeenCalled();
-		expect(result).toBeUndefined();
+		expect(courseRepository.fetchAllCourses).toHaveBeenCalledWith(0, 10, '');
+		expect(result).toEqual({ courses: [], total: 0 });
 	});
 
 	it('should throw an error if an exception is thrown', async () => {
 		const error = new Error('Unexpected error');
 		(courseRepository.fetchAllCourses as any).mockRejectedValue(error);
 
-		await expect(fetchAllCoursesService.execute()).rejects.toThrow(error);
-		expect(courseRepository.fetchAllCourses).toHaveBeenCalled();
+		await expect(fetchAllCoursesService.execute(0, 10, '')).rejects.toThrow(error);
+		expect(courseRepository.fetchAllCourses).toHaveBeenCalledWith(0, 10, '');
 	});
 });
