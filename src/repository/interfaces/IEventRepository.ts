@@ -1,6 +1,6 @@
-import { EventDomain } from "../../domain/EventDomain";
+import { Event } from '@prisma/client';
+import { EventDomain } from '../../domain/EventDomain';
 
 export interface IEventRepository {
-    createEvent(event: EventDomain): Promise<EventDomain|undefined>;
-    getAllEvents() : Promise<EventDomain[]|undefined>;
+	createEvent(event: EventDomain): Promise<Event>;
 }

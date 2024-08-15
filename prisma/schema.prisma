@@ -7,100 +7,109 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  userId Int @id @default(autoincrement())
-  userName String
-  userEmail String @unique  
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  systemStatus Boolean @default(true)
-  roleId Int
-  role Role @relation(fields: [roleId], references: [roleId])
-  login Login?
+enum EventStatus {
+  NAO_INICIADO @map("Não Iniciado")
+  EM_ANDAMENTO @map("Em Andamento")
+  ENCERRADO    @map("Encerrado")
+  CANCELADO    @map("Cancelado")
 }
 
-model Login{
-  userLoginId Int @id @default(autoincrement())
-  userEmail String @unique
-  userPassword String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  accessToken String?
+model User {
+  userId       Int      @id @default(autoincrement())
+  userName     String
+  userEmail    String   @unique
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  systemStatus Boolean  @default(true)
+  roleId       Int
+  role         Role     @relation(fields: [roleId], references: [roleId])
+  login        Login?
+}
+
+model Login {
+  userLoginId           Int       @id @default(autoincrement())
+  userEmail             String    @unique
+  userPassword          String
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  accessToken           String?
   accessTokenExpiration DateTime?
-  userId Int @unique
-  user User @relation(fields: [userId], references: [userId])
+  userId                Int       @unique
+  user                  User      @relation(fields: [userId], references: [userId])
 }
 
-model Role{
-  roleId Int @id @default(autoincrement())
-  roleTitle String @unique
-  users User[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  systemStatus Boolean @default(true)
+model Role {
+  roleId       Int      @id @default(autoincrement())
+  roleTitle    String   @unique
+  users        User[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  systemStatus Boolean  @default(true)
 }
 
 model Event {
-  eventId Int @id @default(autoincrement())
-  title String @db.VarChar(255)
-  eventStatus String @db.VarChar(25)
+  eventId        Int             @id @default(autoincrement())
+  eventTitle     String          @db.VarChar(255)
+  eventStatus    EventStatus
   eventStartDate DateTime
-  eventEndDate DateTime
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  eventLocation EventLocation?
-  eventPeriods EventPeriod[]
-  eventCourses EventCourse[]
-  courses Course[] @relation("EventCourses")
+  eventEndDate   DateTime
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  eventLocation  EventLocation?
+  eventActivity  EventActivity[]
+  eventCourses   EventCourse[]
+  courses        Course[]        @relation("EventCourses")
 }
 
-model EventLocation{
-  eventLocationId Int @id @default(autoincrement())
-  latitude Float
-  longitude Float
-  radius Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  event Event @relation(fields: [eventId], references: [eventId]) 
-  eventId Int @unique
+model EventLocation {
+  eventLocationId Int      @id @default(autoincrement())
+  latitude        Float
+  longitude       Float
+  radius          Int
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  event           Event    @relation(fields: [eventId], references: [eventId])
+  eventId         Int      @unique
 }
 
-model EventPeriod {
-  eventPeriodId Int @id @default(autoincrement())
-  periodStartDate DateTime
-  periodEndDate DateTime
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  event Event @relation(fields: [eventId], references: [eventId]) 
-  eventId Int
-  Attendaces Attendance[]
+model EventActivity {
+  eventActivityId          Int          @id @default(autoincrement())
+  eventActivityStartDate   DateTime
+  eventActivityEndDate     DateTime
+  eventActivityDescription String
+  createdAt                DateTime     @default(now())
+  updatedAt                DateTime     @updatedAt
+  event                    Event        @relation(fields: [eventId], references: [eventId])
+  eventId                  Int
+  Attendaces               Attendance[]
 }
 
 model Course {
-  courseId Int @id @default(autoincrement())
-  courseName String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  courseId               Int           @id @default(autoincrement())
+  courseName             String
+  createdAt              DateTime      @default(now())
+  updatedAt              DateTime      @updatedAt
   courseCoordinatorEmail String
-  events Event[] @relation("EventCourses")
-  EventCourse EventCourse[]
+  events                 Event[]       @relation("EventCourses")
+  EventCourse            EventCourse[]
 }
 
 model EventCourse {
-  eventId Int
+  eventId  Int
   courseId Int
-  event Event @relation(fields: [eventId], references: [eventId])
-  course Course @relation(fields: [courseId], references: [courseId])
+  event    Event  @relation(fields: [eventId], references: [eventId])
+  course   Course @relation(fields: [courseId], references: [courseId])
+
   @@id([eventId, courseId])
 }
 
 model Attendance {
-  AttendanceId Int @id @default(autoincrement())
-  studentName String
+  AttendanceId        Int           @id @default(autoincrement())
+  studentName         String
   studentRegistration String
-  eventPeriod EventPeriod @relation(fields: [eventPeriodId], references: [eventPeriodId])
-  eventPeriodId Int
-  studentEntryYear Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  eventActivity       EventActivity @relation(fields: [eventActivityId], references: [eventActivityId])
+  eventActivityId     Int
+  studentEntryYear    Int
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
 }

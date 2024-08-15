@@ -1,54 +1,41 @@
-import { IEventRepository } from "../interfaces/IEventRepository";
-import { PrismaClient } from "@prisma/client";
-import { EventDomain } from "../../domain/EventDomain";
+import { IEventRepository } from '../interfaces/IEventRepository';
+import { Event, EventStatus, PrismaClient } from '@prisma/client';
+import { EventDomain } from '../../domain/EventDomain';
 
 export class EventRepository implements IEventRepository {
-    private prismaClient: PrismaClient;
-    
-    constructor(prismaClient : PrismaClient){
-        this.prismaClient = prismaClient; 
-    }
+	private prismaClient: PrismaClient;
 
-    createEvent = async (event : EventDomain) : Promise<EventDomain | undefined> => {
-        try {
-            const createdEvent = await this.prismaClient.event.create({
-                data: {
-                    title: event.getTitle(),
-                    eventStatus: event.getEventStatus(),
-                    eventStartDate: event.getEventStartDate(),
-                    eventEndDate: event.getEventEndDate()
-                }
-            });
-            
-            return new EventDomain({
-                eventId: createdEvent.eventId,
-                title: createdEvent.title,
-                eventStatus: createdEvent.eventStatus,
-                eventStartDate: createdEvent.eventStartDate,
-                eventEndDate: createdEvent.eventEndDate,
-            });
+	constructor(prismaClient: PrismaClient) {
+		this.prismaClient = prismaClient;
+	}
 
-        } catch (error) {
-            return undefined;
-        }
-    }
+	createEvent = async (event: EventDomain): Promise<Event | undefined> => {
+		try {
+			const result = await this.prismaClient.$transaction(async (prismaClient) => {
+				const createdEvent = await this.prismaClient.event.create({
+					data: {
+						eventTitle: event.getEventTitle(),
+						eventEndDate: event.getEventEndDate(),
+						eventStartDate: event.getEventStartDate(),
+						eventStatus: EventStatus.NAO_INICIADO,
+						eventActivity: {
+							create: event.getEventActivities().map((activity) => ({
+								eventActivityStartDate: activity.getEventActivityStartDate(),
+								eventActivityEndDate: activity.getEventActivityEndDate(),
+								eventActivityDescription: activity.getEventActivityDescription(),
+							})),
+						},
+					},
+					include: {
+						eventActivity: true,
+					},
+				});
+				return createdEvent;
+			});
 
-    getAllEvents = async () : Promise<EventDomain[]|undefined> =>{
-        try {
-            const returnedEvents = await this.prismaClient.event.findMany();
-            const eventList : EventDomain [] = returnedEvents.map((event)=>{
-                return new EventDomain({
-                    eventId: event.eventId,
-                    title: event.title,
-                    eventStatus: event.eventStatus,
-                    eventStartDate: event.eventStartDate,
-                    eventEndDate: event.eventEndDate,
-                });
-           });
-           return eventList;
-        }
-        catch(err) {
-            return undefined;
-        }
-    }
+			return result;
+		} catch (error) {
+			return undefined;
+		}
+	};
 }

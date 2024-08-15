@@ -1,98 +1,128 @@
 import { CourseDomain } from './CourseDomain';
+import { EventLocationDomain } from './EventLocationDomain';
+import { EventActivityDomain } from './EventActivityDomain';
 
 interface EventProps {
-  eventId?: number;
-  title: string;
-  eventStatus: string;
-  eventStartDate: Date;
-  eventEndDate: Date;
-  createdAt?: Date;
-  updatedAt?: Date;
-  courses?: CourseDomain[];
+	eventId?: number;
+	eventTitle: string;
+	eventStatus: string;
+	eventStartDate: Date;
+	eventEndDate: Date;
+	createdAt?: Date;
+	updatedAt?: Date;
+	courses?: CourseDomain[];
+	eventLocation?: EventLocationDomain;
+	eventActivities?: EventActivityDomain[];
 }
 
 export class EventDomain {
-  private eventId?: number;
-  private title: string;
-  private eventStatus: string;
-  private eventStartDate: Date;
-  private eventEndDate: Date;
-  private createdAt: Date;
-  private updatedAt: Date;
-  private courses: CourseDomain[];
+	private eventId?: number;
+	private eventTitle: string;
+	private eventStatus?: string;
+	private eventStartDate: Date;
+	private eventEndDate: Date;
+	private createdAt?: Date;
+	private updatedAt?: Date;
+	private courses: CourseDomain[];
+	private eventLocation?: EventLocationDomain;
+	private eventActivities: EventActivityDomain[];
 
-  constructor(props: EventProps) {
-    this.eventId = props.eventId;
-    this.title = props.title;
-    this.eventStatus = props.eventStatus;
-    this.eventStartDate = props.eventStartDate;
-    this.eventEndDate = props.eventEndDate;
-    this.createdAt = props.createdAt || new Date();
-    this.updatedAt = props.updatedAt || new Date();
-    this.courses = props.courses || [];
-  }
+	constructor(props: EventProps) {
+		this.eventId = props.eventId;
+		this.eventTitle = props.eventTitle;
+		this.eventStatus = props.eventStatus;
+		this.eventStartDate = props.eventStartDate;
+		this.eventEndDate = props.eventEndDate;
+		this.createdAt = props.createdAt || new Date();
+		this.updatedAt = props.updatedAt || new Date();
+		this.courses = props.courses || [];
+		this.eventLocation = props.eventLocation;
+		this.eventActivities = props.eventActivities || [];
+	}
 
-  getEventId() {
-    return this.eventId;
-  }
+	getEventId() {
+		return this.eventId;
+	}
 
-  getTitle() {
-    return this.title;
-  }
+	getEventTitle() {
+		return this.eventTitle;
+	}
 
-  getEventStatus() {
-    return this.eventStatus;
-  }
+	getEventStatus() {
+		return this.eventStatus;
+	}
 
-  getEventStartDate() {
-    return this.eventStartDate;
-  }
+	getEventStartDate() {
+		return this.eventStartDate;
+	}
 
-  getEventEndDate() {
-    return this.eventEndDate;
-  }
+	getEventEndDate() {
+		return this.eventEndDate;
+	}
 
-  getCreatedAt() {
-    return this.createdAt;
-  }
+	getCreatedAt() {
+		return this.createdAt;
+	}
 
-  getUpdatedAt() {
-    return this.updatedAt;
-  }
+	getUpdatedAt() {
+		return this.updatedAt;
+	}
 
-  getCourses() {
-    return this.courses;
-  }
+	getCourses() {
+		return this.courses;
+	}
 
-  setTitle(title: string) {
-    this.title = title;
-  }
+	getEventLocation() {
+		return this.eventLocation;
+	}
 
-  setEventStatus(eventStatus: string) {
-    this.eventStatus = eventStatus;
-  }
+	getEventActivities() {
+		return this.eventActivities;
+	}
 
-  setEventStartDate(eventStartDate: Date) {
-    this.eventStartDate = eventStartDate;
-  }
+	setEventTitle(eventTitle: string) {
+		this.eventTitle = eventTitle;
+	}
 
-  setEventEndDate(eventEndDate: Date) {
-    this.eventEndDate = eventEndDate;
-  }
+	setEventStatus(eventStatus: string) {
+		this.eventStatus = eventStatus;
+	}
 
-  setCreatedAt(createdAt: Date) {
-    this.createdAt = createdAt;
-  }
+	setEventStartDate(eventStartDate: Date) {
+		this.eventStartDate = eventStartDate;
+	}
 
-  setUpdatedAt(updatedAt: Date) {
-    this.updatedAt = updatedAt;
-  }
+	setEventEndDate(eventEndDate: Date) {
+		this.eventEndDate = eventEndDate;
+	}
 
-  addCourse(course: CourseDomain) {
-    this.courses.push(course);
-  }
+	setCreatedAt(createdAt: Date) {
+		this.createdAt = createdAt;
+	}
 
-  removeCourse(courseId: number) {
-    this.courses = this.courses.filter(course => course.getCourseId() !== courseId);
-  }
+	setUpdatedAt(updatedAt: Date) {
+		this.updatedAt = updatedAt;
+	}
+
+	setEventLocation(location: EventLocationDomain) {
+		this.eventLocation = location;
+	}
+
+	addCourse(course: CourseDomain) {
+		this.courses.push(course);
+	}
+
+	removeCourse(courseId: number) {
+		this.courses = this.courses.filter((course) => course.getCourseId() !== courseId);
+	}
+
+	addEventActivity(activity: EventActivityDomain) {
+		this.eventActivities.push(activity);
+	}
+
+	removeEventActivity(activityId: number) {
+		this.eventActivities = this.eventActivities.filter(
+			(activity) => activity.getEventActivityId() !== activityId
+		);
+	}
 }

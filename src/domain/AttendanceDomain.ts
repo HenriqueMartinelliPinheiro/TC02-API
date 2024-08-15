@@ -1,4 +1,4 @@
-import { EventPeriodDomain } from './EventPeriodDomain';
+import { EventPeriodDomain } from './EventActivityDomain';
 
 interface AttendanceProps {
   attendanceId?: number;
