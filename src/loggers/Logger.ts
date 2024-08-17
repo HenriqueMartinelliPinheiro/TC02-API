@@ -15,22 +15,20 @@ export class Logger {
 			: `${msg} em ${this.fileName} por User: ${userEmail}\n`;
 		fs.appendFileSync(
 			this.logPath,
-			`${new Date(Date.now())}: ERROR - ${errorMessage}`,
+			`${new Date().toLocaleString()}: ERROR - ${errorMessage}`,
 			'utf8'
 		);
 	};
 
 	warn = (msg: any, userEmail?: string) => {
-		const warnMessage = `${new Date(Date.now())}: WARN - ${msg} em ${
+		const warnMessage = `${new Date().toLocaleString()}: WARN - ${msg} em ${
 			this.fileName
 		} por User: ${userEmail}\n`;
 		fs.appendFileSync(this.logPath, warnMessage);
 	};
 
 	info = (info: any, userEmail?: string) => {
-		const infoMessage = `${new Date(
-			Date.now()
-		)}: INFO - ${info} por User: ${userEmail}\n`;
+		const infoMessage = `${new Date().toLocaleString()}: INFO - ${info} por User: ${userEmail}\n`;
 		fs.appendFileSync(this.logPath, infoMessage);
 	};
 }

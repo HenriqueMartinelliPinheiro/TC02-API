@@ -1,16 +1,15 @@
-import Joi from "joi";
+import Joi from 'joi';
 
-export const isValidRequest = (objectData: {}, schema : Joi.ObjectSchema): boolean => {
-    try {
-        const { error, value } = schema.validate(objectData);
+export const isValidRequest = (objectData: {}, schema: Joi.ObjectSchema): boolean => {
+	try {
+		const { error, value } = schema.validate(objectData);
 
-        if (error) {
-            return false;
-        }
-    
-        return true;
-    } catch (error) {
-        return false;
-    }
-   
-}
+		if (error) {
+			return false;
+		}
+
+		return true;
+	} catch (error) {
+		return false;
+	}
+};

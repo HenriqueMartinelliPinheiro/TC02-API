@@ -1,8 +1,20 @@
-import Joi from "joi";
+import Joi from 'joi';
 
 export const createEventTypes = Joi.object({
-    title: Joi.string().required(),
-    eventStatus: Joi.number().required(),
-    eventStartDate: Joi.date,
-    eventEndDate: Joi.date,
-})
+	eventTitle: Joi.string().min(2, 'Título muito curto').required(),
+	eventStartDate: Joi.date().required(),
+	eventEndDate: Joi.date().required(),
+	eventActivities: Joi.array()
+		.min(1)
+		.items(
+			Joi.object({
+				eventActivityStartDate: Joi.date().required(),
+				eventActivityEndDate: Joi.date().required(),
+				eventActivityDescription: Joi.string()
+					.min(10, 'Descrição Muito Curta')
+					.required(),
+			})
+		)
+		.required(),
+	courses: Joi.array().min(1).items(Joi.number().required()).required(),
+});

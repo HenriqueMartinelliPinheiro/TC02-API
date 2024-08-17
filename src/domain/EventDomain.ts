@@ -5,7 +5,7 @@ import { EventActivityDomain } from './EventActivityDomain';
 interface EventProps {
 	eventId?: number;
 	eventTitle: string;
-	eventStatus: string;
+	eventStatus?: string;
 	eventStartDate: Date;
 	eventEndDate: Date;
 	createdAt?: Date;

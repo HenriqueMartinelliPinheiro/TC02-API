@@ -57,7 +57,7 @@ model Event {
   updatedAt      DateTime        @updatedAt
   eventLocation  EventLocation?
   eventActivity  EventActivity[]
-  eventCourses   EventCourse[]
+  eventCourse    EventCourse[]
   courses        Course[]        @relation("EventCourses")
 }
 

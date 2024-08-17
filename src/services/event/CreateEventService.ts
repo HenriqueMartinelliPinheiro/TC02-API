@@ -1,22 +1,30 @@
-import { IEventRepository } from "../../repository/interfaces/IEventRepository";
-import { EventDomain } from "../../domain/EventDomain";
+import { IEventRepository } from '../../repository/interfaces/IEventRepository';
+import { EventDomain } from '../../domain/EventDomain';
+import { Event } from '@prisma/client';
+import { AppError } from '../../utils/errors/AppError';
 
 export class CreateEventService {
-    private eventRepository: IEventRepository;
+	private eventRepository: IEventRepository;
 
-    constructor(repository: IEventRepository) {
-        this.eventRepository = repository;
-    }
+	constructor(repository: IEventRepository) {
+		this.eventRepository = repository;
+	}
 
-    async execute(event: EventDomain): Promise<EventDomain> {
-        try {
-            const createdEvent = await this.eventRepository.createEvent(event);
-            if (!createdEvent) {
-                throw new Error("Erro ao Cadastrar Evento");
-            }
-            return createdEvent;
-        } catch (error) {
-            throw error;
-        }
-    }
+	async execute(event: EventDomain, courses: [number]): Promise<Event> {
+		try {
+			if (event.getEventEndDate().getTime() < new Date().getTime()) {
+				throw new AppError('Data Final do Evento menor do que Data Atual', 400);
+			}
+			if (courses.length < 1) {
+				throw new AppError('Nenhum Curso Informado', 400);
+			}
+			const createdEvent = await this.eventRepository.createEvent(event, courses);
+			if (!createdEvent) {
+				throw new AppError('Erro ao Cadastrar Evento', 500);
+			}
+			return createdEvent;
+		} catch (error) {
+			throw error;
+		}
+	}
 }

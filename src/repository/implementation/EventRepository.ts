@@ -9,7 +9,10 @@ export class EventRepository implements IEventRepository {
 		this.prismaClient = prismaClient;
 	}
 
-	createEvent = async (event: EventDomain): Promise<Event | undefined> => {
+	createEvent = async (
+		event: EventDomain,
+		courses: [number]
+	): Promise<Event | undefined> => {
 		try {
 			const result = await this.prismaClient.$transaction(async (prismaClient) => {
 				const createdEvent = await this.prismaClient.event.create({
@@ -25,9 +28,20 @@ export class EventRepository implements IEventRepository {
 								eventActivityDescription: activity.getEventActivityDescription(),
 							})),
 						},
+						eventCourse: {
+							create: courses.map((course) => ({
+								courseId: course,
+								eventId: createdEvent.eventId,
+							})),
+						},
 					},
 					include: {
 						eventActivity: true,
+						eventCourse: {
+							include: {
+								course: true,
+							},
+						},
 					},
 				});
 				return createdEvent;
@@ -35,7 +49,7 @@ export class EventRepository implements IEventRepository {
 
 			return result;
 		} catch (error) {
-			return undefined;
+			throw error;
 		}
 	};
 }
