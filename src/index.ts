@@ -38,6 +38,7 @@ app.use('/', eventRouter);
 app.use('/', userRouter);
 app.use('/', courseRouter);
 app.use('/', roleRouter);
+app.use('/', eventRouter);
 
 app.listen(4000, () => {
 	console.log(`App is listening on port 4000`);

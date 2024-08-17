@@ -42,6 +42,7 @@ export class CreateEventController {
 				eventStartDate: req.body.eventStartDate,
 				eventTitle: req.body.eventTitle,
 				eventActivities: eventActivities,
+				eventStatus: req.body.eventStatus,
 			});
 
 			const createdEvent = await this.createEventService.execute(event, req.body.courses);

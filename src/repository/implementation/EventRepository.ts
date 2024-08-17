@@ -20,7 +20,7 @@ export class EventRepository implements IEventRepository {
 						eventTitle: event.getEventTitle(),
 						eventEndDate: event.getEventEndDate(),
 						eventStartDate: event.getEventStartDate(),
-						eventStatus: EventStatus.NAO_INICIADO,
+						eventStatus: this.getEventStatusFromString(event.getEventStatus()),
 						eventActivity: {
 							create: event.getEventActivities().map((activity) => ({
 								eventActivityStartDate: activity.getEventActivityStartDate(),
@@ -52,4 +52,19 @@ export class EventRepository implements IEventRepository {
 			throw error;
 		}
 	};
+
+	private getEventStatusFromString(status: string): EventStatus {
+		switch (status) {
+			case 'Não Iniciado':
+				return EventStatus.NAO_INICIADO;
+			case 'Em Andamento':
+				return EventStatus.EM_ANDAMENTO;
+			case 'Encerrado':
+				return EventStatus.ENCERRADO;
+			case 'Cancelado':
+				return EventStatus.CANCELADO;
+			default:
+				throw new Error(`Status inválido: ${status}`);
+		}
+	}
 }

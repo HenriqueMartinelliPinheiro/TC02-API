@@ -14,7 +14,6 @@ export class FetchAllUsersController {
 	}
 	async fetchAllUsers(req, res) {
 		try {
-			console.log(req);
 			const { skip = 0, take = 0, searchTerm = '' } = req.query;
 
 			const { users, total } = await this.fetchAllUsersService.execute(
