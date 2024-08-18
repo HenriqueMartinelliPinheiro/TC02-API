@@ -1317,3 +1317,215 @@ Tue Aug 13 2024 08:09:51 GMT-0300 (Brasilia Standard Time): INFO - Cursos retorn
 8/17/2024, 3:05:01 PM: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
 8/17/2024, 3:05:22 PM: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
 8/17/2024, 3:05:22 PM: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:25:36: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:25:36: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:26:54: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:26:54: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:28:00: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:28:00: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:28:42: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:29:00: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:29:13: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:29:15: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:29:17: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:29:18: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:29:22: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:29:28: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:29:35: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:29:38: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:29:41: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:29:47: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:29:57: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:29:59: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:33:15: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:33:27: ERROR - Erro ao Buscar Cursos - Error: 
+Invalid `	this.prismaClient.course.findMany()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/CourseRepository.ts:53:30
+
+  50 	: {};
+  51 
+  52 const [courses, total] = await Promise.all([
+→ 53 	this.prismaClient.course.findMany({
+       skip: NaN,
+       where: {
+         OR: [
+           {
+             courseName: {
+               contains: "undefined",
+               mode: "insensitive"
+             }
+           },
+           {
+             courseCoordinatorEmail: {
+               contains: "undefined",
+               mode: "insensitive"
+             }
+           }
+         ]
+       },
+       orderBy: {
+         courseName: "asc"
+       },
+     + take: Int
+     })
+
+Argument `take` is missing. em FetchAllCoursesController por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:33:32: ERROR - Erro ao Buscar Cursos - Error: 
+Invalid `	this.prismaClient.course.findMany()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/CourseRepository.ts:53:30
+
+  50 	: {};
+  51 
+  52 const [courses, total] = await Promise.all([
+→ 53 	this.prismaClient.course.findMany({
+       skip: NaN,
+       where: {
+         OR: [
+           {
+             courseName: {
+               contains: "undefined",
+               mode: "insensitive"
+             }
+           },
+           {
+             courseCoordinatorEmail: {
+               contains: "undefined",
+               mode: "insensitive"
+             }
+           }
+         ]
+       },
+       orderBy: {
+         courseName: "asc"
+       },
+     + take: Int
+     })
+
+Argument `take` is missing. em FetchAllCoursesController por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:33:41: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:33:43: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:34:13: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:34:15: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:34:18: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:34:35: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:34:38: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:35:17: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:35:17: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:40:44: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:40:44: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:40:48: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:40:48: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:45:18: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:45:18: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:45:26: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:45:26: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:45:30: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:45:31: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:45:31: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:45:31: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:45:35: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:45:35: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:45:50: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:45:50: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:45:54: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:45:54: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:46:02: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:46:02: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:46:05: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:46:05: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:46:35: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:46:35: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:48:36: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:50:15: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:50:15: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:50:37: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:50:37: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:51:49: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:51:49: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:53:45: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:53:48: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:53:49: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:53:56: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:53:58: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:54:01: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:54:19: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:54:19: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:54:39: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:54:39: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:54:44: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:54:44: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:54:51: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:54:51: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:55:01: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:55:01: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:56:09: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:56:10: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:57:51: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:57:51: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:58:49: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 09:58:49: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:01:00: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:01:00: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:01:39: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:01:39: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:03:37: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:03:37: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:06:56: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:06:56: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:08:48: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:08:49: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:08:53: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:09:26: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:09:26: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:10:51: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:10:51: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:23:04: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:23:04: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:24:02: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:24:02: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:24:03: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:24:03: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:25:02: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:25:05: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:25:16: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:25:18: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:25:20: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:25:26: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:25:28: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:25:29: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:26:17: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:26:17: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:26:25: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:26:32: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:26:33: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:26:35: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:26:35: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:26:48: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:26:50: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:27:03: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:27:05: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:27:09: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:28:09: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:28:13: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:28:13: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:28:23: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 10:28:28: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 11:00:48: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 11:01:10: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 11:01:10: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 11:01:19: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 11:01:19: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 11:01:30: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 11:01:34: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 11:01:36: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 11:01:40: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 11:01:47: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 11:01:49: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 11:01:50: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 11:01:51: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 11:01:53: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 11:01:55: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 11:01:58: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 11:01:58: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 11:01:59: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+18/08/2024, 11:02:01: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com

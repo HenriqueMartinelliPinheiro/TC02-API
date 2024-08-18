@@ -49,10 +49,12 @@ export class CourseRepository implements ICourseRepository {
 				  }
 				: {};
 
+			const adjustedTake = take === 0 ? undefined : take;
+
 			const [courses, total] = await Promise.all([
 				this.prismaClient.course.findMany({
 					skip: skip,
-					take: take,
+					take: adjustedTake,
 					where: whereClause,
 					orderBy: {
 						courseName: 'asc',
