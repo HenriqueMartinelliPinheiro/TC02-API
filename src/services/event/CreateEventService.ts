@@ -12,7 +12,7 @@ export class CreateEventService {
 
 	async execute(event: EventDomain, courses: [number]): Promise<Event> {
 		try {
-			if (event.getEventEndDate().getTime() < new Date().getTime()) {
+			if (event.getEventEndDate() < new Date()) {
 				throw new AppError('Data Final do Evento menor do que Data Atual', 400);
 			}
 			if (courses.length < 1) {

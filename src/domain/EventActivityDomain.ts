@@ -3,6 +3,7 @@ import { AttendanceDomain } from './AttendanceDomain';
 
 interface EventActivityProps {
 	eventActivityId?: number;
+	eventActivityTitle: string;
 	eventActivityStartDate: Date;
 	eventActivityEndDate: Date;
 	eventActivityDescription: string;
@@ -14,6 +15,7 @@ interface EventActivityProps {
 
 export class EventActivityDomain {
 	private eventActivityId?: number;
+	private eventActivityTitle: string;
 	private eventActivityStartDate: Date;
 	private eventActivityEndDate: Date;
 	private eventActivityDescription: string;
@@ -24,6 +26,7 @@ export class EventActivityDomain {
 
 	constructor(props: EventActivityProps) {
 		this.eventActivityId = props.eventActivityId;
+		this.eventActivityTitle = props.eventActivityTitle;
 		this.eventActivityStartDate = props.eventActivityStartDate;
 		this.eventActivityDescription = props.eventActivityDescription;
 		this.eventActivityEndDate = props.eventActivityEndDate;
@@ -39,6 +42,10 @@ export class EventActivityDomain {
 
 	getEventActivityDescription() {
 		return this.eventActivityDescription;
+	}
+
+	getEventActivityTitle() {
+		return this.eventActivityTitle;
 	}
 
 	getEventActivityStartDate() {
@@ -71,6 +78,10 @@ export class EventActivityDomain {
 
 	setEventActivityDescription(eventActivityDescription: string) {
 		this.eventActivityDescription = eventActivityDescription;
+	}
+
+	setEventActivityTitle(eventActivityTitle: string) {
+		this.eventActivityDescription = eventActivityTitle;
 	}
 
 	setEventActivityStartDate(eventActivityStartDate: Date) {

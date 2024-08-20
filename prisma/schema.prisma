@@ -77,6 +77,7 @@ model EventActivity {
   eventActivityStartDate   DateTime
   eventActivityEndDate     DateTime
   eventActivityDescription String
+  eventActivityTitle       String
   createdAt                DateTime     @default(now())
   updatedAt                DateTime     @updatedAt
   event                    Event        @relation(fields: [eventId], references: [eventId])

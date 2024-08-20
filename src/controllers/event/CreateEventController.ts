@@ -1,6 +1,3 @@
-import { EventRepository } from '../../repository/implementation/EventRepository';
-import { IEventRepository } from '../../repository/interfaces/IEventRepository';
-import { PrismaClient } from '@prisma/client';
 import { CreateEventService } from '../../services/event/CreateEventService';
 import { Request, Response } from 'express';
 import { createEventTypes } from '../../@types/event/createEventTypes';
@@ -22,6 +19,7 @@ export class CreateEventController {
 
 	createEvent = async (req: Request, res: Response) => {
 		try {
+			console.log(req.body);
 			if (!isValidRequest(req.body, createEventTypes)) {
 				return res.status(400).json({
 					event: undefined,
@@ -31,11 +29,14 @@ export class CreateEventController {
 
 			const eventActivities = req.body.eventActivities.map((activity: any) => {
 				return new EventActivityDomain({
+					eventActivityTitle: activity.eventActivityTitle,
 					eventActivityStartDate: activity.eventActivityStartDate,
-					eventActivityEndDate: activity.eventActivityEndDate,
+					eventActivityEndDate: new Date(activity.eventActivityEndDate),
 					eventActivityDescription: activity.eventActivityDescription,
 				});
 			});
+
+			console.log(req.body.eventEndDate);
 
 			const event = new EventDomain({
 				eventEndDate: req.body.eventEndDate,
@@ -45,8 +46,14 @@ export class CreateEventController {
 				eventStatus: req.body.eventStatus,
 			});
 
-			const createdEvent = await this.createEventService.execute(event, req.body.courses);
-
+			const createdEvent = await this.createEventService.execute(
+				event,
+				req.body.selectedCoursesIds
+			);
+			this.logger.info(
+				`Evento criado com sucesso ${createdEvent.eventId}`,
+				req.requestEmail
+			);
 			return res.status(201).json({
 				event: createdEvent,
 				msg: 'Evento Criado com Sucesso',
