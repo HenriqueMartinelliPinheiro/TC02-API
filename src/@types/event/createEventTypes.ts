@@ -17,4 +17,7 @@ export const createEventTypes = Joi.object({
 		.required(),
 	selectedCoursesIds: Joi.array().min(1).items(Joi.number().required()).required(),
 	eventStatus: Joi.string(),
+	eventRadius: Joi.number().optional(),
+	eventLatitude: Joi.number().optional(),
+	eventLongitude: Joi.number().optional(),
 });

@@ -11,6 +11,7 @@ export class CreateEventService {
 	}
 
 	async execute(event: EventDomain, courses: [number]): Promise<Event> {
+		let createdEvent;
 		try {
 			if (event.getEventEndDate() < new Date()) {
 				throw new AppError('Data Final do Evento menor do que Data Atual', 400);
@@ -18,7 +19,12 @@ export class CreateEventService {
 			if (courses.length < 1) {
 				throw new AppError('Nenhum Curso Informado', 400);
 			}
-			const createdEvent = await this.eventRepository.createEvent(event, courses);
+			if (!event.getEventLocation()) {
+				createdEvent = await this.eventRepository.createEvent(event, courses);
+			} else {
+				createdEvent = await this.eventRepository.createEventWithLocation(event, courses);
+			}
+
 			if (!createdEvent) {
 				throw new AppError('Erro ao Cadastrar Evento', 500);
 			}

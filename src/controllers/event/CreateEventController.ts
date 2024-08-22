@@ -7,6 +7,7 @@ import { Logger } from '../../loggers/Logger';
 import { eventLogPath } from '../../config/logPaths';
 import { isValidRequest } from '../../utils/validations/isValidRequest';
 import { EventActivityDomain } from '../../domain/EventActivityDomain';
+import { EventLocationDomain } from '../../domain/EventLocationDomain';
 
 export class CreateEventController {
 	private createEventService: CreateEventService;
@@ -18,6 +19,7 @@ export class CreateEventController {
 	}
 
 	createEvent = async (req: Request, res: Response) => {
+		let event;
 		try {
 			console.log(req.body);
 			if (!isValidRequest(req.body, createEventTypes)) {
@@ -38,13 +40,31 @@ export class CreateEventController {
 
 			console.log(req.body.eventEndDate);
 
-			const event = new EventDomain({
-				eventEndDate: req.body.eventEndDate,
-				eventStartDate: req.body.eventStartDate,
-				eventTitle: req.body.eventTitle,
-				eventActivities: eventActivities,
-				eventStatus: req.body.eventStatus,
-			});
+			if (!req.body.eventLatitude || !req.body.eventLongitude! || !req.body.eventRadius) {
+				event = new EventDomain({
+					eventEndDate: req.body.eventEndDate,
+					eventStartDate: req.body.eventStartDate,
+					eventTitle: req.body.eventTitle,
+					eventActivities: eventActivities,
+					eventStatus: req.body.eventStatus,
+					eventLocation: undefined,
+				});
+				console.log('Evento sem localização');
+			} else {
+				event = new EventDomain({
+					eventEndDate: req.body.eventEndDate,
+					eventStartDate: req.body.eventStartDate,
+					eventTitle: req.body.eventTitle,
+					eventActivities: eventActivities,
+					eventStatus: req.body.eventStatus,
+					eventLocation: new EventLocationDomain({
+						latitude: req.body.eventLatitude,
+						longitude: req.body.eventLongitude,
+						radius: req.body.eventRadius,
+					}),
+				});
+				console.log('Evento com localização');
+			}
 
 			const createdEvent = await this.createEventService.execute(
 				event,

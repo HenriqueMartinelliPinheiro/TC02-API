@@ -1,7 +1,6 @@
 import { IEventRepository } from '../interfaces/IEventRepository';
 import { Event, EventStatus, PrismaClient } from '@prisma/client';
 import { EventDomain } from '../../domain/EventDomain';
-import { create } from 'domain';
 
 export class EventRepository implements IEventRepository {
 	private prismaClient: PrismaClient;
@@ -45,8 +44,56 @@ export class EventRepository implements IEventRepository {
 				return createdEvent;
 			});
 			return await this.fetchEventById(result.eventId);
+		} catch (error) {
+			console.log('Erro', error);
+			throw error;
+		}
+	};
 
-			return result;
+	createEventWithLocation = async (
+		event: EventDomain,
+		courses: [number]
+	): Promise<Event | undefined> => {
+		try {
+			console.log(event.getEventEndDate());
+			const result = await this.prismaClient.$transaction(async (prismaClient) => {
+				const createdEvent = await prismaClient.event.create({
+					data: {
+						eventTitle: event.getEventTitle(),
+						eventEndDate: event.getEventEndDate(),
+						eventStartDate: event.getEventStartDate(),
+						eventStatus: await this.getEventStatusFromString(event.getEventStatus()),
+					},
+				});
+
+				await prismaClient.eventActivity.createMany({
+					data: event.getEventActivities().map((activity) => ({
+						eventActivityTitle: activity.getEventActivityTitle(),
+						eventActivityStartDate: activity.getEventActivityStartDate(),
+						eventActivityEndDate: activity.getEventActivityEndDate(),
+						eventActivityDescription: activity.getEventActivityDescription(),
+						eventId: createdEvent.eventId,
+					})),
+				});
+
+				await prismaClient.eventLocation.create({
+					data: {
+						latitude: event.getEventLocation().getLatitude(),
+						longitude: event.getEventLocation().getLongitude(),
+						radius: event.getEventLocation().getRadius(),
+						eventId: createdEvent.eventId,
+					},
+				});
+
+				await prismaClient.eventCourse.createMany({
+					data: courses.map((course) => ({
+						courseId: course,
+						eventId: createdEvent.eventId,
+					})),
+				});
+				return createdEvent;
+			});
+			return await this.fetchEventById(result.eventId);
 		} catch (error) {
 			console.log('Erro', error);
 			throw error;
