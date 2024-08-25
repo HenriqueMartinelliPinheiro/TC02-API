@@ -8,6 +8,7 @@ import { eventLogPath } from '../../config/logPaths';
 import { isValidRequest } from '../../utils/validations/isValidRequest';
 import { EventActivityDomain } from '../../domain/EventActivityDomain';
 import { EventLocationDomain } from '../../domain/EventLocationDomain';
+import { isValidEventDate } from '../../utils/validations/isValidEventDate';
 
 export class CreateEventController {
 	private createEventService: CreateEventService;
@@ -21,55 +22,59 @@ export class CreateEventController {
 	createEvent = async (req: Request, res: Response) => {
 		let event;
 		try {
-			console.log(req.body);
-			if (!isValidRequest(req.body, createEventTypes)) {
+			const error = isValidRequest(req.body, createEventTypes);
+			if (typeof error === 'string') {
+				this.logger.error(error, req.requestEmail);
 				return res.status(400).json({
 					event: undefined,
-					msg: 'Dados Inválidos',
+					msg: error,
 				});
 			}
 
 			const eventActivities = req.body.eventActivities.map((activity: any) => {
 				return new EventActivityDomain({
 					eventActivityTitle: activity.eventActivityTitle,
-					eventActivityStartDate: activity.eventActivityStartDate,
+					eventActivityStartDate: new Date(activity.eventActivityStartDate),
 					eventActivityEndDate: new Date(activity.eventActivityEndDate),
 					eventActivityDescription: activity.eventActivityDescription,
 				});
 			});
 
-			console.log(req.body.eventEndDate);
-
-			if (!req.body.eventLatitude || !req.body.eventLongitude! || !req.body.eventRadius) {
-				event = new EventDomain({
-					eventEndDate: req.body.eventEndDate,
-					eventStartDate: req.body.eventStartDate,
-					eventTitle: req.body.eventTitle,
-					eventActivities: eventActivities,
-					eventStatus: req.body.eventStatus,
-					eventLocation: undefined,
+			if (
+				!isValidEventDate(
+					new Date(req.body.eventStartDate),
+					new Date(req.body.eventEndDate),
+					eventActivities
+				)
+			) {
+				this.logger.error('Datas Inválidas', req.requestEmail);
+				return res.status(400).json({
+					event: undefined,
+					msg: 'Datas Inválidas',
 				});
-				console.log('Evento sem localização');
-			} else {
-				event = new EventDomain({
-					eventEndDate: req.body.eventEndDate,
-					eventStartDate: req.body.eventStartDate,
-					eventTitle: req.body.eventTitle,
-					eventActivities: eventActivities,
-					eventStatus: req.body.eventStatus,
-					eventLocation: new EventLocationDomain({
-						latitude: req.body.eventLatitude,
-						longitude: req.body.eventLongitude,
-						radius: req.body.eventRadius,
-					}),
-				});
-				console.log('Evento com localização');
 			}
+
+			event = new EventDomain({
+				eventEndDate: new Date(req.body.eventEndDate),
+				eventStartDate: new Date(req.body.eventStartDate),
+				eventTitle: req.body.eventTitle,
+				eventActivities: eventActivities,
+				eventStatus: req.body.eventStatus,
+				eventLocation:
+					req.body.eventLatitude && req.body.eventLongitude && req.body.eventRadius
+						? new EventLocationDomain({
+								latitude: req.body.eventLatitude,
+								longitude: req.body.eventLongitude,
+								radius: req.body.eventRadius,
+						  })
+						: undefined,
+			});
 
 			const createdEvent = await this.createEventService.execute(
 				event,
 				req.body.selectedCoursesIds
 			);
+
 			this.logger.info(
 				`Evento criado com sucesso ${createdEvent.eventId}`,
 				req.requestEmail

@@ -14,14 +14,6 @@ export class GetAllEventsController {
     }
 
     getAllEvents = async (req :  Request, res: Response) => {
-        //const {error, value} = createEventSchema.validate(req.body);
-
-        // if (error && value.name.length<1) {
-        //    return res.status(400).json({
-        //     "event": undefined,
-        //     "msg": "Dados Inválidos",
-        //    })
-        // }
 
         const getAllEventsService = new GetAllEventsService(this.repository);
         try{

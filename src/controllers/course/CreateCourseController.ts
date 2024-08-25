@@ -15,13 +15,15 @@ export class CreateCourseController {
 		this.logger = new Logger('CreateCourseController', courseLogPath);
 		this.createCourse = this.createCourse.bind(this);
 	}
+
 	async createCourse(req, res) {
 		try {
-			if (!isValidRequest(req.body, createCourseTypes)) {
-				this.logger.warn('Dados inválidos na requisição', req.requestEmail);
+			const error = isValidRequest(req.body, createCourseTypes);
+			if (typeof error === 'string') {
+				this.logger.warn(error, req.requestEmail);
 				return res.status(400).json({
 					course: undefined,
-					msg: 'Dados Inválidos',
+					msg: error,
 				});
 			}
 

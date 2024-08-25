@@ -20,14 +20,21 @@ export class LoginUserController {
 	}
 
 	async loginUser(req: Request, res: Response) {
-		if (!isValidRequest(req.body, loginUserTypes)) {
-			this.logger.warn(`Invalid Data on Login by user email: ${req.body.userEmail}`);
-			return generateUserErrorResponse(res, 'Dados Inválidos', 400);
+		const error = isValidRequest(req.body, loginUserTypes);
+		if (typeof error === 'string') {
+			this.logger.error(`Dados inválidos no Login: ${req.body.userEmail}`, error);
+			return res.status(400).json({
+				msg: error,
+				user: undefined,
+			});
 		}
 
 		if (!isValidPassword(req.body.userPassword)) {
-			this.logger.warn(`Invalid Password on Login by user email: ${req.body.userEmail}`);
-			return generateUserErrorResponse(res, 'Senha Inválida', 400);
+			this.logger.error(`Senha Inválida: ${req.body.userEmail}`);
+			return res.status(400).json({
+				msg: error,
+				user: undefined,
+			});
 		}
 
 		try {
@@ -39,7 +46,7 @@ export class LoginUserController {
 			);
 
 			if (!user) {
-				this.logger.warn('Usuário ou senha incorretas');
+				this.logger.warn('Usuário ou senha incorretos');
 				return res.status(401).json({
 					user: undefined,
 					msg: 'Email ou senha incorretos',
@@ -47,6 +54,7 @@ export class LoginUserController {
 			}
 
 			this.logger.info(`Usuário logado`, req.body.userEmail);
+
 			res.cookie('token', user.getAccessToken(), {
 				httpOnly: true,
 				secure: true,
@@ -67,6 +75,7 @@ export class LoginUserController {
 					msg: error.message,
 				});
 			}
+
 			this.logger.error('Erro ao fazer login', req.body.userEmail, error);
 			return res.status(500).json({
 				user: undefined,

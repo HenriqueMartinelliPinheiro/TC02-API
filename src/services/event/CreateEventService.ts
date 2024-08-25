@@ -10,7 +10,7 @@ export class CreateEventService {
 		this.eventRepository = repository;
 	}
 
-	async execute(event: EventDomain, courses: [number]): Promise<Event> {
+	async execute(event: EventDomain, courses: number[]): Promise<Event> {
 		let createdEvent;
 		try {
 			if (event.getEventEndDate() < new Date()) {

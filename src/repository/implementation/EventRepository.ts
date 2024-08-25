@@ -11,10 +11,9 @@ export class EventRepository implements IEventRepository {
 
 	createEvent = async (
 		event: EventDomain,
-		courses: [number]
+		courses: number[]
 	): Promise<Event | undefined> => {
 		try {
-			console.log(event.getEventEndDate());
 			const result = await this.prismaClient.$transaction(async (prismaClient) => {
 				const createdEvent = await prismaClient.event.create({
 					data: {
@@ -45,17 +44,15 @@ export class EventRepository implements IEventRepository {
 			});
 			return await this.fetchEventById(result.eventId);
 		} catch (error) {
-			console.log('Erro', error);
 			throw error;
 		}
 	};
 
 	createEventWithLocation = async (
 		event: EventDomain,
-		courses: [number]
+		courses: number[]
 	): Promise<Event | undefined> => {
 		try {
-			console.log(event.getEventEndDate());
 			const result = await this.prismaClient.$transaction(async (prismaClient) => {
 				const createdEvent = await prismaClient.event.create({
 					data: {
@@ -95,7 +92,6 @@ export class EventRepository implements IEventRepository {
 			});
 			return await this.fetchEventById(result.eventId);
 		} catch (error) {
-			console.log('Erro', error);
 			throw error;
 		}
 	};

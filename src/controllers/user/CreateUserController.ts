@@ -12,6 +12,7 @@ import { AppError } from '../../utils/errors/AppError';
 export class CreateUserController {
 	private createUserService: CreateUserService;
 	private logger: Logger;
+
 	constructor(createUserService: CreateUserService) {
 		this.logger = new Logger('CreateUserController', userLogPath);
 		this.createUserService = createUserService;
@@ -19,26 +20,28 @@ export class CreateUserController {
 	}
 
 	async createUser(req: Request, res: Response) {
-		if (!isValidRequest(req.body, createUserTypes)) {
-			this.logger.warn(
-				`Dados inválidos ao criar usuário ${req.body.userEmail}`,
-				req.requestEmail
-			);
-			return res.status(400).json({
-				msg: 'Dados inválidos',
-				user: undefined,
-			});
-		}
-
-		if (!isValidPassword(req.body.userPassword)) {
-			this.logger.warn(`Senha inválida ao criar usuário`, req.requestEmail);
-			return res.status(400).json({
-				msg: 'Senha inválida',
-				user: undefined,
-			});
-		}
-
 		try {
+			const error = isValidRequest(req.body, createUserTypes);
+			if (typeof error === 'string') {
+				this.logger.error(
+					`Dados inválidos ao criar usuário ${req.body.userEmail}`,
+					error,
+					req.requestEmail
+				);
+				return res.status(400).json({
+					msg: error,
+					user: undefined,
+				});
+			}
+
+			if (!isValidPassword(req.body.userPassword)) {
+				this.logger.warn(`Senha inválida ao criar usuário`, req.requestEmail);
+				return res.status(400).json({
+					msg: 'Senha inválida',
+					user: undefined,
+				});
+			}
+
 			const user = await this.createUserService.execute(
 				new UserDomain({
 					userName: req.body.userName,
@@ -51,7 +54,10 @@ export class CreateUserController {
 				})
 			);
 
-			this.logger.info(`User Id ${user.getUserId()} created`, req.requestEmail);
+			this.logger.info(
+				`Usuário criado com sucesso, ID: ${user.getUserId()}`,
+				req.requestEmail
+			);
 			return res.status(201).json({
 				user,
 				msg: 'Usuário criado com sucesso',

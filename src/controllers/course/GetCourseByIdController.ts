@@ -1,4 +1,3 @@
-import Joi from 'joi';
 import { GetCourseByIdService } from '../../services/course/GetCourseByIdService';
 import { isValidRequest } from '../../utils/validations/isValidRequest';
 import { getCourseByIdTypes } from '../../@types/course/getCourseByIdTypes';
@@ -17,20 +16,21 @@ export class GetCourseByIdController {
 
 	async getCourseById(req, res) {
 		try {
-			if (!isValidRequest(req.params, getCourseByIdTypes)) {
-				this.logger.warn('Dados inválidos na requisição', req.requestEmail);
+			const error = isValidRequest(req.params, getCourseByIdTypes);
+			if (typeof error === 'string') {
+				this.logger.warn(error, req.requestEmail);
 				return res.status(400).json({
 					course: undefined,
-					msg: 'Erro na requisição',
+					msg: error,
 				});
 			}
 
 			const course = await this.getCourseByIdService.execute(req.params.courseId);
 
 			if (!course) {
-				this.logger.info('Sem cursos encontrados', req.requestEmail);
+				this.logger.info('Curso não encontrado', req.requestEmail);
 				return res.status(404).json({
-					course: course,
+					course: undefined,
 					msg: 'Curso não encontrado',
 				});
 			}
@@ -47,16 +47,17 @@ export class GetCourseByIdController {
 		} catch (error) {
 			if (error instanceof AppError) {
 				this.logger.error(error.message, req.requestEmail);
-				res.status(error.statusCode).json({
+				return res.status(error.statusCode).json({
 					course: undefined,
-					msg: 'Erro ao buscar curso',
+					msg: error.message,
 				});
 			}
 			this.logger.error(
 				`Erro ao retornar curso, ID: ${req.params.courseId}`,
-				req.requestEmail
+				req.requestEmail,
+				error
 			);
-			res.status(401).json({
+			return res.status(500).json({
 				course: undefined,
 				msg: 'Erro ao buscar curso',
 			});

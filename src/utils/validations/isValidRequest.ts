@@ -1,15 +1,17 @@
 import Joi from 'joi';
 
-export const isValidRequest = (objectData: {}, schema: Joi.ObjectSchema): boolean => {
+export const isValidRequest = (
+	objectData: {},
+	schema: Joi.ObjectSchema
+): string | boolean => {
 	try {
-		const { error, value } = schema.validate(objectData);
-		console.log(error);
+		const { error } = schema.validate(objectData);
 		if (error) {
-			return false;
+			return error.details[0].message;
 		}
 
 		return true;
-	} catch (error) {
-		return false;
+	} catch (err) {
+		return 'Erro ao validar a solicitação.';
 	}
 };

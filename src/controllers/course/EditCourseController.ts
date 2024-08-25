@@ -15,13 +15,15 @@ export class EditCourseController {
 		this.logger = new Logger('EditCourseController', courseLogPath);
 		this.editCourse = this.editCourse.bind(this);
 	}
+
 	async editCourse(req, res) {
 		try {
-			if (!isValidRequest(req.body, editCourseTypes)) {
-				this.logger.warn('Dados inválidos na requisição', req.requestEmail);
+			const error = isValidRequest(req.body, editCourseTypes);
+			if (typeof error === 'string') {
+				this.logger.warn(error, req.requestEmail);
 				return res.status(400).json({
 					course: undefined,
-					msg: 'Dados Inválidos',
+					msg: error,
 				});
 			}
 
@@ -34,7 +36,7 @@ export class EditCourseController {
 			const editedCourse = await this.editCourseService.execute(course);
 			if (editedCourse) {
 				this.logger.info(`Curso editado, Id:${editedCourse.courseId}`, req.requestEmail);
-				return res.status(201).json({
+				return res.status(200).json({
 					course: editedCourse,
 					msg: 'Curso editado com sucesso',
 				});
@@ -42,17 +44,17 @@ export class EditCourseController {
 		} catch (error) {
 			if (error instanceof AppError) {
 				this.logger.error(error.message, req.requestEmail);
-				return res.status(error.statusCode, {
+				return res.status(error.statusCode).json({
 					course: undefined,
 					msg: error.message,
 				});
 			}
 			this.logger.error(
-				`Error ao editar curso, ID:${req.body.courseId}`,
+				`Erro ao editar curso, ID:${req.body.courseId}`,
 				req.requestEmail,
 				error
 			);
-			return res.status(400).json({
+			return res.status(500).json({
 				course: undefined,
 				msg: 'Erro ao editar curso',
 			});
