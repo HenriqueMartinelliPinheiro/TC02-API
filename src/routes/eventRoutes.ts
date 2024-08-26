@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { CreateEventController } from '../controllers/event/CreateEventController';
-import { GetAllEventsController } from '../controllers/event/GetAllEventsController';
 import { PrismaClient } from '@prisma/client';
 import { EventRepository } from '../repository/implementation/EventRepository';
 import { CreateEventService } from '../services/event/CreateEventService';
@@ -8,6 +7,8 @@ import { authMiddleware } from '../middlewares/authMiddleware';
 import { roleMiddleware } from '../middlewares/roleMiddleware';
 import { FetchAllEventStatusController } from '../controllers/event/enums/FetchAllEventStatusController';
 import { eventRoles } from '../config/roles/event/eventRoles';
+import { FetchAllEventsService } from '../services/event/FetchAllEventsService';
+import { FetchAllEventsController } from '../controllers/event/FetchAllEventsController';
 
 export const eventRouter = Router();
 
@@ -18,8 +19,10 @@ const eventRepository = new EventRepository(prismaClient);
 const createEventService = new CreateEventService(eventRepository);
 const createEventController = new CreateEventController(createEventService);
 
+const fetchAllEventsService = new FetchAllEventsService(eventRepository);
+const fetchAllEventsController = new FetchAllEventsController(fetchAllEventsService);
+
 const fetchAllEventStatus = new FetchAllEventStatusController();
-//const getAllEventsController = new GetAllEventsController();
 
 eventRouter.post(
 	'/createEvent',
@@ -34,4 +37,10 @@ eventRouter.get(
 	roleMiddleware(eventRoles.FETCH_ALL_EVENT_STATUS_ROLES),
 	fetchAllEventStatus.fetchAllEventStatus
 );
-//eventRouter.get('/getAllEvents', getAllEventsController.getAllEvents);
+
+eventRouter.get(
+	'/fetchAllEvents',
+	authMiddleware,
+	roleMiddleware(eventRoles.FETCH_ALL_EVENTS),
+	fetchAllEventsController.fetchAllEvents
+);

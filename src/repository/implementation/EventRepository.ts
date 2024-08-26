@@ -1,5 +1,5 @@
 import { IEventRepository } from '../interfaces/IEventRepository';
-import { Event, EventStatus, PrismaClient } from '@prisma/client';
+import { Event, EventStatus, Prisma, PrismaClient } from '@prisma/client';
 import { EventDomain } from '../../domain/EventDomain';
 
 export class EventRepository implements IEventRepository {
@@ -126,6 +126,47 @@ export class EventRepository implements IEventRepository {
 			});
 
 			return event;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	fetchAllEvents = async (
+		skip: number,
+		take: number,
+		searchTerm: string
+	): Promise<{ events: Event[] | undefined; total: number }> => {
+		try {
+			const whereClause: Prisma.EventWhereInput = searchTerm
+				? {
+						OR: [
+							{
+								eventTitle: {
+									contains: searchTerm,
+									mode: Prisma.QueryMode.insensitive,
+								},
+							},
+						],
+				  }
+				: {};
+
+			const adjustedTake = take === 0 ? undefined : take;
+
+			const [events, total] = await Promise.all([
+				this.prismaClient.event.findMany({
+					skip: skip,
+					take: adjustedTake,
+					where: whereClause,
+					orderBy: {
+						eventTitle: 'asc',
+					},
+				}),
+				this.prismaClient.event.count({
+					where: whereClause,
+				}),
+			]);
+
+			return { events, total };
 		} catch (error) {
 			throw error;
 		}
