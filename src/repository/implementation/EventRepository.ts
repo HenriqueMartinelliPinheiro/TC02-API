@@ -122,6 +122,7 @@ export class EventRepository implements IEventRepository {
 							course: true,
 						},
 					},
+					eventLocation: true,
 				},
 			});
 
