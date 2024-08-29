@@ -9,4 +9,5 @@ export interface IEventRepository {
 		take: number,
 		searchTerm: string
 	): Promise<{ events: Event[] | undefined; total: number }>;
+	fetchEventById(eventId: number): Promise<Event>;
 }

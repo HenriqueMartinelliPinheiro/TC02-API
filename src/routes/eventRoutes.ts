@@ -44,3 +44,9 @@ eventRouter.get(
 	roleMiddleware(eventRoles.FETCH_ALL_EVENTS),
 	fetchAllEventsController.fetchAllEvents
 );
+
+eventRouter.get(
+	'/getEventById:eventId',
+	authMiddleware,
+	roleMiddleware(eventRoles.GET_EVENT_BY_ID)
+);
