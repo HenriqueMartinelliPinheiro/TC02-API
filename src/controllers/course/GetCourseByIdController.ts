@@ -12,11 +12,13 @@ export class GetCourseByIdController {
 	constructor(service: GetCourseByIdService) {
 		this.getCourseByIdService = service;
 		this.logger = new Logger('GetCourseByIdController', courseLogPath);
+		this.getCourseById = this.getCourseById.bind(this);
 	}
 
 	async getCourseById(req, res) {
 		try {
-			const error = isValidRequest(req.params, getCourseByIdTypes);
+			const courseId = parseInt(req.params.courseId);
+			const error = isValidRequest({ courseId }, getCourseByIdTypes);
 			if (typeof error === 'string') {
 				this.logger.warn(error, req.requestEmail);
 				return res.status(400).json({
@@ -25,7 +27,7 @@ export class GetCourseByIdController {
 				});
 			}
 
-			const course = await this.getCourseByIdService.execute(req.params.courseId);
+			const course = await this.getCourseByIdService.execute(courseId);
 
 			if (!course) {
 				this.logger.info('Curso não encontrado', req.requestEmail);
@@ -35,10 +37,7 @@ export class GetCourseByIdController {
 				});
 			}
 
-			this.logger.info(
-				`Curso retornado com sucesso, ID ${req.params.courseId}`,
-				req.requestEmail
-			);
+			this.logger.info(`Curso retornado com sucesso, ID ${courseId}`, req.requestEmail);
 
 			return res.status(200).json({
 				course: course,

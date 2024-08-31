@@ -8,15 +8,9 @@ export const isValidEventDate = (
 	if (eventEndDate < eventStartDate) {
 		return false;
 	}
-	console.log('Inicio Evento: ', eventStartDate, 'Fim Evento:', eventEndDate);
 
 	for (const activity of eventActivities) {
-		console.log(
-			'Inicio Atividade: ',
-			activity.getEventActivityStartDate(),
-			'Fim Atividade: ',
-			activity.getEventActivityEndDate()
-		);
+
 
 		if (
 			activity.getEventActivityEndDate() < activity.getEventActivityStartDate() ||
@@ -25,10 +19,8 @@ export const isValidEventDate = (
 			activity.getEventActivityStartDate() < eventStartDate ||
 			activity.getEventActivityStartDate() > eventEndDate
 		) {
-			console.log('False');
 			return false;
 		}
 	}
-	console.log('True');
 	return true;
 };

@@ -9,6 +9,8 @@ import { FetchAllEventStatusController } from '../controllers/event/enums/FetchA
 import { eventRoles } from '../config/roles/event/eventRoles';
 import { FetchAllEventsService } from '../services/event/FetchAllEventsService';
 import { FetchAllEventsController } from '../controllers/event/FetchAllEventsController';
+import { GetEventByIdController } from '../controllers/event/GetEventByIdController';
+import { GetEventByIdService } from '../services/event/GetCourseByIdService';
 
 export const eventRouter = Router();
 
@@ -21,6 +23,9 @@ const createEventController = new CreateEventController(createEventService);
 
 const fetchAllEventsService = new FetchAllEventsService(eventRepository);
 const fetchAllEventsController = new FetchAllEventsController(fetchAllEventsService);
+
+const getEventByIdService = new GetEventByIdService(eventRepository);
+const getEventByIdController = new GetEventByIdController(getEventByIdService);
 
 const fetchAllEventStatus = new FetchAllEventStatusController();
 
@@ -46,7 +51,8 @@ eventRouter.get(
 );
 
 eventRouter.get(
-	'/getEventById:eventId',
+	'/getEventById/:eventId',
 	authMiddleware,
-	roleMiddleware(eventRoles.GET_EVENT_BY_ID)
+	roleMiddleware(eventRoles.GET_EVENT_BY_ID),
+	getEventByIdController.getEventById
 );

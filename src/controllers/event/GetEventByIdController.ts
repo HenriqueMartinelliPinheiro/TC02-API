@@ -12,11 +12,16 @@ export class GetEventByIdController {
 	constructor(service: GetEventByIdService) {
 		this.getEventByIdService = service;
 		this.logger = new Logger('GetEventByIdController', eventLogPath);
+		this.getEventById = this.getEventById.bind(this);
 	}
 
 	async getEventById(req, res) {
+		console.log('Aqui');
+
 		try {
-			const error = isValidRequest(req.params, getEventByIdTypes);
+			const eventId = parseInt(req.params.eventId);
+
+			const error = isValidRequest({ eventId }, getEventByIdTypes);
 
 			if (typeof error === 'string') {
 				this.logger.warn(error, req.requestEmail);
@@ -26,7 +31,7 @@ export class GetEventByIdController {
 				});
 			}
 
-			const event = await this.getEventByIdService.execute(req.params.eventId);
+			const event = await this.getEventByIdService.execute(eventId);
 
 			if (!event) {
 				this.logger.info('Evento não encontrado', req.requestEmail);
@@ -50,6 +55,7 @@ export class GetEventByIdController {
 					msg: error.message,
 				});
 			}
+			this.logger.error(error.message, req.requestEmail);
 			return res.status(500).json({
 				msg: 'Erro Interno do Servidor',
 				event: undefined,

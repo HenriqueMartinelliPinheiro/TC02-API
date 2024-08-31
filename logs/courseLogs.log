@@ -2042,3 +2042,311 @@ Argument `take` is missing. em FetchAllCoursesController por User: henriquepinhe
 28/08/2024, 19:34:03: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
 28/08/2024, 21:09:30: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
 28/08/2024, 21:09:30: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:14:48: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:14:48: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:14:54: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:14:54: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:36:29: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:36:29: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:44:28: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:44:28: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:50:07: ERROR - Erro ao retornar curso, ID: 20 - Error: 
+Invalid `this.prismaClient.course.findFirst()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/CourseRepository.ts:76:50
+
+  73 
+  74 getCourseById = async (courseId: number): Promise<Course | undefined> => {
+  75 	try {
+→ 76 		const course = await this.prismaClient.course.findFirst({
+       where: {
+         courseId: "20"
+                   ~~~~
+       }
+     })
+
+Argument `courseId`: Invalid value provided. Expected IntFilter or Int, provided String. em GetCourseByIdController por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:52:39: ERROR - Erro ao retornar curso, ID: 20 - Error: 
+Invalid `this.prismaClient.course.findFirst()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/CourseRepository.ts:76:50
+
+  73 
+  74 getCourseById = async (courseId: number): Promise<Course | undefined> => {
+  75 	try {
+→ 76 		const course = await this.prismaClient.course.findFirst({
+       where: {
+         courseId: "20"
+                   ~~~~
+       }
+     })
+
+Argument `courseId`: Invalid value provided. Expected IntFilter or Int, provided String. em GetCourseByIdController por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:53:00: ERROR - Erro ao retornar curso, ID: 20 - Error: 
+Invalid `this.prismaClient.course.findFirst()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/CourseRepository.ts:76:50
+
+  73 
+  74 getCourseById = async (courseId: number): Promise<Course | undefined> => {
+  75 	try {
+→ 76 		const course = await this.prismaClient.course.findFirst({
+       where: {
+         courseId: "20"
+                   ~~~~
+       }
+     })
+
+Argument `courseId`: Invalid value provided. Expected IntFilter or Int, provided String. em GetCourseByIdController por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:53:00: ERROR - Erro ao retornar curso, ID: 20 - Error: 
+Invalid `this.prismaClient.course.findFirst()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/CourseRepository.ts:76:50
+
+  73 
+  74 getCourseById = async (courseId: number): Promise<Course | undefined> => {
+  75 	try {
+→ 76 		const course = await this.prismaClient.course.findFirst({
+       where: {
+         courseId: "20"
+                   ~~~~
+       }
+     })
+
+Argument `courseId`: Invalid value provided. Expected IntFilter or Int, provided String. em GetCourseByIdController por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:53:03: ERROR - Erro ao retornar curso, ID: 20 - Error: 
+Invalid `this.prismaClient.course.findFirst()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/CourseRepository.ts:76:50
+
+  73 
+  74 getCourseById = async (courseId: number): Promise<Course | undefined> => {
+  75 	try {
+→ 76 		const course = await this.prismaClient.course.findFirst({
+       where: {
+         courseId: "20"
+                   ~~~~
+       }
+     })
+
+Argument `courseId`: Invalid value provided. Expected IntFilter or Int, provided String. em GetCourseByIdController por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:55:08: ERROR - Erro ao retornar curso, ID: 20 - Error: 
+Invalid `this.prismaClient.course.findFirst()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/CourseRepository.ts:76:50
+
+  73 
+  74 getCourseById = async (courseId: number): Promise<Course | undefined> => {
+  75 	try {
+→ 76 		const course = await this.prismaClient.course.findFirst({
+       where: {
+         courseId: "20"
+                   ~~~~
+       }
+     })
+
+Argument `courseId`: Invalid value provided. Expected IntFilter or Int, provided String. em GetCourseByIdController por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:55:37: ERROR - Erro ao retornar curso, ID: 20 - Error: 
+Invalid `this.prismaClient.course.findFirst()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/CourseRepository.ts:76:50
+
+  73 
+  74 getCourseById = async (courseId: number): Promise<Course | undefined> => {
+  75 	try {
+→ 76 		const course = await this.prismaClient.course.findFirst({
+       where: {
+         courseId: "20"
+                   ~~~~
+       }
+     })
+
+Argument `courseId`: Invalid value provided. Expected IntFilter or Int, provided String. em GetCourseByIdController por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:55:37: ERROR - Erro ao retornar curso, ID: 20 - Error: 
+Invalid `this.prismaClient.course.findFirst()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/CourseRepository.ts:76:50
+
+  73 
+  74 getCourseById = async (courseId: number): Promise<Course | undefined> => {
+  75 	try {
+→ 76 		const course = await this.prismaClient.course.findFirst({
+       where: {
+         courseId: "20"
+                   ~~~~
+       }
+     })
+
+Argument `courseId`: Invalid value provided. Expected IntFilter or Int, provided String. em GetCourseByIdController por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:55:38: ERROR - Erro ao retornar curso, ID: 20 - Error: 
+Invalid `this.prismaClient.course.findFirst()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/CourseRepository.ts:76:50
+
+  73 
+  74 getCourseById = async (courseId: number): Promise<Course | undefined> => {
+  75 	try {
+→ 76 		const course = await this.prismaClient.course.findFirst({
+       where: {
+         courseId: "20"
+                   ~~~~
+       }
+     })
+
+Argument `courseId`: Invalid value provided. Expected IntFilter or Int, provided String. em GetCourseByIdController por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:56:46: ERROR - Erro ao retornar curso, ID: 20 - Error: 
+Invalid `this.prismaClient.course.findFirst()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/CourseRepository.ts:76:50
+
+  73 
+  74 getCourseById = async (courseId: number): Promise<Course | undefined> => {
+  75 	try {
+→ 76 		const course = await this.prismaClient.course.findFirst({
+       where: {
+         courseId: "20"
+                   ~~~~
+       }
+     })
+
+Argument `courseId`: Invalid value provided. Expected IntFilter or Int, provided String. em GetCourseByIdController por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:57:41: ERROR - Erro ao retornar curso, ID: 20 - Error: 
+Invalid `this.prismaClient.course.findFirst()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/CourseRepository.ts:76:50
+
+  73 
+  74 getCourseById = async (courseId: number): Promise<Course | undefined> => {
+  75 	try {
+→ 76 		const course = await this.prismaClient.course.findFirst({
+       where: {
+         courseId: "20"
+                   ~~~~
+       }
+     })
+
+Argument `courseId`: Invalid value provided. Expected IntFilter or Int, provided String. em GetCourseByIdController por User: henriquepinheiro18@gmail.com
+30/08/2024, 19:58:06: ERROR - Erro ao retornar curso, ID: 20 - Error: 
+Invalid `this.prismaClient.course.findFirst()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/CourseRepository.ts:76:50
+
+  73 
+  74 getCourseById = async (courseId: number): Promise<Course | undefined> => {
+  75 	try {
+→ 76 		const course = await this.prismaClient.course.findFirst({
+       where: {
+         courseId: "20"
+                   ~~~~
+       }
+     })
+
+Argument `courseId`: Invalid value provided. Expected IntFilter or Int, provided String. em GetCourseByIdController por User: henriquepinheiro18@gmail.com
+30/08/2024, 20:04:55: WARN - "value" must be of type object em GetCourseByIdController por User: henriquepinheiro18@gmail.com
+30/08/2024, 20:08:37: WARN - "value" must be of type object em GetCourseByIdController por User: henriquepinheiro18@gmail.com
+30/08/2024, 20:08:42: WARN - "value" must be of type object em GetCourseByIdController por User: henriquepinheiro18@gmail.com
+30/08/2024, 20:08:52: WARN - "value" must be of type object em GetCourseByIdController por User: henriquepinheiro18@gmail.com
+30/08/2024, 20:09:01: WARN - "value" must be of type object em GetCourseByIdController por User: henriquepinheiro18@gmail.com
+30/08/2024, 20:11:38: INFO - Curso retornado com sucesso, ID 20 por User: henriquepinheiro18@gmail.com
+30/08/2024, 20:29:36: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+30/08/2024, 20:29:36: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+30/08/2024, 20:29:38: INFO - Curso retornado com sucesso, ID 20 por User: henriquepinheiro18@gmail.com
+30/08/2024, 20:29:44: INFO - Curso editado, Id:20 por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:51:06: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:51:06: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:51:07: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:55:55: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:55:55: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:57:20: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:57:20: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:57:23: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:57:23: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:57:29: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:57:29: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:57:29: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:57:29: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:57:39: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:57:43: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:57:43: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:59:48: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:59:48: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:59:51: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 09:59:51: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:01:39: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:01:42: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:01:44: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:01:48: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:01:54: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:01:54: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:02:01: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:02:06: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:02:15: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:02:17: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:02:19: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:02:23: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:02:25: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:02:25: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:02:31: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:02:52: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:02:54: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:02:54: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:04:11: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:04:14: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:04:14: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:04:30: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:05:19: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:05:22: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:05:25: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:05:25: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:05:41: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:05:45: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:05:45: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:05:53: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:05:53: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:06:45: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:06:58: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:06:58: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:07:03: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:07:06: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:07:06: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:07:44: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:07:44: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:07:56: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:08:25: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:08:26: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:08:51: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:08:57: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:08:57: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:09:06: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:09:07: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:09:33: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:09:33: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:09:47: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:09:47: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:10:35: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:11:00: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:11:00: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:11:02: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:11:02: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:11:55: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:11:55: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:13:03: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:13:03: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:13:09: INFO - Curso editado, Id:59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:13:13: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:13:13: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:13:14: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:13:14: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:13:14: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:13:14: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:13:15: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:13:19: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:13:19: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:14:08: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:14:08: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:14:31: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:14:31: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:14:59: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:14:59: INFO - Curso retornado com sucesso, ID 59 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:16:01: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:16:01: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:16:02: INFO - Curso retornado com sucesso, ID 20 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:16:02: INFO - Curso retornado com sucesso, ID 20 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:16:05: INFO - Curso editado, Id:20 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:19:25: INFO - Curso criado Id:79 por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:19:29: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:19:29: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:19:30: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:19:30: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:19:30: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:19:30: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:19:37: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+31/08/2024, 10:19:37: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com

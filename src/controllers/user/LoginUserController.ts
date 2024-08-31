@@ -57,8 +57,9 @@ export class LoginUserController {
 
 			res.cookie('token', user.getAccessToken(), {
 				httpOnly: true,
-				secure: true,
+				//secure: true,
 				sameSite: 'strict',
+				path: '/',
 			});
 
 			return res.status(201).json({
