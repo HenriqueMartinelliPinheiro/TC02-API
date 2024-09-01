@@ -8,6 +8,11 @@ export interface IEventRepository {
 		skip: number,
 		take: number,
 		searchTerm: string
-	): Promise<{ events: Event[] | undefined; total: number }>;
+	): Promise<{ events: EventDomain[] | undefined; total: number }>;
 	fetchEventById(eventId: number): Promise<Event>;
+	editEventWithLocation(
+		event: EventDomain,
+		courses: number[]
+	): Promise<Event | undefined>;
+	editEvent(event: EventDomain, courses: number[]): Promise<Event | undefined>;
 }

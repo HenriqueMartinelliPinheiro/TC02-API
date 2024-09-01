@@ -20,7 +20,7 @@ export class EventRepository implements IEventRepository {
 						eventTitle: event.getEventTitle(),
 						eventEndDate: event.getEventEndDate(),
 						eventStartDate: event.getEventStartDate(),
-						eventStatus: await this.getEventStatusFromString(event.getEventStatus()),
+						eventStatus: EventStatus.NAO_INICIADO,
 					},
 				});
 
@@ -59,7 +59,7 @@ export class EventRepository implements IEventRepository {
 						eventTitle: event.getEventTitle(),
 						eventEndDate: event.getEventEndDate(),
 						eventStartDate: event.getEventStartDate(),
-						eventStatus: await this.getEventStatusFromString(event.getEventStatus()),
+						eventStatus: EventStatus.NAO_INICIADO,
 					},
 				});
 
@@ -96,9 +96,24 @@ export class EventRepository implements IEventRepository {
 		}
 	};
 
+	public static getEventStatusDisplay(status: EventStatus): string {
+		switch (status) {
+			case EventStatus.NAO_INICIADO:
+				return 'Nao Iniciado';
+			case EventStatus.EM_ANDAMENTO:
+				return 'Em Andamento';
+			case EventStatus.ENCERRADO:
+				return 'Encerrado';
+			case EventStatus.CANCELADO:
+				return 'Cancelado';
+			default:
+				return 'Status desconhecido';
+		}
+	}
+
 	private async getEventStatusFromString(status: string): Promise<EventStatus> {
 		switch (status) {
-			case 'Não Iniciado':
+			case 'Nao Iniciado':
 				return EventStatus.NAO_INICIADO;
 			case 'Em Andamento':
 				return EventStatus.EM_ANDAMENTO;
@@ -126,7 +141,10 @@ export class EventRepository implements IEventRepository {
 				},
 			});
 
-			return event;
+			if (event) {
+				return event;
+			}
+			throw new Error('Evento não encontrado');
 		} catch (error) {
 			throw error;
 		}
@@ -136,7 +154,7 @@ export class EventRepository implements IEventRepository {
 		skip: number,
 		take: number,
 		searchTerm: string
-	): Promise<{ events: Event[] | undefined; total: number }> => {
+	): Promise<{ events: EventDomain[]; total: number }> => {
 		try {
 			const whereClause: Prisma.EventWhereInput = searchTerm
 				? {
@@ -161,13 +179,167 @@ export class EventRepository implements IEventRepository {
 					orderBy: {
 						eventTitle: 'asc',
 					},
+					include: {
+						eventActivity: true,
+						eventCourse: {
+							include: {
+								course: true,
+							},
+						},
+						eventLocation: true,
+					},
 				}),
 				this.prismaClient.event.count({
 					where: whereClause,
 				}),
 			]);
 
-			return { events, total };
+			const formattedEvents = events.map((event) => {
+				const eventStatusDisplay = EventRepository.getEventStatusDisplay(
+					event.eventStatus
+				);
+				return new EventDomain({
+					eventId: event.eventId,
+					eventTitle: event.eventTitle,
+					eventStatus: eventStatusDisplay,
+					eventStartDate: event.eventStartDate,
+					eventEndDate: event.eventEndDate,
+					createdAt: event.createdAt,
+					updatedAt: event.updatedAt,
+				});
+			});
+
+			return { events: formattedEvents, total };
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	editEventWithLocation = async (
+		event: EventDomain,
+		courses: number[]
+	): Promise<Event | undefined> => {
+		try {
+			const result = await this.prismaClient.$transaction(async (prismaClient) => {
+				await prismaClient.event.update({
+					where: { eventId: event.getEventId() },
+					data: {
+						eventTitle: event.getEventTitle(),
+						eventEndDate: event.getEventEndDate(),
+						eventStartDate: event.getEventStartDate(),
+						// Valida se o status é do tipo EventStatus; se for, usa diretamente, senão converte
+						eventStatus:
+							typeof event.getEventStatus() === 'string'
+								? await this.getEventStatusFromString(event.getEventStatus())
+								: (event.getEventStatus() as EventStatus),
+					},
+				});
+
+				await prismaClient.eventActivity.deleteMany({
+					where: {
+						eventId: event.getEventId(),
+					},
+				});
+
+				await prismaClient.eventActivity.createMany({
+					data: event.getEventActivities().map((activity) => ({
+						eventActivityTitle: activity.getEventActivityTitle(),
+						eventActivityStartDate: activity.getEventActivityStartDate(),
+						eventActivityEndDate: activity.getEventActivityEndDate(),
+						eventActivityDescription: activity.getEventActivityDescription(),
+						eventId: event.getEventId(),
+					})),
+				});
+
+				await prismaClient.eventLocation.deleteMany({
+					where: {
+						eventId: event.getEventId(),
+					},
+				});
+
+				await prismaClient.eventLocation.create({
+					data: {
+						latitude: event.getEventLocation().getLatitude(),
+						longitude: event.getEventLocation().getLongitude(),
+						radius: event.getEventLocation().getRadius(),
+						eventId: event.getEventId(),
+					},
+				});
+
+				await prismaClient.eventCourse.deleteMany({
+					where: {
+						eventId: event.getEventId(),
+					},
+				});
+
+				await prismaClient.eventCourse.createMany({
+					data: courses.map((course) => ({
+						courseId: course,
+						eventId: event.getEventId(),
+					})),
+				});
+
+				return await this.fetchEventById(event.getEventId());
+			});
+
+			return result;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	editEvent = async (
+		event: EventDomain,
+		courses: number[]
+	): Promise<Event | undefined> => {
+		try {
+			const result = await this.prismaClient.$transaction(async (prismaClient) => {
+				await prismaClient.event.update({
+					where: { eventId: event.getEventId() },
+					data: {
+						eventTitle: event.getEventTitle(),
+						eventEndDate: event.getEventEndDate(),
+						eventStartDate: event.getEventStartDate(),
+						eventStatus:
+							typeof event.getEventStatus() === 'string'
+								? await this.getEventStatusFromString(event.getEventStatus())
+								: (event.getEventStatus() as EventStatus),
+					},
+				});
+
+				await prismaClient.eventActivity.deleteMany({
+					where: {
+						eventId: event.getEventId(),
+					},
+				});
+
+				await prismaClient.eventActivity.createMany({
+					data: event.getEventActivities().map((activity) => ({
+						eventActivityTitle: activity.getEventActivityTitle(),
+						eventActivityStartDate: activity.getEventActivityStartDate(),
+						eventActivityEndDate: activity.getEventActivityEndDate(),
+						eventActivityDescription: activity.getEventActivityDescription(),
+						eventId: event.getEventId(),
+					})),
+				});
+
+				await prismaClient.eventCourse.deleteMany({
+					where: {
+						eventId: event.getEventId(),
+					},
+				});
+
+				await prismaClient.eventCourse.createMany({
+					data: courses.map((course) => ({
+						courseId: course,
+						eventId: event.getEventId(),
+					})),
+				});
+
+				return await this.fetchEventById(event.getEventId());
+			});
+
+			return result;
 		} catch (error) {
 			throw error;
 		}

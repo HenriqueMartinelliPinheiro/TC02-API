@@ -19,6 +19,7 @@ export class CreateEventService {
 			if (courses.length < 1) {
 				throw new AppError('Nenhum Curso Informado', 400);
 			}
+
 			if (!event.getEventLocation()) {
 				createdEvent = await this.eventRepository.createEvent(event, courses);
 			} else {

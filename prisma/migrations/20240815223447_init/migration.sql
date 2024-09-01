@@ -5,7 +5,7 @@
 
 */
 -- CreateEnum
-CREATE TYPE "EventStatus" AS ENUM ('Não Iniciado', 'Em Andamento', 'Encerrado', 'Cancelado');
+CREATE TYPE "EventStatus" AS ENUM ('Nao Iniciado', 'Em Andamento', 'Encerrado', 'Cancelado');
 
 -- AlterTable
 ALTER TABLE "Event" DROP COLUMN "eventStatus",

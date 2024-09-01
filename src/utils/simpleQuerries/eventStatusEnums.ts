@@ -1,13 +1,6 @@
-import { EventStatus } from '@prisma/client';
-
-export function getAllEventStatusValues(): EventStatus[] {
+export function getAllEventStatusValues(): string[] {
 	try {
-		return [
-			EventStatus.NAO_INICIADO,
-			EventStatus.EM_ANDAMENTO,
-			EventStatus.ENCERRADO,
-			EventStatus.CANCELADO,
-		];
+		return ['Nao Iniciado', 'Em Andamento', 'Encerrado', 'Cancelado'];
 	} catch (error) {
 		throw error;
 	}

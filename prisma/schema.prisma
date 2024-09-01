@@ -8,7 +8,7 @@ datasource db {
 }
 
 enum EventStatus {
-  NAO_INICIADO @map("Não Iniciado")
+  NAO_INICIADO @map("Nao Iniciado")
   EM_ANDAMENTO @map("Em Andamento")
   ENCERRADO    @map("Encerrado")
   CANCELADO    @map("Cancelado")

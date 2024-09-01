@@ -11,6 +11,8 @@ import { FetchAllEventsService } from '../services/event/FetchAllEventsService';
 import { FetchAllEventsController } from '../controllers/event/FetchAllEventsController';
 import { GetEventByIdController } from '../controllers/event/GetEventByIdController';
 import { GetEventByIdService } from '../services/event/GetCourseByIdService';
+import { EditEventService } from '../services/event/EditEventService';
+import { EditEventController } from '../controllers/event/EditEventController';
 
 export const eventRouter = Router();
 
@@ -26,6 +28,9 @@ const fetchAllEventsController = new FetchAllEventsController(fetchAllEventsServ
 
 const getEventByIdService = new GetEventByIdService(eventRepository);
 const getEventByIdController = new GetEventByIdController(getEventByIdService);
+
+const editEventService = new EditEventService(eventRepository);
+const editEventController = new EditEventController(editEventService);
 
 const fetchAllEventStatus = new FetchAllEventStatusController();
 
@@ -55,4 +60,11 @@ eventRouter.get(
 	authMiddleware,
 	roleMiddleware(eventRoles.GET_EVENT_BY_ID),
 	getEventByIdController.getEventById
+);
+
+eventRouter.put(
+	'/editEvent/:eventId',
+	authMiddleware,
+	roleMiddleware(eventRoles.EDIT_EVENT),
+	editEventController.editEvent
 );
