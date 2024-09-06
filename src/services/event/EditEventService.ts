@@ -1,7 +1,8 @@
 import { IEventRepository } from '../../repository/interfaces/IEventRepository';
 import { EventDomain } from '../../domain/EventDomain';
-import { Event, EventStatus } from '@prisma/client';
+import { Event, EventCourse, EventStatus } from '@prisma/client';
 import { AppError } from '../../utils/errors/AppError';
+import { EventCourseDomain } from '../../domain/EventCourseDomain';
 
 export class EditEventService {
 	private eventRepository: IEventRepository;
@@ -10,7 +11,7 @@ export class EditEventService {
 		this.eventRepository = repository;
 	}
 
-	async execute(event: EventDomain, courses: number[]): Promise<Event> {
+	async execute(event: EventDomain, courses: EventCourseDomain[]): Promise<Event> {
 		let updatedEvent;
 		try {
 			if (event.getEventEndDate() < new Date()) {

@@ -14,13 +14,7 @@ export class FetchAllCoursesController {
 	}
 	async fetchAllCourses(req, res) {
 		try {
-			const { skip = 0, take = 0, searchTerm = '' } = req.query;
-
-			const { courses, total } = await this.fetchAllCoursesService.execute(
-				Number(skip),
-				Number(take),
-				searchTerm
-			);
+			const { courses, total } = await this.fetchAllCoursesService.execute();
 
 			this.logger.info('Cursos retornados', req.requestEmail);
 			return res.status(201).json({

@@ -1,57 +1,72 @@
 import { EventDomain } from './EventDomain';
 
 interface EventCourseProps {
-  eventCourseId?: number;
-  courseName: string;
-  event?: EventDomain;
-  createdAt?: Date;
-  updatedAt?: Date;
+	eventCourseId?: number;
+	courseName: string;
+	courseId: number;
+	event?: EventDomain;
+	createdAt?: Date;
+	updatedAt?: Date;
 }
 
 export class EventCourseDomain {
-  private eventCourseId?: number;
-  private courseName: string;
-  private event?: EventDomain;
-  private createdAt: Date;
-  private updatedAt: Date;
+	private eventCourseId?: number;
+	private courseId: number;
+	private courseName: string;
+	private event?: EventDomain;
+	private createdAt: Date;
+	private updatedAt: Date;
 
-  constructor(props: EventCourseProps) {
-    this.eventCourseId = props.eventCourseId;
-    this.courseName = props.courseName;
-    this.event = props.event;
-    this.createdAt = props.createdAt || new Date();
-    this.updatedAt = props.updatedAt || new Date();
-  }
+	constructor(props: EventCourseProps) {
+		this.eventCourseId = props.eventCourseId;
+		this.courseName = props.courseName;
+		this.event = props.event;
+		this.courseId = props.courseId;
+		this.createdAt = props.createdAt || new Date();
+		this.updatedAt = props.updatedAt || new Date();
+	}
 
-  getEventCourseId() {
-    return this.eventCourseId;
-  }
+	getEventCourseId() {
+		return this.eventCourseId;
+	}
 
-  getCourseName() {
-    return this.courseName;
-  }
+	getCourseName() {
+		return this.courseName;
+	}
 
-  getEvent() {
-    return this.event;
-  }
+	getEvent() {
+		return this.event;
+	}
 
-  getCreatedAt() {
-    return this.createdAt;
-  }
+	getCourseId() {
+		return this.courseId;
+	}
 
-  getUpdatedAt() {
-    return this.updatedAt;
-  }
+	getCreatedAt() {
+		return this.createdAt;
+	}
 
-  setEvent(event: EventDomain) {
-    this.event = event;
-  }
+	getUpdatedAt() {
+		return this.updatedAt;
+	}
 
-  setCreatedAt(createdAt: Date) {
-    this.createdAt = createdAt;
-  }
+	setEvent(event: EventDomain) {
+		this.event = event;
+	}
 
-  setUpdatedAt(updatedAt: Date) {
-    this.updatedAt = updatedAt;
-  }
+	setCreatedAt(createdAt: Date) {
+		this.createdAt = createdAt;
+	}
+
+	setCourseName(courseName: string) {
+		this.courseName = courseName;
+	}
+
+	setCourseId(courseId: number) {
+		this.courseId = courseId;
+	}
+
+	setUpdatedAt(updatedAt: Date) {
+		this.updatedAt = updatedAt;
+	}
 }

@@ -1,9 +1,13 @@
 import { Event } from '@prisma/client';
 import { EventDomain } from '../../domain/EventDomain';
+import { EventCourseDomain } from '../../domain/EventCourseDomain';
 
 export interface IEventRepository {
-	createEvent(event: EventDomain, courses: number[]): Promise<Event>;
-	createEventWithLocation(event: EventDomain, courses: number[]): Promise<Event>;
+	createEvent(event: EventDomain, courses: EventCourseDomain[]): Promise<Event>;
+	createEventWithLocation(
+		event: EventDomain,
+		courses: EventCourseDomain[]
+	): Promise<Event>;
 	fetchAllEvents(
 		skip: number,
 		take: number,
@@ -12,7 +16,7 @@ export interface IEventRepository {
 	fetchEventById(eventId: number): Promise<Event>;
 	editEventWithLocation(
 		event: EventDomain,
-		courses: number[]
+		courses: EventCourseDomain[]
 	): Promise<Event | undefined>;
-	editEvent(event: EventDomain, courses: number[]): Promise<Event | undefined>;
+	editEvent(event: EventDomain, courses: EventCourseDomain[]): Promise<Event | undefined>;
 }

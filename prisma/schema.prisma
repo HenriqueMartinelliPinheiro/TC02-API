@@ -58,7 +58,6 @@ model Event {
   eventLocation  EventLocation?
   eventActivity  EventActivity[]
   eventCourse    EventCourse[]
-  courses        Course[]        @relation("EventCourses")
 }
 
 model EventLocation {
@@ -85,23 +84,12 @@ model EventActivity {
   Attendaces               Attendance[]
 }
 
-model Course {
-  courseId               Int           @id @default(autoincrement())
-  courseName             String
-  createdAt              DateTime      @default(now())
-  updatedAt              DateTime      @updatedAt
-  courseCoordinatorEmail String
-  events                 Event[]       @relation("EventCourses")
-  EventCourse            EventCourse[]
-}
-
 model EventCourse {
-  eventId  Int
-  courseId Int
-  event    Event  @relation(fields: [eventId], references: [eventId])
-  course   Course @relation(fields: [courseId], references: [courseId])
-
-  @@id([eventId, courseId])
+  eventCourseId Int    @id @default(autoincrement())
+  courseName    String @default("Curso  ")
+  eventId       Int
+  courseId      Int
+  event         Event  @relation(fields: [eventId], references: [eventId])
 }
 
 model Attendance {

@@ -1,5 +1,4 @@
 import { IEventRepository } from '../../repository/interfaces/IEventRepository';
-import { EventDomain } from '../../domain/EventDomain';
 
 export class FetchAllEventsService {
 	private eventRepository: IEventRepository;

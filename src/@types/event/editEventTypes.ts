@@ -44,9 +44,18 @@ export const editEventTypes = Joi.object({
 			'array.min': 'Deve haver pelo menos uma atividade no evento.',
 			'any.required': 'As atividades do evento são obrigatórias.',
 		}),
-	selectedCoursesIds: Joi.array()
+	selectedCourses: Joi.array()
 		.min(1)
-		.items(Joi.number().required())
+		.items(
+			Joi.object({
+				courseId: Joi.number().required().messages({
+					'any.required': 'O ID do curso é obrigatório.',
+				}),
+				courseName: Joi.string().required().messages({
+					'any.required': 'O nome do curso é obrigatório.',
+				}),
+			})
+		)
 		.required()
 		.messages({
 			'array.min': 'Deve haver pelo menos um curso selecionado.',

@@ -1,7 +1,7 @@
 import { IEventRepository } from '../interfaces/IEventRepository';
-import { Event, EventStatus, Prisma, PrismaClient } from '@prisma/client';
+import { Event, EventCourse, EventStatus, Prisma, PrismaClient } from '@prisma/client';
 import { EventDomain } from '../../domain/EventDomain';
-
+import { EventCourseDomain } from '../../domain/EventCourseDomain';
 export class EventRepository implements IEventRepository {
 	private prismaClient: PrismaClient;
 
@@ -11,7 +11,7 @@ export class EventRepository implements IEventRepository {
 
 	createEvent = async (
 		event: EventDomain,
-		courses: number[]
+		courses: EventCourseDomain[]
 	): Promise<Event | undefined> => {
 		try {
 			const result = await this.prismaClient.$transaction(async (prismaClient) => {
@@ -36,7 +36,8 @@ export class EventRepository implements IEventRepository {
 
 				await prismaClient.eventCourse.createMany({
 					data: courses.map((course) => ({
-						courseId: course,
+						courseId: course.getCourseId(),
+						courseName: course.getCourseName(),
 						eventId: createdEvent.eventId,
 					})),
 				});
@@ -50,7 +51,7 @@ export class EventRepository implements IEventRepository {
 
 	createEventWithLocation = async (
 		event: EventDomain,
-		courses: number[]
+		courses: EventCourseDomain[]
 	): Promise<Event | undefined> => {
 		try {
 			const result = await this.prismaClient.$transaction(async (prismaClient) => {
@@ -84,7 +85,8 @@ export class EventRepository implements IEventRepository {
 
 				await prismaClient.eventCourse.createMany({
 					data: courses.map((course) => ({
-						courseId: course,
+						courseId: course.getCourseId(),
+						courseName: course.getCourseName(),
 						eventId: createdEvent.eventId,
 					})),
 				});
@@ -132,11 +134,7 @@ export class EventRepository implements IEventRepository {
 				where: { eventId: eventId },
 				include: {
 					eventActivity: true,
-					eventCourse: {
-						include: {
-							course: true,
-						},
-					},
+					eventCourse: true,
 					eventLocation: true,
 				},
 			});
@@ -181,11 +179,7 @@ export class EventRepository implements IEventRepository {
 					},
 					include: {
 						eventActivity: true,
-						eventCourse: {
-							include: {
-								course: true,
-							},
-						},
+						eventCourse: true,
 						eventLocation: true,
 					},
 				}),
@@ -217,7 +211,7 @@ export class EventRepository implements IEventRepository {
 
 	editEventWithLocation = async (
 		event: EventDomain,
-		courses: number[]
+		courses: EventCourseDomain[]
 	): Promise<Event | undefined> => {
 		try {
 			const result = await this.prismaClient.$transaction(async (prismaClient) => {
@@ -274,7 +268,8 @@ export class EventRepository implements IEventRepository {
 
 				await prismaClient.eventCourse.createMany({
 					data: courses.map((course) => ({
-						courseId: course,
+						courseId: course.getCourseId(),
+						courseName: course.getCourseName(),
 						eventId: event.getEventId(),
 					})),
 				});
@@ -290,7 +285,7 @@ export class EventRepository implements IEventRepository {
 
 	editEvent = async (
 		event: EventDomain,
-		courses: number[]
+		courses: EventCourseDomain[]
 	): Promise<Event | undefined> => {
 		try {
 			const result = await this.prismaClient.$transaction(async (prismaClient) => {
@@ -331,7 +326,8 @@ export class EventRepository implements IEventRepository {
 
 				await prismaClient.eventCourse.createMany({
 					data: courses.map((course) => ({
-						courseId: course,
+						courseId: course.getCourseId(),
+						courseName: course.getCourseName(),
 						eventId: event.getEventId(),
 					})),
 				});

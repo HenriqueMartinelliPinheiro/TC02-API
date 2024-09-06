@@ -9,6 +9,7 @@ import { isValidRequest } from '../../utils/validations/isValidRequest';
 import { EventActivityDomain } from '../../domain/EventActivityDomain';
 import { EventLocationDomain } from '../../domain/EventLocationDomain';
 import { isValidEventDate } from '../../utils/validations/isValidEventDate';
+import { EventCourseDomain } from '../../domain/EventCourseDomain';
 
 export class CreateEventController {
 	private createEventService: CreateEventService;
@@ -54,6 +55,13 @@ export class CreateEventController {
 				});
 			}
 
+			const eventCourses = req.body.selectedCourses.map((course: any) => {
+				return new EventCourseDomain({
+					courseId: course.courseId,
+					courseName: course.courseName,
+				});
+			});
+
 			event = new EventDomain({
 				eventEndDate: new Date(req.body.eventEndDate),
 				eventStartDate: new Date(req.body.eventStartDate),
@@ -70,10 +78,7 @@ export class CreateEventController {
 						: undefined,
 			});
 
-			const createdEvent = await this.createEventService.execute(
-				event,
-				req.body.selectedCoursesIds
-			);
+			const createdEvent = await this.createEventService.execute(event, eventCourses);
 
 			this.logger.info(
 				`Evento criado com sucesso ${createdEvent.eventId}`,

@@ -73,7 +73,7 @@ export class EditEventController {
 
 			const updatedEvent = await this.editEventService.execute(
 				event,
-				req.body.selectedCoursesIds
+				req.body.selectedCourses
 			);
 
 			this.logger.info(
