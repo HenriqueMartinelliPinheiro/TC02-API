@@ -2665,3 +2665,166 @@ Invalid value for argument `eventStatus`. Expected EventStatus. em EditEventCont
 06/09/2024, 11:00:26: INFO - Status retornados com sucesso. por User: undefined
 06/09/2024, 11:03:46: ERROR - Erro ao criar Evento - Error: course.getCourseId is not a function em CreateEventController por User: henriquepinheiro18@gmail.com
 06/09/2024, 11:10:55: INFO - Evento criado com sucesso 8 por User: henriquepinheiro18@gmail.com
+07/09/2024, 09:49:54: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+07/09/2024, 09:49:54: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+07/09/2024, 09:49:57: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 09:49:57: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 09:49:57: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 09:49:57: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 09:50:04: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+07/09/2024, 09:50:04: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+07/09/2024, 09:50:12: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 09:50:12: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 09:50:12: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 09:50:12: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 09:51:14: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 09:51:14: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 09:51:14: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 09:51:14: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:05:08: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:05:08: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:05:08: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:05:08: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:05:44: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:05:44: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:05:44: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:05:44: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:05:53: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:05:53: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:05:53: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:05:53: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:06:23: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:06:23: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:06:23: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:06:23: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:06:51: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:06:51: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:07:02: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:07:02: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:07:02: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:07:02: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:07:26: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:07:26: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:07:26: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:07:26: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:07:27: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:07:27: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:07:33: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:07:33: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:07:33: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:07:33: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:08:12: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:08:12: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:08:13: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:08:13: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:08:15: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:08:15: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:08:17: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:08:17: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:08:17: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:08:17: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:14:28: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:14:28: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:14:31: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:14:31: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:14:31: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:14:31: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:15:42: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:15:42: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:15:44: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:15:44: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:15:44: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:15:44: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:16:06: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:16:06: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:17:08: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:17:09: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:17:09: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:17:09: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:19:56: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:19:56: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:20:24: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:20:24: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:20:27: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:20:27: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:20:27: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:20:27: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:20:36: ERROR - Erro ao atualizar Evento - Error: course.getCourseId is not a function em EditEventController por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:25:31: INFO - Evento atualizado com sucesso 8 por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:25:36: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:25:36: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:25:39: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:25:39: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:25:39: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:25:39: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:25:53: INFO - Evento atualizado com sucesso 8 por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:25:58: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:25:58: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:28:55: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:28:55: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:28:55: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:28:55: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:28:57: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:28:57: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:28:57: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:28:57: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:28:58: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:28:58: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:28:58: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:28:58: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:29:11: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:29:11: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:29:11: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:29:11: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:29:15: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:29:15: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:29:15: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:29:15: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:29:21: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:29:21: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:29:26: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:29:26: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:29:26: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:29:26: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:29:28: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:29:28: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:29:28: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:29:28: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:29:37: INFO - Evento atualizado com sucesso 8 por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:29:37: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:29:37: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:29:39: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:29:39: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:29:39: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:29:39: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:29:52: ERROR - Datas Inválidas em EditEventController por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:29:52: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:29:52: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:31:17: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:31:18: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:31:18: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:31:18: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:31:18: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:31:18: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:31:31: INFO - Evento atualizado com sucesso 8 por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:31:31: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:31:31: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:31:33: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:31:33: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:31:33: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:31:33: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:31:52: ERROR - Datas Inválidas em EditEventController por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:31:52: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:31:52: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:32:03: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:32:03: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:32:03: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:32:03: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:32:13: ERROR - Datas Inválidas em EditEventController por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:32:31: INFO - Evento atualizado com sucesso 8 por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:33:02: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:33:02: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:33:07: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:33:07: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+07/09/2024, 10:33:35: INFO - Status retornados com sucesso. por User: undefined
+07/09/2024, 10:33:35: INFO - Status retornados com sucesso. por User: undefined

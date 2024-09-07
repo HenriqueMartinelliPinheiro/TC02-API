@@ -9,6 +9,7 @@ import { EventActivityDomain } from '../../domain/EventActivityDomain';
 import { EventLocationDomain } from '../../domain/EventLocationDomain';
 import { isValidEventDate } from '../../utils/validations/isValidEventDate';
 import { editEventTypes } from '../../@types/event/editEventTypes';
+import { EventCourseDomain } from '../../domain/EventCourseDomain';
 
 export class EditEventController {
 	private editEventService: EditEventService;
@@ -54,6 +55,13 @@ export class EditEventController {
 				});
 			}
 
+			const eventCourses = req.body.selectedCourses.map((course: any) => {
+				return new EventCourseDomain({
+					courseId: course.courseId,
+					courseName: course.courseName,
+				});
+			});
+
 			event = new EventDomain({
 				eventId: req.body.eventId,
 				eventEndDate: new Date(req.body.eventEndDate),
@@ -71,10 +79,7 @@ export class EditEventController {
 						: undefined,
 			});
 
-			const updatedEvent = await this.editEventService.execute(
-				event,
-				req.body.selectedCourses
-			);
+			const updatedEvent = await this.editEventService.execute(event, eventCourses);
 
 			this.logger.info(
 				`Evento atualizado com sucesso ${updatedEvent.eventId}`,
