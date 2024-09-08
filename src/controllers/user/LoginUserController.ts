@@ -32,7 +32,7 @@ export class LoginUserController {
 		if (!isValidPassword(req.body.userPassword)) {
 			this.logger.error(`Senha Inválida: ${req.body.userEmail}`);
 			return res.status(400).json({
-				msg: error,
+				msg: 'Senha Inválida',
 				user: undefined,
 			});
 		}

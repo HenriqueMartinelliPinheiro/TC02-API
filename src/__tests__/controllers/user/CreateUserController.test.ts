@@ -74,7 +74,7 @@ describe('CreateUserController', () => {
 	});
 
 	it('should return 400 if request is invalid', async () => {
-		(isValidRequest as any).mockReturnValue(false);
+		(isValidRequest as any).mockReturnValue('Dados inválidos');
 
 		await createUserController.createUser(req as Request, res as Response);
 
