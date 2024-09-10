@@ -17,13 +17,13 @@ Repositório para uma API para gerenciamento e registro de frequência em evento
 4. No terminal, clone o repositório da aplicação:
 
 ```bash
-git clone <link-do-repositorio>
+git clone https://github.com/HenriqueMartinelliPinheiro/TC02-API.git
 ```
 
 5. Navegue até a pasta do projeto e instale as dependências utilizando npm:
 
 ```bash
-cd <nome-do-projeto>
+cd TC02-API
 npm install
 ```
 
@@ -45,6 +45,7 @@ npx prisma generate
 
 npx prisma migrate dev --name init
 ```
+
 8. Inicie a API
 
 ```bash
