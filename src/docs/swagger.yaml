@@ -1,14 +1,236 @@
 openapi: 3.0.0
 info:
-  title: API de Usuários e Eventos
-  description: API para gerenciamento de usuários e eventos
+  title: API de Cursos e Eventos
+  description: API para gerenciamento de cursos e eventos
   version: 1.0.0
+servers:
+  - url: http://localhost:4000
+    description: Local server
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Role:
+      type: object
+      properties:
+        roleId:
+          type: integer
+          description: ID do cargo
+        roleTitle:
+          type: string
+          description: Título do cargo
+        createdAt:
+          type: string
+          format: date-time
+          description: Data de criação
+        updatedAt:
+          type: string
+          format: date-time
+          description: Data de atualização
+        systemStatus:
+          type: boolean
+          description: Status do sistema
+      required:
+        - roleId
+        - roleTitle
+        - createdAt
+        - updatedAt
+        - systemStatus
+
+    User:
+      type: object
+      properties:
+        userId:
+          type: integer
+          description: ID do usuário
+        userName:
+          type: string
+          description: Nome do usuário
+        userEmail:
+          type: string
+          description: Email do usuário
+        role:
+          $ref: '#/components/schemas/Role'
+        createdAt:
+          type: string
+          format: date-time
+          description: Data de criação do usuário
+        updatedAt:
+          type: string
+          format: date-time
+          description: Data de atualização do usuário
+      required:
+        - userId
+        - userName
+        - userEmail
+        - role
+        - createdAt
+        - updatedAt
+
+    Event:
+      type: object
+      properties:
+        eventId:
+          type: integer
+          description: ID do evento
+        eventTitle:
+          type: string
+          description: Título do evento
+        eventStatus:
+          type: string
+          enum:
+            - NAO_INICIADO
+            - EM_ANDAMENTO
+            - ENCERRADO
+            - CANCELADO
+          description: Status do evento
+        eventStartDate:
+          type: string
+          format: date-time
+          description: Data de início do evento
+        eventEndDate:
+          type: string
+          format: date-time
+          description: Data de término do evento
+        createdAt:
+          type: string
+          format: date-time
+          description: Data de criação
+        updatedAt:
+          type: string
+          format: date-time
+          description: Data de atualização
+        eventLocation:
+          $ref: '#/components/schemas/EventLocation'
+        eventActivity:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventActivity'
+        eventCourse:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventCourse'
+      required:
+        - eventId
+        - eventTitle
+        - eventStatus
+        - eventStartDate
+        - eventEndDate
+        - createdAt
+        - updatedAt
+
+    EventLocation:
+      type: object
+      properties:
+        eventLocationId:
+          type: integer
+          description: ID da localização do evento
+        latitude:
+          type: number
+          format: float
+          description: Latitude da localização do evento
+        longitude:
+          type: number
+          format: float
+          description: Longitude da localização do evento
+        radius:
+          type: integer
+          description: Raio da localização do evento
+        createdAt:
+          type: string
+          format: date-time
+          description: Data de criação
+        updatedAt:
+          type: string
+          format: date-time
+          description: Data de atualização
+        eventId:
+          type: integer
+          description: ID do evento
+      required:
+        - eventLocationId
+        - latitude
+        - longitude
+        - radius
+        - createdAt
+        - updatedAt
+        - eventId
+
+    EventActivity:
+      type: object
+      properties:
+        eventActivityId:
+          type: integer
+          description: ID da atividade do evento
+        eventActivityStartDate:
+          type: string
+          format: date-time
+          description: Data de início da atividade do evento
+        eventActivityEndDate:
+          type: string
+          format: date-time
+          description: Data de término da atividade do evento
+        eventActivityDescription:
+          type: string
+          description: Descrição da atividade do evento
+        eventActivityTitle:
+          type: string
+          description: Título da atividade do evento
+        createdAt:
+          type: string
+          format: date-time
+          description: Data de criação
+        updatedAt:
+          type: string
+          format: date-time
+          description: Data de atualização
+        eventId:
+          type: integer
+          description: ID do evento
+      required:
+        - eventActivityId
+        - eventActivityStartDate
+        - eventActivityEndDate
+        - eventActivityDescription
+        - eventActivityTitle
+        - createdAt
+        - updatedAt
+        - eventId
+
+    EventCourse:
+      type: object
+      properties:
+        eventCourseId:
+          type: integer
+          description: ID do curso do evento
+        courseName:
+          type: string
+          description: Nome do curso
+        eventId:
+          type: integer
+          description: ID do evento
+        courseId:
+          type: integer
+          description: ID do curso
+      required:
+        - eventCourseId
+        - courseName
+        - eventId
+        - courseId
+
 paths:
   /createUser:
     post:
       summary: Cria um novo usuário
-      tags: [User]
+      tags: [Users]
+      security:
+        - bearerAuth: []
       requestBody:
+        description: Dados necessários para criar um novo usuário
         required: true
         content:
           application/json:
@@ -20,70 +242,91 @@ paths:
                   description: Nome do usuário
                 userEmail:
                   type: string
-                  format: email
                   description: Email do usuário
                 userPassword:
                   type: string
                   description: Senha do usuário
                 roleId:
                   type: integer
-                  description: ID da role do usuário
+                  description: ID do cargo do usuário
                 roleTitle:
                   type: string
-                  description: Título da role do usuário
+                  description: Título do cargo do usuário
               required:
                 - userName
                 - userEmail
                 - userPassword
                 - roleId
                 - roleTitle
-      parameters:
-        - in: header
-          name: x-access-token
-          schema:
-            type: string
-          required: true
-          description: Token de acesso do usuário
-        - in: header
       responses:
         '201':
           description: Usuário criado com sucesso
           content:
             application/json:
               schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Requisição inválida (dados incorretos ou senha inválida)
+        '409':
+          description: Email já registrado
+        '500':
+          description: Erro interno do servidor
+
+  /fetchAllUsers:
+    get:
+      summary: Retorna todos os usuários com suporte à paginação e pesquisa
+      tags: [Users]
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: skip
+          schema:
+            type: integer
+            description: Número de itens a pular para paginação
+            example: 0
+        - in: query
+          name: take
+          schema:
+            type: integer
+            description: Número de itens a retornar para paginação
+            example: 10
+        - in: query
+          name: searchTerm
+          schema:
+            type: string
+            description: Termo de busca para filtrar os usuários pelo nome ou email
+      responses:
+        '200':
+          description: Lista de usuários retornada com sucesso
+          content:
+            application/json:
+              schema:
                 type: object
                 properties:
-                  user:
-                    type: object
-                    properties:
-                      userName:
-                        type: string
-                        example: John Doe
-                      userEmail:
-                        type: string
-                        example: johndoe@example.com
-                      role:
-                        type: object
-                        properties:
-                          roleId:
-                            type: integer
-                            example: 1
-                          roleTitle:
-                            type: string
-                            example: Admin
+                  total:
+                    type: integer
+                    description: Total de usuários encontrados
+                    example: 100
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
                   msg:
                     type: string
-                    example: Usuário criado com sucesso
-        '400':
-          description: Dados inválidos
+                    description: Mensagem de sucesso
+                    example: "Usuários Retornados com Sucesso"
+        '404':
+          description: Nenhum usuário encontrado
         '500':
           description: Erro interno do servidor
 
   /loginUser:
     post:
-      summary: Faz login de um usuário
-      tags: [User]
+      summary: Realiza o login do usuário
+      tags: [Users]
       requestBody:
+        description: Dados para realizar o login
         required: true
         content:
           application/json:
@@ -92,7 +335,6 @@ paths:
               properties:
                 userEmail:
                   type: string
-                  format: email
                   description: Email do usuário
                 userPassword:
                   type: string
@@ -102,62 +344,210 @@ paths:
                 - userPassword
       responses:
         '201':
-          description: Usuário logado com sucesso
-          headers:
-            authorization:
-              schema:
-                type: string
-              description: Token de acesso do usuário
+          description: Login realizado com sucesso
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   user:
-                    type: object
-                    properties:
-                      userId:
-                        type: string
-                      userEmail:
-                        type: string
-                        format: email
-                      userName:
-                        type: string
-                    required:
-                      - userId
-                      - userEmail
-                      - userName
+                    $ref: '#/components/schemas/User'
+                  accessToken:
+                    type: string
+                    description: Token de acesso gerado
+                  accessTokenExpiration:
+                    type: string
+                    format: date-time
+                    description: Data de expiração do token de acesso
                   msg:
                     type: string
-                    example: Usuário logado com sucesso
+                    description: Mensagem de sucesso
+                    example: "Usuário logado com sucesso"
         '400':
-          description: Dados inválidos (Email ou senha incorretos)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  msg:
-                    type: string
-                    example: Dados inválidos
+          description: Requisição inválida (dados ou senha incorretos)
         '401':
-          description: Email ou senha incorretos
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  msg:
-                    type: string
-                    example: Email ou senha incorretos
+          description: Credenciais inválidas (email ou senha incorretos)
         '500':
           description: Erro interno do servidor
+
+  /fetchAllCourses:
+    get:
+      summary: Retorna todos os cursos
+      tags: [Courses]
+      security:
+        - bearerAuth: []
+      responses:
+        '201':
+          description: Cursos retornados com sucesso
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  msg:
-                    type: string
-                    example: Erro interno do servidor
-  # Adicione aqui a documentação das outras rotas (eventRouter) conforme necessário
+                  total:
+                    type: integer
+                    example: 10
+                  courses:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EventCourse'
+
+  /createEvent:
+    post:
+      summary: Cria um novo evento
+      tags: [Events]
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: Dados do evento a ser criado
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '201':
+          description: Evento criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          description: Requisição inválida
+        '500':
+          description: Erro interno do servidor
+
+  /fetchAllEventStatusOptions:
+    get:
+      summary: Retorna todas as opções de status de eventos
+      tags: [Events]
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Opções de status de eventos retornadas com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+
+  /fetchAllEvents:
+    get:
+      summary: Retorna todos os eventos
+      tags: [Events]
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: searchTerm
+          schema:
+            type: string
+            description: Termo de busca para filtrar eventos
+        - in: query
+          name: skip
+          schema:
+            type: integer
+            example: 0
+            description: Número de itens a pular para paginação
+        - in: query
+          name: take
+          schema:
+            type: integer
+            example: 10
+            description: Número de itens a retornar para paginação
+      responses:
+        '200':
+          description: Eventos retornados com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    example: 100
+                  skip:
+                    type: integer
+                    example: 0
+                  take:
+                    type: integer
+                    example: 10
+                  events:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Event'
+
+  /getEventById/{eventId}:
+    get:
+      summary: Retorna um evento pelo ID
+      tags: [Events]
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: eventId
+          required: true
+          schema:
+            type: string
+          description: O ID do evento
+      responses:
+        '200':
+          description: Evento retornado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '404':
+          description: Evento não encontrado
+
+  /editEvent/{eventId}:
+    put:
+      summary: Edita um evento pelo ID
+      tags: [Events]
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: eventId
+          required: true
+          schema:
+            type: string
+          description: O ID do evento
+      requestBody:
+        description: Dados do evento a ser editado
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '200':
+          description: Evento editado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          description: Requisição inválida
+        '404':
+          description: Evento não encontrado
+
+  /fetchAllRoles:
+    get:
+      summary: Retorna todos os cargos
+      tags: [Roles]
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de cargos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Role'
+        '404':
+          description: Nenhum cargo encontrado

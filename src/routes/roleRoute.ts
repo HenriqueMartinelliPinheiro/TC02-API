@@ -8,7 +8,7 @@ import { RoleRepository } from '../repository/implementation/RoleRepository';
 import { PrismaClient } from '@prisma/client';
 import { FetchAllRolesService } from '../services/role/FetchAllRolesService';
 
-export const 	roleRouter = Router();
+export const roleRouter = Router();
 
 const prismaClient = new PrismaClient();
 
