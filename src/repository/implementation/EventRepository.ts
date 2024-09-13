@@ -221,7 +221,6 @@ export class EventRepository implements IEventRepository {
 						eventTitle: event.getEventTitle(),
 						eventEndDate: event.getEventEndDate(),
 						eventStartDate: event.getEventStartDate(),
-						// Valida se o status é do tipo EventStatus; se for, usa diretamente, senão converte
 						eventStatus:
 							typeof event.getEventStatus() === 'string'
 								? await this.getEventStatusFromString(event.getEventStatus())
@@ -303,6 +302,12 @@ export class EventRepository implements IEventRepository {
 				});
 
 				await prismaClient.eventActivity.deleteMany({
+					where: {
+						eventId: event.getEventId(),
+					},
+				});
+
+				await prismaClient.eventLocation.deleteMany({
 					where: {
 						eventId: event.getEventId(),
 					},
