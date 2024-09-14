@@ -3,10 +3,10 @@ import { AttendanceDomain } from './AttendanceDomain';
 
 interface EventActivityProps {
 	eventActivityId?: number;
-	eventActivityTitle: string;
-	eventActivityStartDate: Date;
-	eventActivityEndDate: Date;
-	eventActivityDescription: string;
+	eventActivityTitle?: string;
+	eventActivityStartDate?: Date;
+	eventActivityEndDate?: Date;
+	eventActivityDescription?: string;
 	createdAt?: Date;
 	updatedAt?: Date;
 	event?: EventDomain;

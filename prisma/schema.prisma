@@ -98,7 +98,6 @@ model Attendance {
   studentRegistration String
   eventActivity       EventActivity @relation(fields: [eventActivityId], references: [eventActivityId])
   eventActivityId     Int
-  studentEntryYear    Int
   createdAt           DateTime      @default(now())
   updatedAt           DateTime      @updatedAt
 }

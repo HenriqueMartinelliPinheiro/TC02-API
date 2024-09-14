@@ -96,7 +96,11 @@ export class CreateEventController {
 					msg: error.message,
 				});
 			}
-			this.logger.error('Erro ao criar Evento', req.requestEmail, error);
+			this.logger.error(
+				'Erro ao criar Evento',
+				req.requestEmail || 'Desconhecido',
+				error
+			);
 			return res.status(500).json({
 				event: undefined,
 				msg: 'Erro interno do Servidor',
