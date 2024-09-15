@@ -7,7 +7,8 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { courseRouter } from './routes/courseRoutes';
 import cookieParser from 'cookie-parser';
-import { roleRouter } from './routes/roleRoute';
+import { roleRouter } from './routes/roleRoutes';
+import { studentRouter } from './routes/studentRoutes';
 
 const app: Express = express();
 
@@ -38,6 +39,7 @@ app.use('/', eventRouter);
 app.use('/', userRouter);
 app.use('/', courseRouter);
 app.use('/', roleRouter);
+app.use('/', studentRouter);
 
 app.listen(4000, () => {
 	console.log(`App is listening on port 4000`);

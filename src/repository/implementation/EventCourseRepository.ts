@@ -9,10 +9,8 @@ export class EventCourseRepository implements IEventCourseRepository {
 		this.prismaClient = prismaClient;
 	}
 
-	createEventCourse = async (
-		eventId: number,
-		courseId: number
-	): Promise<EventCourse> => {
+	// Método para criar EventCourse
+	createEventCourse = async (eventId: number, courseId: number): Promise<EventCourse> => {
 		try {
 			const createdEventCourse = await this.prismaClient.eventCourse.create({
 				data: {
@@ -24,6 +22,24 @@ export class EventCourseRepository implements IEventCourseRepository {
 			return createdEventCourse;
 		} catch (error) {
 			throw error;
+		}
+	};
+
+	findEventCourse = async (
+		eventId: number,
+		courseId: number
+	): Promise<EventCourse | null> => {
+		try {
+			const eventCourse = await this.prismaClient.eventCourse.findFirst({
+				where: {
+					eventId: eventId,
+					courseId: courseId,
+				},
+			});
+
+			return eventCourse;
+		} catch (error) {
+			throw new Error('Erro ao buscar o curso associado ao evento');
 		}
 	};
 }

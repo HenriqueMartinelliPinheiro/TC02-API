@@ -10,6 +10,7 @@ export class AttendanceRepository implements IAttendanceRepository {
 			data: {
 				studentName: attendanceData.getStudentName(),
 				studentRegistration: attendanceData.getStudentRegistration(),
+				studentCpf: attendanceData.getStudentCpf(),
 				eventActivity: {
 					connect: {
 						eventActivityId: attendanceData.getEventActivity()?.getEventActivityId(),

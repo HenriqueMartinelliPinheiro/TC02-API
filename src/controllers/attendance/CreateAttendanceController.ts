@@ -17,7 +17,15 @@ export class CreateAttendanceController {
 	}
 
 	async createAttendance(req: Request, res: Response): Promise<Response> {
-		const { studentName, studentRegistration, eventActivityId } = req.body;
+		const {
+			studentName,
+			studentRegistration,
+			eventActivityId,
+			studentCpf,
+			eventId,
+			latitude,
+			longitude,
+		} = req.body;
 
 		const error = isValidRequest(req.body, createAttendanceTypes);
 
@@ -32,12 +40,18 @@ export class CreateAttendanceController {
 		const attendanceData = new AttendanceDomain({
 			studentName,
 			studentRegistration,
+			studentCpf,
 			eventActivity: new EventActivityDomain({
 				eventActivityId,
 			}),
 		});
 
-		const attendance = await this.createAttendanceService.execute(attendanceData);
+		const attendance = await this.createAttendanceService.execute(
+			attendanceData,
+			eventId,
+			latitude,
+			longitude
+		);
 
 		return res.status(201).json(attendance);
 	}

@@ -96,6 +96,7 @@ model Attendance {
   AttendanceId        Int           @id @default(autoincrement())
   studentName         String
   studentRegistration String
+  studentCpf          String
   eventActivity       EventActivity @relation(fields: [eventActivityId], references: [eventActivityId])
   eventActivityId     Int
   createdAt           DateTime      @default(now())

@@ -7,6 +7,7 @@ interface AttendanceProps {
 	eventActivity?: EventActivityDomain;
 	createdAt?: Date;
 	updatedAt?: Date;
+	studentCpf: string;
 }
 
 export class AttendanceDomain {
@@ -14,9 +15,9 @@ export class AttendanceDomain {
 	private studentName: string;
 	private studentRegistration: string;
 	private eventActivity?: EventActivityDomain;
-	private studentEntryYear: number;
 	private createdAt: Date;
 	private updatedAt: Date;
+	private studentCpf: string;
 
 	constructor(props: AttendanceProps) {
 		this.attendanceId = props.attendanceId;
@@ -25,6 +26,7 @@ export class AttendanceDomain {
 		this.eventActivity = props.eventActivity;
 		this.createdAt = props.createdAt || new Date();
 		this.updatedAt = props.updatedAt || new Date();
+		this.studentCpf = props.studentCpf;
 	}
 
 	getAttendanceId() {
@@ -35,16 +37,16 @@ export class AttendanceDomain {
 		return this.studentName;
 	}
 
+	getStudentCpf() {
+		return this.studentCpf;
+	}
+
 	getStudentRegistration() {
 		return this.studentRegistration;
 	}
 
 	getEventActivity() {
 		return this.eventActivity;
-	}
-
-	getStudentEntryYear() {
-		return this.studentEntryYear;
 	}
 
 	getCreatedAt() {
@@ -57,6 +59,10 @@ export class AttendanceDomain {
 
 	setEventActivity(eventActivity: EventActivityDomain) {
 		this.eventActivity = eventActivity;
+	}
+
+	setStudentCpf(studentCpf: string) {
+		this.studentCpf = studentCpf;
 	}
 
 	setCreatedAt(createdAt: Date) {

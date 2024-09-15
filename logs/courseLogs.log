@@ -2871,3 +2871,17 @@ Argument `courseId`: Invalid value provided. Expected IntFilter or Int, provided
 13/09/2024, 19:27:55: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
 13/09/2024, 19:28:06: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
 13/09/2024, 19:28:06: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+15/09/2024, 09:56:26: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+15/09/2024, 09:56:26: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+15/09/2024, 09:59:01: ERROR - Erro ao Buscar Cursos - Error: connect ECONNREFUSED 127.0.0.1:3000 em FetchAllCoursesController por User: henriquepinheiro18@gmail.com
+15/09/2024, 09:59:01: ERROR - Erro ao Buscar Cursos - Error: connect ECONNREFUSED 127.0.0.1:3000 em FetchAllCoursesController por User: henriquepinheiro18@gmail.com
+15/09/2024, 09:59:03: ERROR - Erro ao Buscar Cursos - Error: connect ECONNREFUSED 127.0.0.1:3000 em FetchAllCoursesController por User: henriquepinheiro18@gmail.com
+15/09/2024, 09:59:03: ERROR - Erro ao Buscar Cursos - Error: connect ECONNREFUSED 127.0.0.1:3000 em FetchAllCoursesController por User: henriquepinheiro18@gmail.com
+15/09/2024, 09:59:05: ERROR - Erro ao Buscar Cursos - Error: connect ECONNREFUSED 127.0.0.1:3000 em FetchAllCoursesController por User: henriquepinheiro18@gmail.com
+15/09/2024, 09:59:05: ERROR - Erro ao Buscar Cursos - Error: connect ECONNREFUSED 127.0.0.1:3000 em FetchAllCoursesController por User: henriquepinheiro18@gmail.com
+15/09/2024, 09:59:20: ERROR - Erro ao Buscar Cursos - Error: connect ECONNREFUSED 127.0.0.1:3000 em FetchAllCoursesController por User: henriquepinheiro18@gmail.com
+15/09/2024, 09:59:21: ERROR - Erro ao Buscar Cursos - Error: connect ECONNREFUSED 127.0.0.1:3000 em FetchAllCoursesController por User: henriquepinheiro18@gmail.com
+15/09/2024, 10:01:08: ERROR - Erro ao Buscar Cursos - Error: connect ECONNREFUSED 127.0.0.1:3000 em FetchAllCoursesController por User: henriquepinheiro18@gmail.com
+15/09/2024, 10:01:08: ERROR - Erro ao Buscar Cursos - Error: connect ECONNREFUSED 127.0.0.1:3000 em FetchAllCoursesController por User: henriquepinheiro18@gmail.com
+15/09/2024, 10:02:43: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+15/09/2024, 10:02:43: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com

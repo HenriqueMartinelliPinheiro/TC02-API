@@ -4,4 +4,5 @@ import { EventCourse } from '@prisma/client';
 
 export interface IEventCourseRepository {
 	createEventCourse(eventId: number, courseId: number): Promise<EventCourse>;
+	findEventCourse(eventId: number, courseId: number): Promise<EventCourse | null>;
 }
