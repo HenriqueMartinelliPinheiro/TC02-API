@@ -5,6 +5,7 @@ import { FetchStudentByCpfService } from '../student/FetchStudentByCpfService';
 import { EventCourseRepository } from '../../repository/implementation/EventCourseRepository';
 import { EventLocationRepository } from '../../repository/implementation/EventLocationRepository';
 import { calculateDistance } from '../../utils/calculateDistance';
+import { AppError } from '../../utils/errors/AppError';
 
 export class CreateAttendanceService {
 	private attendanceRepository: IAttendanceRepository;
@@ -33,7 +34,10 @@ export class CreateAttendanceService {
 		);
 
 		if (!eventLocation) {
-			throw new Error(`Localização do evento não encontrada para o evento ${eventID}`);
+			throw new AppError(
+				`Localização do evento não encontrada para o evento ${eventID}`,
+				404
+			);
 		}
 
 		const distance = calculateDistance(
@@ -44,7 +48,10 @@ export class CreateAttendanceService {
 		);
 
 		if (distance > eventLocation.radius) {
-			throw new Error('A localização do aluno está fora do raio permitido para o evento');
+			throw new AppError(
+				'A localização do aluno está fora do raio permitido para o evento',
+				400
+			);
 		}
 	}
 
@@ -55,7 +62,7 @@ export class CreateAttendanceService {
 		);
 
 		if (!eventCourse) {
-			throw new Error(`Curso não encontrado para o evento ${eventID}`);
+			throw new AppError(`Curso não encontrado para o evento ${eventID}`, 400);
 		}
 	}
 
@@ -65,21 +72,29 @@ export class CreateAttendanceService {
 		studentLatitude: number,
 		studentLongitude: number
 	): Promise<Attendance> {
-		const students = await this.fetchStudentByCpfService.fetchStudentByCpf(
-			attendanceData.getStudentCpf()
-		);
+		try {
+			const students = await this.fetchStudentByCpfService.fetchStudentByCpf(
+				attendanceData.getStudentCpf()
+			);
 
-		if (students.length === 0) {
-			throw new Error('Estudante não encontrado com o CPF fornecido');
+			if (students.length === 0) {
+				throw new AppError('Estudante não encontrado com o CPF fornecido', 404);
+			}
+
+			const student = students[0];
+			const courseId = student.idCurso;
+
+			await this.validateStudentCourse(eventID, courseId);
+
+			await this.validateStudentLocation(eventID, studentLatitude, studentLongitude);
+
+			return this.attendanceRepository.createAttendance(attendanceData);
+		} catch (error) {
+			if (error instanceof AppError) {
+				throw error;
+			}
+
+			throw new Error('Erro ao processar a presença do aluno');
 		}
-
-		const student = students[0];
-		const courseId = student.idCurso;
-
-		await this.validateStudentCourse(eventID, courseId);
-
-		await this.validateStudentLocation(eventID, studentLatitude, studentLongitude);
-
-		return this.attendanceRepository.createAttendance(attendanceData);
 	}
 }

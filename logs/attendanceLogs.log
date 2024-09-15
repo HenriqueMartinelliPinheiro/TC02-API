@@ -1,0 +1,22 @@
+15/09/2024, 14:06:20: ERROR - Curso não encontrado para o evento 200 em CreateAttendanceController por User: undefined
+15/09/2024, 14:07:18: ERROR - A localização do aluno está fora do raio permitido para o evento em CreateAttendanceController por User: undefined
+15/09/2024, 14:07:25: ERROR - Erro ao registrar presença - Error: 
+Invalid `this.prismaClient.attendance.create()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/AttendanceRepository.ts:11:39
+
+   8 	this.prismaClient = prismaClient;
+   9 }
+  10 async createAttendance(attendanceData: AttendanceDomain): Promise<Attendance> {
+→ 11 	return this.prismaClient.attendance.create(
+An operation failed because it depends on one or more records that were required but not found. No 'EventActivity' record(s) (needed to inline the relation on 'Attendance' record(s)) was found for a nested connect on one-to-many relation 'AttendanceToEventActivity'. em CreateAttendanceController por User: Desconhecido
+15/09/2024, 14:07:33: INFO - Presença registrada com sucesso para o aluno Maria Souza por User: undefined
+15/09/2024, 14:07:46: ERROR - Erro ao registrar presença - Error: 
+Invalid `this.prismaClient.attendance.create()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/AttendanceRepository.ts:11:39
+
+   8 	this.prismaClient = prismaClient;
+   9 }
+  10 async createAttendance(attendanceData: AttendanceDomain): Promise<Attendance> {
+→ 11 	return this.prismaClient.attendance.create(
+An operation failed because it depends on one or more records that were required but not found. No 'EventActivity' record(s) (needed to inline the relation on 'Attendance' record(s)) was found for a nested connect on one-to-many relation 'AttendanceToEventActivity'. em CreateAttendanceController por User: Desconhecido
+15/09/2024, 14:08:08: ERROR - A localização do aluno está fora do raio permitido para o evento em CreateAttendanceController por User: undefined

@@ -2,11 +2,13 @@ import { Attendance, PrismaClient } from '@prisma/client';
 import { AttendanceDomain } from '../../domain/AttendanceDomain';
 import { IAttendanceRepository } from '../interfaces/IAttendanceRepository';
 
-const prisma = new PrismaClient();
-
 export class AttendanceRepository implements IAttendanceRepository {
+	private prismaClient: PrismaClient;
+	constructor(prismaClient: PrismaClient) {
+		this.prismaClient = prismaClient;
+	}
 	async createAttendance(attendanceData: AttendanceDomain): Promise<Attendance> {
-		return prisma.attendance.create({
+		return this.prismaClient.attendance.create({
 			data: {
 				studentName: attendanceData.getStudentName(),
 				studentRegistration: attendanceData.getStudentRegistration(),

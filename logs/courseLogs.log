@@ -2885,3 +2885,5 @@ Argument `courseId`: Invalid value provided. Expected IntFilter or Int, provided
 15/09/2024, 10:01:08: ERROR - Erro ao Buscar Cursos - Error: connect ECONNREFUSED 127.0.0.1:3000 em FetchAllCoursesController por User: henriquepinheiro18@gmail.com
 15/09/2024, 10:02:43: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
 15/09/2024, 10:02:43: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+15/09/2024, 13:49:52: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+15/09/2024, 13:49:52: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
