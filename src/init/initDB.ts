@@ -1,5 +1,3 @@
-// initDB.ts
-
 import { PrismaClient } from '@prisma/client';
 import { generatePasswordHash } from '../utils/generatePasswordHash';
 

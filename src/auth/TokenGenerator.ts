@@ -31,10 +31,10 @@ export class TokenGenerator {
     const timeValue = parseInt(expiresIn.slice(0, -1), 10);
 
     switch (timeUnit) {
-      case 's': return timeValue * 1000; // seconds to milliseconds
-      case 'm': return timeValue * 60 * 1000; // minutes to milliseconds
-      case 'h': return timeValue * 60 * 60 * 1000; // hours to milliseconds
-      case 'd': return timeValue * 24 * 60 * 60 * 1000; // days to milliseconds
+      case 's': return timeValue * 1000; 
+      case 'm': return timeValue * 60 * 1000; 
+      case 'h': return timeValue * 60 * 60 * 1000;
+      case 'd': return timeValue * 24 * 60 * 60 * 1000; 
       default: throw new Error('Invalid expiration format');
     }
   }

@@ -81,7 +81,7 @@ model EventActivity {
   updatedAt                DateTime     @updatedAt
   event                    Event        @relation(fields: [eventId], references: [eventId])
   eventId                  Int
-  Attendaces               Attendance[]
+  Attendances              Attendance[]
 }
 
 model EventCourse {

@@ -2,26 +2,30 @@ import { Attendance } from '@prisma/client';
 import { AttendanceDomain } from '../../domain/AttendanceDomain';
 import { IAttendanceRepository } from '../../repository/interfaces/IAttendanceRepository';
 import { FetchStudentByCpfService } from '../student/FetchStudentByCpfService';
-import { EventCourseRepository } from '../../repository/implementation/EventCourseRepository';
-import { EventLocationRepository } from '../../repository/implementation/EventLocationRepository';
 import { calculateDistance } from '../../utils/calculateDistance';
 import { AppError } from '../../utils/errors/AppError';
+import { IEventActivityRepository } from '../../repository/interfaces/IEventActivityRepository';
+import { IEventCourseRepository } from '../../repository/interfaces/IEventCourseRepository';
+import { IEventLocationRepository } from '../../repository/interfaces/IEventLocationRepository';
 
 export class CreateAttendanceService {
 	private attendanceRepository: IAttendanceRepository;
 	private fetchStudentByCpfService: FetchStudentByCpfService;
-	private eventCourseRepository: EventCourseRepository;
-	private eventLocationRepository: EventLocationRepository;
+	private eventCourseRepository: IEventCourseRepository;
+	private eventLocationRepository: IEventLocationRepository;
+	private eventActivityRepository: IEventActivityRepository;
 
 	constructor(
 		attendanceRepository: IAttendanceRepository,
-		eventCourseRepository: EventCourseRepository,
-		eventLocationRepository: EventLocationRepository
+		eventCourseRepository: IEventCourseRepository,
+		eventLocationRepository: IEventLocationRepository,
+		eventActivityRepository: IEventActivityRepository
 	) {
 		this.attendanceRepository = attendanceRepository;
 		this.fetchStudentByCpfService = new FetchStudentByCpfService();
 		this.eventCourseRepository = eventCourseRepository;
 		this.eventLocationRepository = eventLocationRepository;
+		this.eventActivityRepository = eventActivityRepository;
 	}
 
 	private async validateStudentLocation(
@@ -55,6 +59,28 @@ export class CreateAttendanceService {
 		}
 	}
 
+	private async validateActivityTime(
+		eventActivityId: number,
+		currentTime: Date
+	): Promise<void> {
+		const eventActivity = await this.eventActivityRepository.fetchEventActivityById(
+			eventActivityId
+		);
+
+		if (!eventActivity) {
+			throw new AppError('Atividade não encontrada', 404);
+		}
+
+		const { eventActivityStartDate, eventActivityEndDate } = eventActivity;
+
+		if (currentTime < eventActivityStartDate || currentTime > eventActivityEndDate) {
+			throw new AppError(
+				'O horário de registro está fora do intervalo permitido para esta atividade',
+				400
+			);
+		}
+	}
+
 	private async validateStudentCourse(eventID: number, courseId: number): Promise<void> {
 		const eventCourse = await this.eventCourseRepository.findEventCourse(
 			eventID,
@@ -63,6 +89,24 @@ export class CreateAttendanceService {
 
 		if (!eventCourse) {
 			throw new AppError(`Curso não encontrado para o evento ${eventID}`, 400);
+		}
+	}
+
+	private async validateExistingAttendance(
+		studentCpf: string,
+		eventActivityId: number
+	): Promise<void> {
+		const existingAttendance =
+			await this.attendanceRepository.fetchAttendanceByCpfAndActivity(
+				studentCpf,
+				eventActivityId
+			);
+
+		if (existingAttendance) {
+			throw new AppError(
+				'O aluno já tem uma presença registrada para esta atividade',
+				400
+			);
 		}
 	}
 
@@ -84,9 +128,19 @@ export class CreateAttendanceService {
 			const student = students[0];
 			const courseId = student.idCurso;
 
-			await this.validateStudentCourse(eventID, courseId);
+			await this.validateExistingAttendance(
+				attendanceData.getStudentCpf(),
+				attendanceData.getEventActivity().getEventActivityId()
+			);
 
+			await this.validateStudentCourse(eventID, courseId);
 			await this.validateStudentLocation(eventID, studentLatitude, studentLongitude);
+
+			const currentTime = new Date();
+			await this.validateActivityTime(
+				attendanceData.getEventActivity().getEventActivityId(),
+				currentTime
+			);
 
 			return this.attendanceRepository.createAttendance(attendanceData);
 		} catch (error) {
@@ -94,7 +148,7 @@ export class CreateAttendanceService {
 				throw error;
 			}
 
-			throw new Error('Erro ao processar a presença do aluno');
+			throw new AppError('Erro ao processar a presença do aluno', 500);
 		}
 	}
 }

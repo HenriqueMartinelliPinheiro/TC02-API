@@ -20,3 +20,12 @@ Invalid `this.prismaClient.attendance.create()` invocation in
 → 11 	return this.prismaClient.attendance.create(
 An operation failed because it depends on one or more records that were required but not found. No 'EventActivity' record(s) (needed to inline the relation on 'Attendance' record(s)) was found for a nested connect on one-to-many relation 'AttendanceToEventActivity'. em CreateAttendanceController por User: Desconhecido
 15/09/2024, 14:08:08: ERROR - A localização do aluno está fora do raio permitido para o evento em CreateAttendanceController por User: undefined
+17/09/2024, 19:21:05: ERROR - Erro ao buscar estudante por CPF: connect ECONNREFUSED 127.0.0.1:3000 em CreateAttendanceController por User: undefined
+17/09/2024, 19:21:12: ERROR - Erro ao buscar estudante por CPF: connect ECONNREFUSED 127.0.0.1:3000 em CreateAttendanceController por User: undefined
+17/09/2024, 19:21:54: INFO - Presença registrada com sucesso para o aluno João Silva por User: undefined
+17/09/2024, 19:21:59: INFO - Presença registrada com sucesso para o aluno João Silva por User: undefined
+17/09/2024, 19:49:18: INFO - Presença registrada com sucesso para o aluno João Silva por User: undefined
+17/09/2024, 19:49:22: INFO - Presença registrada com sucesso para o aluno João Silva por User: undefined
+17/09/2024, 19:55:31: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/09/2024, 19:56:17: INFO - Presença registrada com sucesso para o aluno João Silva por User: undefined
+17/09/2024, 19:56:24: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined

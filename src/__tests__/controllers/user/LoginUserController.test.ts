@@ -78,14 +78,14 @@ describe('LoginUserController', () => {
 
 	it('should return 400 if password is invalid', async () => {
 		(isValidRequest as any).mockReturnValue(true);
-		(isValidPassword as any).mockReturnValue(false); // Retorne false para uma senha inválida
+		(isValidPassword as any).mockReturnValue(false);
 
 		await loginUserController.loginUser(req as Request, res as Response);
 
 		expect(isValidPassword).toHaveBeenCalledWith(req.body.userPassword);
 		expect(res.status).toHaveBeenCalledWith(400);
 		expect(res.json).toHaveBeenCalledWith({
-			msg: 'Senha Inválida', // Certifique-se de que o valor esperado seja string
+			msg: 'Senha Inválida',
 			user: undefined,
 		});
 	});
@@ -127,7 +127,7 @@ describe('LoginUserController', () => {
 		expect(res.cookie).toHaveBeenCalledWith('token', 'access-token', {
 			httpOnly: true,
 			sameSite: 'strict',
-			path: '/', // Reflete o valor atual do cookie no controller
+			path: '/',
 		});
 		expect(res.json).toHaveBeenCalledWith({
 			user,
