@@ -1,7 +1,7 @@
 import { getEventByIdTypes } from '../../@types/event/getEventById';
 import { eventLogPath } from '../../config/logPaths';
 import { Logger } from '../../loggers/Logger';
-import { GetEventByIdService } from '../../services/event/GetCourseByIdService';
+import { GetEventByIdService } from '../../services/event/GetEventByIdService';
 import { AppError } from '../../utils/errors/AppError';
 import { isValidRequest } from '../../utils/validations/isValidRequest';
 

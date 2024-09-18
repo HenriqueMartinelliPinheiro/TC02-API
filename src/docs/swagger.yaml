@@ -222,6 +222,43 @@ components:
         - eventId
         - courseId
 
+    Attendance:
+      type: object
+      properties:
+        AttendanceId:
+          type: integer
+          description: ID da presença
+        studentName:
+          type: string
+          description: Nome do estudante
+        studentRegistration:
+          type: string
+          description: Registro do estudante
+        studentCpf:
+          type: string
+          description: CPF do estudante
+        eventActivityId:
+          type: integer
+          description: ID da atividade do evento
+        createdAt:
+          type: string
+          format: date-time
+          description: Data de criação da presença
+        updatedAt:
+          type: string
+          format: date-time
+          description: Data de atualização da presença
+        eventActivity:
+          $ref: '#/components/schemas/EventActivity'
+      required:
+        - AttendanceId
+        - studentName
+        - studentRegistration
+        - studentCpf
+        - eventActivityId
+        - createdAt
+        - updatedAt
+        
 paths:
   /createUser:
     post:
@@ -551,3 +588,96 @@ paths:
                   $ref: '#/components/schemas/Role'
         '404':
           description: Nenhum cargo encontrado
+
+  /createAttendance:
+    post:
+      summary: Registra uma presença para um aluno em uma atividade de evento
+      tags: [Attendance]
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: Dados necessários para registrar a presença do aluno
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                studentName:
+                  type: string
+                  description: Nome do estudante
+                studentRegistration:
+                  type: string
+                  description: Registro do estudante
+                studentCpf:
+                  type: string
+                  description: CPF do estudante (11 dígitos)
+                eventActivityId:
+                  type: integer
+                  description: ID da atividade do evento
+                eventId:
+                  type: integer
+                  description: ID do evento
+                latitude:
+                  type: number
+                  format: float
+                  description: Latitude da localização do estudante
+                longitude:
+                  type: number
+                  format: float
+                  description: Longitude da localização do estudante
+              required:
+                - studentName
+                - studentRegistration
+                - studentCpf
+                - eventActivityId
+                - eventId
+                - latitude
+                - longitude
+      responses:
+        '201':
+          description: Presença registrada com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  event:
+                    $ref: '#/components/schemas/Attendance'
+                  msg:
+                    type: string
+                    description: Mensagem de sucesso
+                    example: "Presença registrada com sucesso"
+        '400':
+          description: Requisição inválida (dados incorretos ou validações falharam)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: Mensagem de erro detalhando o problema
+                    example: "O aluno já tem uma presença registrada para esta atividade"
+        '404':
+          description: Estudante, evento ou atividade não encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: Mensagem de erro detalhando o problema
+                    example: "Estudante não encontrado com o CPF fornecido"
+        '500':
+          description: Erro interno do servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: Mensagem de erro
+                    example: "Erro interno do Servidor"

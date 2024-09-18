@@ -31,7 +31,8 @@ export class EditEventService {
 				eventInDataBase.eventStatus === EventStatus.ENCERRADO
 			) {
 				throw new AppError('Evento Encerrado ou Cancelado não pode ser editado', 400);
-			} else if (
+			}
+			if (
 				eventInDataBase.eventStatus === EventStatus.EM_ANDAMENTO &&
 				event.getEventStatus() === 'Nao Iniciado'
 			) {

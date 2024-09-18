@@ -10,7 +10,7 @@ import { eventRoles } from '../config/roles/event/eventRoles';
 import { FetchAllEventsService } from '../services/event/FetchAllEventsService';
 import { FetchAllEventsController } from '../controllers/event/FetchAllEventsController';
 import { GetEventByIdController } from '../controllers/event/GetEventByIdController';
-import { GetEventByIdService } from '../services/event/GetCourseByIdService';
+import { GetEventByIdService } from '../services/event/GetEventByIdService';
 import { EditEventService } from '../services/event/EditEventService';
 import { EditEventController } from '../controllers/event/EditEventController';
 
