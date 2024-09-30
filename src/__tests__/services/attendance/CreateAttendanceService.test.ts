@@ -4,7 +4,7 @@ import { IEventCourseRepository } from '../../../repository/interfaces/IEventCou
 import { IEventLocationRepository } from '../../../repository/interfaces/IEventLocationRepository';
 import { IEventActivityRepository } from '../../../repository/interfaces/IEventActivityRepository';
 import { CreateAttendanceService } from '../../../services/attendance/CreateAttendanceService';
-import { FetchStudentByCpfService } from '../../../services/student/FetchStudentByCpfService';
+import { FetchStudentByCpfService } from '../../../services/sigaa/sigaaStudent/FetchStudentByCpfService';
 import { AttendanceDomain } from '../../../domain/AttendanceDomain';
 import { AppError } from '../../../utils/errors/AppError';
 import { calculateDistance } from '../../../utils/calculateDistance';

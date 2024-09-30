@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { FetchStudentByCpfService } from '../../services/student/FetchStudentByCpfService';
+import { FetchStudentByCpfService } from '../../services/sigaa/sigaaStudent/FetchStudentByCpfService';
 
 export class FetchStudentByCpfController {
 	private fetchStudentByCpfService: FetchStudentByCpfService;

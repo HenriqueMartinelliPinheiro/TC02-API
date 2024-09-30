@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { AppError } from '../../utils/errors/AppError';
+import { AppError } from '../../../utils/errors/AppError';
+import { sigaaApiRoutes } from '../../../config/apiConfigs';
 
 export class FetchStudentByCpfService {
 	private apiUrl: string;
 
 	constructor() {
-		this.apiUrl = 'http://localhost:3000/discentes';
+		this.apiUrl = sigaaApiRoutes.FETCH_STUDENTS;
 	}
 
 	async fetchStudentByCpf(cpf: string) {

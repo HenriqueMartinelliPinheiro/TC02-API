@@ -9,4 +9,5 @@ export interface IAttendanceRepository {
 		studentCpf: string,
 		eventActivityId: number
 	): Promise<Attendance | null>;
+	fetchAttendanceByEvent(eventId: number): Promise<Attendance[]>;
 }

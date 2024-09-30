@@ -10,7 +10,6 @@ import cookieParser from 'cookie-parser';
 import { roleRouter } from './routes/roleRoutes';
 import { studentRouter } from './routes/studentRoutes';
 import { attendanceRouter } from './routes/attendanceRoutes';
-import { enviarEmail } from './email/emailTest';
 
 const app: Express = express();
 
@@ -43,8 +42,6 @@ app.use('/', courseRouter);
 app.use('/', roleRouter);
 app.use('/', studentRouter);
 app.use('/', attendanceRouter);
-
-enviarEmail();
 
 app.listen(4000, () => {
 	console.log(`App is listening on port 4000`);

@@ -1,7 +1,7 @@
 import { Attendance } from '@prisma/client';
 import { AttendanceDomain } from '../../domain/AttendanceDomain';
 import { IAttendanceRepository } from '../../repository/interfaces/IAttendanceRepository';
-import { FetchStudentByCpfService } from '../student/FetchStudentByCpfService';
+import { FetchStudentByCpfService } from '../sigaa/sigaaStudent/FetchStudentByCpfService';
 import { calculateDistance } from '../../utils/calculateDistance';
 import { AppError } from '../../utils/errors/AppError';
 import { IEventActivityRepository } from '../../repository/interfaces/IEventActivityRepository';

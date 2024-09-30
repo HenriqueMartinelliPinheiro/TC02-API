@@ -128,7 +128,11 @@ export class EventRepository implements IEventRepository {
 		}
 	}
 
-	fetchEventById = async (eventId: number): Promise<Event> => {
+	fetchEventById = async (
+		eventId: number
+	): Promise<Prisma.EventGetPayload<{
+		include: { eventActivity: true; eventCourse: true; eventLocation: true };
+	}> | null> => {
 		try {
 			const event = await this.prismaClient.event.findUnique({
 				where: { eventId: eventId },
@@ -139,10 +143,11 @@ export class EventRepository implements IEventRepository {
 				},
 			});
 
-			if (event) {
-				return event;
+			if (!event) {
+				throw new Error('Evento não encontrado');
 			}
-			throw new Error('Evento não encontrado');
+
+			return event;
 		} catch (error) {
 			throw error;
 		}
