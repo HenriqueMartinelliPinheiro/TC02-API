@@ -10,6 +10,7 @@ import cookieParser from 'cookie-parser';
 import { roleRouter } from './routes/roleRoutes';
 import { studentRouter } from './routes/studentRoutes';
 import { attendanceRouter } from './routes/attendanceRoutes';
+import { IssueReportService } from './services/attendance/IssueReportsService';
 
 const app: Express = express();
 

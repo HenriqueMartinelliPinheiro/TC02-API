@@ -26,4 +26,22 @@ export class EventActivityRepository implements EventActivityRepository {
 			throw error;
 		}
 	};
+
+	fetchEventActivitiesByEventId = async (
+		eventId: number
+	): Promise<EventActivity[]> => {
+		try {
+			const eventActivities = await this.prismaClient.eventActivity.findMany({
+				where: { eventId },
+				include: {
+					event: true,
+					Attendances: true,
+				},
+			});
+
+			return eventActivities;
+		} catch (error) {
+			throw new Error('Erro ao buscar atividades do evento');
+		}
+	};
 }
