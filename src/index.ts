@@ -11,6 +11,7 @@ import { roleRouter } from './routes/roleRoutes';
 import { studentRouter } from './routes/studentRoutes';
 import { attendanceRouter } from './routes/attendanceRoutes';
 import { IssueReportService } from './services/attendance/IssueReportsService';
+import { ScheduleProcessor } from './utils/ScheduleProcess';
 
 const app: Express = express();
 

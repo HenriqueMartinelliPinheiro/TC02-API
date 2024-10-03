@@ -100,4 +100,25 @@ export class AttendanceRepository implements IAttendanceRepository {
 			throw error;
 		}
 	}
+
+	async fetchAttendancesByActivity(eventActivityId: number): Promise<Attendance[]> {
+		try {
+			const attendances = await this.prismaClient.attendance.findMany({
+				where: {
+					eventActivityId,
+				},
+				include: {
+					eventActivity: true, 
+				},
+			});
+
+			if (attendances.length === 0) {
+				throw new Error('Nenhuma presença encontrada para a atividade fornecida');
+			}
+
+			return attendances;
+		} catch (error) {
+			throw new Error('Erro ao buscar presenças: ' + error.message);
+		}
+	}
 }

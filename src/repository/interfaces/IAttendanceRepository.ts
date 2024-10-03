@@ -10,4 +10,5 @@ export interface IAttendanceRepository {
 		eventActivityId: number
 	): Promise<Attendance | null>;
 	fetchAttendanceByEvent(eventId: number): Promise<Attendance[]>;
+	fetchAttendancesByActivity(eventActivityId: number): Promise<Attendance[]>;
 }
