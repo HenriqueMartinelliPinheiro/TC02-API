@@ -4,4 +4,5 @@ export const eventRoles = {
 	FETCH_ALL_EVENTS: ['Admin', 'Organizador'],
 	GET_EVENT_BY_ID: ['Admin', 'Organizador'],
 	EDIT_EVENT: ['Admin', 'Organizador'],
+	ISSUE_ATTENDANCE_REPORT: ['Admin', 'Organizador'],
 };

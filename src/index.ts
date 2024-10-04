@@ -10,8 +10,9 @@ import cookieParser from 'cookie-parser';
 import { roleRouter } from './routes/roleRoutes';
 import { studentRouter } from './routes/studentRoutes';
 import { attendanceRouter } from './routes/attendanceRoutes';
-import { IssueReportService } from './services/attendance/IssueReportsService';
+import { IssueReportService } from './services/report/IssueReportsService';
 import { ScheduleProcessor } from './utils/ScheduleProcess';
+import reportsRouter from './routes/reportsRoutes';
 
 const app: Express = express();
 
@@ -44,6 +45,7 @@ app.use('/', courseRouter);
 app.use('/', roleRouter);
 app.use('/', studentRouter);
 app.use('/', attendanceRouter);
+app.use('/', reportsRouter);
 
 app.listen(4000, () => {
 	console.log(`App is listening on port 4000`);

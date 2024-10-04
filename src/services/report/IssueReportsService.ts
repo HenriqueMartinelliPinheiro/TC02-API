@@ -48,29 +48,22 @@ export class IssueReportService {
 					this.classParticipantsCache.set(classItem.id, participants);
 				}
 
-				// Processar o cronograma de cada turma
-				const classSchedule = classItem.descricaoHorario; // Supondo que o campo de cronograma seja `descricaoHorario`
-				const classDays = this.scheduleProcessor.processSchedule(classSchedule); // Obter as datas de aula da turma
+				const classSchedule = classItem.descricaoHorario;
+				const classDays = this.scheduleProcessor.processSchedule(classSchedule);
+				const classDaysSet = new Set(classDays);
 
-				// Converter as datas de aula da turma para um formato que podemos comparar
-				const classDaysSet = new Set(classDays); // Para comparações rápidas
-
-				// Passo 4: Verificar atividades por dia
 				for (const activity of eventActivities) {
 					const activityDate =
-						activity.eventActivityStartDate.toLocaleDateString('pt-BR'); // Converte para o formato `dd/mm/yyyy`
+						activity.eventActivityStartDate.toLocaleDateString('pt-BR');
 
-					// Verificar se a atividade está em um dos dias de aula da turma
 					if (!classDaysSet.has(activityDate)) {
-						continue; // Pular se a atividade não for no dia de aula da turma
+						continue;
 					}
 
-					// Aqui você pode processar os alunos da turma para aquela atividade e gerar o relatório
 					console.log(
 						`Turma ${classItem.name} tem aula no dia ${activityDate} e há uma atividade: ${activity.eventActivityTitle}`
 					);
 
-					// Exemplo de como buscar as presenças e processar o relatório
 					const attendanceRecords =
 						await this.attendanceRepository.fetchAttendancesByActivity(
 							activity.eventActivityId
@@ -79,7 +72,6 @@ export class IssueReportService {
 						participants.some((p) => p.studentRegistration === att.studentRegistration)
 					);
 
-					// Aqui você pode fazer algo com essas informações, como gerar o relatório
 					console.log(
 						`Participantes na atividade:`,
 						studentAttendance.map((s) => s.studentName)
