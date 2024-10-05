@@ -6,6 +6,7 @@ import { CreateAttendanceController } from '../controllers/attendance/CreateAtte
 import { EventCourseRepository } from '../repository/implementation/EventCourseRepository';
 import { EventLocationRepository } from '../repository/implementation/EventLocationRepository';
 import { EventActivityRepository } from '../repository/implementation/EventActivityRepository';
+import { EventRepository } from '../repository/implementation/EventRepository';
 
 export const attendanceRouter = Router();
 
@@ -14,13 +15,15 @@ const prismaClient = new PrismaClient();
 const attendanceRepository = new AttendanceRepository(prismaClient);
 const eventCourseRepository = new EventCourseRepository(prismaClient);
 const eventActivityRepository = new EventActivityRepository(prismaClient);
+const eventRepository = new EventRepository(prismaClient);
 
 const eventLocationRepository = new EventLocationRepository(prismaClient);
 const createAttendanceService = new CreateAttendanceService(
 	attendanceRepository,
 	eventCourseRepository,
 	eventLocationRepository,
-	eventActivityRepository
+	eventActivityRepository,
+	eventRepository
 );
 const createAttendanceController = new CreateAttendanceController(
 	createAttendanceService

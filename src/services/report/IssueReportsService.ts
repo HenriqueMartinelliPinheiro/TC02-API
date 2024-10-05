@@ -1,18 +1,18 @@
+import axios from 'axios';
 import { AppError } from '../../utils/errors/AppError';
 import { GetAllClassesYearService } from '../sigaa/sigaaClass/GetAllClassesYear';
 import { IEventActivityRepository } from '../../repository/interfaces/IEventActivityRepository';
-import { FetchStudentByClassService } from '../sigaa/sigaaStudent/FetchStudentsByClassService';
 import { IAttendanceRepository } from '../../repository/interfaces/IAttendanceRepository';
 import { ScheduleProcessor } from '../../utils/ScheduleProcess';
+import { FetchStudentByClassService } from '../../services/sigaa/sigaaStudent/FetchStudentsByClassService';
 
 export class IssueReportService {
 	private getAllClassesYearService: GetAllClassesYearService;
 	private eventActivityRepository: IEventActivityRepository;
-	private fetchStudentByClassIdService: FetchStudentByClassService;
 	private attendanceRepository: IAttendanceRepository;
-
-	private classParticipantsCache: Map<number, any[]> = new Map();
 	private scheduleProcessor: ScheduleProcessor = new ScheduleProcessor();
+	private fetchStudentByClassService: FetchStudentByClassService =
+		new FetchStudentByClassService();
 
 	constructor(
 		eventActivityRepository: IEventActivityRepository,
@@ -20,71 +20,114 @@ export class IssueReportService {
 	) {
 		this.getAllClassesYearService = new GetAllClassesYearService();
 		this.eventActivityRepository = eventActivityRepository;
-		this.fetchStudentByClassIdService = new FetchStudentByClassService();
 		this.attendanceRepository = attendanceRepository;
+	}
+
+	normalizeDate(date: Date): Date {
+		return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+	}
+
+	generateDateRange(startDate: Date, endDate: Date): string[] {
+		const dateRange: string[] = [];
+		let currentDate = this.normalizeDate(startDate);
+		const normalizedEndDate = this.normalizeDate(endDate);
+
+		while (currentDate <= normalizedEndDate) {
+			dateRange.push(
+				currentDate.toLocaleDateString('pt-BR', {
+					year: 'numeric',
+					month: '2-digit',
+					day: '2-digit',
+				})
+			);
+			currentDate.setDate(currentDate.getDate() + 1);
+		}
+
+		return dateRange;
 	}
 
 	async execute(eventId: number): Promise<void> {
 		try {
 			const eventActivities =
 				await this.eventActivityRepository.fetchEventActivitiesByEventId(eventId);
-
 			if (eventActivities.length === 0) {
-				throw new AppError('No activities found for the given event', 400);
+				throw new AppError('Nenhuma atividade para o evento', 400);
 			}
 
 			const eventYear = eventActivities[0].eventActivityStartDate.getFullYear();
-
 			const classes = await this.getAllClassesYearService.getAllClassesByYear(eventYear);
-
 			if (classes.length === 0) {
-				throw new AppError('No classes found for the provided year', 400);
+				throw new AppError('Nenhuma turma encontrada para o ano fornecido', 400);
 			}
 
 			for (const classItem of classes) {
-				let participants = this.classParticipantsCache.get(classItem.id);
-				if (!participants) {
-					participants = await this.fetchStudentByClassIdService.execute(classItem.id);
-					this.classParticipantsCache.set(classItem.id, participants);
+				const classSchedule = classItem['descricao-horario'];
+				let classDays: string[];
+
+				try {
+					classDays = this.scheduleProcessor.processSchedule(classSchedule);
+					// console.log(
+					// 	`Processando turma ${classItem['codigo-turma']} com cronograma:`,
+					// 	classDays
+					// );
+				} catch (error) {
+					throw new AppError(
+						`Erro ao processar cronograma da turma ${classItem['codigo-turma']}: ${error.message}`,
+						500
+					);
 				}
 
-				const classSchedule = classItem.descricaoHorario;
-				const classDays = this.scheduleProcessor.processSchedule(classSchedule);
-				const classDaysSet = new Set(classDays);
+				const participants = await this.fetchStudentByClassService.execute(
+					classItem['id-turma']
+				);
+
+				// console.log(`Participantes da turma ${classItem['codigo-turma']}:`, participants);
 
 				for (const activity of eventActivities) {
-					const activityDate =
-						activity.eventActivityStartDate.toLocaleDateString('pt-BR');
+					const startDate = activity.eventActivityStartDate;
+					const endDate = activity.eventActivityEndDate;
+					const activityDates = this.generateDateRange(startDate, endDate);
 
-					if (!classDaysSet.has(activityDate)) {
-						continue;
+					for (const activityDate of activityDates) {
+						if (classDays.includes(activityDate)) {
+							try {
+								const attendances =
+									await this.attendanceRepository.fetchAttendancesByActivity(
+										activity.eventActivityId
+									);
+								if (attendances.length > 0) {
+									const presentStudents = attendances.filter((attendance) => {
+										const attendanceDate = new Date(
+											attendance.createdAt
+										).toLocaleDateString('pt-BR', {
+											year: 'numeric',
+											month: '2-digit',
+											day: '2-digit',
+										});
+										return (
+											participants.some(
+												(participant) => participant['cpf-cnpj'] === attendance.studentCpf
+											) && attendanceDate === activityDate
+										);
+									});
+
+									if (presentStudents.length > 0) {
+										console.log(
+											`Relatório de presenças para a turma ${classItem['codigo-turma']} no dia ${activityDate}:`,
+											presentStudents
+										);
+									}
+								}
+							} catch (error) {
+								console.error(`Erro ao buscar presenças: ${error.message}`);
+							}
+						}
 					}
-
-					console.log(
-						`Turma ${classItem.name} tem aula no dia ${activityDate} e há uma atividade: ${activity.eventActivityTitle}`
-					);
-
-					const attendanceRecords =
-						await this.attendanceRepository.fetchAttendancesByActivity(
-							activity.eventActivityId
-						);
-					const studentAttendance = attendanceRecords.filter((att) =>
-						participants.some((p) => p.studentRegistration === att.studentRegistration)
-					);
-
-					console.log(
-						`Participantes na atividade:`,
-						studentAttendance.map((s) => s.studentName)
-					);
 				}
 			}
-
-			console.log('Classes and activities processed successfully!');
 		} catch (error) {
-			if (error instanceof AppError) {
-				throw error;
-			}
-			throw new AppError('Error processing the report', 500);
+			console.log(error);
+			throw error;
 		}
 	}
 }

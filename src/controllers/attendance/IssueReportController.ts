@@ -16,7 +16,7 @@ export class IssueReportController {
 
 	async issueReport(req: Request, res: Response): Promise<Response> {
 		try {
-			const { eventId } = req.params;
+			const { eventId } = req.body;
 
 			if (!eventId) {
 				this.logger.error('EventId não fornecido', req.requestEmail);

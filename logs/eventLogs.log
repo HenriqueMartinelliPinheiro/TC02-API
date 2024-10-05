@@ -2985,3 +2985,79 @@ Invalid value for argument `eventStatus`. Expected EventStatus. em EditEventCont
 04/10/2024, 09:59:04: INFO - Status retornados com sucesso. por User: undefined
 04/10/2024, 09:59:29: INFO - Status retornados com sucesso. por User: undefined
 04/10/2024, 09:59:29: INFO - Status retornados com sucesso. por User: undefined
+05/10/2024, 09:22:04: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 09:22:04: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 09:22:06: INFO - Status retornados com sucesso. por User: undefined
+05/10/2024, 09:22:06: INFO - Status retornados com sucesso. por User: undefined
+05/10/2024, 09:22:29: INFO - Status retornados com sucesso. por User: undefined
+05/10/2024, 09:22:29: INFO - Status retornados com sucesso. por User: undefined
+05/10/2024, 09:25:13: ERROR - A descrição da atividade deve ter pelo menos 10 caracteres. em CreateEventController por User: henriquepinheiro18@gmail.com
+05/10/2024, 09:25:18: INFO - Evento criado com sucesso 2 por User: henriquepinheiro18@gmail.com
+05/10/2024, 09:25:23: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 09:25:23: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 14:47:55: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 14:47:55: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 14:48:01: INFO - Status retornados com sucesso. por User: undefined
+05/10/2024, 14:48:01: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+05/10/2024, 14:48:01: INFO - Status retornados com sucesso. por User: undefined
+05/10/2024, 14:48:01: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+05/10/2024, 14:48:44: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `prismaClient.eventActivity.deleteMany()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:236:38
+
+  233 	},
+  234 });
+  235 
+→ 236 await prismaClient.eventActivity.deleteMany(
+Foreign key constraint violated: `Attendance_eventActivityId_fkey (index)` em EditEventController por User: henriquepinheiro18@gmail.com
+05/10/2024, 14:49:09: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `prismaClient.eventActivity.deleteMany()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:309:38
+
+  306 	},
+  307 });
+  308 
+→ 309 await prismaClient.eventActivity.deleteMany(
+Foreign key constraint violated: `Attendance_eventActivityId_fkey (index)` em EditEventController por User: henriquepinheiro18@gmail.com
+05/10/2024, 14:56:40: INFO - Status retornados com sucesso. por User: undefined
+05/10/2024, 14:56:40: INFO - Status retornados com sucesso. por User: undefined
+05/10/2024, 14:56:40: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+05/10/2024, 14:56:40: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:05:31: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `prismaClient.eventActivity.deleteMany()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:236:38
+
+  233 	},
+  234 });
+  235 
+→ 236 await prismaClient.eventActivity.deleteMany(
+Foreign key constraint violated: `Attendance_eventActivityId_fkey (index)` em EditEventController por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:05:34: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:05:34: INFO - Status retornados com sucesso. por User: undefined
+05/10/2024, 15:05:34: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:05:34: INFO - Status retornados com sucesso. por User: undefined
+05/10/2024, 15:05:38: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `prismaClient.eventActivity.deleteMany()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:236:38
+
+  233 	},
+  234 });
+  235 
+→ 236 await prismaClient.eventActivity.deleteMany(
+Foreign key constraint violated: `Attendance_eventActivityId_fkey (index)` em EditEventController por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:10:16: INFO - Evento atualizado com sucesso 2 por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:10:20: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:10:20: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:10:32: INFO - Status retornados com sucesso. por User: undefined
+05/10/2024, 15:10:32: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:10:32: INFO - Status retornados com sucesso. por User: undefined
+05/10/2024, 15:10:32: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:10:56: INFO - Evento atualizado com sucesso 2 por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:11:01: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:11:01: INFO - Status retornados com sucesso. por User: undefined
+05/10/2024, 15:11:01: INFO - Status retornados com sucesso. por User: undefined
+05/10/2024, 15:11:01: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:28:35: INFO - Status retornados com sucesso. por User: undefined
+05/10/2024, 15:28:35: INFO - Status retornados com sucesso. por User: undefined
+05/10/2024, 15:28:35: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:28:35: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com

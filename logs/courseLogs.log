@@ -2893,3 +2893,19 @@ Argument `courseId`: Invalid value provided. Expected IntFilter or Int, provided
 04/10/2024, 09:59:04: ERROR - Erro ao Buscar Cursos - Error: connect ECONNREFUSED 127.0.0.1:3000 em FetchAllCoursesController por User: henriquepinheiro18@gmail.com
 04/10/2024, 09:59:29: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
 04/10/2024, 09:59:29: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 09:22:06: ERROR - Erro ao Buscar Cursos - Error: connect ECONNREFUSED 127.0.0.1:3000 em FetchAllCoursesController por User: henriquepinheiro18@gmail.com
+05/10/2024, 09:22:06: ERROR - Erro ao Buscar Cursos - Error: connect ECONNREFUSED 127.0.0.1:3000 em FetchAllCoursesController por User: henriquepinheiro18@gmail.com
+05/10/2024, 09:22:29: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 09:22:29: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 14:48:01: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 14:48:01: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 14:56:40: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 14:56:40: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:05:34: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:05:34: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:10:32: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:10:32: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:11:01: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:11:01: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:28:35: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com
+05/10/2024, 15:28:35: INFO - Cursos retornados por User: henriquepinheiro18@gmail.com

@@ -7,6 +7,7 @@ import { AppError } from '../../utils/errors/AppError';
 import { IEventActivityRepository } from '../../repository/interfaces/IEventActivityRepository';
 import { IEventCourseRepository } from '../../repository/interfaces/IEventCourseRepository';
 import { IEventLocationRepository } from '../../repository/interfaces/IEventLocationRepository';
+import { IEventRepository } from '../../repository/interfaces/IEventRepository';
 
 export class CreateAttendanceService {
 	private attendanceRepository: IAttendanceRepository;
@@ -14,18 +15,21 @@ export class CreateAttendanceService {
 	private eventCourseRepository: IEventCourseRepository;
 	private eventLocationRepository: IEventLocationRepository;
 	private eventActivityRepository: IEventActivityRepository;
+	private eventRepository: IEventRepository;
 
 	constructor(
 		attendanceRepository: IAttendanceRepository,
 		eventCourseRepository: IEventCourseRepository,
 		eventLocationRepository: IEventLocationRepository,
-		eventActivityRepository: IEventActivityRepository
+		eventActivityRepository: IEventActivityRepository,
+		eventRepository: IEventRepository
 	) {
 		this.attendanceRepository = attendanceRepository;
 		this.fetchStudentByCpfService = new FetchStudentByCpfService();
 		this.eventCourseRepository = eventCourseRepository;
 		this.eventLocationRepository = eventLocationRepository;
 		this.eventActivityRepository = eventActivityRepository;
+		this.eventRepository = eventRepository;
 	}
 
 	private async validateStudentLocation(
@@ -110,6 +114,22 @@ export class CreateAttendanceService {
 		}
 	}
 
+	// Adicionando a validação de status do evento
+	private async validateEventStatus(eventID: number): Promise<void> {
+		const event = await this.eventRepository.fetchEventById(eventID); // Supondo que existe um método para buscar o evento pelo ID
+
+		if (!event) {
+			throw new AppError(`Evento não encontrado para o ID ${eventID}`, 404);
+		}
+
+		if (event.eventStatus !== 'EM_ANDAMENTO') {
+			throw new AppError(
+				'O evento não está em andamento. Registro de presença não permitido.',
+				400
+			);
+		}
+	}
+
 	async execute(
 		attendanceData: AttendanceDomain,
 		eventID: number,
@@ -127,6 +147,9 @@ export class CreateAttendanceService {
 
 			const student = students[0];
 			const courseId = student.idCurso;
+
+			// Validar o status do evento
+			await this.validateEventStatus(eventID);
 
 			await this.validateExistingAttendance(
 				attendanceData.getStudentCpf(),
@@ -147,7 +170,7 @@ export class CreateAttendanceService {
 			if (error instanceof AppError) {
 				throw error;
 			}
-
+			console.log(error);
 			throw new AppError('Erro ao processar a presença do aluno', 500);
 		}
 	}

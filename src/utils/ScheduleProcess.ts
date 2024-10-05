@@ -1,7 +1,5 @@
 export class ScheduleProcessor {
-	// Função utilitária para converter uma data no formato brasileiro para Date
 	private parseDateBR(dateStr: string): Date {
-		console.log('dateStr: ', dateStr);
 		if (!dateStr) {
 			throw new Error('Data inválida fornecida');
 		}
@@ -15,7 +13,6 @@ export class ScheduleProcessor {
 		return new Date(year, month - 1, day);
 	}
 
-	// Função para gerar as datas dentro de um intervalo
 	private generateDateRange(startDate: Date, endDate: Date): Date[] {
 		const dates: Date[] = [];
 		let currentDate = new Date(startDate);
@@ -28,47 +25,40 @@ export class ScheduleProcessor {
 		return dates;
 	}
 
-	// Função principal para processar a string de cronograma e retornar as datas de aula
 	public processSchedule(schedule: string): string[] {
 		const resultDates: string[] = [];
 
-		// Separar múltiplos cronogramas, se houver, retirando espaços extras
-		const scheduleBlocks = schedule.split(', ');
+		const scheduleBlocks = schedule.split(/\s*,\s*/);
 
 		scheduleBlocks.forEach((block) => {
-			console.log('Processing block: ', block);
-
-			// Usando regex para garantir que estamos capturando o cronograma e as datas corretamente
 			const match = block.match(
-				/([7MT\d]+)\s\((\d{2}\/\d{2}\/\d{4})\s-\s(\d{2}\/\d{2}\/\d{4})\)/
+				/([1234567MT\d]+)\s\((\d{2}\/\d{2}\/\d{4})\s-\s(\d{2}\/\d{2}\/\d{4})\)/
 			);
 
 			if (!match) {
 				throw new Error('Formato de bloco de cronograma inválido');
 			}
 
-			const schedulePart = match[1]; // Exemplo: "7M123"
-			const startDateStr = match[2]; // Exemplo: "29/07/2024"
-			const endDateStr = match[3]; // Exemplo: "31/08/2024"
-
-			console.log('schedulePart: ', schedulePart);
-			console.log('startDateStr: ', startDateStr);
-			console.log('endDateStr: ', endDateStr);
+			const schedulePart = match[1];
+			const startDateStr = match[2];
+			const endDateStr = match[3];
 
 			const startDate = this.parseDateBR(startDateStr);
 			const endDate = this.parseDateBR(endDateStr);
 
 			const datesInRange = this.generateDateRange(startDate, endDate);
 
-			const dayMatch = schedulePart.match(/(\d)([MT])(\d+)?/);
+			// Extrair a sequência de dias da semana
+			const dayMatch = schedulePart.match(/([1234567]+)/);
 			if (dayMatch) {
-				const dayOfWeek = parseInt(dayMatch[1]);
+				const daysOfWeek = dayMatch[1].split('').map(Number); // Converte os dias para números
 
 				const filteredDates = datesInRange.filter((date) => {
-					return date.getDay() === (dayOfWeek === 7 ? 6 : dayOfWeek - 1); // Ajustando para Date.getDay() (0 = domingo, 6 = sábado)
+					// O getDay() retorna 0 para domingo, então ajustamos aqui
+					const weekDay = date.getDay() === 0 ? 7 : date.getDay();
+					return daysOfWeek.includes(weekDay);
 				});
 
-				// Adicionando as datas no formato 'dd/mm/yyyy' no array resultDates
 				filteredDates.forEach((date) => {
 					resultDates.push(date.toLocaleDateString('pt-BR'));
 				});
