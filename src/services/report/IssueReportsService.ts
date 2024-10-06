@@ -5,6 +5,7 @@ import { IEventActivityRepository } from '../../repository/interfaces/IEventActi
 import { IAttendanceRepository } from '../../repository/interfaces/IAttendanceRepository';
 import { ScheduleProcessor } from '../../utils/ScheduleProcess';
 import { FetchStudentByClassService } from '../../services/sigaa/sigaaStudent/FetchStudentsByClassService';
+import { AttendancePDFReportGenerator } from '../../utils/reports/AttendancePDFReportGenerator';
 
 export class IssueReportService {
 	private getAllClassesYearService: GetAllClassesYearService;
@@ -13,6 +14,8 @@ export class IssueReportService {
 	private scheduleProcessor: ScheduleProcessor = new ScheduleProcessor();
 	private fetchStudentByClassService: FetchStudentByClassService =
 		new FetchStudentByClassService();
+	private pdfReportGenerator: AttendancePDFReportGenerator =
+		new AttendancePDFReportGenerator(); // Instancia o gerador de PDFs
 
 	constructor(
 		eventActivityRepository: IEventActivityRepository,
@@ -46,6 +49,11 @@ export class IssueReportService {
 		return dateRange;
 	}
 
+	// Função para extrair o horário da data
+	extractTime(date: Date): string {
+		return date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+	}
+
 	async execute(eventId: number): Promise<void> {
 		try {
 			const eventActivities =
@@ -66,10 +74,6 @@ export class IssueReportService {
 
 				try {
 					classDays = this.scheduleProcessor.processSchedule(classSchedule);
-					// console.log(
-					// 	`Processando turma ${classItem['codigo-turma']} com cronograma:`,
-					// 	classDays
-					// );
 				} catch (error) {
 					throw new AppError(
 						`Erro ao processar cronograma da turma ${classItem['codigo-turma']}: ${error.message}`,
@@ -81,12 +85,13 @@ export class IssueReportService {
 					classItem['id-turma']
 				);
 
-				// console.log(`Participantes da turma ${classItem['codigo-turma']}:`, participants);
-
 				for (const activity of eventActivities) {
 					const startDate = activity.eventActivityStartDate;
 					const endDate = activity.eventActivityEndDate;
 					const activityDates = this.generateDateRange(startDate, endDate);
+
+					const activityStartTime = this.extractTime(activity.eventActivityStartDate);
+					const activityEndTime = this.extractTime(activity.eventActivityEndDate);
 
 					for (const activityDate of activityDates) {
 						if (classDays.includes(activityDate)) {
@@ -112,9 +117,16 @@ export class IssueReportService {
 									});
 
 									if (presentStudents.length > 0) {
-										console.log(
-											`Relatório de presenças para a turma ${classItem['codigo-turma']} no dia ${activityDate}:`,
-											presentStudents
+										// Passa os horários de início e fim para o relatório em PDF
+										await this.pdfReportGenerator.generateReport(
+											classItem['codigo-turma'],
+											activityDate,
+											{
+												title: activity.eventActivityTitle,
+												startTime: activityStartTime,
+												endTime: activityEndTime,
+												presentStudents,
+											}
 										);
 									}
 								}
