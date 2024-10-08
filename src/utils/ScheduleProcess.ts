@@ -26,16 +26,10 @@ export class ScheduleProcessor {
 		);
 		const dates: Date[] = [];
 		let currentDate = new Date(startDate);
+		currentDate.setHours(12, 0, 0, 0); // Ajuste para evitar problemas de fuso horário
 
 		while (currentDate <= endDate) {
-			// Em JavaScript, getDay() retorna 0 para domingo e 6 para sábado.
-			// Precisamos ajustar para o formato desejado: 1 = domingo, ..., 7 = sábado.
-			const currentWeekday = currentDate.getDay() === 0 ? 7 : currentDate.getDay();
-			console.log(
-				`Current date: ${currentDate.toLocaleDateString(
-					'pt-BR'
-				)} (Weekday: ${currentWeekday})`
-			);
+			const currentWeekday = currentDate.getDay() + 1; // Ajuste para que 1 = domingo, ..., 7 = sábado
 
 			if (targetWeekdays.includes(currentWeekday)) {
 				console.log(`Adding date: ${currentDate.toLocaleDateString('pt-BR')}`);
@@ -74,6 +68,7 @@ export class ScheduleProcessor {
 
 			// Extrair a sequência de dias da semana ignorando outros caracteres
 			let currentIndex = 0;
+			const targetWeekdays: number[] = [];
 			while (currentIndex < block.length) {
 				const currentChar = block[currentIndex];
 
@@ -81,22 +76,23 @@ export class ScheduleProcessor {
 					// Encontramos um dia da semana
 					const dayOfWeek = Number(currentChar);
 					console.log(`Found day of week: ${dayOfWeek}`);
-
-					// Avançar até encontrar uma letra ou um parêntese
-					while (currentIndex < block.length && !/[A-Za-z()]/.test(block[currentIndex])) {
+					if (!targetWeekdays.includes(dayOfWeek)) {
+						targetWeekdays.push(dayOfWeek); // Ajustar para JavaScript (1 = domingo, ..., 7 = sábado)
+					}
+				} else if (/[A-Za-z]/.test(currentChar)) {
+					// Encontramos uma letra, ignorar tudo até encontrar um espaço ou parêntese
+					while (currentIndex < block.length && !/[\s()]/.test(block[currentIndex])) {
 						currentIndex++;
 					}
 				} else if (block[currentIndex] === '(') {
 					// Encontramos o período de datas, parar o loop
 					break;
-				} else {
-					// Continuar para o próximo caractere
-					currentIndex++;
 				}
+				currentIndex++;
 			}
 
 			// Obter todas as datas no intervalo que correspondem aos dias da semana fornecidos
-			const filteredDates = this.getDatesByWeekday(startDate, endDate, [2, 3, 7]);
+			const filteredDates = this.getDatesByWeekday(startDate, endDate, targetWeekdays);
 
 			filteredDates.forEach((date) => {
 				resultDates.push(date.toLocaleDateString('pt-BR'));
