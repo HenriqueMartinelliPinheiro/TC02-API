@@ -46,3 +46,15 @@ An operation failed because it depends on one or more records that were required
 05/10/2024, 15:30:24: ERROR - Erro ao processar a presença do aluno em CreateAttendanceController por User: undefined
 05/10/2024, 15:31:21: INFO - Presença registrada com sucesso para o aluno João Souza por User: undefined
 05/10/2024, 15:31:31: INFO - Presença registrada com sucesso para o aluno Maria Silva por User: undefined
+07/10/2024, 19:46:59: INFO - Presença registrada com sucesso para o aluno Maria Silva por User: undefined
+07/10/2024, 19:47:12: INFO - Presença registrada com sucesso para o aluno Ana Pereira por User: undefined
+07/10/2024, 19:47:22: INFO - Presença registrada com sucesso para o aluno Cecília Duarte por User: undefined
+07/10/2024, 19:47:32: ERROR - O horário de registro está fora do intervalo permitido para esta atividade em CreateAttendanceController por User: undefined
+07/10/2024, 19:47:43: ERROR - O horário de registro está fora do intervalo permitido para esta atividade em CreateAttendanceController por User: undefined
+07/10/2024, 19:47:51: INFO - Presença registrada com sucesso para o aluno Rodrigo Carvalho por User: undefined
+07/10/2024, 19:48:01: ERROR - Erro ao processar a presença do aluno em CreateAttendanceController por User: undefined
+07/10/2024, 19:48:11: ERROR - Erro ao processar a presença do aluno em CreateAttendanceController por User: undefined
+07/10/2024, 19:48:24: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+07/10/2024, 19:48:30: ERROR - O evento não está em andamento. Registro de presença não permitido. em CreateAttendanceController por User: undefined
+07/10/2024, 20:00:12: INFO - Presença registrada com sucesso para o aluno João Souza por User: undefined
+07/10/2024, 20:01:23: INFO - Presença registrada com sucesso para o aluno Carlos Santana por User: undefined

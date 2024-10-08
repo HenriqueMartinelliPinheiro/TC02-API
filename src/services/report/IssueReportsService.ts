@@ -74,6 +74,10 @@ export class IssueReportService {
 
 				try {
 					classDays = this.scheduleProcessor.processSchedule(classSchedule);
+					console.log(
+						`Cronograma da turma  id: ${classItem['id-turma']}, horário: ${classSchedule},`
+					);
+					console.log(classDays);
 				} catch (error) {
 					throw new AppError(
 						`Erro ao processar cronograma da turma ${classItem['codigo-turma']}: ${error.message}`,
@@ -100,6 +104,7 @@ export class IssueReportService {
 									await this.attendanceRepository.fetchAttendancesByActivity(
 										activity.eventActivityId
 									);
+
 								if (attendances.length > 0) {
 									const presentStudents = attendances.filter((attendance) => {
 										const attendanceDate = new Date(
@@ -117,7 +122,15 @@ export class IssueReportService {
 									});
 
 									if (presentStudents.length > 0) {
-										// Passa os horários de início e fim para o relatório em PDF
+										console.log(
+											`Gerando relatório para a turma ${classItem['codigo-turma']} na data ${activityDate}`
+										);
+										const reportFileName = `relatorio_turma_${
+											classItem['codigo-turma']
+										}_${activityDate.replace(/\//g, '-')}_${
+											activity.eventActivityId
+										}.pdf`;
+
 										await this.pdfReportGenerator.generateReport(
 											classItem['codigo-turma'],
 											activityDate,
@@ -126,8 +139,13 @@ export class IssueReportService {
 												startTime: activityStartTime,
 												endTime: activityEndTime,
 												presentStudents,
-											}
+											},
+											reportFileName
 										);
+									} else {
+										// console.log(
+										// 	`Nenhuma presença para a turma ${classItem['codigo-turma']} na data ${activityDate}`
+										// );
 									}
 								}
 							} catch (error) {

@@ -3,14 +3,15 @@ import fs from 'fs';
 import path from 'path';
 
 export class AttendancePDFReportGenerator {
-	generateReport(turma: string, date: string, activity: any) {
+	generateReport(turma: string, date: string, activity: any, fileName?: string) {
 		const doc = new PDFDocument();
 
 		const sanitizedDate = date.replace(/\//g, '-');
+		// Se fileName não for fornecido, cria um padrão
+		const finalFileName = fileName ?? `relatorio_turma_${turma}_${sanitizedDate}.pdf`;
+		console.log('finalFileName:', finalFileName);
 
-		const fileName = `relatorio_turma_${turma}_${sanitizedDate}.pdf`;
-
-		const filePath = path.resolve(__dirname, '../../../relatorios', fileName);
+		const filePath = path.resolve(__dirname, '../../../relatorios', finalFileName);
 
 		const directory = path.dirname(filePath);
 		if (!fs.existsSync(directory)) {
@@ -20,6 +21,7 @@ export class AttendancePDFReportGenerator {
 		const writeStream = fs.createWriteStream(filePath);
 		doc.pipe(writeStream);
 
+		// Conteúdo do PDF
 		doc.fontSize(20).text(`Relatório de presenças - Turma ${turma}`, {
 			align: 'center',
 		});
@@ -32,7 +34,6 @@ export class AttendancePDFReportGenerator {
 		const text = `Atividade: ${activity.title}  Horário: ${activity.startTime} - ${activity.endTime}`;
 
 		const textHeight = doc.heightOfString(text);
-
 		const pageWidth = doc.page.width - doc.page.margins.left - doc.page.margins.right;
 		const rectYOffset = 5;
 
@@ -46,14 +47,12 @@ export class AttendancePDFReportGenerator {
 			.fill('#A9A9A9');
 
 		doc.fillColor('black');
-
 		doc.fontSize(16).font('Helvetica-Bold').text(text, {
 			align: 'center',
 			continued: false,
 		});
 
 		doc.moveDown();
-
 		doc.fontSize(12).font('Helvetica');
 
 		if (activity.presentStudents.length > 0) {
