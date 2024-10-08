@@ -3,11 +3,10 @@ import fs from 'fs';
 import path from 'path';
 
 export class AttendancePDFReportGenerator {
-	generateReport(turma: string, date: string, activity: any, fileName?: string) {
+	generateReport(turma: string, date: string, activities: any[], fileName?: string) {
 		const doc = new PDFDocument();
 
 		const sanitizedDate = date.replace(/\//g, '-');
-		// Se fileName não for fornecido, cria um padrão
 		const finalFileName = fileName ?? `relatorio_turma_${turma}_${sanitizedDate}.pdf`;
 		console.log('finalFileName:', finalFileName);
 
@@ -22,50 +21,78 @@ export class AttendancePDFReportGenerator {
 		doc.pipe(writeStream);
 
 		// Conteúdo do PDF
-		doc.fontSize(20).text(`Relatório de presenças - Turma ${turma}`, {
-			align: 'center',
-		});
+		doc
+			.fontSize(20)
+			.font('Helvetica-Bold')
+			.text(`Relatório de presenças - Turma ${turma}`, {
+				align: 'center',
+			});
 		doc.moveDown();
 		doc.fontSize(16).text(`Data: ${date}`, { align: 'center' });
 		doc.moveDown();
 
-		const yPositionBeforeText = doc.y;
+		activities.forEach((activity, index) => {
+			const yPositionBeforeText = doc.y;
+			const text = `Atividade: ${activity.title}  Horário: ${activity.startTime} - ${activity.endTime}`;
+			const textHeight = doc.heightOfString(text);
+			const pageWidth = doc.page.width - doc.page.margins.left - doc.page.margins.right;
+			const rectYOffset = 5;
+			const rectHeightAdjustment = index > 0 ? 5 : 0; // Reduz a altura da linha cinza a partir da segunda linha
 
-		const text = `Atividade: ${activity.title}  Horário: ${activity.startTime} - ${activity.endTime}`;
+			doc
+				.rect(
+					doc.page.margins.left,
+					yPositionBeforeText - rectYOffset,
+					pageWidth,
+					textHeight + rectYOffset + rectHeightAdjustment
+				)
+				.fill('#A9A9A9');
 
-		const textHeight = doc.heightOfString(text);
-		const pageWidth = doc.page.width - doc.page.margins.left - doc.page.margins.right;
-		const rectYOffset = 5;
+			doc.fillColor('black');
+			doc.fontSize(16).font('Helvetica-Bold').text(text, {
+				align: 'center',
+				continued: false,
+			});
+			doc.moveDown();
 
-		doc
-			.rect(
-				doc.page.margins.left,
-				yPositionBeforeText - rectYOffset,
-				pageWidth,
-				textHeight + rectYOffset
-			)
-			.fill('#A9A9A9');
+			doc.fontSize(12).font('Helvetica');
 
-		doc.fillColor('black');
-		doc.fontSize(16).font('Helvetica-Bold').text(text, {
-			align: 'center',
-			continued: false,
+			if (activity.presentStudents.length > 0) {
+				activity.presentStudents.forEach((student, studentIndex) => {
+					doc.text(
+						`${studentIndex + 1}. ${student.studentName} (Matrícula: ${
+							student.studentRegistration
+						}, CPF: ${student.studentCpf})`
+					);
+				});
+			} else {
+				doc.text('Nenhum estudante presente.');
+			}
+
+			// Adiciona linha separadora entre atividades
+			if (index < activities.length - 1) {
+				doc.moveDown();
+				doc
+					.strokeColor('#000000')
+					.lineWidth(1)
+					.moveTo(doc.page.margins.left, doc.y)
+					.lineTo(pageWidth + doc.page.margins.left, doc.y)
+					.stroke();
+				doc.moveDown();
+			}
 		});
 
-		doc.moveDown();
-		doc.fontSize(12).font('Helvetica');
-
-		if (activity.presentStudents.length > 0) {
-			activity.presentStudents.forEach((student, index) => {
-				doc.text(
-					`${index + 1}. ${student.studentName} (Matrícula: ${
-						student.studentRegistration
-					}, CPF: ${student.studentCpf})`
-				);
-			});
-		} else {
-			doc.text('Nenhum estudante presente.');
-		}
+		// Adiciona rodapé com data e hora de emissão do relatório
+		doc.fontSize(10).font('Helvetica').fillColor('black');
+		doc.text(
+			`Emitido em: ${new Date().toLocaleString('pt-BR')}`,
+			doc.page.margins.left,
+			doc.page.height - 40,
+			{
+				align: 'center',
+				lineBreak: false,
+			}
+		);
 
 		doc.end();
 

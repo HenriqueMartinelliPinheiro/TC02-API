@@ -26,10 +26,10 @@ export class ScheduleProcessor {
 		);
 		const dates: Date[] = [];
 		let currentDate = new Date(startDate);
-		currentDate.setHours(12, 0, 0, 0); // Ajuste para evitar problemas de fuso horário
+		currentDate.setHours(12, 0, 0, 0);
 
 		while (currentDate <= endDate) {
-			const currentWeekday = currentDate.getDay() + 1; // Ajuste para que 1 = domingo, ..., 7 = sábado
+			const currentWeekday = currentDate.getDay() + 1;
 
 			if (targetWeekdays.includes(currentWeekday)) {
 				console.log(`Adding date: ${currentDate.toLocaleDateString('pt-BR')}`);
@@ -66,32 +66,27 @@ export class ScheduleProcessor {
 			const startDate = this.parseDateBR(startDateStr);
 			const endDate = this.parseDateBR(endDateStr);
 
-			// Extrair a sequência de dias da semana ignorando outros caracteres
 			let currentIndex = 0;
 			const targetWeekdays: number[] = [];
 			while (currentIndex < block.length) {
 				const currentChar = block[currentIndex];
 
 				if (/[1234567]/.test(currentChar)) {
-					// Encontramos um dia da semana
 					const dayOfWeek = Number(currentChar);
 					console.log(`Found day of week: ${dayOfWeek}`);
 					if (!targetWeekdays.includes(dayOfWeek)) {
-						targetWeekdays.push(dayOfWeek); // Ajustar para JavaScript (1 = domingo, ..., 7 = sábado)
+						targetWeekdays.push(dayOfWeek);
 					}
 				} else if (/[A-Za-z]/.test(currentChar)) {
-					// Encontramos uma letra, ignorar tudo até encontrar um espaço ou parêntese
 					while (currentIndex < block.length && !/[\s()]/.test(block[currentIndex])) {
 						currentIndex++;
 					}
 				} else if (block[currentIndex] === '(') {
-					// Encontramos o período de datas, parar o loop
 					break;
 				}
 				currentIndex++;
 			}
 
-			// Obter todas as datas no intervalo que correspondem aos dias da semana fornecidos
 			const filteredDates = this.getDatesByWeekday(startDate, endDate, targetWeekdays);
 
 			filteredDates.forEach((date) => {
@@ -103,10 +98,3 @@ export class ScheduleProcessor {
 		return resultDates;
 	}
 }
-
-// Exemplo de uso:
-const scheduleProcessor = new ScheduleProcessor();
-const schedule =
-	'23M12345 7M45 7T12 (29/07/2024 - 10/08/2024), 3M12345 7M45 7T1234 (13/08/2024 - 26/08/2024), 4M3 (02/10/2024 - 27/11/2024)';
-const result = scheduleProcessor.processSchedule(schedule);
-console.log(result);

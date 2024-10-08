@@ -3071,3 +3071,5 @@ Foreign key constraint violated: `Attendance_eventActivityId_fkey (index)` em Ed
 07/10/2024, 19:31:35: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
 07/10/2024, 19:31:35: INFO - Status retornados com sucesso. por User: undefined
 07/10/2024, 19:31:43: INFO - Evento atualizado com sucesso 3 por User: henriquepinheiro18@gmail.com
+08/10/2024, 19:18:30: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+08/10/2024, 19:18:30: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com

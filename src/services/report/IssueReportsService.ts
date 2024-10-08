@@ -68,6 +68,8 @@ export class IssueReportService {
 				throw new AppError('Nenhuma turma encontrada para o ano fornecido', 400);
 			}
 
+			const reportDataByClassAndDate: Record<string, any> = {};
+
 			for (const classItem of classes) {
 				const classSchedule = classItem['descricao-horario'];
 				let classDays: string[];
@@ -75,7 +77,7 @@ export class IssueReportService {
 				try {
 					classDays = this.scheduleProcessor.processSchedule(classSchedule);
 					console.log(
-						`Cronograma da turma  id: ${classItem['id-turma']}, horário: ${classSchedule},`
+						`Cronograma da turma  id: ${classItem['id-turma']}, horário: ${classSchedule}`
 					);
 					console.log(classDays);
 				} catch (error) {
@@ -122,30 +124,21 @@ export class IssueReportService {
 									});
 
 									if (presentStudents.length > 0) {
-										console.log(
-											`Gerando relatório para a turma ${classItem['codigo-turma']} na data ${activityDate}`
-										);
-										const reportFileName = `relatorio_turma_${
-											classItem['codigo-turma']
-										}_${activityDate.replace(/\//g, '-')}_${
-											activity.eventActivityId
-										}.pdf`;
+										const classKey = `${classItem['codigo-turma']}_${activityDate}`;
+										if (!reportDataByClassAndDate[classKey]) {
+											reportDataByClassAndDate[classKey] = {
+												classCode: classItem['codigo-turma'],
+												date: activityDate,
+												activities: [],
+											};
+										}
 
-										await this.pdfReportGenerator.generateReport(
-											classItem['codigo-turma'],
-											activityDate,
-											{
-												title: activity.eventActivityTitle,
-												startTime: activityStartTime,
-												endTime: activityEndTime,
-												presentStudents,
-											},
-											reportFileName
-										);
-									} else {
-										// console.log(
-										// 	`Nenhuma presença para a turma ${classItem['codigo-turma']} na data ${activityDate}`
-										// );
+										reportDataByClassAndDate[classKey].activities.push({
+											title: activity.eventActivityTitle,
+											startTime: activityStartTime,
+											endTime: activityEndTime,
+											presentStudents,
+										});
 									}
 								}
 							} catch (error) {
@@ -154,6 +147,20 @@ export class IssueReportService {
 						}
 					}
 				}
+			}
+
+			for (const key in reportDataByClassAndDate) {
+				const reportData = reportDataByClassAndDate[key];
+				const reportFileName = `relatorio_turma_${
+					reportData.classCode
+				}_${reportData.date.replace(/\//g, '-')}.pdf`;
+
+				await this.pdfReportGenerator.generateReport(
+					reportData.classCode,
+					reportData.date,
+					reportData.activities,
+					reportFileName
+				);
 			}
 		} catch (error) {
 			console.log(error);

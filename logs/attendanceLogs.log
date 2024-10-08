@@ -58,3 +58,8 @@ An operation failed because it depends on one or more records that were required
 07/10/2024, 19:48:30: ERROR - O evento não está em andamento. Registro de presença não permitido. em CreateAttendanceController por User: undefined
 07/10/2024, 20:00:12: INFO - Presença registrada com sucesso para o aluno João Souza por User: undefined
 07/10/2024, 20:01:23: INFO - Presença registrada com sucesso para o aluno Carlos Santana por User: undefined
+08/10/2024, 19:16:35: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+08/10/2024, 19:16:40: INFO - Presença registrada com sucesso para o aluno João Souza por User: undefined
+08/10/2024, 19:17:00: INFO - Presença registrada com sucesso para o aluno Maria Silva por User: undefined
+08/10/2024, 19:17:31: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+08/10/2024, 19:17:36: INFO - Presença registrada com sucesso para o aluno Rodrigo Carvalho por User: undefined
