@@ -114,10 +114,8 @@ export class CreateAttendanceService {
 		}
 	}
 
-	// Adicionando a validação de status do evento
 	private async validateEventStatus(eventID: number): Promise<void> {
-		const event = await this.eventRepository.fetchEventById(eventID); // Supondo que existe um método para buscar o evento pelo ID
-
+		const event = await this.eventRepository.fetchEventById(eventID);
 		if (!event) {
 			throw new AppError(`Evento não encontrado para o ID ${eventID}`, 404);
 		}
@@ -148,7 +146,6 @@ export class CreateAttendanceService {
 			const student = students[0];
 			const courseId = student.idCurso;
 
-			// Validar o status do evento
 			await this.validateEventStatus(eventID);
 
 			await this.validateExistingAttendance(

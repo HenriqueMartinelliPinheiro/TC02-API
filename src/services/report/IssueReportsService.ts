@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { AppError } from '../../utils/errors/AppError';
 import { GetAllClassesYearService } from '../sigaa/sigaaClass/GetAllClassesYear';
 import { IEventActivityRepository } from '../../repository/interfaces/IEventActivityRepository';
@@ -6,6 +5,8 @@ import { IAttendanceRepository } from '../../repository/interfaces/IAttendanceRe
 import { ScheduleProcessor } from '../../utils/ScheduleProcess';
 import { FetchStudentByClassService } from '../../services/sigaa/sigaaStudent/FetchStudentsByClassService';
 import { AttendancePDFReportGenerator } from '../../utils/reports/AttendancePDFReportGenerator';
+import { sendEmailWithAttachment } from '../../email/emailService';
+import { FetchTeacherById } from '../../services/sigaa/sigaaTeacher/FetchTeacherById';
 
 export class IssueReportService {
 	private getAllClassesYearService: GetAllClassesYearService;
@@ -15,7 +16,8 @@ export class IssueReportService {
 	private fetchStudentByClassService: FetchStudentByClassService =
 		new FetchStudentByClassService();
 	private pdfReportGenerator: AttendancePDFReportGenerator =
-		new AttendancePDFReportGenerator(); // Instancia o gerador de PDFs
+		new AttendancePDFReportGenerator();
+	private fetchTeacherById: FetchTeacherById = new FetchTeacherById();
 
 	constructor(
 		eventActivityRepository: IEventActivityRepository,
@@ -49,12 +51,11 @@ export class IssueReportService {
 		return dateRange;
 	}
 
-	// Função para extrair o horário da data
 	extractTime(date: Date): string {
 		return date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
 	}
 
-	async execute(eventId: number): Promise<void> {
+	async execute(eventId: number, userEmail: string): Promise<void> {
 		try {
 			const eventActivities =
 				await this.eventActivityRepository.fetchEventActivitiesByEventId(eventId);
@@ -62,6 +63,7 @@ export class IssueReportService {
 				throw new AppError('Nenhuma atividade para o evento', 400);
 			}
 
+			const eventName = eventActivities[0].eventActivityTitle; // Nome do evento
 			const eventYear = eventActivities[0].eventActivityStartDate.getFullYear();
 			const classes = await this.getAllClassesYearService.getAllClassesByYear(eventYear);
 			if (classes.length === 0) {
@@ -69,6 +71,7 @@ export class IssueReportService {
 			}
 
 			const reportDataByClassAndDate: Record<string, any> = {};
+			const pdfPaths: string[] = [];
 
 			for (const classItem of classes) {
 				const classSchedule = classItem['descricao-horario'];
@@ -77,7 +80,7 @@ export class IssueReportService {
 				try {
 					classDays = this.scheduleProcessor.processSchedule(classSchedule);
 					console.log(
-						`Cronograma da turma  id: ${classItem['id-turma']}, horário: ${classSchedule}`
+						`Cronograma da turma id: ${classItem['id-turma']}, horário: ${classSchedule}`
 					);
 					console.log(classDays);
 				} catch (error) {
@@ -139,6 +142,14 @@ export class IssueReportService {
 											endTime: activityEndTime,
 											presentStudents,
 										});
+
+										const teacherId = classItem['id-docente'];
+										const teacher = await this.fetchTeacherById.getTeacherById(teacherId);
+										console.log('ID do Docente', classItem['id-docente']);
+										console.log(
+											`Dados do professor da turma ${classItem['codigo-turma']}:`,
+											teacher
+										);
 									}
 								}
 							} catch (error) {
@@ -155,13 +166,20 @@ export class IssueReportService {
 					reportData.classCode
 				}_${reportData.date.replace(/\//g, '-')}.pdf`;
 
-				await this.pdfReportGenerator.generateReport(
+				const filePath = await this.pdfReportGenerator.generateReport(
 					reportData.classCode,
 					reportData.date,
 					reportData.activities,
 					reportFileName
 				);
+
+				pdfPaths.push(filePath);
 			}
+
+			const emailSubject = `Relatórios de Presença do Evento: ${eventName}`;
+			const emailText = `Segue em anexo os relatórios de presença do evento "${eventName}".`;
+
+			await sendEmailWithAttachment(userEmail, emailSubject, emailText, pdfPaths);
 		} catch (error) {
 			console.log(error);
 			throw error;

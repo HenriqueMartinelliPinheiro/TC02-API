@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import express from 'express';
-import { IssueReportController } from '../controllers/attendance/IssueReportController';
+import { IssueReportController } from '../controllers/reports/IssueReportController';
 import { IssueReportService } from '../services/report/IssueReportsService';
 import { EventActivityRepository } from '../repository/implementation/EventActivityRepository';
 import { AttendanceRepository } from '../repository/implementation/AttendanceRepository';

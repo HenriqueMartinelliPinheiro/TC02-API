@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { IssueReportService } from '../../services/report/IssueReportsService'; // Assumindo que o serviço esteja nesse caminho
+import { IssueReportService } from '../../services/report/IssueReportsService';
 import { Logger } from '../../loggers/Logger';
 import { reportLogPath } from '../../config/logPaths';
 import { AppError } from '../../utils/errors/AppError';
@@ -16,7 +16,7 @@ export class IssueReportController {
 
 	async issueReport(req: Request, res: Response): Promise<Response> {
 		try {
-			const { eventId } = req.body;
+			const { eventId, userEmail } = req.body;
 
 			if (!eventId) {
 				this.logger.error('EventId não fornecido', req.requestEmail);
@@ -26,7 +26,7 @@ export class IssueReportController {
 				});
 			}
 
-			await this.issueReportService.execute(Number(eventId));
+			await this.issueReportService.execute(Number(eventId), userEmail);
 
 			this.logger.info(
 				`Relatório de evento ${eventId} gerado com sucesso`,

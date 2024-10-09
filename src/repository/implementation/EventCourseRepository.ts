@@ -9,7 +9,6 @@ export class EventCourseRepository implements IEventCourseRepository {
 		this.prismaClient = prismaClient;
 	}
 
-	// Método para criar EventCourse
 	createEventCourse = async (eventId: number, courseId: number): Promise<EventCourse> => {
 		try {
 			const createdEventCourse = await this.prismaClient.eventCourse.create({

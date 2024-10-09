@@ -3,7 +3,12 @@ import fs from 'fs';
 import path from 'path';
 
 export class AttendancePDFReportGenerator {
-	generateReport(turma: string, date: string, activities: any[], fileName?: string) {
+	async generateReport(
+		turma: string,
+		date: string,
+		activities: any[],
+		fileName?: string
+	): Promise<string> {
 		const doc = new PDFDocument();
 
 		const sanitizedDate = date.replace(/\//g, '-');
@@ -37,7 +42,7 @@ export class AttendancePDFReportGenerator {
 			const textHeight = doc.heightOfString(text);
 			const pageWidth = doc.page.width - doc.page.margins.left - doc.page.margins.right;
 			const rectYOffset = 5;
-			const rectHeightAdjustment = index > 0 ? 5 : 0; // Reduz a altura da linha cinza a partir da segunda linha
+			const rectHeightAdjustment = index > 0 ? 5 : 0;
 
 			doc
 				.rect(
@@ -69,7 +74,6 @@ export class AttendancePDFReportGenerator {
 				doc.text('Nenhum estudante presente.');
 			}
 
-			// Adiciona linha separadora entre atividades
 			if (index < activities.length - 1) {
 				doc.moveDown();
 				doc
@@ -82,7 +86,6 @@ export class AttendancePDFReportGenerator {
 			}
 		});
 
-		// Adiciona rodapé com data e hora de emissão do relatório
 		doc.fontSize(10).font('Helvetica').fillColor('black');
 		doc.text(
 			`Emitido em: ${new Date().toLocaleString('pt-BR')}`,
@@ -96,10 +99,10 @@ export class AttendancePDFReportGenerator {
 
 		doc.end();
 
-		return new Promise<void>((resolve, reject) => {
+		return new Promise<string>((resolve, reject) => {
 			writeStream.on('finish', () => {
 				console.log(`Relatório gerado e salvo em: ${filePath}`);
-				resolve();
+				resolve(filePath);
 			});
 
 			writeStream.on('error', (error) => {

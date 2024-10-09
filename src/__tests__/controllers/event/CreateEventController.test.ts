@@ -93,7 +93,7 @@ describe('CreateEventController', () => {
 		expect(isValidEventDate).toHaveBeenCalledWith(
 			new Date(req.body.eventStartDate),
 			new Date(req.body.eventEndDate),
-			expect.any(Array) // Verificando se a função foi chamada com a lista de atividades
+			expect.any(Array)
 		);
 		expect(res.status).toHaveBeenCalledWith(400);
 		expect(res.json).toHaveBeenCalledWith({

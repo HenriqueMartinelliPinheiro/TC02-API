@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import { createReadStream } from 'fs';
 
 const transporter = nodemailer.createTransport({
 	service: 'gmail',
@@ -12,20 +13,20 @@ export const sendEmailWithAttachment = async (
 	to: string,
 	subject: string,
 	text: string,
-	pdfPath: string
+	pdfPaths: string[]
 ) => {
 	try {
+		const attachments = pdfPaths.map((path) => ({
+			filename: path.split('/').pop(),
+			content: createReadStream(path),
+		}));
+
 		const mailOptions = {
-			from: 'seu-email@gmail.com',
+			from: 'eventosifcvideira@gmail.com',
 			to,
 			subject,
 			text,
-			// attachments: [
-			// 	{
-			// 		filename: 'arquivo.pdf',
-			// 		content: createReadStream(pdfPath),
-			// 	},
-			// ],
+			attachments,
 		};
 
 		const info = await transporter.sendMail(mailOptions);

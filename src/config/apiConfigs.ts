@@ -5,4 +5,5 @@ export const sigaaApiRoutes = {
 	FETCH_STUDENTS: `${API_BASE_URL}/discentes`,
 	FETCH_ALL_CLASSES: `${API_BASE_URL}/turmas?idUnidade=${idUnidade}`,
 	FETCH_PARTICIPANTS: `${API_BASE_URL}/participantes`,
+	FETCH_TEACHERS: (id) => `${API_BASE_URL}/docentes/${id}`,
 };

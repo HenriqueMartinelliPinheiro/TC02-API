@@ -45,11 +45,9 @@ export class ScheduleProcessor {
 	public processSchedule(schedule: string): string[] {
 		const resultDates: string[] = [];
 
-		// Quebrar o cronograma por intervalos de datas
 		const scheduleBlocks = schedule.split(/\s*,\s*/);
 		console.log(`Schedule blocks: ${scheduleBlocks}`);
 
-		// Processar cada bloco separadamente
 		scheduleBlocks.forEach((block) => {
 			console.log(`Processing block: ${block}`);
 			const match = block.match(/\((\d{2}\/\d{2}\/\d{4})\s-\s(\d{2}\/\d{2}\/\d{4})\)/);
