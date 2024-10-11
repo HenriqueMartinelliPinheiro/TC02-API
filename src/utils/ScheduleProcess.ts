@@ -10,7 +10,6 @@ export class ScheduleProcessor {
 			throw new Error('Formato de data inválido');
 		}
 
-		console.log(`Parsing date: ${dateStr} -> ${year}-${month}-${day}`);
 		return new Date(year, month - 1, day);
 	}
 
@@ -19,11 +18,6 @@ export class ScheduleProcessor {
 		endDate: Date,
 		targetWeekdays: number[]
 	): Date[] {
-		console.log(
-			`Generating dates between ${startDate.toLocaleDateString(
-				'pt-BR'
-			)} and ${endDate.toLocaleDateString('pt-BR')} for weekdays: ${targetWeekdays}`
-		);
 		const dates: Date[] = [];
 		let currentDate = new Date(startDate);
 		currentDate.setHours(12, 0, 0, 0);
@@ -32,7 +26,6 @@ export class ScheduleProcessor {
 			const currentWeekday = currentDate.getDay() + 1;
 
 			if (targetWeekdays.includes(currentWeekday)) {
-				console.log(`Adding date: ${currentDate.toLocaleDateString('pt-BR')}`);
 				dates.push(new Date(currentDate));
 			}
 
@@ -46,10 +39,8 @@ export class ScheduleProcessor {
 		const resultDates: string[] = [];
 
 		const scheduleBlocks = schedule.split(/\s*,\s*/);
-		console.log(`Schedule blocks: ${scheduleBlocks}`);
 
 		scheduleBlocks.forEach((block) => {
-			console.log(`Processing block: ${block}`);
 			const match = block.match(/\((\d{2}\/\d{2}\/\d{4})\s-\s(\d{2}\/\d{2}\/\d{4})\)/);
 
 			if (!match) {
@@ -58,8 +49,6 @@ export class ScheduleProcessor {
 
 			const startDateStr = match[1];
 			const endDateStr = match[2];
-
-			console.log(`Found date range: ${startDateStr} - ${endDateStr}`);
 
 			const startDate = this.parseDateBR(startDateStr);
 			const endDate = this.parseDateBR(endDateStr);
@@ -71,7 +60,6 @@ export class ScheduleProcessor {
 
 				if (/[1234567]/.test(currentChar)) {
 					const dayOfWeek = Number(currentChar);
-					console.log(`Found day of week: ${dayOfWeek}`);
 					if (!targetWeekdays.includes(dayOfWeek)) {
 						targetWeekdays.push(dayOfWeek);
 					}
@@ -92,7 +80,6 @@ export class ScheduleProcessor {
 			});
 		});
 
-		console.log(`Resulting dates: ${resultDates}`);
 		return resultDates;
 	}
 }

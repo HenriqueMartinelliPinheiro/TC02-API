@@ -167,7 +167,6 @@ export class CreateAttendanceService {
 			if (error instanceof AppError) {
 				throw error;
 			}
-			console.log(error);
 			throw new AppError('Erro ao processar a presença do aluno', 500);
 		}
 	}

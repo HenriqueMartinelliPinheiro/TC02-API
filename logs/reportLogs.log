@@ -178,3 +178,41 @@
 09/10/2024, 20:24:24: INFO - Relatório de evento 3 gerado com sucesso por User: undefined
 09/10/2024, 20:25:27: INFO - Relatório de evento 3 gerado com sucesso por User: undefined
 09/10/2024, 20:31:22: INFO - Relatório de evento 3 gerado com sucesso por User: undefined
+11/10/2024, 18:56:50: INFO - Relatório de evento 3 gerado com sucesso por User: undefined
+11/10/2024, 19:01:22: INFO - Relatório de evento 3 gerado com sucesso por User: undefined
+11/10/2024, 19:07:34: ERROR - Erro ao gerar o relatório de evento - Error: Cannot read properties of undefined (reading 'replace') em IssueReportController por User: Desconhecido
+11/10/2024, 19:07:37: ERROR - Erro ao gerar o relatório de evento - Error: Cannot read properties of undefined (reading 'replace') em IssueReportController por User: Desconhecido
+11/10/2024, 19:07:58: ERROR - Erro ao gerar o relatório de evento - Error: Cannot read properties of undefined (reading 'replace') em IssueReportController por User: Desconhecido
+11/10/2024, 19:08:57: ERROR - Erro ao gerar o relatório de evento - Error: Cannot read properties of undefined (reading 'replace') em IssueReportController por User: Desconhecido
+11/10/2024, 19:10:02: ERROR - Erro ao gerar o relatório de evento - Error: Cannot read properties of undefined (reading 'replace') em IssueReportController por User: Desconhecido
+11/10/2024, 19:12:23: INFO - Relatório de evento 3 gerado com sucesso por User: undefined
+11/10/2024, 19:13:49: INFO - Relatório de evento 3 gerado com sucesso por User: undefined
+11/10/2024, 19:19:24: ERROR - EventId não fornecido em IssueReportController por User: undefined
+11/10/2024, 19:19:24: INFO - Relatório de evento 123 gerado com sucesso por User: undefined
+11/10/2024, 19:19:24: ERROR - Erro específico em IssueReportController por User: undefined
+11/10/2024, 19:19:24: ERROR - Erro ao gerar o relatório de evento - Error: Erro ao gerar o relatório de evento em IssueReportController por User: Desconhecido
+11/10/2024, 19:20:23: ERROR - EventId não fornecido em IssueReportController por User: undefined
+11/10/2024, 19:20:23: INFO - Relatório de evento 123 gerado com sucesso por User: undefined
+11/10/2024, 19:20:23: ERROR - Erro específico em IssueReportController por User: undefined
+11/10/2024, 19:20:23: ERROR - Erro ao gerar o relatório de evento - Error: Erro ao gerar o relatório de evento em IssueReportController por User: Desconhecido
+11/10/2024, 19:23:38: ERROR - Erro ao gerar o relatório de evento - Error: Erro ao buscar presenças: Nenhuma presença encontrada para a atividade fornecida em IssueReportController por User: Desconhecido
+11/10/2024, 19:24:20: ERROR - Erro ao gerar o relatório de evento - Error: Erro ao buscar presenças: Nenhuma presença encontrada para a atividade fornecida em IssueReportController por User: Desconhecido
+11/10/2024, 19:24:50: ERROR - Erro ao gerar o relatório de evento - Error: Erro ao buscar presenças: Nenhuma presença encontrada para a atividade fornecida em IssueReportController por User: Desconhecido
+11/10/2024, 19:25:12: ERROR - Erro ao gerar o relatório de evento - Error: Erro ao buscar presenças: Nenhuma presença encontrada para a atividade fornecida em IssueReportController por User: Desconhecido
+11/10/2024, 19:25:36: ERROR - Erro ao gerar o relatório de evento - Error: Erro ao buscar presenças: Nenhuma presença encontrada para a atividade fornecida em IssueReportController por User: Desconhecido
+11/10/2024, 19:25:37: ERROR - Erro ao gerar o relatório de evento - Error: Erro ao buscar presenças: Nenhuma presença encontrada para a atividade fornecida em IssueReportController por User: Desconhecido
+11/10/2024, 19:27:02: INFO - Relatório de evento 3 gerado com sucesso por User: undefined
+11/10/2024, 19:28:14: ERROR - Erro ao gerar o relatório de evento - Error: Erro ao buscar presenças: Nenhuma presença encontrada para a atividade fornecida em IssueReportController por User: Desconhecido
+11/10/2024, 19:29:43: INFO - Relatório de evento 3 gerado com sucesso por User: undefined
+11/10/2024, 19:33:08: ERROR - EventId não fornecido em IssueReportController por User: undefined
+11/10/2024, 19:33:08: INFO - Relatório de evento 123 gerado com sucesso por User: undefined
+11/10/2024, 19:33:08: ERROR - Erro específico em IssueReportController por User: undefined
+11/10/2024, 19:33:08: ERROR - Erro ao gerar o relatório de evento - Error: Erro ao gerar o relatório de evento em IssueReportController por User: Desconhecido
+11/10/2024, 19:34:07: ERROR - EventId não fornecido em IssueReportController por User: undefined
+11/10/2024, 19:34:07: INFO - Relatório de evento 123 gerado com sucesso por User: undefined
+11/10/2024, 19:34:07: ERROR - Erro específico em IssueReportController por User: undefined
+11/10/2024, 19:34:07: ERROR - Erro ao gerar o relatório de evento - Error: Erro ao gerar o relatório de evento em IssueReportController por User: Desconhecido
+11/10/2024, 19:38:29: ERROR - EventId não fornecido em IssueReportController por User: undefined
+11/10/2024, 19:38:29: INFO - Relatório de evento 123 gerado com sucesso por User: undefined
+11/10/2024, 19:38:29: ERROR - Erro específico em IssueReportController por User: undefined
+11/10/2024, 19:38:29: ERROR - Erro ao gerar o relatório de evento - Error: Erro ao gerar o relatório de evento em IssueReportController por User: Desconhecido

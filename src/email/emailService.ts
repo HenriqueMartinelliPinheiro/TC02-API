@@ -30,8 +30,7 @@ export const sendEmailWithAttachment = async (
 		};
 
 		const info = await transporter.sendMail(mailOptions);
-		console.log('Email enviado: ', info.response);
 	} catch (error) {
-		console.error('Erro ao enviar o email: ', error);
+		throw error;
 	}
 };

@@ -53,9 +53,6 @@ export class AttendanceRepository implements IAttendanceRepository {
 				},
 			});
 
-			if (!attendance) {
-				throw new Error('Presença não encontrada para o ID fornecido');
-			}
 			return attendance;
 		} catch (error) {
 			throw error;
@@ -95,6 +92,7 @@ export class AttendanceRepository implements IAttendanceRepository {
 			if (attendances.length === 0) {
 				throw new Error('Nenhuma presença encontrada para o evento fornecido');
 			}
+
 			return attendances;
 		} catch (error) {
 			throw error;
@@ -108,13 +106,9 @@ export class AttendanceRepository implements IAttendanceRepository {
 					eventActivityId,
 				},
 				include: {
-					eventActivity: true, 
+					eventActivity: true,
 				},
 			});
-
-			if (attendances.length === 0) {
-				throw new Error('Nenhuma presença encontrada para a atividade fornecida');
-			}
 
 			return attendances;
 		} catch (error) {

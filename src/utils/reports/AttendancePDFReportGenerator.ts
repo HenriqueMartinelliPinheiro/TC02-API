@@ -13,7 +13,6 @@ export class AttendancePDFReportGenerator {
 
 		const sanitizedDate = date.replace(/\//g, '-');
 		const finalFileName = fileName ?? `relatorio_turma_${turma}_${sanitizedDate}.pdf`;
-		console.log('finalFileName:', finalFileName);
 
 		const filePath = path.resolve(__dirname, '../../../relatorios', finalFileName);
 
@@ -25,7 +24,6 @@ export class AttendancePDFReportGenerator {
 		const writeStream = fs.createWriteStream(filePath);
 		doc.pipe(writeStream);
 
-		// Conteúdo do PDF
 		doc
 			.fontSize(20)
 			.font('Helvetica-Bold')
@@ -101,12 +99,10 @@ export class AttendancePDFReportGenerator {
 
 		return new Promise<string>((resolve, reject) => {
 			writeStream.on('finish', () => {
-				console.log(`Relatório gerado e salvo em: ${filePath}`);
 				resolve(filePath);
 			});
 
 			writeStream.on('error', (error) => {
-				console.error('Erro ao salvar o PDF:', error);
 				reject(error);
 			});
 		});

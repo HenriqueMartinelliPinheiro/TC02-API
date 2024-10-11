@@ -9,7 +9,6 @@ const logger = new Logger('adminRoleMiddleware', userLogPath);
 export const roleMiddleware = (requiredRoles: string[]) => {
 	return async (req: Request, res: Response, next: NextFunction) => {
 		try {
-			console.log('requiredRoles:', requiredRoles);
 			if ('requestEmail' in req) {
 				const userEmail = req.requestEmail;
 
