@@ -48,8 +48,8 @@ describe('IssueReportController', () => {
 		req = {
 			body: {
 				eventId: '123',
-				userEmail: 'user@example.com',
 			},
+			requestEmail: 'user@example.com',
 		};
 
 		res = {

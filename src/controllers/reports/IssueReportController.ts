@@ -17,6 +17,7 @@ export class IssueReportController {
 
 	async issueReport(req: Request, res: Response): Promise<Response> {
 		try {
+			req.body.userEmail = req.requestEmail;
 			const { error } = issueReportTypes.validate(req.body);
 			if (error) {
 				this.logger.error('Erro de validação', req.requestEmail);
@@ -25,7 +26,8 @@ export class IssueReportController {
 				});
 			}
 
-			const { eventId, userEmail } = req.body;
+			const { eventId } = req.body;
+			const userEmail = req.requestEmail;
 
 			await this.issueReportService.execute(Number(eventId), userEmail);
 
