@@ -4,6 +4,7 @@ import { IssueReportController } from '../../../controllers/reports/IssueReportC
 import { IssueReportService } from '../../../services/report/IssueReportsService';
 import { Logger } from '../../../loggers/Logger';
 import { AppError } from '../../../utils/errors/AppError';
+import { issueReportTypes } from '../../../@types/report/IssueReportType';
 
 vi.mock('../../loggers/Logger', () => {
 	return {
@@ -13,6 +14,19 @@ vi.mock('../../loggers/Logger', () => {
 				info: vi.fn(),
 			};
 		}),
+	};
+});
+
+vi.mock('../../../@types/report/IssueReportType', () => {
+	return {
+		issueReportTypes: {
+			validate: vi.fn().mockImplementation((data) => {
+				if (!data.eventId) {
+					return { error: { details: [{ message: 'EventId é obrigatório' }] } };
+				}
+				return { error: null };
+			}),
+		},
 	};
 });
 
@@ -44,14 +58,13 @@ describe('IssueReportController', () => {
 		};
 	});
 
-	it('should return 400 if eventId is not provided', async () => {
+	it('should return 400 if validation fails', async () => {
 		req.body.eventId = undefined;
 
 		await issueReportController.issueReport(req as Request, res as Response);
 
 		expect(res.status).toHaveBeenCalledWith(400);
 		expect(res.json).toHaveBeenCalledWith({
-			event: undefined,
 			msg: 'EventId é obrigatório',
 		});
 		expect(issueReportService.execute).not.toHaveBeenCalled();

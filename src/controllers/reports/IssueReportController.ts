@@ -3,6 +3,7 @@ import { IssueReportService } from '../../services/report/IssueReportsService';
 import { Logger } from '../../loggers/Logger';
 import { reportLogPath } from '../../config/logPaths';
 import { AppError } from '../../utils/errors/AppError';
+import { issueReportTypes } from '../../@types/report/IssueReportType';
 
 export class IssueReportController {
 	private logger: Logger;
@@ -16,15 +17,15 @@ export class IssueReportController {
 
 	async issueReport(req: Request, res: Response): Promise<Response> {
 		try {
-			const { eventId, userEmail } = req.body;
-
-			if (!eventId) {
-				this.logger.error('EventId não fornecido', req.requestEmail);
+			const { error } = issueReportTypes.validate(req.body);
+			if (error) {
+				this.logger.error('Erro de validação', req.requestEmail);
 				return res.status(400).json({
-					event: undefined,
-					msg: 'EventId é obrigatório',
+					msg: error.details[0].message,
 				});
 			}
+
+			const { eventId, userEmail } = req.body;
 
 			await this.issueReportService.execute(Number(eventId), userEmail);
 

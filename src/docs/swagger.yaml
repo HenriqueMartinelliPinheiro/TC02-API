@@ -258,6 +258,21 @@ components:
         - eventActivityId
         - createdAt
         - updatedAt
+
+    IssueReport:
+      type: object
+      properties:
+        eventId:
+          type: integer
+          description: ID do evento a ser reportado
+          example: 1
+        userEmail:
+          type: string
+          description: Email do usuário solicitante
+          example: "usuario@example.com"
+      required:
+        - eventId
+        - userEmail
         
 paths:
   /createUser:
@@ -670,6 +685,64 @@ paths:
                     type: string
                     description: Mensagem de erro detalhando o problema
                     example: "Estudante não encontrado com o CPF fornecido"
+        '500':
+          description: Erro interno do servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: Mensagem de erro
+                    example: "Erro interno do Servidor"
+  /issueReport:
+    post:
+      summary: Gera um relatório de presença de um evento
+      tags: [Reports]
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: Dados necessários para gerar o relatório de um evento
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IssueReport'
+      responses:
+        '200':
+          description: Relatório gerado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: Mensagem de sucesso
+                    example: "Relatório de evento {eventId} gerado com sucesso"
+        '400':
+          description: Requisição inválida (dados incorretos ou validações falharam)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: Mensagem de erro detalhando o problema
+                    example: "Erro de validação: O campo eventId deve ser maior que 0."
+        '404':
+          description: Evento ou usuário não encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: Mensagem de erro detalhando o problema
+                    example: "Nenhuma atividade para o evento"
         '500':
           description: Erro interno do servidor
           content:

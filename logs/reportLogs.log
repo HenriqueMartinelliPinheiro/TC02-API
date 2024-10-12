@@ -216,3 +216,8 @@
 11/10/2024, 19:38:29: INFO - Relatório de evento 123 gerado com sucesso por User: undefined
 11/10/2024, 19:38:29: ERROR - Erro específico em IssueReportController por User: undefined
 11/10/2024, 19:38:29: ERROR - Erro ao gerar o relatório de evento - Error: Erro ao gerar o relatório de evento em IssueReportController por User: Desconhecido
+12/10/2024, 09:32:53: ERROR - Erro de validação em IssueReportController por User: undefined
+12/10/2024, 09:32:53: INFO - Relatório de evento 123 gerado com sucesso por User: undefined
+12/10/2024, 09:32:53: ERROR - Erro específico em IssueReportController por User: undefined
+12/10/2024, 09:32:53: ERROR - Erro ao gerar o relatório de evento - Error: Erro ao gerar o relatório de evento em IssueReportController por User: Desconhecido
+12/10/2024, 09:33:55: INFO - Relatório de evento 3 gerado com sucesso por User: undefined
