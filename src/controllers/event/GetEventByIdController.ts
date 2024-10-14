@@ -16,8 +16,6 @@ export class GetEventByIdController {
 	}
 
 	async getEventById(req, res) {
-		console.log('Aqui');
-
 		try {
 			const eventId = parseInt(req.params.eventId);
 

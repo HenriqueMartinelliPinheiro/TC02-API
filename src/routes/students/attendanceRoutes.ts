@@ -1,12 +1,12 @@
 import { PrismaClient } from '@prisma/client';
-import { AttendanceRepository } from '../repository/implementation/AttendanceRepository';
+import { AttendanceRepository } from '../../repository/implementation/AttendanceRepository';
 import { Router } from 'express';
-import { CreateAttendanceService } from '../services/attendance/CreateAttendanceService';
-import { CreateAttendanceController } from '../controllers/attendance/CreateAttendanceController';
-import { EventCourseRepository } from '../repository/implementation/EventCourseRepository';
-import { EventLocationRepository } from '../repository/implementation/EventLocationRepository';
-import { EventActivityRepository } from '../repository/implementation/EventActivityRepository';
-import { EventRepository } from '../repository/implementation/EventRepository';
+import { CreateAttendanceService } from '../../services/attendance/CreateAttendanceService';
+import { CreateAttendanceController } from '../../controllers/attendance/CreateAttendanceController';
+import { EventCourseRepository } from '../../repository/implementation/EventCourseRepository';
+import { EventLocationRepository } from '../../repository/implementation/EventLocationRepository';
+import { EventActivityRepository } from '../../repository/implementation/EventActivityRepository';
+import { EventRepository } from '../../repository/implementation/EventRepository';
 
 export const attendanceRouter = Router();
 
