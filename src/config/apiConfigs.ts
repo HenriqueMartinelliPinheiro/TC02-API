@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'http://localhost:3000';
+export const API_BASE_URL = 'http://localhost:5000';
 const idUnidade = 1; //supostamente id do IFC Videira
 export const sigaaApiRoutes = {
 	FETCH_ALL_COURSES: `${API_BASE_URL}/cursos?idUnidade=${idUnidade}`,

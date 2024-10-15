@@ -26,7 +26,7 @@ eventStudentRouter.get(
 );
 
 eventStudentRouter.get(
-	'/getEventById/:eventId',
+	'/getEventByIdStudent/:eventId',
 	// authMiddleware,
 	// roleMiddleware(eventRoles.GET_EVENT_BY_ID),
 	getEventByIdController.getEventById
