@@ -235,3 +235,7 @@
 12/10/2024, 14:30:30: INFO - Relatório de evento 123 gerado com sucesso por User: user@example.com
 12/10/2024, 14:30:30: ERROR - Erro específico em IssueReportController por User: user@example.com
 12/10/2024, 14:30:30: ERROR - Erro ao gerar o relatório de evento - Error: Erro ao gerar o relatório de evento em IssueReportController por User: user@example.com
+17/10/2024, 08:26:51: INFO - Relatório de evento 3 gerado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 08:41:36: INFO - Relatório de evento 3 gerado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:32:18: INFO - Relatório de evento 2 gerado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:33:09: INFO - Relatório de evento 5 gerado com sucesso por User: henriquepinheiro18@gmail.com

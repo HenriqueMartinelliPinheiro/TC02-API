@@ -63,3 +63,104 @@ An operation failed because it depends on one or more records that were required
 08/10/2024, 19:17:00: INFO - Presença registrada com sucesso para o aluno Maria Silva por User: undefined
 08/10/2024, 19:17:31: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
 08/10/2024, 19:17:36: INFO - Presença registrada com sucesso para o aluno Rodrigo Carvalho por User: undefined
+17/10/2024, 08:16:35: ERROR - Erro ao processar a presença do aluno em CreateAttendanceController por User: undefined
+17/10/2024, 08:16:38: ERROR - Erro ao processar a presença do aluno em CreateAttendanceController por User: undefined
+17/10/2024, 08:16:39: ERROR - Erro ao processar a presença do aluno em CreateAttendanceController por User: undefined
+17/10/2024, 08:16:39: ERROR - Erro ao processar a presença do aluno em CreateAttendanceController por User: undefined
+17/10/2024, 08:16:39: ERROR - Erro ao processar a presença do aluno em CreateAttendanceController por User: undefined
+17/10/2024, 08:16:39: ERROR - Erro ao processar a presença do aluno em CreateAttendanceController por User: undefined
+17/10/2024, 08:17:33: ERROR - Erro ao processar a presença do aluno em CreateAttendanceController por User: undefined
+17/10/2024, 08:19:15: ERROR - Erro ao processar a presença do aluno em CreateAttendanceController por User: undefined
+17/10/2024, 08:19:54: ERROR - Erro ao processar a presença do aluno em CreateAttendanceController por User: undefined
+17/10/2024, 08:22:34: ERROR - Erro ao processar a presença do aluno em CreateAttendanceController por User: undefined
+17/10/2024, 08:25:35: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:40:41: INFO - Presença registrada com sucesso para o aluno Carlos Santana por User: undefined
+17/10/2024, 08:44:49: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:44:52: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:44:53: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:44:53: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:44:53: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:44:53: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:44:53: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:44:53: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:44:57: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:44:58: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:44:58: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:44:59: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:44:59: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:45:01: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:45:01: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:45:02: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:45:02: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:45:02: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:45:02: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:45:24: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:48:01: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:48:02: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:48:05: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:48:19: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:48:21: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:48:21: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:48:21: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:48:21: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:48:21: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:48:21: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:49:40: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:49:40: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:49:40: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:49:41: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:49:45: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:49:45: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:49:45: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:49:50: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:49:59: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:49:59: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:50:43: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:50:44: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:50:44: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:50:44: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:50:44: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:50:45: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:50:45: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:50:45: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:51:06: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:55:11: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:55:13: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:55:13: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:55:13: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:55:13: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:56:03: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:56:05: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:56:05: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:56:05: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:56:05: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:56:16: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:56:17: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:56:17: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:57:01: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:57:02: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:57:25: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:57:53: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:57:54: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:57:54: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:57:54: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:57:55: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:57:56: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:57:59: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:58:50: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:58:52: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:58:52: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:59:01: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:59:05: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 08:59:42: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 09:00:02: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 09:00:32: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 09:02:16: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 09:02:17: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 09:02:18: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 09:02:19: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 09:02:20: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 09:02:21: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 09:05:05: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 09:05:06: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+17/10/2024, 09:05:58: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined

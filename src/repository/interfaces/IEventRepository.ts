@@ -1,6 +1,7 @@
 import { Event, Prisma } from '@prisma/client';
 import { EventDomain } from '../../domain/EventDomain';
 import { EventCourseDomain } from '../../domain/EventCourseDomain';
+import { EventActivityDomain } from '../../domain/EventActivityDomain';
 
 export interface IEventRepository {
 	createEvent(event: EventDomain, courses: EventCourseDomain[]): Promise<Event>;
@@ -20,9 +21,13 @@ export interface IEventRepository {
 		include: { eventActivity: true; eventCourse: true; eventLocation: true };
 	}> | null>;
 
-	editEventWithLocation(
-		event: EventDomain,
-		courses: EventCourseDomain[]
-	): Promise<Event | undefined>;
-	editEvent(event: EventDomain, courses: EventCourseDomain[]): Promise<Event | undefined>;
+	getEventActivitiesByEventId(eventId: number): Promise<any>;
+
+	removeEventActivity(activityId: number): Promise<any>;
+
+	updateEventActivity(activity: EventActivityDomain, eventId: number): Promise<any>;
+
+	addEventActivity(activity: EventActivityDomain, eventId: number): Promise<any>;
+
+	getAttendanceRecordsByActivityId(activityId: number): Promise<any>;
 }

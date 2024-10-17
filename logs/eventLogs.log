@@ -3333,3 +3333,876 @@ Foreign key constraint violated: `Attendance_eventActivityId_fkey (index)` em Ed
 15/10/2024, 19:52:33: INFO - Eventos retornados por User: undefined
 15/10/2024, 19:52:35: INFO - Eventos retornados por User: undefined
 15/10/2024, 19:52:36: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:02:52: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:02:53: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:03:46: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:03:46: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:04:08: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:04:08: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:04:18: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:04:27: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:04:29: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:04:31: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:04:39: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:04:41: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:04:42: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:04:53: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:04:56: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:04:56: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:04:58: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:04:58: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:04:58: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:04:58: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:05:03: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:05:03: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:05:16: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:05:17: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:05:26: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:06:33: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:06:39: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:06:42: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:06:47: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:06:50: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:06:51: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:16:24: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:16:24: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:16:27: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:16:27: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:17:31: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:17:31: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:17:32: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:17:32: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:20:26: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:21:00: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:21:02: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:21:03: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:21:33: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:21:36: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:22:53: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:23:12: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:24:01: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:24:03: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:24:36: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:25:17: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:25:17: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:25:22: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:25:28: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:25:29: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:25:34: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:25:34: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:26:08: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 08:26:08: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 08:38:04: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 08:38:04: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 08:38:04: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 08:38:04: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 08:38:25: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `prismaClient.eventActivity.deleteMany()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:236:38
+
+  233 	},
+  234 });
+  235 
+→ 236 await prismaClient.eventActivity.deleteMany(
+Foreign key constraint violated: `Attendance_eventActivityId_fkey (index)` em EditEventController por User: henriquepinheiro18@gmail.com
+17/10/2024, 08:40:35: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:40:39: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:40:39: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:40:52: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 08:40:52: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 08:43:57: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:43:57: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:44:36: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:44:44: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:44:58: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:44:58: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:45:00: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:45:00: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:45:21: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:45:21: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:45:22: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:45:23: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:45:23: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:48:01: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:48:01: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:48:16: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:48:16: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:48:19: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:48:19: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:49:27: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:49:32: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:49:33: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:49:44: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:49:45: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:49:46: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:49:47: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:49:49: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:49:49: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:49:58: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:49:58: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:50:39: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:50:39: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:50:42: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:50:42: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:51:04: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:51:04: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:55:08: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:55:08: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:56:01: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:56:03: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:56:03: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:56:58: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:56:58: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:57:51: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:57:55: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:57:55: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:57:56: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:57:56: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:57:57: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:57:57: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:57:58: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:57:58: INFO - Eventos retornados por User: undefined
+17/10/2024, 08:57:59: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:57:59: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:58:44: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:58:44: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:58:49: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:58:49: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:59:47: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 08:59:48: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:00:01: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:00:01: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:00:28: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:00:31: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:00:31: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:01:59: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:02:03: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:02:14: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:02:15: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:02:15: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:02:27: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:02:28: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:03:19: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:03:21: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:03:26: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:03:28: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:03:44: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:03:52: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:05:00: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:05:04: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:05:04: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:05:54: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:05:56: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:05:56: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:06:05: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:06:05: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:11:17: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:11:17: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:11:19: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:11:19: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:11:19: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:11:19: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:11:39: ERROR - Evento já está em andamento e não pode ser alterado para esse status em EditEventController por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:21:55: INFO - Evento atualizado com sucesso 3 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:21:58: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:21:58: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:21:58: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:21:58: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:22:07: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:22:07: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:22:07: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:22:07: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:22:31: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:22:31: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:22:33: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:22:33: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:22:33: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:22:33: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:22:48: INFO - Evento atualizado com sucesso 2 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:22:51: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:22:51: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:22:51: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:22:51: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:23:04: INFO - Evento atualizado com sucesso 2 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:23:11: INFO - Evento atualizado com sucesso 2 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:23:16: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:23:16: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:23:16: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:23:16: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:23:28: INFO - Evento atualizado com sucesso 2 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:23:30: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:23:30: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:23:30: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:23:30: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:31:22: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:31:22: INFO - Evento retornado com sucesso por User: undefined
+17/10/2024, 09:31:41: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:31:41: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:31:43: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:31:43: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:31:43: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:31:43: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:31:49: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `this.prismaClient.eventActivity.update()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:144:48
+
+  141 };
+  142 
+  143 updateEventActivity = async (activity: EventActivityDomain) => {
+→ 144 	return await this.prismaClient.eventActivity.update({
+        where: {
+          eventActivityId: undefined,
+      ?   AND?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   OR?: EventActivityWhereInput[],
+      ?   NOT?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   eventActivityStartDate?: DateTimeFilter | DateTime,
+      ?   eventActivityEndDate?: DateTimeFilter | DateTime,
+      ?   eventActivityDescription?: StringFilter | String,
+      ?   eventActivityTitle?: StringFilter | String,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime,
+      ?   eventId?: IntFilter | Int,
+      ?   event?: EventRelationFilter | EventWhereInput,
+      ?   Attendances?: AttendanceListRelationFilter
+        },
+        data: {
+          eventActivityTitle: "Atividade 02",
+          eventActivityStartDate: new Date("2024-10-24T09:24:00.000Z"),
+          eventActivityEndDate: new Date("2024-10-29T09:24:00.000Z"),
+          eventActivityDescription: "sasasasssssssssssssssss"
+        }
+      })
+
+Argument `where` of type EventActivityWhereUniqueInput needs at least one of `eventActivityId` arguments. Available options are marked with ?. em EditEventController por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:31:53: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:31:53: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:31:53: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:31:53: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:31:59: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `this.prismaClient.eventActivity.update()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:144:48
+
+  141 };
+  142 
+  143 updateEventActivity = async (activity: EventActivityDomain) => {
+→ 144 	return await this.prismaClient.eventActivity.update({
+        where: {
+          eventActivityId: undefined,
+      ?   AND?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   OR?: EventActivityWhereInput[],
+      ?   NOT?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   eventActivityStartDate?: DateTimeFilter | DateTime,
+      ?   eventActivityEndDate?: DateTimeFilter | DateTime,
+      ?   eventActivityDescription?: StringFilter | String,
+      ?   eventActivityTitle?: StringFilter | String,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime,
+      ?   eventId?: IntFilter | Int,
+      ?   event?: EventRelationFilter | EventWhereInput,
+      ?   Attendances?: AttendanceListRelationFilter
+        },
+        data: {
+          eventActivityTitle: "Atividade 02",
+          eventActivityStartDate: new Date("2024-10-24T09:24:00.000Z"),
+          eventActivityEndDate: new Date("2024-10-29T09:24:00.000Z"),
+          eventActivityDescription: "ssssssssssssssssssss"
+        }
+      })
+
+Argument `where` of type EventActivityWhereUniqueInput needs at least one of `eventActivityId` arguments. Available options are marked with ?. em EditEventController por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:32:07: INFO - Evento atualizado com sucesso 2 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:32:09: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:32:09: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:32:10: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:32:10: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:32:16: INFO - Evento atualizado com sucesso 2 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:32:18: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:32:18: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:32:18: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:32:18: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:32:21: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:32:21: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:32:23: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:32:23: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:32:59: INFO - Evento criado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:33:01: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:33:01: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:33:04: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:33:04: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:33:11: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:33:11: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:33:11: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:33:11: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:33:29: ERROR - Datas Inválidas em EditEventController por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:33:44: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:33:45: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:33:45: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:33:45: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:33:45: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:33:52: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:33:52: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:33:52: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:33:52: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:33:58: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:33:58: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:34:00: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:34:00: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:34:00: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:34:00: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:34:03: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:34:03: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:34:06: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:34:06: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:34:06: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:34:06: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:34:10: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `this.prismaClient.eventActivity.update()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:144:48
+
+  141 };
+  142 
+  143 updateEventActivity = async (activity: EventActivityDomain) => {
+→ 144 	return await this.prismaClient.eventActivity.update({
+        where: {
+          eventActivityId: undefined,
+      ?   AND?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   OR?: EventActivityWhereInput[],
+      ?   NOT?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   eventActivityStartDate?: DateTimeFilter | DateTime,
+      ?   eventActivityEndDate?: DateTimeFilter | DateTime,
+      ?   eventActivityDescription?: StringFilter | String,
+      ?   eventActivityTitle?: StringFilter | String,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime,
+      ?   eventId?: IntFilter | Int,
+      ?   event?: EventRelationFilter | EventWhereInput,
+      ?   Attendances?: AttendanceListRelationFilter
+        },
+        data: {
+          eventActivityTitle: "sdssddddddddddddd",
+          eventActivityStartDate: new Date("2024-10-16T12:33:00.000Z"),
+          eventActivityEndDate: new Date("2024-10-18T12:33:00.000Z"),
+          eventActivityDescription: "dsdfsadaadasdas"
+        }
+      })
+
+Argument `where` of type EventActivityWhereUniqueInput needs at least one of `eventActivityId` arguments. Available options are marked with ?. em EditEventController por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:34:24: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:34:25: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:34:25: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:34:25: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:34:25: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:34:39: ERROR - A descrição da atividade deve ter pelo menos 10 caracteres. em EditEventController por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:34:51: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:34:52: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:34:52: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:34:52: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:34:52: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:34:58: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:34:59: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:34:59: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:34:59: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:34:59: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:35:06: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `this.prismaClient.eventActivity.update()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:144:48
+
+  141 };
+  142 
+  143 updateEventActivity = async (activity: EventActivityDomain) => {
+→ 144 	return await this.prismaClient.eventActivity.update({
+        where: {
+          eventActivityId: undefined,
+      ?   AND?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   OR?: EventActivityWhereInput[],
+      ?   NOT?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   eventActivityStartDate?: DateTimeFilter | DateTime,
+      ?   eventActivityEndDate?: DateTimeFilter | DateTime,
+      ?   eventActivityDescription?: StringFilter | String,
+      ?   eventActivityTitle?: StringFilter | String,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime,
+      ?   eventId?: IntFilter | Int,
+      ?   event?: EventRelationFilter | EventWhereInput,
+      ?   Attendances?: AttendanceListRelationFilter
+        },
+        data: {
+          eventActivityTitle: "sLocalizacao",
+          eventActivityStartDate: new Date("2024-10-15T09:32:00.000Z"),
+          eventActivityEndDate: new Date("2024-10-19T09:32:00.000Z"),
+          eventActivityDescription: "sssssssssssssssssssss"
+        }
+      })
+
+Argument `where` of type EventActivityWhereUniqueInput needs at least one of `eventActivityId` arguments. Available options are marked with ?. em EditEventController por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:49:00: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:49:00: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:49:00: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:49:00: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:49:00: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:49:00: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:49:00: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:49:00: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:49:07: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `this.prismaClient.eventActivity.update()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:144:48
+
+  141 };
+  142 
+  143 updateEventActivity = async (activity: EventActivityDomain) => {
+→ 144 	return await this.prismaClient.eventActivity.update({
+        where: {
+          eventActivityId: undefined,
+      ?   AND?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   OR?: EventActivityWhereInput[],
+      ?   NOT?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   eventActivityStartDate?: DateTimeFilter | DateTime,
+      ?   eventActivityEndDate?: DateTimeFilter | DateTime,
+      ?   eventActivityDescription?: StringFilter | String,
+      ?   eventActivityTitle?: StringFilter | String,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime,
+      ?   eventId?: IntFilter | Int,
+      ?   event?: EventRelationFilter | EventWhereInput,
+      ?   Attendances?: AttendanceListRelationFilter
+        },
+        data: {
+          eventActivityTitle: "sLocalizacao",
+          eventActivityStartDate: new Date("2024-10-15T09:32:00.000Z"),
+          eventActivityEndDate: new Date("2024-10-19T09:32:00.000Z"),
+          eventActivityDescription: "sssssssssssssssssssg"
+        }
+      })
+
+Argument `where` of type EventActivityWhereUniqueInput needs at least one of `eventActivityId` arguments. Available options are marked with ?. em EditEventController por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:49:12: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:49:15: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:49:15: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:49:15: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:49:15: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:49:22: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `this.prismaClient.eventActivity.update()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:144:48
+
+  141 };
+  142 
+  143 updateEventActivity = async (activity: EventActivityDomain) => {
+→ 144 	return await this.prismaClient.eventActivity.update({
+        where: {
+          eventActivityId: undefined,
+      ?   AND?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   OR?: EventActivityWhereInput[],
+      ?   NOT?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   eventActivityStartDate?: DateTimeFilter | DateTime,
+      ?   eventActivityEndDate?: DateTimeFilter | DateTime,
+      ?   eventActivityDescription?: StringFilter | String,
+      ?   eventActivityTitle?: StringFilter | String,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime,
+      ?   eventId?: IntFilter | Int,
+      ?   event?: EventRelationFilter | EventWhereInput,
+      ?   Attendances?: AttendanceListRelationFilter
+        },
+        data: {
+          eventActivityTitle: "sLocalizacaog",
+          eventActivityStartDate: new Date("2024-10-15T09:32:00.000Z"),
+          eventActivityEndDate: new Date("2024-10-19T09:32:00.000Z"),
+          eventActivityDescription: "ssssssssssssssssssssa"
+        }
+      })
+
+Argument `where` of type EventActivityWhereUniqueInput needs at least one of `eventActivityId` arguments. Available options are marked with ?. em EditEventController por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:49:30: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:49:30: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:49:30: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:49:30: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:49:34: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:49:40: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:49:40: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:49:40: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:49:40: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:50:20: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:50:23: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:50:23: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:50:23: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:50:23: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:50:26: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:50:30: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:50:30: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:50:30: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:50:30: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:50:37: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:50:39: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:50:39: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:50:39: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:50:39: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:50:49: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:50:50: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:50:50: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:50:50: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:50:50: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:50:59: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:51:02: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:51:02: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:51:02: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:51:02: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:52:32: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:52:34: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:52:34: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:52:34: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:52:34: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:52:37: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:52:38: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:52:38: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:52:38: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:52:38: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:52:43: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `this.prismaClient.eventActivity.update()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:149:48
+
+  146 };
+  147 
+  148 updateEventActivity = async (activity: EventActivityDomain) => {
+→ 149 	return await this.prismaClient.eventActivity.update({
+        where: {
+          eventActivityId: undefined,
+      ?   AND?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   OR?: EventActivityWhereInput[],
+      ?   NOT?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   eventActivityStartDate?: DateTimeFilter | DateTime,
+      ?   eventActivityEndDate?: DateTimeFilter | DateTime,
+      ?   eventActivityDescription?: StringFilter | String,
+      ?   eventActivityTitle?: StringFilter | String,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime,
+      ?   eventId?: IntFilter | Int,
+      ?   event?: EventRelationFilter | EventWhereInput,
+      ?   Attendances?: AttendanceListRelationFilter
+        },
+        data: {
+          eventActivityTitle: "ssssssssssssssss",
+          eventActivityStartDate: new Date("2024-10-17T12:34:00.000Z"),
+          eventActivityEndDate: new Date("2024-10-22T12:34:00.000Z"),
+          eventActivityDescription: "ssssssssssssssssssaa"
+        }
+      })
+
+Argument `where` of type EventActivityWhereUniqueInput needs at least one of `eventActivityId` arguments. Available options are marked with ?. em EditEventController por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:52:45: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:52:45: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:52:45: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:52:45: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:52:47: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:52:47: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 09:52:47: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 09:52:47: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:01:17: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:01:17: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:01:17: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:01:17: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:01:24: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `this.prismaClient.eventActivity.update()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:149:48
+
+  146 };
+  147 
+  148 updateEventActivity = async (activity: EventActivityDomain) => {
+→ 149 	return await this.prismaClient.eventActivity.update({
+        where: {
+          eventActivityId: undefined,
+      ?   AND?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   OR?: EventActivityWhereInput[],
+      ?   NOT?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   eventActivityStartDate?: DateTimeFilter | DateTime,
+      ?   eventActivityEndDate?: DateTimeFilter | DateTime,
+      ?   eventActivityDescription?: StringFilter | String,
+      ?   eventActivityTitle?: StringFilter | String,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime,
+      ?   eventId?: IntFilter | Int,
+      ?   event?: EventRelationFilter | EventWhereInput,
+      ?   Attendances?: AttendanceListRelationFilter
+        },
+        data: {
+          eventActivityTitle: "ssssssssssssssss",
+          eventActivityStartDate: new Date("2024-10-17T12:34:00.000Z"),
+          eventActivityEndDate: new Date("2024-10-22T12:34:00.000Z"),
+          eventActivityDescription: "ssssssssssssssssssa"
+        }
+      })
+
+Argument `where` of type EventActivityWhereUniqueInput needs at least one of `eventActivityId` arguments. Available options are marked with ?. em EditEventController por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:01:29: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `this.prismaClient.eventActivity.update()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:149:48
+
+  146 };
+  147 
+  148 updateEventActivity = async (activity: EventActivityDomain) => {
+→ 149 	return await this.prismaClient.eventActivity.update({
+        where: {
+          eventActivityId: undefined,
+      ?   AND?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   OR?: EventActivityWhereInput[],
+      ?   NOT?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   eventActivityStartDate?: DateTimeFilter | DateTime,
+      ?   eventActivityEndDate?: DateTimeFilter | DateTime,
+      ?   eventActivityDescription?: StringFilter | String,
+      ?   eventActivityTitle?: StringFilter | String,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime,
+      ?   eventId?: IntFilter | Int,
+      ?   event?: EventRelationFilter | EventWhereInput,
+      ?   Attendances?: AttendanceListRelationFilter
+        },
+        data: {
+          eventActivityTitle: "ssssssssssssssss",
+          eventActivityStartDate: new Date("2024-10-17T12:34:00.000Z"),
+          eventActivityEndDate: new Date("2024-10-22T12:34:00.000Z"),
+          eventActivityDescription: "ssssssssssssssssssaaa"
+        }
+      })
+
+Argument `where` of type EventActivityWhereUniqueInput needs at least one of `eventActivityId` arguments. Available options are marked with ?. em EditEventController por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:01:34: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:01:36: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:01:36: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:01:36: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:01:36: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:01:45: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:01:48: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:01:48: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:01:48: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:01:48: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:18:21: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:18:21: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:18:21: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:18:21: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:18:26: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `this.prismaClient.eventActivity.update()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:149:48
+
+  146 };
+  147 
+  148 updateEventActivity = async (activity: EventActivityDomain) => {
+→ 149 	return await this.prismaClient.eventActivity.update({
+        where: {
+          eventActivityId: undefined,
+      ?   AND?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   OR?: EventActivityWhereInput[],
+      ?   NOT?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   eventActivityStartDate?: DateTimeFilter | DateTime,
+      ?   eventActivityEndDate?: DateTimeFilter | DateTime,
+      ?   eventActivityDescription?: StringFilter | String,
+      ?   eventActivityTitle?: StringFilter | String,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime,
+      ?   eventId?: IntFilter | Int,
+      ?   event?: EventRelationFilter | EventWhereInput,
+      ?   Attendances?: AttendanceListRelationFilter
+        },
+        data: {
+          eventActivityTitle: "ssssssssssssssssa",
+          eventActivityStartDate: new Date("2024-10-17T12:34:00.000Z"),
+          eventActivityEndDate: new Date("2024-10-22T12:34:00.000Z"),
+          eventActivityDescription: "ssssssssssssssssssaaaaaas"
+        }
+      })
+
+Argument `where` of type EventActivityWhereUniqueInput needs at least one of `eventActivityId` arguments. Available options are marked with ?. em EditEventController por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:18:29: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:18:29: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:18:29: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:18:29: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:18:38: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:18:39: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:18:39: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:18:39: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:18:39: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:38:13: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:38:13: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:38:15: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:38:15: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:38:15: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:38:15: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:38:17: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:38:17: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:38:18: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:38:18: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:38:18: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:38:18: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:38:21: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `this.prismaClient.eventActivity.update()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:149:48
+
+  146 };
+  147 
+  148 updateEventActivity = async (activity: EventActivityDomain) => {
+→ 149 	return await this.prismaClient.eventActivity.update({
+        where: {
+          eventActivityId: undefined,
+      ?   AND?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   OR?: EventActivityWhereInput[],
+      ?   NOT?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   eventActivityStartDate?: DateTimeFilter | DateTime,
+      ?   eventActivityEndDate?: DateTimeFilter | DateTime,
+      ?   eventActivityDescription?: StringFilter | String,
+      ?   eventActivityTitle?: StringFilter | String,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime,
+      ?   eventId?: IntFilter | Int,
+      ?   event?: EventRelationFilter | EventWhereInput,
+      ?   Attendances?: AttendanceListRelationFilter
+        },
+        data: {
+          eventActivityTitle: "ssssssssssssssssaw",
+          eventActivityStartDate: new Date("2024-10-17T12:34:00.000Z"),
+          eventActivityEndDate: new Date("2024-10-22T12:34:00.000Z"),
+          eventActivityDescription: "ssssssssssssssssssaaaaavss"
+        }
+      })
+
+Argument `where` of type EventActivityWhereUniqueInput needs at least one of `eventActivityId` arguments. Available options are marked with ?. em EditEventController por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:38:48: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:38:52: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `this.prismaClient.eventActivity.update()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:149:48
+
+  146 };
+  147 
+  148 updateEventActivity = async (activity: EventActivityDomain) => {
+→ 149 	return await this.prismaClient.eventActivity.update({
+        where: {
+          eventActivityId: undefined,
+      ?   AND?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   OR?: EventActivityWhereInput[],
+      ?   NOT?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   eventActivityStartDate?: DateTimeFilter | DateTime,
+      ?   eventActivityEndDate?: DateTimeFilter | DateTime,
+      ?   eventActivityDescription?: StringFilter | String,
+      ?   eventActivityTitle?: StringFilter | String,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime,
+      ?   eventId?: IntFilter | Int,
+      ?   event?: EventRelationFilter | EventWhereInput,
+      ?   Attendances?: AttendanceListRelationFilter
+        },
+        data: {
+          eventActivityTitle: "ssssssssssssssssaw",
+          eventActivityStartDate: new Date("2024-10-17T12:34:00.000Z"),
+          eventActivityEndDate: new Date("2024-10-22T12:34:00.000Z"),
+          eventActivityDescription: "ssssssssssssssssssaaaaavzz"
+        }
+      })
+
+Argument `where` of type EventActivityWhereUniqueInput needs at least one of `eventActivityId` arguments. Available options are marked with ?. em EditEventController por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:45:29: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:45:29: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:45:30: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:45:30: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:45:34: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:45:35: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:45:35: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:45:35: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:45:35: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:45:41: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:45:43: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:45:43: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:45:43: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:45:43: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:45:50: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:45:52: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:45:52: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:45:52: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:45:52: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:47:58: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:48:00: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:48:00: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:48:00: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:48:00: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:48:04: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:48:05: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:48:05: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 10:48:05: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 10:48:05: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 11:21:49: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 11:21:49: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 11:21:49: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 11:21:49: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 11:21:53: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `this.prismaClient.eventActivity.update()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:149:48
+
+  146 };
+  147 
+  148 updateEventActivity = async (activity: EventActivityDomain) => {
+→ 149 	return await this.prismaClient.eventActivity.update({
+        where: {
+          eventActivityId: undefined,
+      ?   AND?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   OR?: EventActivityWhereInput[],
+      ?   NOT?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   eventActivityStartDate?: DateTimeFilter | DateTime,
+      ?   eventActivityEndDate?: DateTimeFilter | DateTime,
+      ?   eventActivityDescription?: StringFilter | String,
+      ?   eventActivityTitle?: StringFilter | String,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime,
+      ?   eventId?: IntFilter | Int,
+      ?   event?: EventRelationFilter | EventWhereInput,
+      ?   Attendances?: AttendanceListRelationFilter
+        },
+        data: {
+          eventActivityTitle: "ssssssssssssssssaw",
+          eventActivityStartDate: new Date("2024-10-17T12:34:00.000Z"),
+          eventActivityEndDate: new Date("2024-10-30T12:34:00.000Z"),
+          eventActivityDescription: "ssssssssssssssssssaaaaavaaaaaadd"
+        }
+      })
+
+Argument `where` of type EventActivityWhereUniqueInput needs at least one of `eventActivityId` arguments. Available options are marked with ?. em EditEventController por User: henriquepinheiro18@gmail.com
+17/10/2024, 11:21:59: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `this.prismaClient.eventActivity.update()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:149:48
+
+  146 };
+  147 
+  148 updateEventActivity = async (activity: EventActivityDomain) => {
+→ 149 	return await this.prismaClient.eventActivity.update({
+        where: {
+          eventActivityId: undefined,
+      ?   AND?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   OR?: EventActivityWhereInput[],
+      ?   NOT?: EventActivityWhereInput | EventActivityWhereInput[],
+      ?   eventActivityStartDate?: DateTimeFilter | DateTime,
+      ?   eventActivityEndDate?: DateTimeFilter | DateTime,
+      ?   eventActivityDescription?: StringFilter | String,
+      ?   eventActivityTitle?: StringFilter | String,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime,
+      ?   eventId?: IntFilter | Int,
+      ?   event?: EventRelationFilter | EventWhereInput,
+      ?   Attendances?: AttendanceListRelationFilter
+        },
+        data: {
+          eventActivityTitle: "ssssssssssssssssaw",
+          eventActivityStartDate: new Date("2024-10-17T12:34:00.000Z"),
+          eventActivityEndDate: new Date("2024-10-30T12:34:00.000Z"),
+          eventActivityDescription: "ssssssssssssssssssaaaaavaaaaaadd"
+        }
+      })
+
+Argument `where` of type EventActivityWhereUniqueInput needs at least one of `eventActivityId` arguments. Available options are marked with ?. em EditEventController por User: henriquepinheiro18@gmail.com
+17/10/2024, 11:23:36: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 11:23:36: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 11:23:36: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 11:23:36: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 11:23:37: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 11:23:37: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 11:23:37: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 11:23:37: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 11:23:41: INFO - Evento atualizado com sucesso 5 por User: henriquepinheiro18@gmail.com
+17/10/2024, 11:23:43: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+17/10/2024, 11:23:43: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 11:23:43: INFO - Status retornados com sucesso. por User: undefined
+17/10/2024, 11:23:43: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
