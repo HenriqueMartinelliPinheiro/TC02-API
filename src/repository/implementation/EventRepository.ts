@@ -269,4 +269,153 @@ export class EventRepository implements IEventRepository {
 				return 'Status desconhecido';
 		}
 	}
+
+	updateEvent = async (eventDomain: EventDomain): Promise<Event | null> => {
+		try {
+			const existingEvent = await this.prismaClient.event.findUnique({
+				where: { eventId: eventDomain.getEventId() },
+			});
+
+			if (!existingEvent) {
+				throw new Error(`Evento com ID ${eventDomain.getEventId()} não encontrado.`);
+			}
+			const updatedEvent = await this.prismaClient.event.update({
+				where: {
+					eventId: eventDomain.getEventId(),
+				},
+				data: {
+					eventTitle: eventDomain.getEventTitle(),
+					eventStartDate: eventDomain.getEventStartDate(),
+					eventEndDate: eventDomain.getEventEndDate(),
+					eventStatus:
+						EventStatus[eventDomain.getEventStatus() as keyof typeof EventStatus],
+				},
+			});
+			return updatedEvent;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	async updateEventLocation(eventDomain: EventDomain): Promise<void> {
+		const eventId = eventDomain.getEventId();
+
+		if (!eventId) {
+			throw new Error('ID do evento não fornecido');
+		}
+
+		try {
+			const existingLocation = await this.prismaClient.eventLocation.findUnique({
+				where: {
+					eventId: eventId,
+				},
+			});
+
+			const newLocation = eventDomain.getEventLocation();
+
+			if (existingLocation) {
+				if (
+					newLocation &&
+					newLocation.getLatitude() !== 0 &&
+					newLocation.getLongitude() !== 0 &&
+					newLocation.getRadius() !== 0
+				) {
+					await this.prismaClient.eventLocation.update({
+						where: {
+							eventId: eventId,
+						},
+						data: {
+							latitude: newLocation.getLatitude(),
+							longitude: newLocation.getLongitude(),
+							radius: newLocation.getRadius(),
+						},
+					});
+				} else {
+					await this.prismaClient.eventLocation.delete({
+						where: {
+							eventId: eventId,
+						},
+					});
+				}
+			} else if (
+				newLocation &&
+				newLocation.getLatitude() !== 0 &&
+				newLocation.getLongitude() !== 0 &&
+				newLocation.getRadius() !== 0
+			) {
+				await this.prismaClient.eventLocation.create({
+					data: {
+						latitude: newLocation.getLatitude(),
+						longitude: newLocation.getLongitude(),
+						radius: newLocation.getRadius(),
+						eventId: eventId,
+					},
+				});
+			}
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	async updateEventCourses(
+		eventDomain: EventDomain,
+		courses: EventCourseDomain[]
+	): Promise<void> {
+		const eventId = eventDomain.getEventId();
+
+		if (!eventId) {
+			throw new Error('ID do evento não fornecido');
+		}
+
+		try {
+			const existingCourses = await this.prismaClient.eventCourse.findMany({
+				where: {
+					eventId: eventId,
+				},
+			});
+
+			const coursesToAdd: EventCourseDomain[] = [];
+			const coursesToRemove: number[] = [];
+
+			for (const course of courses) {
+				const existingCourse = existingCourses.find(
+					(ec) => ec.courseId === course.getCourseId()
+				);
+
+				if (!existingCourse) {
+					coursesToAdd.push(course);
+				}
+			}
+
+			for (const existingCourse of existingCourses) {
+				const courseStillExists = courses.some(
+					(course) => course.getCourseId() === existingCourse.courseId
+				);
+
+				if (!courseStillExists) {
+					coursesToRemove.push(existingCourse.eventCourseId);
+				}
+			}
+
+			for (const courseId of coursesToRemove) {
+				await this.prismaClient.eventCourse.delete({
+					where: {
+						eventCourseId: courseId,
+					},
+				});
+			}
+
+			for (const course of coursesToAdd) {
+				await this.prismaClient.eventCourse.create({
+					data: {
+						courseId: course.getCourseId(),
+						courseName: course.getCourseName(),
+						eventId: eventId,
+					},
+				});
+			}
+		} catch (error) {
+			throw error;
+		}
+	}
 }

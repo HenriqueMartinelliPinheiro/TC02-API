@@ -30,4 +30,13 @@ export interface IEventRepository {
 	addEventActivity(activity: EventActivityDomain, eventId: number): Promise<any>;
 
 	getAttendanceRecordsByActivityId(activityId: number): Promise<any>;
+
+	updateEvent(eventDomain: EventDomain): Promise<Event | null>;
+
+	updateEventLocation(eventDomain: EventDomain): Promise<void>;
+
+	updateEventCourses(
+		eventDomain: EventDomain,
+		courses: EventCourseDomain[]
+	): Promise<void>;
 }

@@ -4206,3 +4206,88 @@ Argument `where` of type EventActivityWhereUniqueInput needs at least one of `ev
 17/10/2024, 11:23:43: INFO - Status retornados com sucesso. por User: undefined
 17/10/2024, 11:23:43: INFO - Status retornados com sucesso. por User: undefined
 17/10/2024, 11:23:43: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 14:58:42: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+19/10/2024, 14:58:42: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+19/10/2024, 14:58:43: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 14:58:43: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 14:58:43: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 14:58:43: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 14:58:46: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+19/10/2024, 14:58:46: INFO - Eventos retornados por User: henriquepinheiro18@gmail.com
+19/10/2024, 14:58:48: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 14:58:48: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 14:58:48: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 14:58:48: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 14:58:51: ERROR - Erro ao atualizar Evento - Error: 
+Invalid `this.prismaClient.event.update()` invocation in
+/home/henrique/Desktop/TC01-Dev/TC02-API/src/repository/implementation/EventRepository.ts:283:56
+
+  280 throw new Error(`Evento com ID ${eventDomain.getEventId()} não encontrado.`);
+  281  }
+  282 
+→ 283  const updatedEvent = await this.prismaClient.event.update({
+         where: {
+           eventId: 1
+         },
+         data: {
+           eventTitle: "sTeste Evento",
+           eventStartDate: new Date("2024-09-01T19:38:00.000Z"),
+           eventEndDate: new Date("2024-10-31T19:39:00.000Z"),
+           eventStatus: "Nao Iniciado"
+                        ~~~~~~~~~~~~~~
+         }
+       })
+
+Invalid value for argument `eventStatus`. Expected EventStatus. em EditEventController por User: henriquepinheiro18@gmail.com
+19/10/2024, 14:58:53: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 14:58:53: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 14:58:53: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 14:58:53: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:00:01: INFO - Evento atualizado com sucesso 1 por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:00:07: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:00:07: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:00:07: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:00:07: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:01:39: INFO - Evento atualizado com sucesso 1 por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:01:41: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:01:41: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:01:41: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:01:41: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:18:54: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:18:54: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:18:54: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:18:54: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:18:59: INFO - Evento atualizado com sucesso 1 por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:19:00: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:19:00: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:19:00: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:19:00: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:19:12: INFO - Evento atualizado com sucesso 1 por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:19:13: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:19:13: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:19:13: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:19:13: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:19:32: INFO - Evento atualizado com sucesso 1 por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:19:34: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:19:34: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:19:34: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:19:34: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:19:49: INFO - Evento atualizado com sucesso 1 por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:19:50: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:19:50: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:19:50: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:19:50: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:20:16: INFO - Evento atualizado com sucesso 1 por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:20:18: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:20:18: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:20:18: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:20:18: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:24:14: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:24:14: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:24:14: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:24:14: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:24:18: INFO - Evento atualizado com sucesso 1 por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:24:20: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:24:20: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
+19/10/2024, 15:24:20: INFO - Status retornados com sucesso. por User: undefined
+19/10/2024, 15:24:20: INFO - Evento retornado com sucesso por User: henriquepinheiro18@gmail.com
