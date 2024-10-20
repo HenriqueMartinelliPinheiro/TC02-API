@@ -164,3 +164,18 @@ An operation failed because it depends on one or more records that were required
 17/10/2024, 09:05:05: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
 17/10/2024, 09:05:06: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
 17/10/2024, 09:05:58: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+20/10/2024, 13:29:55: ERROR - O evento não está em andamento. Registro de presença não permitido. em CreateAttendanceController por User: undefined
+20/10/2024, 13:30:11: ERROR - O evento não está em andamento. Registro de presença não permitido. em CreateAttendanceController por User: undefined
+20/10/2024, 13:30:12: ERROR - O evento não está em andamento. Registro de presença não permitido. em CreateAttendanceController por User: undefined
+20/10/2024, 13:30:15: ERROR - O evento não está em andamento. Registro de presença não permitido. em CreateAttendanceController por User: undefined
+20/10/2024, 13:30:16: ERROR - O evento não está em andamento. Registro de presença não permitido. em CreateAttendanceController por User: undefined
+20/10/2024, 13:30:16: ERROR - O evento não está em andamento. Registro de presença não permitido. em CreateAttendanceController por User: undefined
+20/10/2024, 13:34:19: ERROR - O evento não está em andamento. Registro de presença não permitido. em CreateAttendanceController por User: undefined
+20/10/2024, 13:35:00: ERROR - O evento não está em andamento. Registro de presença não permitido. em CreateAttendanceController por User: undefined
+20/10/2024, 13:59:49: ERROR - Localização do evento não encontrada para o evento 8 em CreateAttendanceController por User: undefined
+20/10/2024, 13:59:50: ERROR - Localização do evento não encontrada para o evento 8 em CreateAttendanceController por User: undefined
+20/10/2024, 14:02:22: INFO - Presença registrada com sucesso para o aluno Carlos Santana por User: undefined
+20/10/2024, 14:02:23: INFO - Presença registrada com sucesso para o aluno Carlos Santana por User: undefined
+20/10/2024, 14:05:59: ERROR - A localização do aluno está fora do raio permitido para o evento em CreateAttendanceController por User: undefined
+20/10/2024, 14:06:36: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined
+20/10/2024, 14:06:37: ERROR - O aluno já tem uma presença registrada para esta atividade em CreateAttendanceController por User: undefined

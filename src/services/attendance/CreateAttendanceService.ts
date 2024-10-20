@@ -42,10 +42,8 @@ export class CreateAttendanceService {
 		);
 
 		if (!eventLocation) {
-			throw new AppError(
-				`Localização do evento não encontrada para o evento ${eventID}`,
-				404
-			);
+			// Se a localização do evento não estiver definida, permitir registro de presença.
+			return;
 		}
 
 		const distance = calculateDistance(

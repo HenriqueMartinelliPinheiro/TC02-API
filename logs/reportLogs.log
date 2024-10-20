@@ -267,3 +267,13 @@
 20/10/2024, 10:06:10: INFO - Relatório de evento 123 gerado com sucesso por User: user@example.com
 20/10/2024, 10:06:10: ERROR - Erro específico em IssueReportController por User: user@example.com
 20/10/2024, 10:06:10: ERROR - Erro ao gerar o relatório de evento - Error: Erro ao gerar o relatório de evento em IssueReportController por User: user@example.com
+20/10/2024, 14:02:33: INFO - Relatório de evento 8 gerado com sucesso por User: henriquepinheiro18@gmail.com
+20/10/2024, 14:03:49: INFO - Relatório de evento 3 gerado com sucesso por User: henriquepinheiro18@gmail.com
+20/10/2024, 14:04:49: INFO - Relatório de evento 8 gerado com sucesso por User: henriquepinheiro18@gmail.com
+20/10/2024, 14:07:20: INFO - Relatório de evento 8 gerado com sucesso por User: henriquepinheiro18@gmail.com
+20/10/2024, 14:12:56: INFO - Relatório de evento 8 gerado com sucesso por User: henriquepinheiro18@gmail.com
+20/10/2024, 14:14:36: INFO - Relatório de evento 8 gerado com sucesso por User: henriquepinheiro18@gmail.com
+20/10/2024, 14:31:14: ERROR - Erro de validação em IssueReportController por User: user@example.com
+20/10/2024, 14:31:14: INFO - Relatório de evento 123 gerado com sucesso por User: user@example.com
+20/10/2024, 14:31:14: ERROR - Erro específico em IssueReportController por User: user@example.com
+20/10/2024, 14:31:14: ERROR - Erro ao gerar o relatório de evento - Error: Erro ao gerar o relatório de evento em IssueReportController por User: user@example.com

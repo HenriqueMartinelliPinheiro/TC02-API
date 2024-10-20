@@ -272,13 +272,19 @@ export class EventRepository implements IEventRepository {
 
 	updateEvent = async (eventDomain: EventDomain): Promise<Event | null> => {
 		try {
-			const existingEvent = await this.prismaClient.event.findUnique({
-				where: { eventId: eventDomain.getEventId() },
-			});
+			console.log(
+				'Status do evento antes de atualizar no banco:',
+				eventDomain.getEventStatus()
+			);
 
-			if (!existingEvent) {
-				throw new Error(`Evento com ID ${eventDomain.getEventId()} não encontrado.`);
-			}
+			const statusUpperCase = eventDomain
+				.getEventStatus()
+				.replace(/\s+/g, '_')
+				.toUpperCase();
+			const eventStatus = EventStatus[statusUpperCase as keyof typeof EventStatus];
+
+			console.log('Status do evento após conversão:', eventStatus);
+
 			const updatedEvent = await this.prismaClient.event.update({
 				where: {
 					eventId: eventDomain.getEventId(),
@@ -287,12 +293,14 @@ export class EventRepository implements IEventRepository {
 					eventTitle: eventDomain.getEventTitle(),
 					eventStartDate: eventDomain.getEventStartDate(),
 					eventEndDate: eventDomain.getEventEndDate(),
-					eventStatus:
-						EventStatus[eventDomain.getEventStatus() as keyof typeof EventStatus],
+					eventStatus: eventStatus,
 				},
 			});
+
+			console.log('Evento atualizado com sucesso:', updatedEvent);
 			return updatedEvent;
 		} catch (error) {
+			console.error('Erro ao atualizar evento:', error);
 			throw error;
 		}
 	};

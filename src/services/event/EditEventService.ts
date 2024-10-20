@@ -32,9 +32,29 @@ export class EditEventService {
 				throw new AppError('Evento Encerrado ou Cancelado não pode ser editado', 400);
 			}
 
+			if (
+				eventInDataBase.eventStatus === EventStatus.EM_ANDAMENTO &&
+				event.getEventStatus() === 'Nao Iniciado'
+			) {
+				throw new AppError(
+					'Não é permitido alterar o status de Em Andamento para Não Iniciado',
+					400
+				);
+			}
+
+			if (
+				eventInDataBase.eventStatus === EventStatus.EM_ANDAMENTO &&
+				(event.getEventStatus() === 'Encerrado' || event.getEventStatus() === 'Cancelado')
+			) {
+				event.setEventStatus(event.getEventStatus());
+			}
+
 			await this.eventRepository.updateEvent(event);
+
 			await this.eventRepository.updateEventLocation(event);
+
 			await this.eventRepository.updateEventCourses(event, courses);
+
 			const existingActivities = await this.eventRepository.getEventActivitiesByEventId(
 				event.getEventId()
 			);
@@ -58,7 +78,6 @@ export class EditEventService {
 							activity.getEventActivityDescription()
 					) {
 						activitiesToUpdate.push(activity);
-					} else {
 					}
 				} else {
 					activitiesToAdd.push(activity);
@@ -76,7 +95,6 @@ export class EditEventService {
 				if (!activityStillExists) {
 					if (!(await this.hasAttendanceRecords(existingActivity.eventActivityId))) {
 						activitiesToRemove.push(existingActivity);
-					} else {
 					}
 				}
 			}
@@ -102,9 +120,13 @@ export class EditEventService {
 	}
 
 	async hasAttendanceRecords(activityId: number): Promise<boolean> {
-		const attendanceRecords = await this.eventRepository.getAttendanceRecordsByActivityId(
-			activityId
-		);
-		return attendanceRecords.length > 0;
+		try {
+			const attendanceRecords =
+				await this.eventRepository.getAttendanceRecordsByActivityId(activityId);
+			const hasRecords = attendanceRecords.length > 0;
+			return hasRecords;
+		} catch (error) {
+			throw error;
+		}
 	}
 }

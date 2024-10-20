@@ -271,11 +271,13 @@ export class IssueReportService {
 	) {
 		const emailSubjectOrganizer = `Relatórios de Presença do Evento: ${eventName}`;
 		const emailTextOrganizer = `Segue em anexo os relatórios de presença do evento "${eventName}".`;
+		const allPdfPaths = Object.values(pdfPathsByTeacher).flat();
+
 		await sendEmailWithAttachment(
 			userEmail,
 			emailSubjectOrganizer,
 			emailTextOrganizer,
-			Object.values(pdfPathsByTeacher).flat()
+			allPdfPaths
 		);
 	}
 }
