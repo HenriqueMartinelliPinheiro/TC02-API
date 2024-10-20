@@ -3,12 +3,14 @@ import { IAttendanceRepository } from '../../../repository/interfaces/IAttendanc
 import { IEventCourseRepository } from '../../../repository/interfaces/IEventCourseRepository';
 import { IEventLocationRepository } from '../../../repository/interfaces/IEventLocationRepository';
 import { IEventActivityRepository } from '../../../repository/interfaces/IEventActivityRepository';
+import { IEventRepository } from '../../../repository/interfaces/IEventRepository';
 import { CreateAttendanceService } from '../../../services/attendance/CreateAttendanceService';
 import { FetchStudentByCpfService } from '../../../services/sigaa/sigaaStudent/FetchStudentByCpfService';
 import { AttendanceDomain } from '../../../domain/AttendanceDomain';
 import { AppError } from '../../../utils/errors/AppError';
 import { calculateDistance } from '../../../utils/calculateDistance';
 import { Attendance } from '@prisma/client';
+import { EventActivityDomain } from '../../../domain/EventActivityDomain';
 
 vi.mock('../../../utils/calculateDistance');
 
@@ -18,6 +20,7 @@ describe('CreateAttendanceService', () => {
 	let eventCourseRepository: IEventCourseRepository;
 	let eventLocationRepository: IEventLocationRepository;
 	let eventActivityRepository: IEventActivityRepository;
+	let eventRepository: IEventRepository;
 
 	beforeEach(() => {
 		attendanceRepository = {
@@ -37,11 +40,16 @@ describe('CreateAttendanceService', () => {
 			fetchEventActivityById: vi.fn(),
 		} as unknown as IEventActivityRepository;
 
+		eventRepository = {
+			fetchEventById: vi.fn(),
+		} as unknown as IEventRepository;
+
 		createAttendanceService = new CreateAttendanceService(
 			attendanceRepository,
 			eventCourseRepository,
 			eventLocationRepository,
-			eventActivityRepository
+			eventActivityRepository,
+			eventRepository
 		);
 
 		vi.spyOn(FetchStudentByCpfService.prototype, 'fetchStudentByCpf').mockResolvedValue(
@@ -52,8 +60,10 @@ describe('CreateAttendanceService', () => {
 	it('should throw an error if the student is not found', async () => {
 		const attendanceData = new AttendanceDomain({
 			studentCpf: '12345678900',
-			eventActivity: { getEventActivityId: () => 1 },
-		} as any);
+			studentName: 'Test Student',
+			studentRegistration: '12345',
+			eventActivity: new EventActivityDomain({ eventActivityId: 1 }),
+		});
 
 		await expect(
 			createAttendanceService.execute(attendanceData, 1, 123.45, 678.9)
