@@ -22,12 +22,7 @@ app.use(cookieParser());
 
 app.use(
 	cors({
-		origin: [
-			'https://cti.videira.ifc.edu.br',
-			'http://localhost:5173',
-			'http://200.135.55.14:5173',
-			'http://172.19.0.1:5173',
-		],
+		origin: '*',
 		allowedHeaders: ['Content-Type', 'Authorization'],
 		credentials: true,
 	})
