@@ -21,19 +21,19 @@ app.use(express.json());
 app.use(cookieParser());
 
 // const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',');
-	// app.use(
-	// 	cors({
-	// 		origin: (origin, callback) => {
-	// 			if (!origin || allowedOrigins?.indexOf(origin) !== -1) {
-	// 				callback(null, true);
-	// 			} else {
-	// 				callback(new Error('Not allowed by CORS'));
-	// 			}
-	// 		},
-	// 		allowedHeaders: ['Content-Type', 'Authorization'],
-	// 		credentials: true,
-	// 	})
-	// );
+// app.use(
+// 	cors({
+// 		origin: (origin, callback) => {
+// 			if (!origin || allowedOrigins?.indexOf(origin) !== -1) {
+// 				callback(null, true);
+// 			} else {
+// 				callback(new Error('Not allowed by CORS'));
+// 			}
+// 		},
+// 		allowedHeaders: ['Content-Type', 'Authorization'],
+// 		credentials: true,
+// 	})
+// );
 
 app.use(
 	cors({
@@ -45,16 +45,16 @@ app.use(
 
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use('/api/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-app.use('/', eventRouter);
-app.use('/', userRouter);
-app.use('/', courseRouter);
-app.use('/', roleRouter);
-app.use('/', studentRouter);
-app.use('/', attendanceRouter);
-app.use('/', reportsRouter);
-app.use('/', eventStudentRouter);
+app.use('/api', eventRouter);
+app.use('/api', userRouter);
+app.use('/api', courseRouter);
+app.use('/api', roleRouter);
+app.use('/api', studentRouter);
+app.use('/api', attendanceRouter);
+app.use('/api', reportsRouter);
+app.use('/api', eventStudentRouter);
 
 app.listen(4000, () => {
 	console.log(`App is listening on port 4000`);
