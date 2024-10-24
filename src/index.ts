@@ -20,6 +20,21 @@ const app: Express = express();
 app.use(express.json());
 app.use(cookieParser());
 
+// const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',');
+	// app.use(
+	// 	cors({
+	// 		origin: (origin, callback) => {
+	// 			if (!origin || allowedOrigins?.indexOf(origin) !== -1) {
+	// 				callback(null, true);
+	// 			} else {
+	// 				callback(new Error('Not allowed by CORS'));
+	// 			}
+	// 		},
+	// 		allowedHeaders: ['Content-Type', 'Authorization'],
+	// 		credentials: true,
+	// 	})
+	// );
+
 app.use(
 	cors({
 		origin: ['http://200.135.55.14:5173', 'http://localhost:5173'],
