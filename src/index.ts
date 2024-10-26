@@ -68,6 +68,7 @@ app.post('/api/auth/exchange', async (req, res) => {
 
 	try {
 		const token = await govbrOauth.getToken(config, code);
+		console.log(token);
 		res.cookie('govbr_access_token', token.access_token, {
 			httpOnly: true,
 			secure: true,
