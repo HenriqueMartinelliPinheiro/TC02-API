@@ -4,7 +4,7 @@ import { AuthExchangeController } from '../../controllers/student/auth/StudentAu
 import { StudentLoginService } from '../../services/student/StudentLoginService';
 import { StudentExchangeService } from '../../services/student/StudentAuthExchangeService';
 
-export const studentAuthRouter = Router();
+export const    studentAuthRouter = Router();
 
 const loginService = new StudentLoginService();
 const exchangeService = new StudentExchangeService();

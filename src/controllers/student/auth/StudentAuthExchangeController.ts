@@ -26,14 +26,15 @@ export class AuthExchangeController {
 				httpOnly: true,
 				secure: true,
 			});
-			return res.status(200).send('Authentication successful');
+			console.log(token);
+			return res.status(200).send('Sucesso ao autenticar');
 		} catch (error) {
 			if (error instanceof AppError) {
 				this.logger.error(error.message, req.requestEmail);
 				return res.status(error.statusCode).send(error.message);
 			}
 			this.logger.error('Erro ao trocar código por token', req.requestEmail, error);
-			return res.status(500).send('Authentication failed');
+			return res.status(500).send('Falha ao Autenticar');
 		}
 	};
 }
