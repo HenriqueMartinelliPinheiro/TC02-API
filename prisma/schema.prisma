@@ -38,6 +38,16 @@ model Login {
   user                  User      @relation(fields: [userId], references: [userId])
 }
 
+model StudentLogin {
+  studentLoginId        Int       @id @default(autoincrement())
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  accessToken           String?
+  accessTokenExpiration DateTime?
+  studentRegistration   String
+  studentCpf            String
+}
+
 model Role {
   roleId       Int      @id @default(autoincrement())
   roleTitle    String   @unique

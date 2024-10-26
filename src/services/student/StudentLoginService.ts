@@ -1,21 +1,43 @@
-import { govbrOauth } from 'govbr-oauth';
+import { IStudentLoginRepository } from '../../repository/implementation/StudentLoginRepository';
+import { StudentLoginDomain } from '../../domain/StudentLoginDomain';
 import { AppError } from '../../utils/errors/AppError';
 
 export class StudentLoginService {
-	config = {
-		URL_PROVIDER: process.env.GOVBR_URL_PROVIDER,
-		URL_SERVICE: process.env.GOVBR_URL_SERVICE,
-		REDIRECT_URI: process.env.GOVBR_REDIRECT_URI,
-		SCOPES: process.env.GOVBR_SCOPES,
-		CLIENT_ID: process.env.GOVBR_CLIENT_ID,
-		SECRET: process.env.GOVBR_SECRET,
-	};
+	private studentLoginRepository: IStudentLoginRepository;
 
-	generateLoginUrl(): string {
+	constructor(studentLoginRepository: IStudentLoginRepository) {
+		this.studentLoginRepository = studentLoginRepository;
+	}
+
+	async execute(
+		studentCpf: string,
+		studentRegistration: string,
+		accessToken: string
+	): Promise<StudentLoginDomain> {
 		try {
-			return govbrOauth.authorize(this.config);
+			const existingStudent = await this.studentLoginRepository.findStudentByCpf(
+				studentCpf
+			);
+
+			const accessTokenExpiration = new Date(new Date().getTime() + 60 * 60 * 1000); 
+
+			if (existingStudent) {
+				existingStudent.setAccessToken(accessToken);
+				existingStudent.setAccessTokenExpiration(accessTokenExpiration);
+				existingStudent.setUpdatedAt(new Date());
+				await this.studentLoginRepository.updateAccessToken(existingStudent);
+				return existingStudent;
+			} else {
+				const newStudentLogin = new StudentLoginDomain({
+					studentRegistration,
+					studentCpf,
+					accessToken,
+					accessTokenExpiration,
+				});
+				return await this.studentLoginRepository.createStudentLogin(newStudentLogin);
+			}
 		} catch (error) {
-			throw new AppError('Erro ao gerar URL de login', 500);
+			throw new AppError('Erro ao processar login do aluno', 500);
 		}
 	}
 }

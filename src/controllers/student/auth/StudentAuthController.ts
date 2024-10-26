@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { Logger } from '../../../loggers/Logger';
-import { StudentLoginService } from '../../../services/student/StudentLoginService';
+import { StudentLoginService } from '../../../services/student/StudentLoginRedirect';
 import { AppError } from '../../../utils/errors/AppError';
 
 export class StudentAuthController {
