@@ -33,7 +33,8 @@ export class StudentLoginRepository implements IStudentLoginRepository {
 			}
 			return undefined;
 		} catch (error) {
-			return undefined;
+			console.error('Erro ao buscar login do aluno:', error);
+			throw new AppError('Erro ao buscar aluno', 500);
 		}
 	}
 
@@ -59,6 +60,8 @@ export class StudentLoginRepository implements IStudentLoginRepository {
 				studentCpf: createdStudentLogin.studentCpf,
 			});
 		} catch (error) {
+			console.error('Erro ao criar login do aluno:', error);
+
 			throw new AppError('Erro ao criar login do aluno', 500);
 		}
 	}
