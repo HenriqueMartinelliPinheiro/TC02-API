@@ -16,6 +16,8 @@ declare module 'express-serve-static-core' {
 export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const accessToken = req.cookies.token;
+		console.log(accessToken);
+
 		if (!accessToken) {
 			logger.error('Access Token missing');
 			return res.status(401).json({ message: 'Token de acesso ausente' });

@@ -54,7 +54,7 @@ export class LoginUserController {
 			}
 
 			this.logger.info(`Usuário logado`, req.body.userEmail);
-
+			console.log('Token:', user.getAccessToken());
 			res.cookie('token', user.getAccessToken(), {
 				httpOnly: true,
 				//secure: true,
