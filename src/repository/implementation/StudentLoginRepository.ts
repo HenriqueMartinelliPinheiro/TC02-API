@@ -27,7 +27,6 @@ export class StudentLoginRepository implements IStudentLoginRepository {
 					updatedAt: student.updatedAt,
 					accessToken: student.accessToken,
 					accessTokenExpiration: student.accessTokenExpiration,
-					studentRegistration: student.studentRegistration,
 					studentCpf: student.studentCpf,
 				});
 			}
@@ -44,7 +43,6 @@ export class StudentLoginRepository implements IStudentLoginRepository {
 		try {
 			const createdStudentLogin = await this.prismaClient.studentLogin.create({
 				data: {
-					studentRegistration: studentLogin.getStudentRegistration(),
 					studentCpf: studentLogin.getStudentCpf(),
 					accessToken: studentLogin.getAccessToken(),
 					accessTokenExpiration: studentLogin.getAccessTokenExpiration(),
@@ -56,7 +54,6 @@ export class StudentLoginRepository implements IStudentLoginRepository {
 				updatedAt: createdStudentLogin.updatedAt,
 				accessToken: createdStudentLogin.accessToken,
 				accessTokenExpiration: createdStudentLogin.accessTokenExpiration,
-				studentRegistration: createdStudentLogin.studentRegistration,
 				studentCpf: createdStudentLogin.studentCpf,
 			});
 		} catch (error) {

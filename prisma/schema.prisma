@@ -44,8 +44,7 @@ model StudentLogin {
   updatedAt             DateTime  @updatedAt
   accessToken           String?
   accessTokenExpiration DateTime?
-  studentRegistration   String
-  studentCpf            String
+  studentCpf            String    @unique
 }
 
 model Role {

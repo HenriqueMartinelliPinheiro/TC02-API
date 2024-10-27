@@ -29,7 +29,6 @@ export class StudentLoginService {
 				return existingStudent;
 			} else {
 				const newStudentLogin = new StudentLoginDomain({
-					studentRegistration,
 					studentCpf,
 					accessToken,
 					accessTokenExpiration,

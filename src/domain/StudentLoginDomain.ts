@@ -4,7 +4,6 @@ interface StudentLoginProps {
 	updatedAt?: Date;
 	accessToken?: string;
 	accessTokenExpiration?: Date;
-	studentRegistration: string;
 	studentCpf: string;
 }
 
@@ -14,7 +13,6 @@ export class StudentLoginDomain {
 	private updatedAt?: Date;
 	private accessToken?: string;
 	private accessTokenExpiration?: Date;
-	private studentRegistration: string;
 	private studentCpf: string;
 
 	constructor(props: StudentLoginProps) {
@@ -23,7 +21,6 @@ export class StudentLoginDomain {
 		this.updatedAt = props.updatedAt || new Date();
 		this.accessToken = props.accessToken;
 		this.accessTokenExpiration = props.accessTokenExpiration;
-		this.studentRegistration = props.studentRegistration;
 		this.studentCpf = props.studentCpf;
 	}
 
@@ -45,10 +42,6 @@ export class StudentLoginDomain {
 
 	getAccessTokenExpiration(): Date | undefined {
 		return this.accessTokenExpiration;
-	}
-
-	getStudentRegistration(): string {
-		return this.studentRegistration;
 	}
 
 	getStudentCpf(): string {
