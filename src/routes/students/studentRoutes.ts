@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { FetchStudentByCpfController } from '../controllers/student/FetchStudentByCpfController';
+import { FetchStudentByCpfController } from '../../controllers/student/FetchStudentByCpfController';
 
 const fetchStudentByCpfController = new FetchStudentByCpfController();
 export const studentRouter = Router();

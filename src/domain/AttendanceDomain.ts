@@ -2,8 +2,8 @@ import { EventActivityDomain } from './EventActivityDomain';
 
 interface AttendanceProps {
 	attendanceId?: number;
-	studentName: string;
-	studentRegistration: string;
+	studentName?: string;
+	studentRegistration?: string;
 	eventActivity?: EventActivityDomain;
 	createdAt?: Date;
 	updatedAt?: Date;

@@ -8,7 +8,7 @@ import { eventRouter } from './routes/eventRoutes';
 import { userRouter } from './routes/userRoutes';
 import { courseRouter } from './routes/courseRoutes';
 import { roleRouter } from './routes/roleRoutes';
-import { studentRouter } from './routes/studentRoutes';
+import { studentRouter } from './routes/students/studentRoutes';
 import { attendanceRouter } from './routes/students/attendanceRoutes';
 import reportsRouter from './routes/reportsRoutes';
 import { eventStudentRouter } from './routes/students/eventRoutes';

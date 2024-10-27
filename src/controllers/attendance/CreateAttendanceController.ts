@@ -19,15 +19,7 @@ export class CreateAttendanceController {
 
 	async createAttendance(req: Request, res: Response): Promise<Response> {
 		try {
-			const {
-				studentName,
-				studentRegistration,
-				eventActivityId,
-				studentCpf,
-				eventId,
-				latitude,
-				longitude,
-			} = req.body;
+			const { eventActivityId, studentCpf, eventId, latitude, longitude } = req.body;
 
 			const error = isValidRequest(req.body, createAttendanceTypes);
 
@@ -40,8 +32,6 @@ export class CreateAttendanceController {
 			}
 
 			const attendanceData = new AttendanceDomain({
-				studentName,
-				studentRegistration,
 				studentCpf,
 				eventActivity: new EventActivityDomain({
 					eventActivityId,
@@ -56,7 +46,7 @@ export class CreateAttendanceController {
 			);
 
 			this.logger.info(
-				`Presença registrada com sucesso para o aluno ${studentName}`,
+				`Presença registrada com sucesso para o aluno ${studentCpf}`,
 				req.requestEmail
 			);
 			return res.status(201).json({
