@@ -33,7 +33,7 @@ export class StudentLoginRepository implements IStudentLoginRepository {
 			}
 			return undefined;
 		} catch (error) {
-			throw new AppError('Erro ao buscar aluno por CPF', 500);
+			return undefined;
 		}
 	}
 
