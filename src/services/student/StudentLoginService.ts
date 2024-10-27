@@ -37,6 +37,7 @@ export class StudentLoginService {
 				return await this.studentLoginRepository.createStudentLogin(newStudentLogin);
 			}
 		} catch (error) {
+			console.log(error);
 			throw new AppError('Erro ao processar login do aluno', 500);
 		}
 	}
