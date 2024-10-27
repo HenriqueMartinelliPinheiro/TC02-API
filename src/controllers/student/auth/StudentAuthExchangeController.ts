@@ -5,6 +5,7 @@ import { AppError } from '../../../utils/errors/AppError';
 import { StudentLoginService } from '../../../services/student/StudentLoginService';
 import { StudentLoginRepository } from '../../../repository/implementation/StudentLoginRepository';
 import { PrismaClient } from '@prisma/client';
+import { studentLoginLogPath } from '../../../config/logPaths';
 
 export class AuthExchangeController {
 	private exchangeService: StudentExchangeService;
@@ -14,7 +15,7 @@ export class AuthExchangeController {
 
 	constructor(exchangeService: StudentExchangeService) {
 		this.exchangeService = exchangeService;
-		this.logger = new Logger('StudentAuth', 'StudentAuthController');
+		this.logger = new Logger('StudentAuth', studentLoginLogPath);
 		const prismaClient = new PrismaClient();
 		this.studentLoginRepository = new StudentLoginRepository(prismaClient);
 		this.studentLoginService = new StudentLoginService(this.studentLoginRepository);

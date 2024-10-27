@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { Logger } from '../../../loggers/Logger';
 import { StudentLoginRedirectService } from '../../../services/student/StudentLoginRedirect';
 import { AppError } from '../../../utils/errors/AppError';
+import { studentLoginLogPath } from '../../../config/logPaths';
 
 export class StudentAuthController {
 	private studentLoginRedirectService: StudentLoginRedirectService;
@@ -9,7 +10,7 @@ export class StudentAuthController {
 
 	constructor(loginService: StudentLoginRedirectService) {
 		this.studentLoginRedirectService = loginService;
-		this.logger = new Logger('studentAuth', 'StudentAuthController');
+		this.logger = new Logger('studentAuth', studentLoginLogPath);
 	}
 
 	login = (req: Request, res: Response) => {

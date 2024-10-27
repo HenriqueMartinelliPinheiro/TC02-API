@@ -4,3 +4,4 @@ export const courseLogPath = 'logs/courseLogs.log';
 export const eventLogPath = 'logs/eventLogs.log';
 export const attendanceLogPath = 'logs/attendanceLogs.log';
 export const reportLogPath = 'logs/reportLogs.log';
+export const studentLoginLogPath = 'logs/studentLoginLogs.log';
