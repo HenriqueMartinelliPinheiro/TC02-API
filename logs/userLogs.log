@@ -11583,3 +11583,62 @@ Tue Aug 13 2024 09:19:23 GMT-0300 (Brasilia Standard Time): INFO - Usuário loga
 20/10/2024, 14:30:47: INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
 20/10/2024, 14:30:47: INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
 20/10/2024, 14:30:47: INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:09:45: WARN - Usuário ou senha incorretos em LoginUserController por User: undefined
+27/10/2024, 17:10:49: WARN - Usuário ou senha incorretos em LoginUserController por User: undefined
+27/10/2024, 17:10:50: WARN - Usuário ou senha incorretos em LoginUserController por User: undefined
+27/10/2024, 17:10:50: WARN - Usuário ou senha incorretos em LoginUserController por User: undefined
+27/10/2024, 17:10:50: WARN - Usuário ou senha incorretos em LoginUserController por User: undefined
+27/10/2024, 17:11:25: WARN - Usuário ou senha incorretos em LoginUserController por User: undefined
+27/10/2024, 17:11:26: WARN - Usuário ou senha incorretos em LoginUserController por User: undefined
+27/10/2024, 17:11:27: WARN - Usuário ou senha incorretos em LoginUserController por User: undefined
+27/10/2024, 17:11:27: WARN - Usuário ou senha incorretos em LoginUserController por User: undefined
+27/10/2024, 17:11:27: WARN - Usuário ou senha incorretos em LoginUserController por User: undefined
+27/10/2024, 17:14:06: WARN - Usuário ou senha incorretos em LoginUserController por User: undefined
+27/10/2024, 17:14:15: WARN - Usuário ou senha incorretos em LoginUserController por User: undefined
+27/10/2024, 17:14:16: WARN - Usuário ou senha incorretos em LoginUserController por User: undefined
+27/10/2024, 17:14:16: WARN - Usuário ou senha incorretos em LoginUserController por User: undefined
+27/10/2024, 17:14:16: WARN - Usuário ou senha incorretos em LoginUserController por User: undefined
+27/10/2024, 17:14:16: WARN - Usuário ou senha incorretos em LoginUserController por User: undefined
+27/10/2024, 17:14:48: INFO - Usuário logado por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:14:49: ERROR - Access Token missing em authMiddleware por User: undefined
+27/10/2024, 17:14:49: ERROR - Access Token missing em authMiddleware por User: undefined
+27/10/2024, 17:14:51: ERROR - Access Token missing em authMiddleware por User: undefined
+27/10/2024, 17:14:51: ERROR - Access Token missing em authMiddleware por User: undefined
+27/10/2024, 17:14:51: ERROR - Access Token missing em authMiddleware por User: undefined
+27/10/2024, 17:14:51: ERROR - Access Token missing em authMiddleware por User: undefined
+27/10/2024, 17:14:56: ERROR - Access Token missing em authMiddleware por User: undefined
+27/10/2024, 17:14:56: ERROR - Access Token missing em authMiddleware por User: undefined
+27/10/2024, 17:18:31: ERROR - Access Token missing em authMiddleware por User: undefined
+27/10/2024, 17:18:31: ERROR - Access Token missing em authMiddleware por User: undefined
+27/10/2024, 17:48:23: ERROR - Access Token missing em authMiddleware por User: undefined
+27/10/2024, 17:48:23: ERROR - Access Token missing em authMiddleware por User: undefined
+27/10/2024, 17:48:36: INFO - Usuário logado por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:48:38: INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:48:38: INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:48:38: INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:48:38: INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:51:40: ERROR - Access Token missing em authMiddleware por User: undefined
+27/10/2024, 17:51:40: ERROR - Access Token missing em authMiddleware por User: undefined
+27/10/2024, 17:53:40: ERROR - Usuário ou senha incorretos em LoginUserController por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:53:50: INFO - Usuário logado por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:53:52: INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:53:52: INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:53:52: INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:53:52: INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:56:10: INFO - Usuário logado por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:56:12: INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:56:12: INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:56:12: INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:56:12: INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:56:25: INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:56:25: INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:56:25: INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:56:25: INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:56:29: INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:56:29: INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:56:29: INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:56:29: INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:56:36: INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:56:36: INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:56:36: INFO - Requisição Aceita por User: henriquepinheiro18@gmail.com
+27/10/2024, 17:56:36: INFO - Usuário autorizado por User: henriquepinheiro18@gmail.com
