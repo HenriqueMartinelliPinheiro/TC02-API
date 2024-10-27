@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use(
 	cors({
 		origin: ['http://200.135.55.14:5173', 'http://localhost:5173'],
-		allowedHeaders: ['Content-Type', 'Authorization'],
+		allowedHeaders: ['Content-Type', 'Authorization', 'Set-Cookie'],
 		credentials: true,
 	})
 );
