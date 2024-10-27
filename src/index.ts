@@ -22,10 +22,9 @@ app.use(cookieParser());
 
 app.use(
 	cors({
-		origin: '*', // Permite todas as origens
-		allowedHeaders: '*', // Permite todos os cabeçalhos
-		methods: '*', // Permite todos os métodos
-		credentials: true, // Necessário para permitir cookies
+		origin: ['http://200.135.55.14:5173', 'http://localhost:5173'],
+		allowedHeaders: ['Content-Type', 'Authorization', 'Set-Cookie'],
+		credentials: true,
 	})
 );
 
