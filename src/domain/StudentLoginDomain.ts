@@ -52,6 +52,10 @@ export class StudentLoginDomain {
 		this.accessToken = accessToken;
 	}
 
+	setStudentCPF(cpf: string): void {
+		this.studentCpf = cpf;
+	}
+
 	setAccessTokenExpiration(accessTokenExpiration: Date): void {
 		this.accessTokenExpiration = accessTokenExpiration;
 	}

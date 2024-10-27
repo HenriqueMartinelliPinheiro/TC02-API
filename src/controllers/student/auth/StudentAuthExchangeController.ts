@@ -31,14 +31,11 @@ export class AuthExchangeController {
 
 		try {
 			const token = await this.exchangeService.exchangeCodeForToken(code);
-			const studentCpf = token.cpf;
-			const studentRegistration = token.registration;
 
-			await this.studentLoginService.execute(
-				studentCpf,
-				studentRegistration,
-				token.access_token
-			);
+			const accessToken = token.access_token;
+			const studentCpf = token.claims.sub;
+			console.log('Dados:', accessToken, studentCpf);
+			await this.studentLoginService.execute(studentCpf, accessToken);
 
 			res.cookie('govbr_access_token', token.access_token, {
 				httpOnly: true,

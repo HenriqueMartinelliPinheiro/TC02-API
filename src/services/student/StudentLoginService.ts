@@ -9,21 +9,18 @@ export class StudentLoginService {
 		this.studentLoginRepository = studentLoginRepository;
 	}
 
-	async execute(
-		studentCpf: string,
-		studentRegistration: string,
-		accessToken: string
-	): Promise<StudentLoginDomain> {
+	async execute(studentCpf: string, accessToken: string): Promise<StudentLoginDomain> {
 		try {
 			const existingStudent = await this.studentLoginRepository.findStudentByCpf(
 				studentCpf
 			);
 
-			const accessTokenExpiration = new Date(new Date().getTime() + 60 * 60 * 1000); 
+			const accessTokenExpiration = new Date(new Date().getTime() + 60 * 60 * 1000);
 
 			if (existingStudent) {
 				existingStudent.setAccessToken(accessToken);
 				existingStudent.setAccessTokenExpiration(accessTokenExpiration);
+				existingStudent.setStudentCPF(studentCpf);
 				existingStudent.setUpdatedAt(new Date());
 				await this.studentLoginRepository.updateAccessToken(existingStudent);
 				return existingStudent;
