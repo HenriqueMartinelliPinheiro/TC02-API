@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { AttendanceDomain } from '../../domain/AttendanceDomain';
 import { EventActivityDomain } from '../../domain/EventActivityDomain';
 import { CreateAttendanceService } from '../../services/attendance/CreateAttendanceService';
+import { FetchStudentByCpfService } from '../../services/sigaa/sigaaStudent/FetchStudentByCpfService';
 import { isValidRequest } from '../../utils/validations/isValidRequest';
 import { createAttendanceTypes } from '../../@types/attendance/createAttendanceTypes';
 import { attendanceLogPath } from '../../config/logPaths';
@@ -10,10 +11,12 @@ import { AppError } from '../../utils/errors/AppError';
 
 export class CreateAttendanceController {
 	private logger: Logger;
+	private fetchStudentByCpfService: FetchStudentByCpfService;
 
 	constructor(private createAttendanceService: CreateAttendanceService) {
 		this.createAttendanceService = createAttendanceService;
 		this.logger = new Logger('CreateAttendanceController', attendanceLogPath);
+		this.fetchStudentByCpfService = new FetchStudentByCpfService();
 		this.createAttendance = this.createAttendance.bind(this);
 	}
 
@@ -31,8 +34,26 @@ export class CreateAttendanceController {
 				});
 			}
 
+			const studentData = await this.fetchStudentByCpfService.fetchStudentByCpf(
+				studentCpf
+			);
+			if (!studentData || studentData.length === 0) {
+				this.logger.error(
+					`Aluno não encontrado com CPF: ${studentCpf}`,
+					req.requestEmail
+				);
+				return res.status(404).json({
+					event: undefined,
+					msg: 'Aluno não encontrado',
+				});
+			}
+
+			const { 'nome-discente': nomeDiscente, matricula } = studentData[0];
+
 			const attendanceData = new AttendanceDomain({
 				studentCpf,
+				studentName: nomeDiscente,
+				studentRegistration: matricula,
 				eventActivity: new EventActivityDomain({
 					eventActivityId,
 				}),

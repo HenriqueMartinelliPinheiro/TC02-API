@@ -12,7 +12,7 @@ export class FetchStudentByCpfService {
 	async fetchStudentByCpf(cpf: string) {
 		try {
 			const response = await axios.get(this.apiUrl, {
-				params: { 'cpf-cnpj': cpf },
+				params: { cpf: cpf },
 			});
 
 			if (response.data.length === 0) {
