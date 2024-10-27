@@ -49,11 +49,12 @@ export class CreateAttendanceController {
 			}
 
 			const { 'nome-discente': nomeDiscente, matricula } = studentData[0];
+			const studentRegistration = matricula.toString();
 
 			const attendanceData = new AttendanceDomain({
 				studentCpf,
 				studentName: nomeDiscente,
-				studentRegistration: matricula,
+				studentRegistration: studentRegistration,
 				eventActivity: new EventActivityDomain({
 					eventActivityId,
 				}),
