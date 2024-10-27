@@ -31,10 +31,8 @@ export class AuthExchangeController {
 
 		try {
 			const token = await this.exchangeService.exchangeCodeForToken(code);
-
 			const accessToken = token.access_token;
 			const studentCpf = token.claims.sub;
-			console.log('Dados:', accessToken, studentCpf);
 			await this.studentLoginService.execute(studentCpf, accessToken);
 
 			res.cookie('govbr_access_token', token.access_token, {
@@ -42,7 +40,10 @@ export class AuthExchangeController {
 				secure: true,
 			});
 
-			return res.status(200).send('Sucesso ao autenticar');
+			return res.status(200).json({
+				msg: 'Sucesso ao autenticar',
+				studentCpf: studentCpf,
+			});
 		} catch (error) {
 			if (error instanceof AppError) {
 				this.logger.error(error.message, req.requestEmail);
