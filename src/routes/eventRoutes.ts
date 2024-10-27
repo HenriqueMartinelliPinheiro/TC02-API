@@ -50,8 +50,8 @@ eventRouter.get(
 
 eventRouter.get(
 	'/fetchAllEvents',
-	// authMiddleware,
-	// roleMiddleware(eventRoles.FETCH_ALL_EVENTS),
+	authMiddleware,
+	roleMiddleware(eventRoles.FETCH_ALL_EVENTS),
 	fetchAllEventsController.fetchAllEvents
 );
 
