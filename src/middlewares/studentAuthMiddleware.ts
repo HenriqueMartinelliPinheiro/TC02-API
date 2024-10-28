@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 const verifyHttpOnlyTokenMiddleware = async (req, res, next) => {
 	try {
-		const token = req.cookies?.httpOnlyToken;
+		const token = req.cookies.token;
 		console.log(token);
 		if (!token) {
 			return res.status(401).json({ error: 'Token não fornecido.' });
