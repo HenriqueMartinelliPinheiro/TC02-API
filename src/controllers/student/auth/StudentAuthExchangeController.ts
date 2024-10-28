@@ -39,9 +39,12 @@ export class AuthExchangeController {
 			const token = await this.exchangeService.exchangeCodeForToken(code);
 			const accessToken = token.access_token;
 			const studentCpf = token.claims.sub;
-			await this.studentLoginService.execute(studentCpf, accessToken);
-
-			res.cookie('govbr_access_token', token.access_token, {
+			const studentLogin = await this.studentLoginService.execute(
+				studentCpf,
+				accessToken
+			);
+			console.log(studentLogin.getAccessToken());
+			res.cookie('token', studentLogin.getAccessToken(), {
 				httpOnly: true,
 				secure: true,
 			});
