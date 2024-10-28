@@ -5,6 +5,7 @@ import { FetchAllEventsService } from '../../services/event/FetchAllEventsServic
 import { FetchAllEventsController } from '../../controllers/event/FetchAllEventsController';
 import { GetEventByIdService } from '../../services/event/GetEventByIdService';
 import { GetEventByIdController } from '../../controllers/event/GetEventByIdController';
+import verifyHttpOnlyTokenMiddleware from '../../middlewares/studentAuthMiddleware';
 
 export const eventStudentRouter = Router();
 
@@ -20,14 +21,12 @@ const getEventByIdController = new GetEventByIdController(getEventByIdService);
 
 eventStudentRouter.get(
 	'/fetchEvents',
-	// authMiddleware,
-	// roleMiddleware(eventRoles.FETCH_ALL_EVENTS),
+	verifyHttpOnlyTokenMiddleware,
 	fetchAllEventsController.fetchAllEvents
 );
 
 eventStudentRouter.get(
 	'/getEventByIdStudent/:eventId',
-	// authMiddleware,
-	// roleMiddleware(eventRoles.GET_EVENT_BY_ID),
+	verifyHttpOnlyTokenMiddleware,
 	getEventByIdController.getEventById
 );

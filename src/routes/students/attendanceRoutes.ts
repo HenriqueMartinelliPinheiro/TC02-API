@@ -7,6 +7,7 @@ import { EventCourseRepository } from '../../repository/implementation/EventCour
 import { EventLocationRepository } from '../../repository/implementation/EventLocationRepository';
 import { EventActivityRepository } from '../../repository/implementation/EventActivityRepository';
 import { EventRepository } from '../../repository/implementation/EventRepository';
+import verifyHttpOnlyTokenMiddleware from '../../middlewares/studentAuthMiddleware';
 
 export const attendanceRouter = Router();
 
@@ -29,4 +30,8 @@ const createAttendanceController = new CreateAttendanceController(
 	createAttendanceService
 );
 
-attendanceRouter.post('/createAttendance', createAttendanceController.createAttendance);
+attendanceRouter.post(
+	'/createAttendance',
+	verifyHttpOnlyTokenMiddleware,
+	createAttendanceController.createAttendance
+);
