@@ -43,7 +43,6 @@ export class AuthExchangeController {
 				studentCpf,
 				accessToken
 			);
-			console.log(studentLogin.getAccessToken());
 			res.cookie('token', studentLogin.getAccessToken(), {
 				httpOnly: true,
 				secure: true,

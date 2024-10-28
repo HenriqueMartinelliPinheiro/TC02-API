@@ -13,7 +13,7 @@ export class IssueReportService {
 	private eventActivityRepository: IEventActivityRepository;
 	private attendanceRepository: IAttendanceRepository;
 	private scheduleProcessor: ScheduleProcessor = new ScheduleProcessor();
-	private fetchStudentByClassService: FetchStudentByClassService =
+	 fetchStudentByClassService: FetchStudentByClassService =
 		new FetchStudentByClassService();
 	private pdfReportGenerator: AttendancePDFReportGenerator =
 		new AttendancePDFReportGenerator();

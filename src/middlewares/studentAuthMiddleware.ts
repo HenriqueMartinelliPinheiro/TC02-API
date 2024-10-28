@@ -6,7 +6,6 @@ const prisma = new PrismaClient();
 const verifyHttpOnlyTokenMiddleware = async (req, res, next) => {
 	try {
 		const token = req.cookies.token;
-		console.log(token);
 		if (!token) {
 			return res.status(401).json({ error: 'Token não fornecido.' });
 		}
@@ -17,7 +16,6 @@ const verifyHttpOnlyTokenMiddleware = async (req, res, next) => {
 		} catch (err) {
 			return res.status(401).json({ error: 'Token inválido.' });
 		}
-		console.log('Token Válido');
 
 		const studentLogin = await prisma.studentLogin.findUnique({
 			where: {

@@ -42,7 +42,6 @@ export class CreateAttendanceService {
 		);
 
 		if (!eventLocation) {
-			// Se a localização do evento não estiver definida, permitir registro de presença.
 			return;
 		}
 
