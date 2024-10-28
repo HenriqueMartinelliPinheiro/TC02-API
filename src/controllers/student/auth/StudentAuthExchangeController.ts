@@ -6,6 +6,8 @@ import { StudentLoginService } from '../../../services/student/StudentLoginServi
 import { StudentLoginRepository } from '../../../repository/implementation/StudentLoginRepository';
 import { PrismaClient } from '@prisma/client';
 import { studentLoginLogPath } from '../../../config/logPaths';
+import { isValidRequest } from '../../../utils/validations/isValidRequest';
+import { studentAuthExchangeTypes } from '../../../@types/student/studentAuthExchangeTypes';
 
 export class AuthExchangeController {
 	private exchangeService: StudentExchangeService;
@@ -22,12 +24,16 @@ export class AuthExchangeController {
 	}
 
 	exchange = async (req: Request, res: Response) => {
-		const { code } = req.body;
-
-		if (!code) {
-			this.logger.error('Código não fornecido', req.requestEmail);
-			return res.status(400).send('Code not provided');
+		const error = isValidRequest(req.body, studentAuthExchangeTypes);
+		if (typeof error === 'string') {
+			this.logger.error(`Dados inválidos no Login: ${req.body.userEmail}`, error);
+			return res.status(400).json({
+				msg: error,
+				user: undefined,
+			});
 		}
+
+		const { code } = req.body;
 
 		try {
 			const token = await this.exchangeService.exchangeCodeForToken(code);
