@@ -3,14 +3,13 @@ import { Request, Response } from 'express';
 import { LoginUserService } from '../../../services/user/LoginUserService';
 import { isValidPassword } from '../../../utils/validations/isValidPassword';
 import { isValidRequest } from '../../../utils/validations/isValidRequest';
-import { generateUserErrorResponse } from '../../../utils/generateUserErrorResponse';
 import { UserDomain } from '../../../domain/UserDomain';
 import { loginUserTypes } from '../../../@types/user/loginUserTypes';
-import { Logger } from '../../../loggers/Logger';
 import { PrismaClient } from '@prisma/client';
 import { IUserRepository } from '../../../repository/interfaces/IUserRepository';
 import { UserRepository } from '../../../repository/implementation/UserRepository';
 import { LoginUserController } from '../../../controllers/user/LoginUserController';
+import { AppError } from '../../../utils/errors/AppError';
 
 vi.mock('../../../utils/validations/isValidPassword');
 vi.mock('../../../utils/validations/isValidRequest');
@@ -40,6 +39,8 @@ describe('LoginUserController', () => {
 	let prismaClient: PrismaClient;
 
 	beforeEach(() => {
+		vi.clearAllMocks();
+
 		prismaClient = new PrismaClient();
 		userRepository = new UserRepository(prismaClient);
 
@@ -126,7 +127,7 @@ describe('LoginUserController', () => {
 		expect(res.status).toHaveBeenCalledWith(201);
 		expect(res.cookie).toHaveBeenCalledWith('token', 'access-token', {
 			httpOnly: true,
-			sameSite: 'strict',
+			sameSite: 'lax',
 			path: '/',
 		});
 		expect(res.json).toHaveBeenCalledWith({
@@ -151,6 +152,23 @@ describe('LoginUserController', () => {
 		expect(res.json).toHaveBeenCalledWith({
 			user: undefined,
 			msg: 'Erro desconhecido ao fazer login',
+		});
+	});
+
+	it('should return specific error if AppError is thrown', async () => {
+		(isValidRequest as any).mockReturnValue(true);
+		(isValidPassword as any).mockReturnValue(true);
+
+		const appError = new AppError('Erro específico', 400);
+		(loginUserService.execute as any).mockRejectedValue(appError);
+
+		await loginUserController.loginUser(req as Request, res as Response);
+
+		expect(loginUserService.execute).toHaveBeenCalledWith(expect.any(UserDomain));
+		expect(res.status).toHaveBeenCalledWith(400);
+		expect(res.json).toHaveBeenCalledWith({
+			user: undefined,
+			msg: 'Erro específico',
 		});
 	});
 });

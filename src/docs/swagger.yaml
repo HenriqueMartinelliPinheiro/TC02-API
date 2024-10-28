@@ -618,12 +618,6 @@ paths:
             schema:
               type: object
               properties:
-                studentName:
-                  type: string
-                  description: Nome do estudante
-                studentRegistration:
-                  type: string
-                  description: Registro do estudante
                 studentCpf:
                   type: string
                   description: CPF do estudante (11 dígitos)
@@ -642,8 +636,6 @@ paths:
                   format: float
                   description: Longitude da localização do estudante
               required:
-                - studentName
-                - studentRegistration
                 - studentCpf
                 - eventActivityId
                 - eventId
@@ -684,7 +676,7 @@ paths:
                   msg:
                     type: string
                     description: Mensagem de erro detalhando o problema
-                    example: "Estudante não encontrado com o CPF fornecido"
+                    example: "Aluno não encontrado"
         '500':
           description: Erro interno do servidor
           content:
@@ -696,6 +688,8 @@ paths:
                     type: string
                     description: Mensagem de erro
                     example: "Erro interno do Servidor"
+
+
   /issueReport:
     post:
       summary: Gera um relatório de presença de um evento
@@ -799,3 +793,77 @@ paths:
           description: Evento não encontrado
         '500':
           description: Erro interno do servidor
+
+  /auth/login:
+    get:
+      summary: Redireciona o aluno para a URL de login
+      tags: [StudentAuth]
+      responses:
+        '302':
+          description: Redirecionamento para a URL de login do estudante
+        '500':
+          description: Erro ao gerar URL de login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: Mensagem de erro
+                    example: "Erro interno do servidor"
+
+  /auth/exchange:
+    post:
+      summary: Troca o código do gov.br por um token de acesso
+      tags: [StudentAuth]
+      requestBody:
+        description: Dados necessários para trocar o código por um token de acesso
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: Código retornado pelo gov.br
+              required:
+                - code
+      responses:
+        '200':
+          description: Sucesso ao autenticar
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: Mensagem de sucesso
+                    example: "Sucesso ao autenticar"
+                  studentCpf:
+                    type: string
+                    description: CPF do estudante
+        '400':
+          description: Requisição inválida (dados incorretos)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: Mensagem de erro
+                    example: "Dados inválidos no Login"
+        '500':
+          description: Falha ao autenticar
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: Mensagem de erro
+                    example: "Falha ao Autenticar"
