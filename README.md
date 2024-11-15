@@ -4,19 +4,19 @@ Repositório para uma API para gerenciamento e registro de frequência em evento
 
 # Diagramas Disponíveis
 
-- **Arquitetura do Sistema** (`/diagramas/ArquiteturaTC01.png`)
+- **Arquitetura do Sistema** ![Figura 1: Arquitetura](`/diagramas/ArquiteturaTC01.png`)
 
   - Este diagrama representa a arquitetura geral do sistema, mostrando como os componentes se conectam e interagem entre si. Ele fornece uma visão macro da solução, permitindo entender os diferentes módulos e seus relacionamentos.
 
-- **Diagrama de Sequência** (`/diagramas/diagrama_sequencia2.png`)
+- **Diagrama de Sequência Autenticação Gov.br** ![Figura 2: Diagrama de Sequência Autenticação Gov.br](`/diagramas/diagrama_sequencia2.png`)
 
   - Este diagrama ilustra o fluxo de comunicação entre os atores e os componentes do sistema ao longo do tempo. Ele é útil para visualizar como as requisições são processadas e como os diferentes elementos do sistema interagem para cumprir um caso de uso específico.
 
-- **Modelo do Banco de Dados** (`/diagramas/modeloBancoTC_SVG.png`)
+- **Modelo do Banco de Dados** ![Figura 3: Diagrama do Banco de Dados](`/diagramas/modeloBancoTC_SVG.png`)
   - Este diagrama representa o modelo de dados utilizado pelo sistema. Ele mostra as tabelas do banco de dados, seus campos, e as relações entre elas. É essencial para entender a estrutura de armazenamento das informações e como elas estão organizadas.
 
 # Documentação das Rotas da API de Eventos
-  
+
 ### 1. `/createUser`
 
 - **Método:** `POST`
