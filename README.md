@@ -1,6 +1,6 @@
 # TC02-API
 
-Repositório para uma API para gerenciamento e registro de frequência em eventos do IFC Videira.
+Repositório para u protótipo de uma API para gerenciamento e registro de frequência em eventos do IFC Videira.
 
 # Diagramas Disponíveis
 
