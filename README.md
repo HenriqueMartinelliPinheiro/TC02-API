@@ -15,6 +15,19 @@ Repositório para u protótipo de uma API para gerenciamento e registro de frequ
 - **Modelo do Banco de Dados** ![Figura 3: Diagrama do Banco de Dados](/diagramas/modeloBancoTC_SVG.png)
   - Este diagrama representa o modelo de dados utilizado pelo sistema. Ele mostra as tabelas do banco de dados, seus campos, e as relações entre elas. É essencial para entender a estrutura de armazenamento das informações e como elas estão organizadas.
 
+# Documentação das Funcionalidades
+## Emissão de Relatórios
+
+Para realizar a emissão de relatórios,a API segue os seguintes passos:
+- Usuário solicita emissão de relatórios com eventId e userEmail;
+- Busca atividades do evento.
+- Identifica o ano do evento.
+- Busca turmas associadas ao ano.
+- Analisa o cronograma de cada turma;
+- Recupera estudantes matriculados da turma;
+- Gera relatório em PDF;
+- Envia relatório para o email do usuário e dos professores.
+
 # Documentação das Rotas da API de Eventos
 
 ### 1. `/createUser`
